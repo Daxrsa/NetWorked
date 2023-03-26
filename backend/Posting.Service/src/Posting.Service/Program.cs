@@ -1,14 +1,22 @@
-using Posting.Service.Core;
+using Common.Library.MongoDB;
+using Common.Library.Settings;
+using Posting.Service.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
-builder.Services.AddControllers();
+ServiceSettings serviceSettings = builder.Configuration.GetSection(nameof(ServiceSettings)).Get<ServiceSettings>();
+
+builder.Services.AddMongo().AddMongoRepo<Job>("jobs");
+
+builder.Services.AddControllers(opt => 
+{
+    opt.SuppressAsyncSuffixInActionNames = false;
+});
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-builder.Services.AddAutoMapper(typeof(MappingProfiles).Assembly);
 
 var app = builder.Build();
 

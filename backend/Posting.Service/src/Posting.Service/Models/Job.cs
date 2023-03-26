@@ -1,6 +1,8 @@
+using Common.Library;
+
 namespace Posting.Service.Models
 {
-    public class Job
+    public class Job : IEntity
     {
         public Guid Id { get; set; }
         public string Title { get; set; }

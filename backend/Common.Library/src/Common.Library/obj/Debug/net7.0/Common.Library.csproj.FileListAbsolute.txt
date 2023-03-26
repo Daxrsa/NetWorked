@@ -1,0 +1,12 @@
+C:\Users\Razer\Documents\GitHub\NetWorked\backend\Common.Library\src\Common.Library\bin\Debug\net7.0\Common.Library.deps.json
+C:\Users\Razer\Documents\GitHub\NetWorked\backend\Common.Library\src\Common.Library\bin\Debug\net7.0\Common.Library.dll
+C:\Users\Razer\Documents\GitHub\NetWorked\backend\Common.Library\src\Common.Library\bin\Debug\net7.0\Common.Library.pdb
+C:\Users\Razer\Documents\GitHub\NetWorked\backend\Common.Library\src\Common.Library\obj\Debug\net7.0\Common.Library.csproj.AssemblyReference.cache
+C:\Users\Razer\Documents\GitHub\NetWorked\backend\Common.Library\src\Common.Library\obj\Debug\net7.0\Common.Library.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Razer\Documents\GitHub\NetWorked\backend\Common.Library\src\Common.Library\obj\Debug\net7.0\Common.Library.AssemblyInfoInputs.cache
+C:\Users\Razer\Documents\GitHub\NetWorked\backend\Common.Library\src\Common.Library\obj\Debug\net7.0\Common.Library.AssemblyInfo.cs
+C:\Users\Razer\Documents\GitHub\NetWorked\backend\Common.Library\src\Common.Library\obj\Debug\net7.0\Common.Library.csproj.CoreCompileInputs.cache
+C:\Users\Razer\Documents\GitHub\NetWorked\backend\Common.Library\src\Common.Library\obj\Debug\net7.0\Common.Library.dll
+C:\Users\Razer\Documents\GitHub\NetWorked\backend\Common.Library\src\Common.Library\obj\Debug\net7.0\refint\Common.Library.dll
+C:\Users\Razer\Documents\GitHub\NetWorked\backend\Common.Library\src\Common.Library\obj\Debug\net7.0\Common.Library.pdb
+C:\Users\Razer\Documents\GitHub\NetWorked\backend\Common.Library\src\Common.Library\obj\Debug\net7.0\ref\Common.Library.dll
