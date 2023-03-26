@@ -1,0 +1,15 @@
+#docker run --name mongo_networked -d -p 27023:27017 mongo
+
+version: "4.17.0"
+
+services:
+  mongo:
+    image: mongo
+    container_name: networked
+    ports:
+      - 27023:27017
+    volumes:
+      - networked:/data/db
+
+volumes:
+  networked:
