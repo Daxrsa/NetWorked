@@ -1,9 +1,9 @@
 using Common.Library;
 using Microsoft.AspNetCore.Mvc;
 using Posting.Service.Models;
-using static Posting.Service.DTOs;
+using static Recruiter.Service.DTOs;
 
-namespace Posting.Service.Controllers
+namespace Recruiter.Service.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]

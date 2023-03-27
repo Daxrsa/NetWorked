@@ -5,9 +5,9 @@ namespace Posting.Service
 {
     public static class Extensions
     {
-        public static JobDTO AsDTO(this Job job)
+        public static PostDTO AsDto(this Post post)
         {
-            return new JobDTO(job.Id, job.Title, job.Location, job.Description, job.FullOrPartTime, job.MonthlySalary, job.Currency);
+            return new PostDTO(post.Id, post.Description, post.FilePath);
         }
     }
 }

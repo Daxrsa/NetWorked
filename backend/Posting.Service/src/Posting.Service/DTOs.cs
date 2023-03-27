@@ -2,37 +2,25 @@ namespace Posting.Service
 {
     public class DTOs
     {
-        public record JobDTO
+        public record PostDTO
         (
-            Guid Id, 
-            string Title, 
-            string Description, 
-            string Location,
-            string FullOrPartTime, 
-            decimal MonthlySalary, 
-            string Currency
+            Guid Id,
+            string Description,
+            string FilePath
         );
 
-        public record CreateJobDT
+        public record CreatePostDTO
         (
-            Guid Id, 
-            string Title, 
-            string Description, 
-            string Location,
-            string FullOrPartTime, 
-            decimal MonthlySalary, 
-            string Currency
+            Guid Id,
+            string Description,
+            string FilePath
         );
 
-        public record UpdateJobDTO
+        public record UpdatePostDTO
         (
-            Guid Id, 
-            string Title, 
-            string Description, 
-            string Location,
-            string FullOrPartTime, 
-            decimal MonthlySalary, 
-            string Currency
+            Guid Id,
+            string Description,
+            string FilePath
         );
     }
 }
