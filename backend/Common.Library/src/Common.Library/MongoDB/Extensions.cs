@@ -35,5 +35,24 @@ namespace Common.Library.MongoDB
             });
             return services;
         }
+
+        public static IServiceCollection AddMongo<T>(this IServiceCollection services, string collectionName)
+        {
+            BsonSerializer.RegisterSerializer(new GuidSerializer(BsonType.String));
+
+            services.AddSingleton(serviceProvider =>
+            {
+                var configuration = serviceProvider.GetService<IConfiguration>();
+                var serviceSettings = configuration.GetSection(nameof(ServiceSettings)).Get<ServiceSettings>();
+                var mongoDbSettings = configuration.GetSection(nameof(MongoDbSettings)).Get<MongoDbSettings>();
+                var mongoClient = new MongoClient(mongoDbSettings.ConnectionString);
+                var mongoDatabase = mongoClient.GetDatabase(serviceSettings.ServiceName);
+                var mongoCollection = mongoDatabase.GetCollection<T>(collectionName);
+                return mongoCollection;
+            });
+
+            return services;
+        }
+
     }
 }

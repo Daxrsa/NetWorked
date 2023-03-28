@@ -1,6 +1,12 @@
+using Common.Library.MongoDB;
+using Common.Library.Settings;
+using User.Service.Models;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+ServiceSettings serviceSettings = builder.Configuration.GetSection(nameof(ServiceSettings)).Get<ServiceSettings>();
+builder.Services.AddMongo<AppUser>("users");
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

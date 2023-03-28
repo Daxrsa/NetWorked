@@ -5,8 +5,6 @@ C:\Users\Razer\Documents\GitHub\NetWorked\backend\Posting.Service\src\Posting.Se
 C:\Users\Razer\Documents\GitHub\NetWorked\backend\Posting.Service\src\Posting.Service\bin\Debug\net7.0\Posting.Service.runtimeconfig.json
 C:\Users\Razer\Documents\GitHub\NetWorked\backend\Posting.Service\src\Posting.Service\bin\Debug\net7.0\Posting.Service.dll
 C:\Users\Razer\Documents\GitHub\NetWorked\backend\Posting.Service\src\Posting.Service\bin\Debug\net7.0\Posting.Service.pdb
-C:\Users\Razer\Documents\GitHub\NetWorked\backend\Posting.Service\src\Posting.Service\bin\Debug\net7.0\AutoMapper.dll
-C:\Users\Razer\Documents\GitHub\NetWorked\backend\Posting.Service\src\Posting.Service\bin\Debug\net7.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
 C:\Users\Razer\Documents\GitHub\NetWorked\backend\Posting.Service\src\Posting.Service\bin\Debug\net7.0\AWSSDK.Core.dll
 C:\Users\Razer\Documents\GitHub\NetWorked\backend\Posting.Service\src\Posting.Service\bin\Debug\net7.0\AWSSDK.SecurityToken.dll
 C:\Users\Razer\Documents\GitHub\NetWorked\backend\Posting.Service\src\Posting.Service\bin\Debug\net7.0\DnsClient.dll

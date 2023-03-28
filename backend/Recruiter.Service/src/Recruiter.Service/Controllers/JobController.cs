@@ -46,7 +46,8 @@ namespace Recruiter.Service.Controllers
             Currency = jobDTO.Currency
             };
             await _jobRepo.CreateAsync(job);
-            return CreatedAtAction(nameof(GetSingleAsync), new { id = job.Id }, job);
+            //return CreatedAtAction(nameof(GetSingleAsync), new { id = job.Id }, job);
+            return Ok(job);
         }
 
         [HttpPut("{id}/edit")]

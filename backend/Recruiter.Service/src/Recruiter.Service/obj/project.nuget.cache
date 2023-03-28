@@ -1,12 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "GFBq1TVABZ8m373SLtvXoxQUZ4J4UkEvFNa3AGPUDjIucnJTsi6kb3e27FsOQ08pVsMdKn3hwVZ6MN+bIgRyMQ==",
+  "dgSpecHash": "pVvXECD3XwlRrbCDnnUUoM5IbTaACOxPapRDYwWWU8/cLht0tuW6FSHIE3ta/m3GGTIkkxJva0vqb0Qi1pxXWg==",
   "success": true,
   "projectFilePath": "C:\\Users\\Razer\\Documents\\GitHub\\NetWorked\\backend\\Recruiter.Service\\src\\Recruiter.Service\\Recruiter.Service.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Razer\\.nuget\\packages\\awssdk.core\\3.7.100.14\\awssdk.core.3.7.100.14.nupkg.sha512",
     "C:\\Users\\Razer\\.nuget\\packages\\awssdk.securitytoken\\3.7.100.14\\awssdk.securitytoken.3.7.100.14.nupkg.sha512",
-    "C:\\Users\\Razer\\.nuget\\packages\\common.library\\1.0.0\\common.library.1.0.0.nupkg.sha512",
+    "C:\\Users\\Razer\\.nuget\\packages\\common.library\\1.0.2\\common.library.1.0.2.nupkg.sha512",
     "C:\\Users\\Razer\\.nuget\\packages\\dnsclient\\1.6.1\\dnsclient.1.6.1.nupkg.sha512",
     "C:\\Users\\Razer\\.nuget\\packages\\microsoft.aspnetcore.openapi\\7.0.2\\microsoft.aspnetcore.openapi.7.0.2.nupkg.sha512",
     "C:\\Users\\Razer\\.nuget\\packages\\microsoft.extensions.apidescription.server\\6.0.5\\microsoft.extensions.apidescription.server.6.0.5.nupkg.sha512",

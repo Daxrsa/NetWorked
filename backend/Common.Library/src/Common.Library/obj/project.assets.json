@@ -1032,7 +1032,7 @@
     "C:\\Users\\Razer\\.nuget\\packages\\": {}
   },
   "project": {
-    "version": "1.0.0",
+    "version": "1.0.2",
     "restore": {
       "projectUniqueName": "C:\\Users\\Razer\\Documents\\GitHub\\NetWorked\\backend\\Common.Library\\src\\Common.Library\\Common.Library.csproj",
       "projectName": "Common.Library",
@@ -1050,6 +1050,7 @@
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "C:\\Users\\Razer\\Desktop\\Play\\packages": {},
+        "C:\\Users\\Razer\\Documents\\GitHub\\NetWorked\\backend\\packages": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {

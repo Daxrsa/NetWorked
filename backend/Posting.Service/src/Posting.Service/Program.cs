@@ -6,7 +6,6 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 ServiceSettings serviceSettings = builder.Configuration.GetSection(nameof(ServiceSettings)).Get<ServiceSettings>();
-
 builder.Services.AddMongo().AddMongoRepo<Post>("posts");
 
 builder.Services.AddControllers(opt => 

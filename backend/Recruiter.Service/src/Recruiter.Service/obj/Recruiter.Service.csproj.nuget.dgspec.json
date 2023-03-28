@@ -44,7 +44,7 @@
           "dependencies": {
             "Common.Library": {
               "target": "Package",
-              "version": "[1.0.0, )"
+              "version": "[1.0.2, )"
             },
             "Microsoft.AspNetCore.OpenApi": {
               "target": "Package",
