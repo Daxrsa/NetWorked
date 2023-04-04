@@ -12,3 +12,7 @@ NetWorked is a social network website we're developing for a university course. 
 4. ### Postings microservice: <sub> </sub>
 5. ### Notifications microservice: <sub> </sub>
 6. ### ProfileMatch microservice: <sub> </sub>
+
+# UI DESIGN
+![1](https://user-images.githubusercontent.com/93683494/229908638-c75fdda2-814f-4bfa-b20c-4bf42a6e680b.png)
+
