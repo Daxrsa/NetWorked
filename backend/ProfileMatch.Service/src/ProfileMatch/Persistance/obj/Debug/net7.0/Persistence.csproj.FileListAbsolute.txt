@@ -13,3 +13,5 @@ C:\Users\fitor\ProjektiLab2\NetWorked\backend\ProfileMatch.Service\src\ProfileMa
 C:\Users\fitor\ProjektiLab2\NetWorked\backend\ProfileMatch.Service\src\ProfileMatch\Persistance\obj\Debug\net7.0\refint\Persistence.dll
 C:\Users\fitor\ProjektiLab2\NetWorked\backend\ProfileMatch.Service\src\ProfileMatch\Persistance\obj\Debug\net7.0\Persistence.pdb
 C:\Users\fitor\ProjektiLab2\NetWorked\backend\ProfileMatch.Service\src\ProfileMatch\Persistance\obj\Debug\net7.0\ref\Persistence.dll
+C:\Users\fitor\ProjektiLab2\NetWorked\backend\ProfileMatch.Service\src\ProfileMatch\Persistance\bin\Debug\net7.0\Persistence.runtimeconfig.json
+C:\Users\fitor\ProjektiLab2\NetWorked\backend\ProfileMatch.Service\src\ProfileMatch\Persistance\obj\Debug\net7.0\Persistence.genruntimeconfig.cache
