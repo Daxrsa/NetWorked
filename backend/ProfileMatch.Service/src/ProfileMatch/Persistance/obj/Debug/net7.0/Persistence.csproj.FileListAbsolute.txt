@@ -1,0 +1,17 @@
+C:\Users\fitor\ProjektiLab2\NetWorked\backend\ProfileMatch.Service\src\ProfileMatch\Persistance\bin\Debug\net7.0\Persistence.deps.json
+C:\Users\fitor\ProjektiLab2\NetWorked\backend\ProfileMatch.Service\src\ProfileMatch\Persistance\bin\Debug\net7.0\Persistence.dll
+C:\Users\fitor\ProjektiLab2\NetWorked\backend\ProfileMatch.Service\src\ProfileMatch\Persistance\bin\Debug\net7.0\Persistence.pdb
+C:\Users\fitor\ProjektiLab2\NetWorked\backend\ProfileMatch.Service\src\ProfileMatch\Persistance\bin\Debug\net7.0\Domain.dll
+C:\Users\fitor\ProjektiLab2\NetWorked\backend\ProfileMatch.Service\src\ProfileMatch\Persistance\bin\Debug\net7.0\Domain.pdb
+C:\Users\fitor\ProjektiLab2\NetWorked\backend\ProfileMatch.Service\src\ProfileMatch\Persistance\obj\Debug\net7.0\Persistence.csproj.AssemblyReference.cache
+C:\Users\fitor\ProjektiLab2\NetWorked\backend\ProfileMatch.Service\src\ProfileMatch\Persistance\obj\Debug\net7.0\Persistence.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\fitor\ProjektiLab2\NetWorked\backend\ProfileMatch.Service\src\ProfileMatch\Persistance\obj\Debug\net7.0\Persistence.AssemblyInfoInputs.cache
+C:\Users\fitor\ProjektiLab2\NetWorked\backend\ProfileMatch.Service\src\ProfileMatch\Persistance\obj\Debug\net7.0\Persistence.AssemblyInfo.cs
+C:\Users\fitor\ProjektiLab2\NetWorked\backend\ProfileMatch.Service\src\ProfileMatch\Persistance\obj\Debug\net7.0\Persistence.csproj.CoreCompileInputs.cache
+C:\Users\fitor\ProjektiLab2\NetWorked\backend\ProfileMatch.Service\src\ProfileMatch\Persistance\obj\Debug\net7.0\Persistence.csproj.CopyComplete
+C:\Users\fitor\ProjektiLab2\NetWorked\backend\ProfileMatch.Service\src\ProfileMatch\Persistance\obj\Debug\net7.0\Persistence.dll
+C:\Users\fitor\ProjektiLab2\NetWorked\backend\ProfileMatch.Service\src\ProfileMatch\Persistance\obj\Debug\net7.0\refint\Persistence.dll
+C:\Users\fitor\ProjektiLab2\NetWorked\backend\ProfileMatch.Service\src\ProfileMatch\Persistance\obj\Debug\net7.0\Persistence.pdb
+C:\Users\fitor\ProjektiLab2\NetWorked\backend\ProfileMatch.Service\src\ProfileMatch\Persistance\obj\Debug\net7.0\ref\Persistence.dll
+C:\Users\fitor\ProjektiLab2\NetWorked\backend\ProfileMatch.Service\src\ProfileMatch\Persistance\bin\Debug\net7.0\Persistence.runtimeconfig.json
+C:\Users\fitor\ProjektiLab2\NetWorked\backend\ProfileMatch.Service\src\ProfileMatch\Persistance\obj\Debug\net7.0\Persistence.genruntimeconfig.cache
