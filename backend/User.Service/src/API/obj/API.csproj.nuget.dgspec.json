@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Razer\\Documents\\GitHub\\NetWorked\\backend\\User.Service\\src\\API\\API.csproj": {}
+    "c:\\Users\\Razer\\Documents\\GitHub\\NetWorked\\backend\\User.Service\\src\\API\\API.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Razer\\Documents\\GitHub\\NetWorked\\backend\\User.Service\\src\\API\\API.csproj": {
+    "c:\\Users\\Razer\\Documents\\GitHub\\NetWorked\\backend\\User.Service\\src\\API\\API.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Razer\\Documents\\GitHub\\NetWorked\\backend\\User.Service\\src\\API\\API.csproj",
+        "projectUniqueName": "c:\\Users\\Razer\\Documents\\GitHub\\NetWorked\\backend\\User.Service\\src\\API\\API.csproj",
         "projectName": "API",
-        "projectPath": "C:\\Users\\Razer\\Documents\\GitHub\\NetWorked\\backend\\User.Service\\src\\API\\API.csproj",
+        "projectPath": "c:\\Users\\Razer\\Documents\\GitHub\\NetWorked\\backend\\User.Service\\src\\API\\API.csproj",
         "packagesPath": "C:\\Users\\Razer\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Razer\\Documents\\GitHub\\NetWorked\\backend\\User.Service\\src\\API\\obj\\",
+        "outputPath": "c:\\Users\\Razer\\Documents\\GitHub\\NetWorked\\backend\\User.Service\\src\\API\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Razer\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -21,17 +21,14 @@
           "net7.0"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Users\\Razer\\Desktop\\Play\\packages": {},
-          "C:\\Users\\Razer\\Documents\\GitHub\\NetWorked\\backend\\packages": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net7.0": {
             "targetAlias": "net7.0",
             "projectReferences": {
-              "C:\\Users\\Razer\\Documents\\GitHub\\NetWorked\\backend\\User.Service\\src\\Application\\Application.csproj": {
-                "projectPath": "C:\\Users\\Razer\\Documents\\GitHub\\NetWorked\\backend\\User.Service\\src\\Application\\Application.csproj"
+              "c:\\Users\\Razer\\Documents\\GitHub\\NetWorked\\backend\\User.Service\\src\\Application\\Application.csproj": {
+                "projectPath": "c:\\Users\\Razer\\Documents\\GitHub\\NetWorked\\backend\\User.Service\\src\\Application\\Application.csproj"
               }
             }
           }
@@ -61,6 +58,20 @@
             "Microsoft.AspNetCore.OpenApi": {
               "target": "Package",
               "version": "[7.0.2, )"
+            },
+            "Microsoft.EntityFrameworkCore.Design": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[7.0.5, )"
+            },
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[7.0.5, )"
+            },
+            "Microsoft.EntityFrameworkCore.Tools": {
+              "target": "Package",
+              "version": "[7.0.5, )"
             },
             "MongoDB.Extensions.Repository": {
               "target": "Package",
@@ -94,14 +105,14 @@
         }
       }
     },
-    "C:\\Users\\Razer\\Documents\\GitHub\\NetWorked\\backend\\User.Service\\src\\Application\\Application.csproj": {
+    "c:\\Users\\Razer\\Documents\\GitHub\\NetWorked\\backend\\User.Service\\src\\Application\\Application.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Razer\\Documents\\GitHub\\NetWorked\\backend\\User.Service\\src\\Application\\Application.csproj",
+        "projectUniqueName": "c:\\Users\\Razer\\Documents\\GitHub\\NetWorked\\backend\\User.Service\\src\\Application\\Application.csproj",
         "projectName": "Application",
-        "projectPath": "C:\\Users\\Razer\\Documents\\GitHub\\NetWorked\\backend\\User.Service\\src\\Application\\Application.csproj",
+        "projectPath": "c:\\Users\\Razer\\Documents\\GitHub\\NetWorked\\backend\\User.Service\\src\\Application\\Application.csproj",
         "packagesPath": "C:\\Users\\Razer\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Razer\\Documents\\GitHub\\NetWorked\\backend\\User.Service\\src\\Application\\obj\\",
+        "outputPath": "c:\\Users\\Razer\\Documents\\GitHub\\NetWorked\\backend\\User.Service\\src\\Application\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Razer\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -120,11 +131,11 @@
           "net7.0": {
             "targetAlias": "net7.0",
             "projectReferences": {
-              "C:\\Users\\Razer\\Documents\\GitHub\\NetWorked\\backend\\User.Service\\src\\Domain\\Domain.csproj": {
-                "projectPath": "C:\\Users\\Razer\\Documents\\GitHub\\NetWorked\\backend\\User.Service\\src\\Domain\\Domain.csproj"
+              "c:\\Users\\Razer\\Documents\\GitHub\\NetWorked\\backend\\User.Service\\src\\Domain\\Domain.csproj": {
+                "projectPath": "c:\\Users\\Razer\\Documents\\GitHub\\NetWorked\\backend\\User.Service\\src\\Domain\\Domain.csproj"
               },
-              "C:\\Users\\Razer\\Documents\\GitHub\\NetWorked\\backend\\User.Service\\src\\Persistence\\Persistence.csproj": {
-                "projectPath": "C:\\Users\\Razer\\Documents\\GitHub\\NetWorked\\backend\\User.Service\\src\\Persistence\\Persistence.csproj"
+              "c:\\Users\\Razer\\Documents\\GitHub\\NetWorked\\backend\\User.Service\\src\\Persistence\\Persistence.csproj": {
+                "projectPath": "c:\\Users\\Razer\\Documents\\GitHub\\NetWorked\\backend\\User.Service\\src\\Persistence\\Persistence.csproj"
               }
             }
           }
@@ -139,17 +150,15 @@
         "net7.0": {
           "targetAlias": "net7.0",
           "dependencies": {
-            "AutoMapper": {
+            "Microsoft.EntityFrameworkCore.Design": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
               "target": "Package",
-              "version": "[12.0.1, )"
+              "version": "[7.0.5, )"
             },
-            "Common.Library": {
+            "Microsoft.EntityFrameworkCore.SqlServer": {
               "target": "Package",
-              "version": "[1.0.2, )"
-            },
-            "MongoDB.Extensions.Repository": {
-              "target": "Package",
-              "version": "[2.0.57, )"
+              "version": "[7.0.5, )"
             }
           },
           "imports": [
@@ -172,14 +181,14 @@
         }
       }
     },
-    "C:\\Users\\Razer\\Documents\\GitHub\\NetWorked\\backend\\User.Service\\src\\Domain\\Domain.csproj": {
+    "c:\\Users\\Razer\\Documents\\GitHub\\NetWorked\\backend\\User.Service\\src\\Domain\\Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Razer\\Documents\\GitHub\\NetWorked\\backend\\User.Service\\src\\Domain\\Domain.csproj",
+        "projectUniqueName": "c:\\Users\\Razer\\Documents\\GitHub\\NetWorked\\backend\\User.Service\\src\\Domain\\Domain.csproj",
         "projectName": "Domain",
-        "projectPath": "C:\\Users\\Razer\\Documents\\GitHub\\NetWorked\\backend\\User.Service\\src\\Domain\\Domain.csproj",
+        "projectPath": "c:\\Users\\Razer\\Documents\\GitHub\\NetWorked\\backend\\User.Service\\src\\Domain\\Domain.csproj",
         "packagesPath": "C:\\Users\\Razer\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Razer\\Documents\\GitHub\\NetWorked\\backend\\User.Service\\src\\Domain\\obj\\",
+        "outputPath": "c:\\Users\\Razer\\Documents\\GitHub\\NetWorked\\backend\\User.Service\\src\\Domain\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Razer\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -229,14 +238,14 @@
         }
       }
     },
-    "C:\\Users\\Razer\\Documents\\GitHub\\NetWorked\\backend\\User.Service\\src\\Persistence\\Persistence.csproj": {
+    "c:\\Users\\Razer\\Documents\\GitHub\\NetWorked\\backend\\User.Service\\src\\Persistence\\Persistence.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Razer\\Documents\\GitHub\\NetWorked\\backend\\User.Service\\src\\Persistence\\Persistence.csproj",
+        "projectUniqueName": "c:\\Users\\Razer\\Documents\\GitHub\\NetWorked\\backend\\User.Service\\src\\Persistence\\Persistence.csproj",
         "projectName": "Persistence",
-        "projectPath": "C:\\Users\\Razer\\Documents\\GitHub\\NetWorked\\backend\\User.Service\\src\\Persistence\\Persistence.csproj",
+        "projectPath": "c:\\Users\\Razer\\Documents\\GitHub\\NetWorked\\backend\\User.Service\\src\\Persistence\\Persistence.csproj",
         "packagesPath": "C:\\Users\\Razer\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Razer\\Documents\\GitHub\\NetWorked\\backend\\User.Service\\src\\Persistence\\obj\\",
+        "outputPath": "c:\\Users\\Razer\\Documents\\GitHub\\NetWorked\\backend\\User.Service\\src\\Persistence\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Razer\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -255,8 +264,8 @@
           "net7.0": {
             "targetAlias": "net7.0",
             "projectReferences": {
-              "C:\\Users\\Razer\\Documents\\GitHub\\NetWorked\\backend\\User.Service\\src\\Domain\\Domain.csproj": {
-                "projectPath": "C:\\Users\\Razer\\Documents\\GitHub\\NetWorked\\backend\\User.Service\\src\\Domain\\Domain.csproj"
+              "c:\\Users\\Razer\\Documents\\GitHub\\NetWorked\\backend\\User.Service\\src\\Domain\\Domain.csproj": {
+                "projectPath": "c:\\Users\\Razer\\Documents\\GitHub\\NetWorked\\backend\\User.Service\\src\\Domain\\Domain.csproj"
               }
             }
           }
@@ -271,6 +280,16 @@
         "net7.0": {
           "targetAlias": "net7.0",
           "dependencies": {
+            "Microsoft.EntityFrameworkCore.Design": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[7.0.5, )"
+            },
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[7.0.5, )"
+            },
             "MongoDB.Extensions.Repository": {
               "target": "Package",
               "version": "[2.0.57, )"
