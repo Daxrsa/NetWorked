@@ -15,6 +15,11 @@ builder.Services.AddScoped<IResultsRepo, ResultsService>();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+//var dbHost = Environment.GetEnvironmentVariable("DB_HOST");
+//var dbName = Environment.GetEnvironmentVariable("DB-NAME");
+
+//var connectionString = $"Server={dbHost};Database={dbName};Trusted_Connection=True;Encrypt=False";
+
 builder.Services.AddDbContext<ProfileMatchDbContext>(option =>
     option.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 

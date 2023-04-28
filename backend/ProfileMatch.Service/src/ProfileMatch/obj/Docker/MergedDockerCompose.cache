@@ -1,0 +1,18 @@
+name: dockercompose5697334976892905625
+services:
+  api:
+    build:
+      context: C:\Users\fitor\ProjektiLab2\NetWorked\backend\ProfileMatch.Service\src\ProfileMatch
+      dockerfile: API/Dockerfile
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+    image: api
+    networks:
+      default: null
+    ports:
+    - mode: ingress
+      target: 80
+      protocol: tcp
+networks:
+  default:
+    name: dockercompose5697334976892905625_default

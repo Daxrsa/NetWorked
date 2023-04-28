@@ -1,0 +1,37 @@
+name: dockercompose5697334976892905625
+services:
+  ProfileMatching:
+    container_name: profile-matching-db
+    environment:
+      ACCEPT_EULA: "Y"
+    image: mcr.microsoft.com/mssql/server:2019-latest
+    networks:
+      backend: null
+    ports:
+    - mode: ingress
+      target: 1433
+      published: "8001"
+      protocol: tcp
+  api:
+    build:
+      context: C:\Users\fitor\ProjektiLab2\NetWorked\backend\ProfileMatch.Service\src\ProfileMatch
+      dockerfile: API/Dockerfile
+    container_name: api
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+      DB-NAME: ProfileMatching
+      DB_HOST: .
+    image: api
+    networks:
+      backend: null
+    ports:
+    - mode: ingress
+      target: 80
+      protocol: tcp
+    - mode: ingress
+      target: 80
+      published: "8002"
+      protocol: tcp
+networks:
+  backend:
+    name: dockercompose5697334976892905625_backend

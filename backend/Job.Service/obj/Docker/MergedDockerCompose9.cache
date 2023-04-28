@@ -1,0 +1,35 @@
+name: dockercompose6961041181894567828
+services:
+  JobDB:
+    container_name: job-db
+    image: mcr.microsoft.com/mssql/server:2019-latest
+    networks:
+      backend: null
+    ports:
+    - mode: ingress
+      target: 1433
+      published: "8001"
+      protocol: tcp
+  api:
+    build:
+      context: C:\Users\fitor\ProjektiLab2\NetWorked\backend\Job.Service
+      dockerfile: API/Dockerfile
+    container_name: api
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+      DB-NAME: JobDB
+      DB_SERVER: .
+    image: api
+    networks:
+      backend: null
+    ports:
+    - mode: ingress
+      target: 80
+      protocol: tcp
+    - mode: ingress
+      target: 80
+      published: "8002"
+      protocol: tcp
+networks:
+  backend:
+    name: dockercompose6961041181894567828_backend

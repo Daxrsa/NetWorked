@@ -10,6 +10,11 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+//var dbHost = Environment.GetEnvironmentVariable("");
+//var dbName = Environment.GetEnvironmentVariable("");
+
+//var connectionString = $"Data Source={dbHost};Database={dbName};Trusted_Connection=True;TrustServerCertificate=True;";
+
 builder.Services.AddDbContext<JobDbContext>(option =>
     option.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
