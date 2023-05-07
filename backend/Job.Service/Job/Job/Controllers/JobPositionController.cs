@@ -9,6 +9,7 @@ namespace Job.Controllers
     public class JobPositionController : ControllerBase
     {
         private readonly IJobPositon _contract;
+
         public JobPositionController(IJobPositon contract)
         {
             _contract = contract;

@@ -18,7 +18,6 @@ namespace Job.Controllers
         [HttpGet]
         public async Task<IActionResult> GetAllApplications()
         {
-            //return Ok(await _contract.GetAll());
             return Ok(await _contract.GetAll());
         }
 

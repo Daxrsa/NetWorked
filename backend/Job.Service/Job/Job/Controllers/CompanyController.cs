@@ -44,6 +44,5 @@ namespace Job.Controllers
         {
             return Ok(await _contract.Update(id));
         }
-
     }
 }
