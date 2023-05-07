@@ -50,7 +50,7 @@ namespace Job.Services
 
         public async Task<ApplicationDTO> GetById(int id)
         {
-            ApplicationDTO c = await _context.Applications.Where(c => c.Id == id).FirstOrDefaultAsync();
+            Application c = await _context.Applications.Where(c => c.Id == id).FirstOrDefaultAsync();
             ApplicationDTO applicationDTO = new()
             {
                 Id = id,

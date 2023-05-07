@@ -51,7 +51,7 @@ namespace Job.Services
 
         public async Task<CategoryDTO> GetById(int id)
         {
-            CategoryDTO c = await _context.Categories.Where(c => c.Id == id).FirstOrDefaultAsync();
+            Category c = await _context.Categories.Where(c => c.Id == id).FirstOrDefaultAsync();
             CategoryDTO categoryDTO = new()
             {
                 Id = id,

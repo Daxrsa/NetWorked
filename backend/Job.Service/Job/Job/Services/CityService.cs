@@ -51,7 +51,7 @@ namespace Job.Services
 
         public async Task<CityDTO> GetById(int id)
         {
-            CityDTO c = await _context.Cities.Where(c => c.Id == id).FirstOrDefaultAsync();
+            City c = await _context.Cities.Where(c => c.Id == id).FirstOrDefaultAsync();
             CityDTO cityDTO = new()
             {
                 Id = id,
