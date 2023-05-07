@@ -1,4 +1,5 @@
 C:\Users\Razer\Documents\GitHub\NetWorked\backend\User.Service\src\Application\bin\Debug\net7.0\Application.deps.json
+C:\Users\Razer\Documents\GitHub\NetWorked\backend\User.Service\src\Application\bin\Debug\net7.0\Application.runtimeconfig.json
 C:\Users\Razer\Documents\GitHub\NetWorked\backend\User.Service\src\Application\bin\Debug\net7.0\Application.dll
 C:\Users\Razer\Documents\GitHub\NetWorked\backend\User.Service\src\Application\bin\Debug\net7.0\Application.pdb
 C:\Users\Razer\Documents\GitHub\NetWorked\backend\User.Service\src\Application\bin\Debug\net7.0\Domain.dll
@@ -14,6 +15,5 @@ C:\Users\Razer\Documents\GitHub\NetWorked\backend\User.Service\src\Application\o
 C:\Users\Razer\Documents\GitHub\NetWorked\backend\User.Service\src\Application\obj\Debug\net7.0\Application.dll
 C:\Users\Razer\Documents\GitHub\NetWorked\backend\User.Service\src\Application\obj\Debug\net7.0\refint\Application.dll
 C:\Users\Razer\Documents\GitHub\NetWorked\backend\User.Service\src\Application\obj\Debug\net7.0\Application.pdb
-C:\Users\Razer\Documents\GitHub\NetWorked\backend\User.Service\src\Application\obj\Debug\net7.0\ref\Application.dll
-C:\Users\Razer\Documents\GitHub\NetWorked\backend\User.Service\src\Application\bin\Debug\net7.0\Application.runtimeconfig.json
 C:\Users\Razer\Documents\GitHub\NetWorked\backend\User.Service\src\Application\obj\Debug\net7.0\Application.genruntimeconfig.cache
+C:\Users\Razer\Documents\GitHub\NetWorked\backend\User.Service\src\Application\obj\Debug\net7.0\ref\Application.dll
