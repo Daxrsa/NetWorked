@@ -1,0 +1,11 @@
+
+*.v2
+*.v2
+*.vsidx
+*.2
+backend/Job.Service/Job/.vs/Job/v17/.suo
+*.cache
+*.cache
+backend/Job.Service/Job/Job/obj/Container/ContainerName.cache
+*.v2
+*.cache
