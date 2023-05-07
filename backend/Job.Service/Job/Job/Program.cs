@@ -1,4 +1,6 @@
 using Job.Configuration;
+using Job.Interfaces;
+using Job.Services;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -12,6 +14,12 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddDbContext<JobDbContext>(option =>
     option.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+builder.Services.AddScoped<ICompany, CompanyService>();
+builder.Services.AddScoped<IApplication, ApplicationService>();
+builder.Services.AddScoped<ICity, CityService>();
+builder.Services.AddScoped<ICategory, CategoryService>();
+builder.Services.AddScoped<IJobPositon, JobPositionService>();
 
 var app = builder.Build();
 
