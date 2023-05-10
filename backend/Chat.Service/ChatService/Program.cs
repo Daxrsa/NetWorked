@@ -3,10 +3,12 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using ChatService;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddSignalR();
+builder.Services.AddSingleton<IDictionary<string, UserConnection>>(opts => new Dictionary<string, UserConnection>());
 builder.Services.AddCors(options =>
 {
     options.AddDefaultPolicy(builder =>
@@ -17,7 +19,7 @@ builder.Services.AddCors(options =>
             .AllowCredentials();
     });
 });
-builder.Services.AddSingleton<IDictionary<string, UserConnection>>(opts => new Dictionary<string, UserConnection>());
+
 
 var app = builder.Build();
 
