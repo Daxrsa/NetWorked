@@ -36,6 +36,9 @@ function Navbar() {
   const handleCloseUserMenu = () => {
     setAnchorElUser(null)
   }
+  const handleChatsClick = () => {
+    window.location.href = "/MainChat"
+  }
 
   return (
     <AppBar position="static">
@@ -117,15 +120,29 @@ function Navbar() {
             LOGO
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
-            {pages.map(page => (
-              <Button
-                key={page}
-                onClick={handleCloseNavMenu}
-                sx={{ my: 2, color: "white", display: "block" }}
-              >
-                {page}
+          {pages.map(page => {
+            if (page === "Chats") {
+              return (
+                <Button
+                  key={page}
+                  onClick={handleChatsClick}
+                  sx={{ my: 2, color: "white", display: "block" }}
+                >
+                  {page}
+                </Button>
+              )
+            } else {
+              return (
+                <Button
+                  key={page}
+                  onClick={handleCloseNavMenu}
+                  sx={{ my: 2, color: "white", display: "block" }}
+                >
+                  {page}
               </Button>
-            ))}
+           )
+          }
+        })}
           </Box>
 
           <Box sx={{ flexGrow: 0 }}>

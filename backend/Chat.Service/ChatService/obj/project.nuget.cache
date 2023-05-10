@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "Vf7wjZFpkly8G1JN/vbaM98agwyeu5QtaKei1BDtSeHZjQaAkFndcjuT2geOYJD2BwMpAsc2LrzyDNH+3G1ZSA==",
+  "dgSpecHash": "q8KKAO8IRONSc+5Kihoha5OD/h7uuxZ0DPBlf/J55jgDhmhjGEeeC/M5yeIQAPRFXZN4m9xmLqvL6CXOUkBv9w==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Admin\\Desktop\\Chati\\ChatService\\ChatService\\ChatService.csproj",
+  "projectFilePath": "C:\\Users\\Admin\\Desktop\\Net1\\NetWorked\\backend\\Chat.Service\\ChatService\\ChatService.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Admin\\.nuget\\packages\\microsoft.aspnetcore.authentication.abstractions\\2.2.0\\microsoft.aspnetcore.authentication.abstractions.2.2.0.nupkg.sha512",
     "C:\\Users\\Admin\\.nuget\\packages\\microsoft.aspnetcore.authorization\\2.2.0\\microsoft.aspnetcore.authorization.2.2.0.nupkg.sha512",
