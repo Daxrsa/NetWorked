@@ -12,9 +12,9 @@ const Lobby = ({ joinRoom }) => {
         }} >
         <Form.Group>
             <Form.Control placeholder="name" onChange={e => setUser(e.target.value)} />
-            <Form.Control placeholder="room" onChange={e => setRoom(e.target.value)} />
+            <Form.Control placeholder="room" style={{ marginTop: '10px' }} onChange={e => setRoom(e.target.value)} />
         </Form.Group>
-        <Button variant="success" type="submit" disabled={!user || !room}>Join</Button>
+        <Button variant="primary" type="submit" style={{ marginTop: '10px' }} disabled={!user || !room}>Join</Button>
     </Form>
 }
 

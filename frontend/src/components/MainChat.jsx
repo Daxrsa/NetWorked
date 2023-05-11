@@ -5,6 +5,7 @@ import Chat from './Chat';
 import '../App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
+
 const MainChat = () => {
   const [connection, setConnection] = useState();
   const [messages, setMessages] = useState([]);
@@ -57,7 +58,8 @@ connection.onclose(e=>{
 
 
   return <div className='app' >
-    <h2>Chat</h2>
+    
+    <h2 className='h2c'>NetWorked</h2>
     <hr className='line' />
     {!connection
       ? <Lobby joinRoom={joinRoom} />
