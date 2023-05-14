@@ -9,27 +9,28 @@ import { HubConnectionBuilder, LogLevel } from '@microsoft/signalr';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import MainChat from "./components/MainChat";
-
+import Layout from './components/Layout'
+import GlobalStyles from './styles/GlobalStyles'
 
 
 
 function App() {
   return (
     <>
-      <Navbar />
-      <Container style={{ marginTop: "7em" }}>
+       <Layout />
+       <GlobalStyles />
+       
        
         
 
       
-        <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/register" element={<Register />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/mainchat" element={<MainChat />} />
-        </Routes>
-      </Container>
-      
+       <Routes>
+         <Route path="/" element={<HomePage />} />
+         <Route path="/register" element={<Register />} />
+         <Route path="/login" element={<Login />} />
+         <Route path="/mainchat" element={<MainChat />} />
+       </Routes>
+     
     </>
   );
 }
