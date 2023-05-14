@@ -1,8 +1,10 @@
 {
   "ExpandedNodes": [
     "",
-    "\\src"
+    "\\src",
+    "\\src\\ProfileMatch",
+    "\\src\\ProfileMatch\\API"
   ],
-  "SelectedNode": "\\src",
+  "SelectedNode": "\\src\\ProfileMatch\\API\\Program.cs",
   "PreviewInSolutionExplorer": false
 }
