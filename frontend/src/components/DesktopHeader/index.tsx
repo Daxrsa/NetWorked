@@ -13,27 +13,29 @@ import {
   ProfileCircle,
   CaretDownIcon,
 } from './styles';
+import NetworkLogo from './networklogo.png'
 const handleChatsClick = () => {
   window.location.href = "/MainChat"
+}
+const handleHomeClick = () => {
+  window.location.href = "/"
 }
 const Header: React.FC = () => {
   return (
     <Container>
       <Wrapper>
-        <div className="left">
-          <LinkedInIcon />
-          <SearchInput placeholder="Search" />
-        </div>
+      <div className="left">
+  <img src={NetworkLogo} alt="My Image" style={{ width: '120px', height: '90px', marginTop: '10px' }} />
+  <SearchInput placeholder="Search" />
+</div>
+
+
 
         <div className="right">
           <nav>
-            <button className="active">
+            <button className="active" onClick={handleHomeClick}>
               <HomeIcon />
               <span>Home</span>
-            </button>
-            <button className="notification">
-              <NetworkIcon />
-              <span>My Network</span>
             </button>
             <button>
               <JobsIcon />
