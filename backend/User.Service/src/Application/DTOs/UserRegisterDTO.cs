@@ -1,8 +1,8 @@
 namespace Application.DTOs
 {
-    public class LoginDTO
+    public class UserRegisterDTO
     {
-        public string Email { get; set; }
+        public string Username { get; set; }
         public string Password { get; set; }
     }
 }

@@ -1,5 +1,6 @@
 {
   "version": 2,
+<<<<<<< Updated upstream
   "dgSpecHash": "q8KKAO8IRONSc+5Kihoha5OD/h7uuxZ0DPBlf/J55jgDhmhjGEeeC/M5yeIQAPRFXZN4m9xmLqvL6CXOUkBv9w==",
   "success": true,
   "projectFilePath": "C:\\Users\\Admin\\Desktop\\Net1\\NetWorked\\backend\\Chat.Service\\ChatService\\ChatService.csproj",
@@ -55,4 +56,24 @@
     "C:\\Users\\Admin\\.nuget\\packages\\system.threading.tasks\\4.3.0\\system.threading.tasks.4.3.0.nupkg.sha512"
   ],
   "logs": []
+=======
+  "dgSpecHash": "aO0lmAG64T+v711O5m7Ja4s//XVt8+Minm6pX2Lyk4H+/xWAYHTaZoXU+tlqtkrJ6LGSp5BGwNKCdijDaQqoEw==",
+  "success": false,
+  "projectFilePath": "C:\\Users\\Razer\\Documents\\GitHub\\NetWorked\\backend\\Chat.Service\\ChatService\\ChatService.csproj",
+  "expectedPackageFiles": [],
+  "logs": [
+    {
+      "code": "NU1301",
+      "level": "Error",
+      "message": "The local source 'C:\\Users\\Razer\\Desktop\\Play\\packages' doesn't exist.",
+      "libraryId": "Microsoft.AspNetCore.SignalR"
+    },
+    {
+      "code": "NU1301",
+      "level": "Error",
+      "message": "The local source 'C:\\Users\\Razer\\Documents\\GitHub\\NetWorked\\backend\\packages' doesn't exist.",
+      "libraryId": "Microsoft.AspNetCore.SignalR"
+    }
+  ]
+>>>>>>> Stashed changes
 }

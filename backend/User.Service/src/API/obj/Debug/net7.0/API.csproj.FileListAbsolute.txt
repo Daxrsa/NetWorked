@@ -107,3 +107,6 @@ C:\Users\Razer\Documents\GitHub\NetWorked\backend\User.Service\src\API\obj\Debug
 C:\Users\Razer\Documents\GitHub\NetWorked\backend\User.Service\src\API\obj\Debug\net7.0\API.pdb
 C:\Users\Razer\Documents\GitHub\NetWorked\backend\User.Service\src\API\obj\Debug\net7.0\API.genruntimeconfig.cache
 C:\Users\Razer\Documents\GitHub\NetWorked\backend\User.Service\src\API\obj\Debug\net7.0\ref\API.dll
+C:\Users\Razer\Documents\GitHub\NetWorked\backend\User.Service\src\API\bin\Debug\net7.0\Scrutor.dll
+C:\Users\Razer\Documents\GitHub\NetWorked\backend\User.Service\src\API\bin\Debug\net7.0\Swashbuckle.AspNetCore.Filters.dll
+C:\Users\Razer\Documents\GitHub\NetWorked\backend\User.Service\src\API\bin\Debug\net7.0\Swashbuckle.AspNetCore.Filters.Abstractions.dll
