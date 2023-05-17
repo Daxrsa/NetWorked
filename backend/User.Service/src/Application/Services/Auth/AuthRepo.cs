@@ -42,7 +42,7 @@ namespace Application.Services.Auth
                 response.Data = CreateToken(user);
 
                 var refreshToke = GenerateRefreshToken();
-                SetRefreshToken(refreshToke);
+                //SetRefreshToken(refreshToke);
             }
             return response;
         }
