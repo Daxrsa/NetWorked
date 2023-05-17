@@ -1,42 +1,32 @@
-<<<<<<< Updated upstream
-using Microsoft.AspNetCore.Mvc;
-
-namespace API.Controllers
-{
-=======
+using Application.Services.UserRepo;
+using Domain.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using Persistence;
 
 namespace API.Controllers
 {
     [Authorize]
->>>>>>> Stashed changes
     [ApiController]
     [Route("api/[controller]")]
     public class UserController : ControllerBase
     {
-<<<<<<< Updated upstream
-        
-=======
-        private readonly DataContext _context;
-        public UserController(DataContext context)
+        private readonly IUserRepo _userRepo;
+        public UserController(IUserRepo userRepo)
         {
-            _context = context;
+            _userRepo = userRepo;
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetUser(Guid id)
+        public async Task<ActionResult<List<User>>> GetAllUsers()
         {
-            var user = await _context.User.FirstOrDefaultAsync(u => u.Id == id);
-
-            if (user == null)
-            {
-                return NotFound();
-            }
-            return Ok(user);
+            return Ok(await _userRepo.GetUsers());
         }
->>>>>>> Stashed changes
+
+        [Authorize(Roles = "Admin")]
+        [HttpGet("{id}")]
+        public async Task<ActionResult<User>> GetUserById(Guid id)
+        {
+            return Ok(await _userRepo.GetUserById(id));
+        }
     }
 }

@@ -1,7 +1,9 @@
 using Application.Core;
 using Application.DTOs;
-using Application.Services;
+using Application.Services.Auth;
+using Application.Services.UserRepo;
 using Domain.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace API.Controllers
@@ -11,9 +13,18 @@ namespace API.Controllers
     public class AuthController : ControllerBase
     {
         private readonly IAuthRepo _authRepo;
-        public AuthController(IAuthRepo authRepo)
+        private readonly IUserRepo _userRepo;
+        public AuthController(IAuthRepo authRepo, IUserRepo userRepo)
         {
             _authRepo = authRepo;
+            _userRepo = userRepo;
+        }
+
+        [HttpGet("Get logged in user"), Authorize]
+        public ActionResult<string> GetLoggedInUser()
+        {
+            var user = _userRepo.GetLoggedInUser();
+            return Ok(user);
         }
 
         [HttpPost("Register")]
