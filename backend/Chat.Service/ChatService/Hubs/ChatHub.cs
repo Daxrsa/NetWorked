@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.SignalR;
 using System.Linq;
+using MongoDB.Driver;
 
 namespace ChatService.Hubs
 {
@@ -7,13 +8,17 @@ namespace ChatService.Hubs
     {
         private readonly string _botUser;
         private readonly IDictionary<string, UserConnection> _connections;
+        private readonly IMongoDatabase _mongoDatabase;
+        private readonly IMongoCollection<ChatMessage> _messagesCollection;
 
 
-        public ChatHub(IDictionary<string, UserConnection> connections)
+
+        public ChatHub(IDictionary<string, UserConnection> connections, IMongoDatabase mongoDatabase)
         {
             _botUser = "NetWorked";
             _connections = connections;
-
+            _mongoDatabase = mongoDatabase;
+            _messagesCollection = _mongoDatabase.GetCollection<ChatMessage>("chatMessages");
         }
         public override Task OnDisconnectedAsync(Exception exception)
         {
@@ -33,6 +38,15 @@ namespace ChatService.Hubs
             if (_connections.TryGetValue(Context.ConnectionId, out UserConnection userConnection))
             {
                 await Clients.Group(userConnection.Room).SendAsync("ReceiveMessage", userConnection.User, message);
+
+                // Store the message in the MongoDB collection
+                var chatMessage = new ChatMessage
+                {
+                    User = userConnection.User,
+                    Room = userConnection.Room,
+                    Message = message
+                };
+                await _messagesCollection.InsertOneAsync(chatMessage);
             }
         }
 
