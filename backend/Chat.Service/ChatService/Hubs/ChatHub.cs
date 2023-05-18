@@ -65,6 +65,21 @@ namespace ChatService.Hubs
             var users = _connections.Values.Where(c => c.Room == room).Select(c => c.User);
             return Clients.Group(room).SendAsync("UsersInRoom", users);
         }
+        public async Task DeleteMessage(string messageId)
+        {
+            if (_connections.TryGetValue(Context.ConnectionId, out UserConnection userConnection))
+            {
+                // Check if the user has permission to delete the message (e.g., the message was sent by the same user)
+                var filter = Builders<ChatMessage>.Filter.Eq("Id", messageId) & Builders<ChatMessage>.Filter.Eq("User", userConnection.User);
+                var deleteResult = await _messagesCollection.DeleteOneAsync(filter);
+
+                if (deleteResult.DeletedCount > 0)
+                {
+                    // Inform the clients in the room that a message was deleted
+                    await Clients.Group(userConnection.Room).SendAsync("MessageDeleted", messageId);
+                }
+            }
+        }
 
 
     }
