@@ -60,7 +60,7 @@ export const Wrapper = styled.div`
       }
 
       &.active {
-        border-bottom: 2px solid var(--color-white);
+        border-bottom: 2px solid lightblue;
       }
 
       &.notification {
@@ -83,14 +83,7 @@ export const Wrapper = styled.div`
   }
 `;
 
-export const LinkedInIcon = styled(GrLinkedin)`
-  height: 34px;
-  width: 34px;
-  color: var(--color-linkedin);
-  background-color: #fff;
-  border-radius: 4px;
-  flex-shrink: 0;
-`;
+
 
 export const SearchInput = styled.input`
   margin-left: 12px;
@@ -102,6 +95,7 @@ export const SearchInput = styled.input`
   border: none;
   outline: none;
   border-radius: 2px;
+  width:500px;
 
   &:focus {
     background: var(--color-white);

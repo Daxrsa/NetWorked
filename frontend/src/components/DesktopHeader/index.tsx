@@ -4,7 +4,6 @@ import { useNavigate } from 'react-router-dom';
 import {
   Container,
   Wrapper,
-  LinkedInIcon,
   SearchInput,
   HomeIcon,
   NetworkIcon,

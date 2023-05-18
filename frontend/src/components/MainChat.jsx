@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { HubConnectionBuilder, LogLevel } from "@microsoft/signalr";
 import Lobby from "./Lobby";
 import Chat from "./Chat";
@@ -22,8 +22,10 @@ const MainChat = () => {
       });
 
       connection.on("ReceiveMessage", (user, message) => {
-        setMessages((messages) => [...messages, { user, message }]);
+        const newMessage = { id: generateUniqueId(), user, message };
+        setMessages((messages) => [...messages, newMessage]);
       });
+
       connection.onclose((e) => {
         setConnection();
         setMessages([]);
@@ -37,6 +39,7 @@ const MainChat = () => {
       console.log(e);
     }
   };
+
   const closeConnection = async () => {
     try {
       await connection.stop();
@@ -53,6 +56,27 @@ const MainChat = () => {
     }
   };
 
+  const deleteMessage = async (messageId) => {
+    try {
+      const updatedMessages = messages.filter((m) => m.id !== messageId);
+      setMessages(updatedMessages);
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
+  const handleDeleteMessage = async (messageId) => {
+    try {
+      await deleteMessage(messageId);
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
+  const generateUniqueId = () => {
+    return Math.random().toString(36).substr(2, 9);
+  };
+
   return (
     <div className="app">
       <h2 className="h2c">NetWorked</h2>
@@ -65,6 +89,8 @@ const MainChat = () => {
           messages={messages}
           closeConnection={closeConnection}
           users={users}
+          deleteMessage={deleteMessage}
+          handleDeleteMessage={handleDeleteMessage}
         />
       )}
     </div>

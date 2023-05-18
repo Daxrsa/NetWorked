@@ -11,7 +11,7 @@ Form Button {
   }
   .h2c {
     color:white;
-    padding-top: 50px;
+    padding-top: 70px;
     font-family:'Times New Roman', Times, serif;
     font-size:60px;
   }
@@ -71,9 +71,37 @@ Form Button {
   }
   
   .user-message {
+    position: relative;
     text-align: right;
-    padding-right: 5px;
+    padding-right: 20px;
     font-size: 18px;
+  }
+  
+  .delete-button {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background: none;
+    border: none;
+    cursor: pointer;
+    
+  }
+  
+  .delete-icon {
+    color: red;
+   
+  }
+  .delete-button {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background: none;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .delete-icon {
+    color: red;
   }
   
   .message {
