@@ -26,6 +26,15 @@ namespace API.Controllers
             var user = _userRepo.GetLoggedInUser();
             return Ok(user);
         }
+        [HttpGet("GetLoggedInUsername"), Authorize]
+        public ActionResult<string> GetLoggedInUsername()
+        {
+            var user = _userRepo.GetLoggedInUser();
+            var username = user;
+
+            return Ok(username);
+        }
+
 
         [HttpPost("Register")]
         public async Task<ActionResult<Result<Guid>>> Register(UserRegisterDTO request)
