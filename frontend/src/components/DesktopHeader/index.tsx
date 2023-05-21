@@ -26,7 +26,10 @@ const Header: React.FC = () => {
     setMenuOpen(false);
     setActiveButton('messages');
   };
-
+ const handleNetworkClick = () => {
+  navigate('/');
+  setActiveButton('home');
+ }
   const handleHomeClick = () => {
     navigate('/');
     setMenuOpen(false);
@@ -56,12 +59,15 @@ const Header: React.FC = () => {
     <Container>
       <Wrapper>
         <div className="left">
+          <div onClick={handleNetworkClick}>
           <img
             src={NetworkLogo}
             alt="My Image"
             style={{ width: '120px', height: '90px', marginTop: '10px' }}
           />
           <SearchInput placeholder="Search" />
+          </div>
+         
         </div>
 
         <div className="right">
