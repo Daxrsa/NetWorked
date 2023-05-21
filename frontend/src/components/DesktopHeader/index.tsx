@@ -23,16 +23,19 @@ const Header: React.FC = () => {
 
   const handleChatsClick = () => {
     navigate('/mainchat');
+    setMenuOpen(false);
     setActiveButton('messages');
   };
 
   const handleHomeClick = () => {
     navigate('/');
+    setMenuOpen(false);
     setActiveButton('home');
   };
 
   const handleJobsClick = () => {
     navigate('/jobs');
+    setMenuOpen(false);
     setActiveButton('jobs');
   };
 

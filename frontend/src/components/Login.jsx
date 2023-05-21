@@ -20,6 +20,7 @@ function Copyright(props) {
       variant="body2"
       color="white"
       align="center"
+      style={{ color: 'white' }}
       {...props}
     >
       {"Copyright © "}
@@ -102,9 +103,10 @@ export default function SignIn() {
               }}
             />
             <FormControlLabel
-              control={<Checkbox value="remember" color="primary" />}
-              label="Remember me"
-            />
+  control={<Checkbox sx={{ color: 'white' }} value="remember" />}
+  label="Remember me"
+/>
+
             <Button
               type="submit"
               fullWidth

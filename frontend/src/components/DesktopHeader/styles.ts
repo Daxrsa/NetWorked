@@ -139,7 +139,7 @@ export const CaretDownIcon = styled(AiFillCaretDown)`
 export const DropdownMenu = styled.div`
   position: absolute;
   top: 99%;
-  right:200px;
+  right:192px;
   display: flex;
   flex-direction: column;
   background-color: var(--color-header);
@@ -147,9 +147,10 @@ export const DropdownMenu = styled.div`
   border-radius: 4px;
   padding: 8px;
   z-index: 999;
+  width:100px;
 
   button {
-    padding: 8px;
+    padding: 5px;
     border: none;
     background-color: black;
     cursor: pointer;
