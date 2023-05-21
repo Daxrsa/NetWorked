@@ -18,7 +18,7 @@ function Copyright(props) {
   return (
     <Typography
       variant="body2"
-      color="text.secondary"
+      color="white"
       align="center"
       {...props}
     >
@@ -45,7 +45,8 @@ export default function SignIn() {
   }
 
   return (
-    <ThemeProvider theme={theme}>
+    <div className="app">
+      <ThemeProvider theme={theme}>
       <Container component="main" maxWidth="xs">
         <CssBaseline />
         <Box
@@ -77,6 +78,12 @@ export default function SignIn() {
               name="email"
               autoComplete="email"
               autoFocus
+              InputLabelProps={{
+                style: { color: 'white' }
+              }}
+              InputProps={{
+                sx: { "& .MuiOutlinedInput-notchedOutline": { borderColor: 'white !important' } }
+              }}
             />
             <TextField
               margin="normal"
@@ -87,6 +94,12 @@ export default function SignIn() {
               type="password"
               id="password"
               autoComplete="current-password"
+              InputLabelProps={{
+                style: { color: 'white' }
+              }}
+              InputProps={{
+                sx: { "& .MuiOutlinedInput-notchedOutline": { borderColor: 'white !important' } }
+              }}
             />
             <FormControlLabel
               control={<Checkbox value="remember" color="primary" />}
@@ -114,8 +127,10 @@ export default function SignIn() {
             </Grid>
           </Box>
         </Box>
-        <Copyright sx={{ mt: 8, mb: 4 }} />
+        <Copyright sx={{ mt: 8, mb: 4 }}  />
       </Container>
     </ThemeProvider>
+    </div>
+    
   )
 }

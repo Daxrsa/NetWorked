@@ -12,12 +12,14 @@ import {
   NotificationsIcon,
   ProfileCircle,
   CaretDownIcon,
+  DropdownMenu
 } from './styles';
 import NetworkLogo from './networklogo.png';
 
 const Header: React.FC = () => {
   const navigate = useNavigate();
   const [activeButton, setActiveButton] = useState('home');
+  const [menuOpen, setMenuOpen] = useState(false); // Track the state of the dropdown menu
 
   const handleChatsClick = () => {
     navigate('/mainchat');
@@ -30,8 +32,21 @@ const Header: React.FC = () => {
   };
 
   const handleJobsClick = () => {
-   navigate('/jobs');
+    navigate('/jobs');
     setActiveButton('jobs');
+  };
+
+  const handleMeClick = () => {
+    setMenuOpen(!menuOpen);
+    setActiveButton('me') // Toggle the dropdown menu
+  };
+
+  const handleRegisterClick = () => {
+    navigate('/register');
+  };
+
+  const handleLoginClick = () => {
+    navigate('/login');
   };
 
   return (
@@ -64,12 +79,19 @@ const Header: React.FC = () => {
               <NotificationsIcon />
               <span>Notifications</span>
             </button>
-            <button>
+            <button onClick={handleMeClick} className={activeButton === 'me' ? 'active' : ''}>
               <ProfileCircle src="https://avatars.githubusercontent.com/u/93683494?v=" />
               <span>
                 Me <CaretDownIcon />
+                {menuOpen && ( // Render the dropdown menu if the menuOpen state is true
+              <DropdownMenu>
+                <button onClick={handleRegisterClick}>Register</button>
+                <button onClick={handleLoginClick}>Login</button>
+              </DropdownMenu>
+            )}
               </span>
             </button>
+            
           </nav>
         </div>
       </Wrapper>

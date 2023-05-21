@@ -1,8 +1,7 @@
 import styled, { css } from 'styled-components';
 import { GrLinkedin } from 'react-icons/gr';
-import { FiUsers } from 'react-icons/fi';
+import { FiUsers, FiMessageSquare } from 'react-icons/fi';
 import { BsBriefcase } from 'react-icons/bs';
-import { FiMessageSquare } from 'react-icons/fi';
 import { AiFillHome, AiOutlineBell, AiFillCaretDown } from 'react-icons/ai';
 
 export const Container = styled.div`
@@ -83,8 +82,6 @@ export const Wrapper = styled.div`
   }
 `;
 
-
-
 export const SearchInput = styled.input`
   margin-left: 12px;
 
@@ -95,7 +92,7 @@ export const SearchInput = styled.input`
   border: none;
   outline: none;
   border-radius: 2px;
-  width:500px;
+  width: 500px;
 
   &:focus {
     background: var(--color-white);
@@ -138,3 +135,30 @@ export const CaretDownIcon = styled(AiFillCaretDown)`
   width: 16px;
   height: 16px;
 `;
+
+export const DropdownMenu = styled.div`
+  position: absolute;
+  top: 99%;
+  right:200px;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--color-header);
+  border: 1px solid #cccccc;
+  border-radius: 4px;
+  padding: 8px;
+  z-index: 999;
+
+  button {
+    padding: 8px;
+    border: none;
+    background-color: black;
+    cursor: pointer;
+
+    &:hover {
+      background-color: #f0f0f0;
+    }
+  }
+`;
+
+
+

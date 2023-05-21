@@ -13,6 +13,7 @@ import Typography from "@mui/material/Typography"
 import Container from "@mui/material/Container"
 import { createTheme, ThemeProvider } from "@mui/material/styles"
 import { NavLink } from "react-router-dom"
+import "../App.css";
 
 function Copyright(props) {
   return (
@@ -47,7 +48,8 @@ export default function SignIn() {
   }
 
   return (
-    <ThemeProvider theme={theme}>
+    <div className="app">
+      <ThemeProvider theme={theme}>
       <Container component="main" maxWidth="xs">
         <CssBaseline />
         <Box
@@ -79,6 +81,12 @@ export default function SignIn() {
               name="firstname"
               autoComplete="firstname"
               autoFocus
+              InputLabelProps={{
+                style: { color: 'white' }
+              }}
+              InputProps={{
+                sx: { "& .MuiOutlinedInput-notchedOutline": { borderColor: 'white !important' } }
+              }}
             />
             <TextField
               margin="normal"
@@ -89,6 +97,12 @@ export default function SignIn() {
               name="lastname"
               autoComplete="lastname"
               autoFocus
+              InputLabelProps={{
+                style: { color: 'white' }
+              }}
+              InputProps={{
+                sx: { "& .MuiOutlinedInput-notchedOutline": { borderColor: 'white !important' } }
+              }}
             />
             <TextField
               margin="normal"
@@ -99,6 +113,12 @@ export default function SignIn() {
               name="email"
               autoComplete="email"
               autoFocus
+              InputLabelProps={{
+                style: { color: 'white' }
+              }}
+              InputProps={{
+                sx: { "& .MuiOutlinedInput-notchedOutline": { borderColor: 'white !important' } }
+              }}
             />
             <TextField
               margin="normal"
@@ -109,6 +129,13 @@ export default function SignIn() {
               type="password"
               id="password"
               autoComplete="current-password"
+              InputLabelProps={{
+                style: { color: 'white' }
+              }}
+              InputProps={{
+                sx: { "& .MuiOutlinedInput-notchedOutline": { borderColor: 'white !important' } }
+              }}
+              
             />
             <FormControlLabel
               control={<Checkbox value="remember" color="primary" />}
@@ -139,5 +166,7 @@ export default function SignIn() {
         <Copyright sx={{ mt: 8, mb: 4 }} />
       </Container>
     </ThemeProvider>
+    </div>
+    
   )
 }
