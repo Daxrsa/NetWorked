@@ -1,5 +1,11 @@
 using Application.DTOs;
 using Microsoft.AspNetCore.Mvc;
+using System.Net.Http.Headers;
+using System;
+using System.Collections.Generic;
+using System.Net.Http;
+using System.Net.Http.Headers;
+using System.Threading.Tasks;
 
 namespace API.Controllers
 {
@@ -18,6 +24,7 @@ namespace API.Controllers
         {
             return HandleResult(await _postService.GetPosts());
         }
+        
 
         [HttpGet("{id}")]
         public async Task<ActionResult<PostDTO>> GetPostById(Guid id)

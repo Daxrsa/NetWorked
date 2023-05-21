@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.SignalR;
 using System.Linq;
 using MongoDB.Driver;
+using Microsoft.AspNetCore.Mvc;
+
 
 namespace ChatService.Hubs
 {
@@ -51,7 +53,7 @@ namespace ChatService.Hubs
         }
 
 
-
+       
         public async Task JoinRoom(UserConnection userConnection)
         {
             await Groups.AddToGroupAsync(Context.ConnectionId, userConnection.Room);

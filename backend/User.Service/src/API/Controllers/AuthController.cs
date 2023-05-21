@@ -20,20 +20,13 @@ namespace API.Controllers
             _userRepo = userRepo;
         }
 
-        [HttpGet("Get logged in user"), Authorize]
+        [HttpGet("GetloggedInUser"), Authorize]
         public ActionResult<string> GetLoggedInUser()
         {
             var user = _userRepo.GetLoggedInUser();
             return Ok(user);
         }
-        [HttpGet("GetLoggedInUsername"), Authorize]
-        public ActionResult<string> GetLoggedInUsername()
-        {
-            var user = _userRepo.GetLoggedInUser();
-            var username = user;
-
-            return Ok(username);
-        }
+      
 
 
         [HttpPost("Register")]
