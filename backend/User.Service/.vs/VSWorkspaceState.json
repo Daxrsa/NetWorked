@@ -1,8 +1,9 @@
 {
   "ExpandedNodes": [
     "",
-    "\\src"
+    "\\src",
+    "\\src\\API"
   ],
-  "SelectedNode": "\\src\\User.Service.sln",
+  "SelectedNode": "\\src\\API\\Program.cs",
   "PreviewInSolutionExplorer": false
 }
