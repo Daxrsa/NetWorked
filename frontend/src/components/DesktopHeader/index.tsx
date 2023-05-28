@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import useFetch from '../../hooks/useFetch';
+
 
 import {
   Container,
@@ -18,6 +20,8 @@ import {
 import NetworkLogo from './networklogo.png';
 
 const Header: React.FC = () => {
+  const { data, loading, error } = useFetch("http://localhost:8800/notifications/description/64733f326724e03f46b2d243");
+  console.log(data);
   const navigate = useNavigate();
   const [activeButton, setActiveButton] = useState('home');
   const [menuOpen, setMenuOpen] = useState(false); // Track the state of the dropdown menu
@@ -68,11 +72,13 @@ const Header: React.FC = () => {
     navigate('/notifications');
   };
 
+  
   const notifications = [
-    { id: 1, message: 'This is the first Notification ' },
-    { id: 2, message: 'This is the second Notification '},
+    { id: 1, message: data.description },
+    { id: 2, message: 'This is the second Notification' },
     { id: 3, message: 'This is the third Notification' },
   ];
+
 
   return (
     <Container>

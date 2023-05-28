@@ -2,7 +2,7 @@ import express from 'express'
 import dotenv from 'dotenv'
 import mongoose from 'mongoose'
 import NotificationRoute from './routes/notifications.js'
-
+import cors from 'cors';
 const app= express ()
 
 dotenv.config()
@@ -19,6 +19,7 @@ app.get("/",(req,res)=> {
     res.send("testing")
 })
 //middlewares
+app.use(cors());
 app.use("/notifications",NotificationRoute);
 
 app.listen(8800,()=> {

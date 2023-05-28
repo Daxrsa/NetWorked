@@ -90,6 +90,37 @@ router.delete("/:id",async(req,res)=>{
      
   } 
 })
+// GET request - get the description of a single notification
+router.get('/description/:id', async (req, res) => {
+  try {
+    const notification = await Notification.findOne({ _id: req.params.id }, 'description');
+    if (!notification) {
+      return res.status(404).json({ success: false, message: 'Notification not found' });
+    }
+    res.json({ description: notification.description });
+  } catch (error) {
+    res.status(500).json({ success: false, message: error.message });
+  }
+});
+router.get('/descriptions', async (req, res) => {
+  try {
+    const notification = await Notification.find();
+    if (!notification) {
+      return res.status(404).json({ success: false, message: 'Notification not found' });
+    }
+    res.json({ description: notification.description });
+  } catch (error) {
+    res.status(500).json({ success: false, message: error.message });
+  }
+});
+
+
+
+
+
+
+
+
 
 
   
