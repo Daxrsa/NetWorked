@@ -18,10 +18,23 @@ import {
   NotificationsDropdownMenu
 } from './styles';
 import NetworkLogo from './networklogo.png';
-
+interface ResponseData {
+  descriptions: string[];
+}
 const Header: React.FC = () => {
-  const { data, loading, error } = useFetch("http://localhost:8800/notifications/description/64733f326724e03f46b2d243");
-  console.log(data);
+  const { data, loading, error } = useFetch<ResponseData>("http://localhost:8800/notifications");
+
+  let notifications: { id: number; message: string }[] = [];
+
+  if (data && data.descriptions) {
+    notifications = data.descriptions.map((description, index) => ({
+      id: index + 1,
+      message: description
+    }));
+  }
+
+  console.log(notifications);
+  
   const navigate = useNavigate();
   const [activeButton, setActiveButton] = useState('home');
   const [menuOpen, setMenuOpen] = useState(false); // Track the state of the dropdown menu
@@ -72,12 +85,7 @@ const Header: React.FC = () => {
     navigate('/notifications');
   };
 
-  
-  const notifications = [
-    { id: 1, message: data.description },
-    { id: 2, message: 'This is the second Notification' },
-    { id: 3, message: 'This is the third Notification' },
-  ];
+
 
 
   return (
