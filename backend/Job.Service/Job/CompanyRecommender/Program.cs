@@ -128,23 +128,4 @@ namespace CompanyRecommender
             return fullPath;
         }
     }
-    //class qe permban fields e duhura nga dataset qe na nevojiten me i perdor
-    public class CompanyRating
-    {
-        [LoadColumn(0)]
-        public string userId;
-
-        [LoadColumn(1)]
-        public string companyId;
-
-        [LoadColumn(2)]
-        public bool Label;
-    }
-    //kjo klase perdoret per me i inicializu predictions
-    public class CompanyRatingPrediction
-    {
-        public bool PredictedLabel;
-
-        public float Score;
-    }
 }
