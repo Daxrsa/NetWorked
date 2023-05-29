@@ -2,8 +2,15 @@
   "ExpandedNodes": [
     "",
     "\\Job",
+    "\\Job\\Controllers",
+    "\\Job\\DTOs",
+    "\\Job\\Exceptions",
+    "\\Job\\Interfaces",
+    "\\Job\\Migrations",
+    "\\Job\\Models",
+    "\\Job\\Profiles",
     "\\Job\\Services"
   ],
-  "SelectedNode": "\\Job.sln",
+  "SelectedNode": "\\Job\\Services\\JobPositionService.cs",
   "PreviewInSolutionExplorer": false
 }
