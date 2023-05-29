@@ -1,11 +1,8 @@
-import { Container } from "@mui/material";
-import React, { useState } from "react";
+import React from "react";
 import { Route, Routes } from "react-router-dom";
 import HomePage from "./components/HomePage";
 import Login from "./components/Login";
-import Navbar from "./components/Navbar";
 import Register from "./components/Register";
-import { HubConnectionBuilder, LogLevel } from "@microsoft/signalr";
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import MainChat from "./components/MainChat";

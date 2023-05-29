@@ -1,7 +1,7 @@
+global using Application.Services.Auth;
+global using Application.Services.UserRepo;
 using API.Middleware;
 using Application.Services;
-using Application.Services.Auth;
-using Application.Services.UserRepo;
 using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
@@ -76,8 +76,8 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-app.UseCors();
 
+app.UseCors();
 
 app.UseAuthentication();
 
