@@ -4,6 +4,7 @@ using JobService.Core.Dtos.JobPosition;
 using JobService.Core.Models;
 using JobService.Data;
 using JobService.Services.Interfaces;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace JobService.Services
@@ -56,13 +57,30 @@ namespace JobService.Services
             }
         }
 
-        public bool Add(ApplicationCreateDto dto)
+        public async Task<bool> Add(ApplicationCreateDto dto, IFormFile file)
         {
             try
             {
+                var fiveMegaBytes = 5 * 1024 * 1024;
+                var pdfType = "application/pdf";
+
+                if(file.Length > fiveMegaBytes || file.ContentType != pdfType)
+                {
+                    return false;
+                }
+
+                var resumeUrl = Guid.NewGuid().ToString() + ".pdf";
+                var filePath = Path.Combine(Directory.GetCurrentDirectory(), "Documents", "pdfs", resumeUrl);
+                using (var stream = new FileStream(filePath, FileMode.Create))
+                {
+                    await file.CopyToAsync(stream);
+                }
+
                 var a = _mapper.Map<Application>(dto);
-                _context.Applications.Add(a);
-                _context.SaveChanges();
+                a.ResumeUrl = resumeUrl;
+                await _context.Applications.AddAsync(a);
+                await _context.SaveChangesAsync();
+
                 return true;
             }
             catch (Exception ex)

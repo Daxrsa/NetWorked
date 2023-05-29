@@ -40,10 +40,9 @@ namespace JobService.Controllers
         }
 
         [HttpPost]
-        public ActionResult Apply(ApplicationCreateDto dto)
+        public async Task<ActionResult> Apply([FromForm] ApplicationCreateDto dto, IFormFile file)
         {
-            _contract.Add(dto);
-            return Ok();
+            return Ok(await _contract.Add(dto, file));
         }
     }
 }

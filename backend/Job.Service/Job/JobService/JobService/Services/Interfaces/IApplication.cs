@@ -1,6 +1,7 @@
 ﻿using JobService.Core.Dtos.Application;
 using JobService.Core.Dtos.Company;
 using JobService.Core.Models;
+using Microsoft.AspNetCore.Mvc;
 
 namespace JobService.Services.Interfaces
 {
@@ -10,7 +11,7 @@ namespace JobService.Services.Interfaces
         Task<ApplicationReadDto> GetById(string id);
         Task<IEnumerable<ApplicationReadDto>> GetApplicationsByApplicantId(Guid id);
         Task<IEnumerable<ApplicationReadDto>> GetApplicationsByJobId(int id);
-        bool Add(ApplicationCreateDto dto);
+        Task<bool> Add([FromForm] ApplicationCreateDto dto, IFormFile file);
         Task<bool> Delete(string id);
         Application Update(string id, Application company);
     }
