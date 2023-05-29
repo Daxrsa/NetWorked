@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import useFetch from '../../hooks/useFetch';
+
 
 import {
   Container,
@@ -12,24 +14,43 @@ import {
   NotificationsIcon,
   ProfileCircle,
   CaretDownIcon,
-  DropdownMenu
+  DropdownMenu,
+  NotificationsDropdownMenu
 } from './styles';
 import NetworkLogo from './networklogo.png';
-
+interface ResponseData {
+  descriptions: string[];
+}
 const Header: React.FC = () => {
+  const { data, loading, error } = useFetch<ResponseData>("http://localhost:8800/notifications");
+
+  let notifications: { id: number; message: string }[] = [];
+
+  if (data && data.descriptions) {
+    notifications = data.descriptions.map((description, index) => ({
+      id: index + 1,
+      message: description
+    }));
+  }
+
+  console.log(notifications);
+  
   const navigate = useNavigate();
   const [activeButton, setActiveButton] = useState('home');
   const [menuOpen, setMenuOpen] = useState(false); // Track the state of the dropdown menu
+  const [notificationOpen, setNotificationOpen] = useState(false); // Track the state of the notification dropdown
 
   const handleChatsClick = () => {
     navigate('/mainchat');
     setMenuOpen(false);
     setActiveButton('messages');
   };
- const handleNetworkClick = () => {
-  navigate('/');
-  setActiveButton('home');
- }
+
+  const handleNetworkClick = () => {
+    navigate('/');
+    setActiveButton('home');
+  };
+
   const handleHomeClick = () => {
     navigate('/');
     setMenuOpen(false);
@@ -44,7 +65,12 @@ const Header: React.FC = () => {
 
   const handleMeClick = () => {
     setMenuOpen(!menuOpen);
-    setActiveButton('me') // Toggle the dropdown menu
+    setActiveButton('me'); // Toggle the dropdown menu
+  };
+
+  const handleNotificationClick = () => {
+    setNotificationOpen(!notificationOpen);
+    setActiveButton('notifications');
   };
 
   const handleRegisterClick = () => {
@@ -55,19 +81,25 @@ const Header: React.FC = () => {
     navigate('/login');
   };
 
+  const handleNotificationsClick = () => {
+    navigate('/notifications');
+  };
+
+
+
+
   return (
     <Container>
       <Wrapper>
         <div className="left">
           <div onClick={handleNetworkClick}>
-          <img
-            src={NetworkLogo}
-            alt="My Image"
-            style={{ width: '120px', height: '90px', marginTop: '10px' }}
-          />
-          <SearchInput placeholder="Search" />
+            <img
+              src={NetworkLogo}
+              alt="My Image"
+              style={{ width: '120px', height: '90px', marginTop: '10px' }}
+            />
+            <SearchInput placeholder="Search" />
           </div>
-         
         </div>
 
         <div className="right">
@@ -84,23 +116,29 @@ const Header: React.FC = () => {
               <MessagesIcon />
               <span>Messaging</span>
             </button>
-            <button className="notification">
+            <button onClick={handleNotificationClick} className={notificationOpen ? 'active' : ''}>
               <NotificationsIcon />
               <span>Notifications</span>
+              {notificationOpen && (
+                <NotificationsDropdownMenu>
+                  {notifications.map((notification) => (
+                    <p key={notification.id}>{notification.message}</p>
+                  ))}
+                </NotificationsDropdownMenu>
+              )}
             </button>
             <button onClick={handleMeClick} className={activeButton === 'me' ? 'active' : ''}>
               <ProfileCircle src="https://avatars.githubusercontent.com/u/93683494?v=" />
               <span>
                 Me <CaretDownIcon />
-                {menuOpen && ( // Render the dropdown menu if the menuOpen state is true
-              <DropdownMenu>
-                <button onClick={handleRegisterClick}>Register</button>
-                <button onClick={handleLoginClick}>Login</button>
-              </DropdownMenu>
-            )}
+                {menuOpen && (
+                  <DropdownMenu>
+                    <button onClick={handleRegisterClick}>Register</button>
+                    <button onClick={handleLoginClick}>Login</button>
+                  </DropdownMenu>
+                )}
               </span>
             </button>
-            
           </nav>
         </div>
       </Wrapper>

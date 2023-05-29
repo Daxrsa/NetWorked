@@ -160,6 +160,31 @@ export const DropdownMenu = styled.div`
     }
   }
 `;
+export const NotificationsDropdownMenu = styled.div`
+  position: absolute;
+  top: 99%;
+  right:90px;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--color-header);
+  border: 1px solid #cccccc;
+  border-radius: 4px;
+  padding: 8px;
+  z-index: 999;
+  width: 500px;
+
+  button {
+    padding: 5px;
+    border: none;
+    background-color: black;
+    cursor: pointer;
+   
+
+    &:hover {
+      background-color: #f0f0f0;
+    }
+  }
+`;
 
 
 
