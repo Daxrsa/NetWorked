@@ -47,6 +47,14 @@ namespace JobService
                 app.UseSwaggerUI();
             }
 
+            app.UseCors(options =>
+            {
+                options
+                .AllowAnyOrigin()
+                .AllowAnyMethod()
+                .AllowAnyHeader();
+            });
+
             app.UseAuthorization();
 
 
