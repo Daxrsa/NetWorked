@@ -8,17 +8,18 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import MainChat from "./components/MainChat";
 import Layout from "./components/Layout";
 import GlobalStyles from "./styles/GlobalStyles";
-
+import ProfilePage from "./components/ProfilePage/ProfilePage";
 
 function App() {
   return (
     <>
       <GlobalStyles />
       <Routes>
-        <Route path="/" element={<Layout />}/>
+        <Route path="/" element={<Layout />} />
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
         <Route path="/mainchat" element={<MainChat />} />
+        <Route path="/profilePage" element={<ProfilePage />} />
       </Routes>
     </>
   );

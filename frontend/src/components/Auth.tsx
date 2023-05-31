@@ -1,5 +1,5 @@
 import React from "react";
-import jwt from "jsonwebtoken";
+//import jwt from "jsonwebtoken";
 
 export const isAuthenticated = () => {
   const token = localStorage.getItem("jwtToken");

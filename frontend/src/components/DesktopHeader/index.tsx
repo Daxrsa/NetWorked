@@ -81,6 +81,10 @@ const Header: React.FC = () => {
     navigate('/login');
   };
 
+  const handleProfilePageClick = () => {
+    navigate('/profilePage');
+  }
+
   const handleNotificationsClick = () => {
     navigate('/notifications');
   };
@@ -133,6 +137,7 @@ const Header: React.FC = () => {
                   <DropdownMenu>
                     <button onClick={handleRegisterClick}>Register</button>
                     <button onClick={handleLoginClick}>Login</button>
+                    <button onClick={handleProfilePageClick}>My Profile</button>
                   </DropdownMenu>
                 )}
               </span>
