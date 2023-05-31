@@ -2,8 +2,12 @@
   "ExpandedNodes": [
     "",
     "\\src",
-    "\\src\\API"
+    "\\src\\API",
+    "\\src\\API\\Controllers",
+    "\\src\\API\\Properties",
+    "\\src\\Domain",
+    "\\src\\Domain\\Models"
   ],
-  "SelectedNode": "\\src\\User.Service.sln",
+  "SelectedNode": "\\src\\API\\Controllers\\AuthController.cs",
   "PreviewInSolutionExplorer": false
 }

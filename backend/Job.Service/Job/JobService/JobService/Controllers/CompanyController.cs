@@ -27,10 +27,10 @@ namespace JobService.Controllers
         }
 
         [HttpPost]
-        public ActionResult AddCompany(CompanyCreateDto dto)
+        public ActionResult AddCompany([FromForm] CompanyCreateDto dto, IFormFile file)
         {
-            _contract.Add(dto);
-            return Ok();
+            
+            return Ok(_contract.Add(dto, file));
         }
 
         [HttpDelete("{id}")]
@@ -38,6 +38,5 @@ namespace JobService.Controllers
         {
             return Ok(await _contract.Delete(id));
         }
-
     }
 }

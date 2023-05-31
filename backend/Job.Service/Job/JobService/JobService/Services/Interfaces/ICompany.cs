@@ -7,7 +7,7 @@ namespace JobService.Services.Interfaces
     {
         Task<IEnumerable<CompanyReadDto>> GetAll();
         Task<CompanyReadDto> GetById(Guid id);
-        bool Add(CompanyCreateDto entity);
+        bool Add(CompanyCreateDto entity, IFormFile file);
         Task<bool> Delete(Guid id);
         Company Update(Guid id, Company company);
     }

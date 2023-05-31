@@ -1,0 +1,12 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\JobService",
+    "\\JobService\\Clients",
+    "\\JobService\\Controllers",
+    "\\JobService\\Core\\AutoMapperConfig",
+    "\\JobService\\Services"
+  ],
+  "SelectedNode": "\\JobService\\Controllers\\CompanyController.cs",
+  "PreviewInSolutionExplorer": false
+}

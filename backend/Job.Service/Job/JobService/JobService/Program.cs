@@ -1,4 +1,5 @@
 
+using JobService.Clients;
 using JobService.Core.AutoMapperConfig;
 using JobService.Data;
 using JobService.Services;
@@ -28,6 +29,11 @@ namespace JobService
             builder.Services.AddScoped<ICompany, CompanyService>();
             builder.Services.AddScoped<IJobPosition, JobPositionService>();
             builder.Services.AddScoped<IApplication, ApplicationService>();
+
+            builder.Services.AddHttpClient<UserClient>(client => 
+            {
+                client.BaseAddress = new Uri("http://localhost:5116/");
+            });
 
             builder.Services.AddControllers()
                 .AddJsonOptions(options =>
