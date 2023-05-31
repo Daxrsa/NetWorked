@@ -39,6 +39,12 @@ const theme = createTheme();
 
 export default function SignIn() {
   const [username, setUsername] = useState("");
+  const [fullname, setFullname] = useState("");
+  const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
+  const [address, setAddress] = useState("");
+  const [profession, setProfession] = useState("");
+  const [skills, setSkills] = useState("");
   const [password, setPassword] = useState("");
 
   const handleSubmit = async (event: any) => {
@@ -50,6 +56,12 @@ export default function SignIn() {
         {
           username,
           password,
+          fullname,
+          email,
+          phone,
+          address,
+          profession,
+          skills
         }
       );
       console.log("Register success.", response.data);
@@ -107,6 +119,145 @@ export default function SignIn() {
                   },
                 }}
               />
+
+              <TextField
+                margin="normal"
+                required
+                fullWidth
+                id="fullname"
+                value={fullname}
+                label="Full Name"
+                name="fullname"
+                onChange={(e) => setFullname(e.target.value)}
+                autoComplete="fullname"
+                autoFocus
+                InputLabelProps={{
+                  style: { color: "white" },
+                }}
+                InputProps={{
+                  sx: {
+                    "& .MuiOutlinedInput-notchedOutline": {
+                      borderColor: "white !important",
+                    },
+                  },
+                }}
+              />
+
+              <TextField
+                margin="normal"
+                required
+                fullWidth
+                id="email"
+                value={email}
+                label="Email"
+                name="email"
+                onChange={(e) => setEmail(e.target.value)}
+                autoComplete="email"
+                autoFocus
+                InputLabelProps={{
+                  style: { color: "white" },
+                }}
+                InputProps={{
+                  sx: {
+                    "& .MuiOutlinedInput-notchedOutline": {
+                      borderColor: "white !important",
+                    },
+                  },
+                }}
+              />
+
+              <TextField
+                margin="normal"
+                required
+                fullWidth
+                id="phone"
+                value={phone}
+                label="Phone"
+                name="phone"
+                onChange={(e) => setPhone(e.target.value)}
+                autoComplete="phone"
+                autoFocus
+                InputLabelProps={{
+                  style: { color: "white" },
+                }}
+                InputProps={{
+                  sx: {
+                    "& .MuiOutlinedInput-notchedOutline": {
+                      borderColor: "white !important",
+                    },
+                  },
+                }}
+              />
+
+              <TextField
+                margin="normal"
+                required
+                fullWidth
+                id="address"
+                value={address}
+                label="Address"
+                name="address"
+                onChange={(e) => setAddress(e.target.value)}
+                autoComplete="address"
+                autoFocus
+                InputLabelProps={{
+                  style: { color: "white" },
+                }}
+                InputProps={{
+                  sx: {
+                    "& .MuiOutlinedInput-notchedOutline": {
+                      borderColor: "white !important",
+                    },
+                  },
+                }}
+              />
+
+              <TextField
+                margin="normal"
+                required
+                fullWidth
+                id="profession"
+                value={profession}
+                label="Profession"
+                name="profession"
+                onChange={(e) => setProfession(e.target.value)}
+                autoComplete="profession"
+                autoFocus
+                InputLabelProps={{
+                  style: { color: "white" },
+                }}
+                InputProps={{
+                  sx: {
+                    "& .MuiOutlinedInput-notchedOutline": {
+                      borderColor: "white !important",
+                    },
+                  },
+                }}
+              />
+
+              <TextField
+                margin="normal"
+                required
+                fullWidth
+                id="skills"
+                value={skills}
+                label="Skills"
+                name="skills"
+                onChange={(e) => setSkills(e.target.value)}
+                autoComplete="skills"
+                autoFocus
+                InputLabelProps={{
+                  style: { color: "white" },
+                }}
+                InputProps={{
+                  sx: {
+                    "& .MuiOutlinedInput-notchedOutline": {
+                      borderColor: "white !important",
+                    },
+                  },
+                }}
+              />
+
               <TextField
                 margin="normal"
                 required

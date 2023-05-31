@@ -1,10 +1,7 @@
-using System.Net;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
-using System.Security.Cryptography;
 using Application.Core;
 using Domain.Models;
-using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
@@ -40,37 +37,9 @@ namespace Application.Services.Auth
             else
             {
                 response.Data = CreateToken(user);
-
-                // var refreshToken = GenerateRefreshToken();
-                // SetRefreshToken(refreshToken, user);
             }
             return response;
         }
-
-        // private RefreshToken GenerateRefreshToken()
-        // {
-        //     var refreshToken = new RefreshToken
-        //     {
-        //         Token = Convert.ToBase64String(RandomNumberGenerator.GetBytes(64)),
-        //         Expires = DateTime.Now.AddDays(7),
-        //         Created = DateTime.Now
-        //     };
-        //     return refreshToken;
-        // }
-
-        // private void SetRefreshToken(RefreshToken newRefreshToken, User user)
-        // {
-        //     var cookieOptions = new CookieOptions
-        //     {
-        //         HttpOnly = true,
-        //         Expires = newRefreshToken.Expires
-        //     };
-        //     _response.Cookies.Append("refreshToken", newRefreshToken.Token, cookieOptions);
-
-        //     user.RefreshToken = newRefreshToken.Token;
-        //     user.TokenCreated = newRefreshToken.Created;
-        //     user.TokenExpires = newRefreshToken.Expires;
-        // }
 
         public async Task<Result<Guid>> Register(User user, string password)
         {
@@ -122,33 +91,6 @@ namespace Application.Services.Auth
 
         private string CreateToken(User user)
         {
-            // var claims = new List<Claim>
-            // {
-            //     //new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
-            //     new Claim(ClaimTypes.Name, user.Username)
-            // };
-            // var appsettingsToken = _config.GetSection("AppSettings:Token").Value;
-            // if (appsettingsToken is null)
-            //     throw new Exception("AppSettings Token is null.");
-            
-            // SymmetricSecurityKey key = new SymmetricSecurityKey(System.Text.Encoding.UTF8
-            //     .GetBytes(appsettingsToken));
-            
-            // SigningCredentials creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha512Signature);
-
-            // var tokenDescriptor = new SecurityTokenDescriptor
-            // {
-            //     Subject = new ClaimsIdentity(claims),
-            //     Expires = DateTime.Now.AddDays(1),
-            //     SigningCredentials = creds
-            // };
-
-            // JwtSecurityTokenHandler tokenHandler = new JwtSecurityTokenHandler();
-            // SecurityToken token = tokenHandler.CreateToken(tokenDescriptor);
-
-            // return tokenHandler.WriteToken(token);
-
-            //-------------------------------------------------------------------------------------------------------------------------------------------------------
             List<Claim> claims = new List<Claim>
             {
                 new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),

@@ -54,7 +54,9 @@ export default function SignIn() {
       );
 
       const token = response.data.data;
-      localStorage.setItem("jwtToken", token);
+      console.log(response.data.data);
+      localStorage.removeItem("jwtToken"); // Clear previous token
+      localStorage.setItem("jwtToken", token); // Set new token
 
       const authenticated = isAuthenticated();
 

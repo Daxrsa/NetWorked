@@ -89,6 +89,10 @@ const Header: React.FC = () => {
     navigate('/notifications');
   };
 
+  const handlePostClick = () => {
+    navigate('/posts');
+  }
+
 
   return (
     <Container>
@@ -114,6 +118,12 @@ const Header: React.FC = () => {
               <JobsIcon />
               <span>Jobs</span>
             </button>
+
+            <button className={activeButton === 'posts' ? 'active' : ''} onClick={handlePostClick}>
+              <JobsIcon />
+              <span>Posts</span>
+            </button>
+
             <button className={activeButton === 'messages' ? 'active' : ''} onClick={handleChatsClick}>
               <MessagesIcon />
               <span>Messaging</span>

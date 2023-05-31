@@ -9,6 +9,7 @@ import MainChat from "./components/MainChat";
 import Layout from "./components/Layout";
 import GlobalStyles from "./styles/GlobalStyles";
 import ProfilePage from "./components/ProfilePage/ProfilePage";
+import PostDashboard from "./components/Posts/PostDashboard";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/mainchat" element={<MainChat />} />
         <Route path="/profilePage" element={<ProfilePage />} />
+        <Route path="/posts" element={<PostDashboard />} />
       </Routes>
     </>
   );
