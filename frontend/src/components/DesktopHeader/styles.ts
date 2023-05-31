@@ -5,7 +5,8 @@ import { BsBriefcase } from 'react-icons/bs';
 import { AiFillHome, AiOutlineBell, AiFillCaretDown } from 'react-icons/ai';
 
 export const Container = styled.div`
-  background: var(--color-header);
+background: rgb(2,0,36);
+background: radial-gradient(circle, rgba(2,0,36,1) 0%, rgba(7,46,146,1) 0%, rgba(9,9,121,1) 0%, rgba(12,80,180,1) 0%, rgba(50,145,244,1) 56%, rgba(0,212,255,1) 100%);
   padding: 0 30px;
 
   position: fixed;

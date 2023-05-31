@@ -98,7 +98,7 @@ const Header: React.FC = () => {
             <img
               src={NetworkLogo}
               alt="My Image"
-              style={{ width: '120px', height: '90px', marginTop: '10px' }}
+              style={{ width: '60px', height: '50px', marginTop: '0.1px' }}
             />
             <SearchInput placeholder="Search" />
           </div>

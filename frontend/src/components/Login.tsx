@@ -52,17 +52,15 @@ export default function SignIn() {
           password,
         }
       );
-      // Save the JWT token in localStorage
+
       const token = response.data.data;
       localStorage.setItem("jwtToken", token);
-      
+
       const authenticated = isAuthenticated();
 
       if (authenticated) {
-        // User is authenticated, proceed with further actions
         console.log("User is authenticated");
       } else {
-        // User is not authenticated, handle accordingly
         console.log("User is not authenticated");
       }
 

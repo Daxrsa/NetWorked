@@ -6,30 +6,27 @@ import {
   MDBCard,
   MDBCardText,
   MDBCardBody,
-  MDBCardImage,
   MDBBtn,
   MDBBreadcrumb,
   MDBBreadcrumbItem,
-  MDBProgress,
-  MDBProgressBar,
-  MDBIcon,
-  MDBListGroup,
-  MDBListGroupItem,
-  MDBInput,
 } from "mdb-react-ui-kit";
 import Header from "../DesktopHeader";
-import EditProfile from "./Edit";
-
-const handleFileChange = (event) => {
-  const file = event.target.files[0];
-  // Do something with the selected file
-};
+import EditProfile from "./EditProfile";
 
 export default function ProfilePage() {
   const [isEditMode, setIsEditMode] = useState(false);
 
   const handleEditClick = () => {
     setIsEditMode(true);
+  };
+
+  const handleCancelClick = () => {
+    setIsEditMode(false);
+  };
+
+  const handleSubmitClick = () => {
+    //additional logic here
+    setIsEditMode(false);
   };
 
   return (
@@ -53,13 +50,17 @@ export default function ProfilePage() {
                   alt="avatar"
                   className="rounded-circle"
                   style={{ width: "150px" }}
-                  fluid
-                  type="file"
-                  onChange={handleFileChange}
                 />
-                <p className="text-muted mb-1">Full Stack Developer</p>
-                <p className="text-muted mb-4">Bay Area, San Francisco, CA</p>
-                <div className="d-flex justify-content-center mb-2"></div>
+                <p>Bio</p>
+                <div className="d-flex justify-content-center mb-2">
+                  Hello, I'm John, a passionate PHP developer with over 8 years
+                  of experience in creating dynamic and powerful web
+                  applications. Throughout my career, I have honed my skills in
+                  PHP development, specializing in building scalable backend
+                  systems and crafting efficient database structures. I am
+                  well-versed in popular PHP frameworks like Laravel, which
+                  allows me to create robust and maintainable code.{" "}
+                </div>
               </MDBCardBody>
             </MDBCard>
           </MDBCol>
@@ -101,17 +102,6 @@ export default function ProfilePage() {
                 <hr />
                 <MDBRow>
                   <MDBCol sm="3">
-                    <MDBCardText>Mobile</MDBCardText>
-                  </MDBCol>
-                  <MDBCol sm="9">
-                    <MDBCardText className="text-muted">
-                      (098) 765-4321
-                    </MDBCardText>
-                  </MDBCol>
-                </MDBRow>
-                <hr />
-                <MDBRow>
-                  <MDBCol sm="3">
                     <MDBCardText>Address</MDBCardText>
                   </MDBCol>
                   <MDBCol sm="9">
@@ -131,12 +121,25 @@ export default function ProfilePage() {
                     </MDBCardText>
                   </MDBCol>
                 </MDBRow>
+                <hr />
+                <MDBRow>
+                  <MDBCol sm="3">
+                    <MDBCardText>Skills</MDBCardText>
+                  </MDBCol>
+                  <MDBCol sm="9">
+                    <MDBCardText className="text-muted">
+                      Pure PHP, Laravel, Slim, Docker
+                    </MDBCardText>
+                  </MDBCol>
+                </MDBRow>
               </MDBCardBody>
             </MDBCard>
           </MDBCol>
         </MDBRow>
         <hr />
-        {isEditMode ? (<EditProfile  />) : (
+        {isEditMode ? (
+          <EditProfile cancel={handleCancelClick} submit={handleSubmitClick} />
+        ) : (
           <MDBBtn onClick={handleEditClick}>Edit</MDBBtn>
         )}
       </MDBContainer>
