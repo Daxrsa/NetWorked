@@ -1,5 +1,8 @@
 import express from 'express'
 import Notification from '../models/notifications.js'
+import algoliaSearch from 'algoliasearch'
+import dotenv from 'dotenv';
+dotenv.config();
 
 const router= express.Router();
 router.use(express.json());
@@ -101,6 +104,24 @@ router.get('/description/:id', async (req, res) => {
     res.json({ description: notification.description });
   } catch (error) {
     res.status(500).json({ success: false, message: error.message });
+  }
+});
+
+const client = algoliaSearch(
+  process.env.ALGOLIA_APP_ID,
+  process.env.ALGOLIA_API_KEY
+);
+const index = client.initIndex(process.env.ALGOLIA_INDEX);
+
+router.post("/search", async (req, res) => {
+  try {
+    let result = await index.search(req.body.description); 
+    res.json(result.hits);
+  } catch (err) {
+    res.status(500).json({
+      status: false,
+      message: err.message,
+    });
   }
 });
 
