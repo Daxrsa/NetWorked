@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import useFetch from "../../hooks/useFetch";
+import Search from '../Search/Search'
 
 import {
   Container,
@@ -105,7 +106,7 @@ const Header: React.FC = () => {
               alt="My Image"
               style={{ width: "60px", height: "50px", marginTop: "0.1px" }}
             />
-            <SearchInput placeholder="Search" />
+             <Search/>
           </div>
         </div>
 
