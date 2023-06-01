@@ -2,6 +2,7 @@ import express from 'express'
 import dotenv from 'dotenv'
 import mongoose from 'mongoose'
 import NotificationRoute from './routes/notifications.js'
+
 import cors from 'cors';
 const app= express ()
 
@@ -21,6 +22,7 @@ app.get("/",(req,res)=> {
 //middlewares
 app.use(cors());
 app.use("/notifications",NotificationRoute);
+
 
 app.listen(8800,()=> {
     connect()
