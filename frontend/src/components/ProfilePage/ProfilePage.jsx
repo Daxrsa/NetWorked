@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   MDBCol,
   MDBContainer,
@@ -12,9 +12,11 @@ import {
 } from "mdb-react-ui-kit";
 import Header from "../DesktopHeader";
 import EditProfile from "./EditProfile";
+import axios from "axios";
 
 export default function ProfilePage() {
   const [isEditMode, setIsEditMode] = useState(false);
+  const [loggedInUser, setLoggedInUser] = useState(null);
 
   const handleEditClick = () => {
     setIsEditMode(true);
@@ -29,6 +31,26 @@ export default function ProfilePage() {
     setIsEditMode(false);
   };
 
+  useEffect(() => {
+    fetchLoggedInUser();
+  }, []);
+
+  const fetchLoggedInUser = async () => {
+    try {
+      const token = localStorage.getItem('jwtToken'); // Retrieve the token from localStorage
+      const response = await axios.get("http://localhost:5116/api/Auth/GetloggedInUser", {
+        headers: {
+          Authorization: `Bearer ${token}` // Add the token to the request headers
+        }
+      });
+      const data = response.data; // No need to parse the JSON object
+      console.log(data);
+      setLoggedInUser(data);
+    } catch (error) {
+      console.error("Error fetching logged-in user:", error);
+    }
+  };
+
   return (
     <section style={{ backgroundColor: "#eee" }}>
       <Header />
@@ -36,7 +58,7 @@ export default function ProfilePage() {
         <MDBRow>
           <MDBCol>
             <MDBBreadcrumb className="bg-light rounded-3 p-3 mb-4">
-              <MDBBreadcrumbItem active>User Profile</MDBBreadcrumbItem>
+              <MDBBreadcrumbItem active>Welcome back, {loggedInUser}!</MDBBreadcrumbItem> 
             </MDBBreadcrumb>
           </MDBCol>
         </MDBRow>

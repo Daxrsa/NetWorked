@@ -1,7 +1,6 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import useFetch from '../../hooks/useFetch';
-
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import useFetch from "../../hooks/useFetch";
 
 import {
   Container,
@@ -15,84 +14,86 @@ import {
   ProfileCircle,
   CaretDownIcon,
   DropdownMenu,
-  NotificationsDropdownMenu
-} from './styles';
-import NetworkLogo from './networklogo.png';
+  NotificationsDropdownMenu,
+} from "./styles";
+import NetworkLogo from "./networklogo.png";
+import { logout } from "../AuthService";
 interface ResponseData {
   descriptions: string[];
 }
 const Header: React.FC = () => {
-  const { data, loading, error } = useFetch<ResponseData>("http://localhost:8800/notifications");
+  const { data, loading, error } = useFetch<ResponseData>(
+    "http://localhost:8800/notifications"
+  );
 
   let notifications: { id: number; message: string }[] = [];
 
   if (data && data.descriptions) {
     notifications = data.descriptions.map((description, index) => ({
       id: index + 1,
-      message: description
+      message: description,
     }));
   }
 
   console.log(notifications);
-  
+
   const navigate = useNavigate();
-  const [activeButton, setActiveButton] = useState('home');
+  const [activeButton, setActiveButton] = useState("home");
   const [menuOpen, setMenuOpen] = useState(false); // Track the state of the dropdown menu
   const [notificationOpen, setNotificationOpen] = useState(false); // Track the state of the notification dropdown
 
   const handleChatsClick = () => {
-    navigate('/mainchat');
+    navigate("/mainchat");
     setMenuOpen(false);
-    setActiveButton('messages');
+    setActiveButton("messages");
   };
 
   const handleNetworkClick = () => {
-    navigate('/');
-    setActiveButton('home');
+    navigate("/");
+    setActiveButton("home");
   };
 
   const handleHomeClick = () => {
-    navigate('/');
+    navigate("/");
     setMenuOpen(false);
-    setActiveButton('home');
+    setActiveButton("home");
   };
 
   const handleJobsClick = () => {
-    navigate('/jobs');
+    navigate("/jobs");
     setMenuOpen(false);
-    setActiveButton('jobs');
+    setActiveButton("jobs");
   };
 
   const handleMeClick = () => {
     setMenuOpen(!menuOpen);
-    setActiveButton('me'); // Toggle the dropdown menu
+    setActiveButton("me"); // Toggle the dropdown menu
   };
 
   const handleNotificationClick = () => {
     setNotificationOpen(!notificationOpen);
-    setActiveButton('notifications');
+    setActiveButton("notifications");
   };
 
   const handleRegisterClick = () => {
-    navigate('/register');
+    navigate("/register");
   };
 
   const handleLoginClick = () => {
-    navigate('/login');
+    navigate("/login");
   };
 
   const handleProfilePageClick = () => {
-    navigate('/profilePage');
-  }
+    navigate("/profilePage");
+  };
 
   const handleNotificationsClick = () => {
-    navigate('/notifications');
+    navigate("/notifications");
   };
 
   const handlePostClick = () => {
-    navigate('/posts');
-  }
-
+    navigate("/posts");
+  };
 
   return (
     <Container>
@@ -102,7 +103,7 @@ const Header: React.FC = () => {
             <img
               src={NetworkLogo}
               alt="My Image"
-              style={{ width: '60px', height: '50px', marginTop: '0.1px' }}
+              style={{ width: "60px", height: "50px", marginTop: "0.1px" }}
             />
             <SearchInput placeholder="Search" />
           </div>
@@ -110,25 +111,40 @@ const Header: React.FC = () => {
 
         <div className="right">
           <nav>
-            <button className={activeButton === 'home' ? 'active' : ''} onClick={handleHomeClick}>
+            <button
+              className={activeButton === "home" ? "active" : ""}
+              onClick={handleHomeClick}
+            >
               <HomeIcon />
               <span>Home</span>
             </button>
-            <button className={activeButton === 'jobs' ? 'active' : ''} onClick={handleJobsClick}>
+            <button
+              className={activeButton === "jobs" ? "active" : ""}
+              onClick={handleJobsClick}
+            >
               <JobsIcon />
               <span>Jobs</span>
             </button>
 
-            <button className={activeButton === 'posts' ? 'active' : ''} onClick={handlePostClick}>
+            <button
+              className={activeButton === "posts" ? "active" : ""}
+              onClick={handlePostClick}
+            >
               <JobsIcon />
               <span>Posts</span>
             </button>
 
-            <button className={activeButton === 'messages' ? 'active' : ''} onClick={handleChatsClick}>
+            <button
+              className={activeButton === "messages" ? "active" : ""}
+              onClick={handleChatsClick}
+            >
               <MessagesIcon />
               <span>Messaging</span>
             </button>
-            <button onClick={handleNotificationClick} className={notificationOpen ? 'active' : ''}>
+            <button
+              onClick={handleNotificationClick}
+              className={notificationOpen ? "active" : ""}
+            >
               <NotificationsIcon />
               <span>Notifications</span>
               {notificationOpen && (
@@ -139,7 +155,10 @@ const Header: React.FC = () => {
                 </NotificationsDropdownMenu>
               )}
             </button>
-            <button onClick={handleMeClick} className={activeButton === 'me' ? 'active' : ''}>
+            <button
+              onClick={handleMeClick}
+              className={activeButton === "me" ? "active" : ""}
+            >
               <ProfileCircle src="https://avatars.githubusercontent.com/u/93683494?v=" />
               <span>
                 Me <CaretDownIcon />
@@ -148,6 +167,7 @@ const Header: React.FC = () => {
                     <button onClick={handleRegisterClick}>Register</button>
                     <button onClick={handleLoginClick}>Login</button>
                     <button onClick={handleProfilePageClick}>My Profile</button>
+                    <button onClick={logout}>Logout</button>
                   </DropdownMenu>
                 )}
               </span>

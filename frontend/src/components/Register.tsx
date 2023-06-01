@@ -20,9 +20,9 @@ function Copyright(props: any) {
   return (
     <Typography
       variant="body2"
-      color="text.secondary"
+      color="grey"
       align="center"
-      style={{ color: "white" }}
+      style={{ color: "grey" }}
       {...props}
     >
       {"Copyright © "}
@@ -73,7 +73,7 @@ export default function SignIn() {
   };
 
   return (
-    <div className="app">
+    <div>
       <ThemeProvider theme={theme}>
         <Container component="main" maxWidth="xs">
           <CssBaseline />
@@ -109,12 +109,12 @@ export default function SignIn() {
                 autoComplete="username"
                 autoFocus
                 InputLabelProps={{
-                  style: { color: "white" },
+                  style: { color: "black" },
                 }}
                 InputProps={{
                   sx: {
                     "& .MuiOutlinedInput-notchedOutline": {
-                      borderColor: "white !important",
+                      borderColor: "black !important",
                     },
                   },
                 }}
@@ -132,12 +132,12 @@ export default function SignIn() {
                 autoComplete="fullname"
                 autoFocus
                 InputLabelProps={{
-                  style: { color: "white" },
+                  style: { color: "black" },
                 }}
                 InputProps={{
                   sx: {
                     "& .MuiOutlinedInput-notchedOutline": {
-                      borderColor: "white !important",
+                      borderColor: "black !important",
                     },
                   },
                 }}
@@ -155,12 +155,12 @@ export default function SignIn() {
                 autoComplete="email"
                 autoFocus
                 InputLabelProps={{
-                  style: { color: "white" },
+                  style: { color: "black" },
                 }}
                 InputProps={{
                   sx: {
                     "& .MuiOutlinedInput-notchedOutline": {
-                      borderColor: "white !important",
+                      borderColor: "black !important",
                     },
                   },
                 }}
@@ -178,12 +178,12 @@ export default function SignIn() {
                 autoComplete="phone"
                 autoFocus
                 InputLabelProps={{
-                  style: { color: "white" },
+                  style: { color: "black" },
                 }}
                 InputProps={{
                   sx: {
                     "& .MuiOutlinedInput-notchedOutline": {
-                      borderColor: "white !important",
+                      borderColor: "black !important",
                     },
                   },
                 }}
@@ -201,12 +201,12 @@ export default function SignIn() {
                 autoComplete="address"
                 autoFocus
                 InputLabelProps={{
-                  style: { color: "white" },
+                  style: { color: "black" },
                 }}
                 InputProps={{
                   sx: {
                     "& .MuiOutlinedInput-notchedOutline": {
-                      borderColor: "white !important",
+                      borderColor: "black !important",
                     },
                   },
                 }}
@@ -224,12 +224,12 @@ export default function SignIn() {
                 autoComplete="profession"
                 autoFocus
                 InputLabelProps={{
-                  style: { color: "white" },
+                  style: { color: "black" },
                 }}
                 InputProps={{
                   sx: {
                     "& .MuiOutlinedInput-notchedOutline": {
-                      borderColor: "white !important",
+                      borderColor: "black !important",
                     },
                   },
                 }}
@@ -247,12 +247,12 @@ export default function SignIn() {
                 autoComplete="skills"
                 autoFocus
                 InputLabelProps={{
-                  style: { color: "white" },
+                  style: { color: "black" },
                 }}
                 InputProps={{
                   sx: {
                     "& .MuiOutlinedInput-notchedOutline": {
-                      borderColor: "white !important",
+                      borderColor: "black !important",
                     },
                   },
                 }}
@@ -270,18 +270,18 @@ export default function SignIn() {
                 onChange={(e) => setPassword(e.target.value)}
                 autoComplete="current-password"
                 InputLabelProps={{
-                  style: { color: "white" },
+                  style: { color: "black" },
                 }}
                 InputProps={{
                   sx: {
                     "& .MuiOutlinedInput-notchedOutline": {
-                      borderColor: "white !important",
+                      borderColor: "black !important",
                     },
                   },
                 }}
               />
               <FormControlLabel
-                control={<Checkbox sx={{ color: "white" }} value="remember" />}
+                control={<Checkbox sx={{ color: "black" }} value="remember" />}
                 label="Remember me"
               />
 

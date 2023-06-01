@@ -14,15 +14,16 @@ import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { NavLink } from "react-router-dom";
 import axios from "axios";
-import { isAuthenticated } from "./Auth";
+import { isAuthenticated } from "./AuthService";
+import { useNavigate } from 'react-router-dom';
 
 function Copyright(props: any) {
   return (
     <Typography
       variant="body2"
-      color="white"
+      color="grey"
       align="center"
-      style={{ color: "white" }}
+      style={{ color: "grey" }}
       {...props}
     >
       {"Copyright © "}
@@ -40,6 +41,7 @@ const theme = createTheme();
 export default function SignIn() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const navigate = useNavigate();
 
   const handleSubmit = async (event: any) => {
     event.preventDefault();
@@ -55,13 +57,14 @@ export default function SignIn() {
 
       const token = response.data.data;
       console.log(response.data.data);
-      localStorage.removeItem("jwtToken"); // Clear previous token
-      localStorage.setItem("jwtToken", token); // Set new token
+      localStorage.removeItem("jwtToken"); 
+      localStorage.setItem("jwtToken", token); 
 
       const authenticated = isAuthenticated();
 
       if (authenticated) {
         console.log("User is authenticated");
+        navigate('/profilePage');
       } else {
         console.log("User is not authenticated");
       }
@@ -74,7 +77,7 @@ export default function SignIn() {
   };
 
   return (
-    <div className="app">
+    <div>
       <ThemeProvider theme={theme}>
         <Container component="main" maxWidth="xs">
           <CssBaseline />
@@ -110,12 +113,12 @@ export default function SignIn() {
                 onChange={(e) => setUsername(e.target.value)}
                 autoFocus
                 InputLabelProps={{
-                  style: { color: "white" },
+                  style: { color: "black" },
                 }}
                 InputProps={{
                   sx: {
                     "& .MuiOutlinedInput-notchedOutline": {
-                      borderColor: "white !important",
+                      borderColor: "black !important",
                     },
                   },
                 }}
@@ -132,18 +135,18 @@ export default function SignIn() {
                 autoComplete="off"
                 onChange={(e) => setPassword(e.target.value)}
                 InputLabelProps={{
-                  style: { color: "white" },
+                  style: { color: "black" },
                 }}
                 InputProps={{
                   sx: {
                     "& .MuiOutlinedInput-notchedOutline": {
-                      borderColor: "white !important",
+                      borderColor: "black !important",
                     },
                   },
                 }}
               />
               <FormControlLabel
-                control={<Checkbox sx={{ color: "white" }} value="remember" />}
+                control={<Checkbox sx={{ color: "black" }} value="remember" />}
                 label="Remember me"
               />
 
@@ -177,8 +180,3 @@ export default function SignIn() {
   );
 }
 
-// export default function Login(){
-//   return(
-//     <h1>Login here</h1>
-//   )
-// }
