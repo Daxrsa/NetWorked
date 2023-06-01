@@ -4,6 +4,7 @@ import Lobby from "./Lobby";
 import Chat from "./Chat";
 import "../App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
+import Header from '../components/DesktopHeader/index'
 
 const MainChat = () => {
   const [connection, setConnection] = useState();
@@ -97,6 +98,7 @@ const MainChat = () => {
 
   return (
     <div className="app">
+      <Header/>
       <h2 className="h2c">NetWorked</h2>
       <hr className="line" />
       {!connection ? (
