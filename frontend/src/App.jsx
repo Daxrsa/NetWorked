@@ -10,6 +10,7 @@ import Layout from "./components/Layout";
 import GlobalStyles from "./styles/GlobalStyles";
 import ProfilePage from "./components/ProfilePage/ProfilePage";
 import PostDashboard from "./components/Posts/PostDashboard";
+import PrivateRoutes from "./components/PrivateRoutes";
 
 function App() {
   return (
@@ -19,9 +20,11 @@ function App() {
         <Route path="/" element={<Layout />} />
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/mainchat" element={<MainChat />} />
-        <Route path="/profilePage" element={<ProfilePage />} />
         <Route path="/posts" element={<PostDashboard />} />
+        <Route element={<PrivateRoutes />}>
+          <Route path="/mainchat" element={<MainChat />} />
+          <Route path="/profilePage" element={<ProfilePage />} />
+        </Route>
       </Routes>
     </>
   );
