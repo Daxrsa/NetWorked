@@ -8,5 +8,6 @@ namespace JobService.Core.Dtos.Company
         public string Name { get; set; }
         public CompanySize Size { get; set; }
         public City CityLocation { get; set; }
+        public byte[] Logo { get; set; }
     }
 }

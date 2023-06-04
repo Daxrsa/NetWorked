@@ -12,5 +12,6 @@ namespace Domain.Models
         [Key]
         public Guid Id { get; set; }
         public double Result { get; set; }
+        public string ApplicationId { get; set; }
     }
 }
