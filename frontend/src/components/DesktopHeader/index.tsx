@@ -85,8 +85,17 @@ const Header: React.FC = () => {
     navigate('/notifications');
   };
 
+  const handleApplicationsClick = () => {
+    navigate('/jobApplications');
+    setMenuOpen(false);
+    setActiveButton('jobApplications');
+  };
 
-
+  const handleCompaniesClick = () => {
+    navigate('/companies');
+    setMenuOpen(false);
+    setActiveButton('companies');
+  };
 
   return (
     <Container>
@@ -135,6 +144,9 @@ const Header: React.FC = () => {
                   <DropdownMenu>
                     <button onClick={handleRegisterClick}>Register</button>
                     <button onClick={handleLoginClick}>Login</button>
+                    <button onClick={handleJobsClick}>Jobs</button>
+                    <button onClick={handleApplicationsClick}>Applications</button>
+                    <button onClick={handleCompaniesClick}>Companies</button>
                   </DropdownMenu>
                 )}
               </span>

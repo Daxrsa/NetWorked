@@ -1,4 +1,5 @@
-
+using Algolia.Search;
+using Algolia.Search.Clients;
 using JobService.Clients;
 using JobService.Core.AutoMapperConfig;
 using JobService.Data;
@@ -25,15 +26,24 @@ namespace JobService
             builder.Services.AddAutoMapper(typeof(MappingProfile));
 
             // Add services to the container.
+            builder.Services.AddSingleton<ISearchClient, SearchClient>();
+            builder.Services.AddSingleton<ISearchClient>(new SearchClient("ATO7HNMOJI", "8bc946dbb7800988993b963f146f6cdf"));
+
 
             builder.Services.AddScoped<ICompany, CompanyService>();
             builder.Services.AddScoped<IJobPosition, JobPositionService>();
             builder.Services.AddScoped<IApplication, ApplicationService>();
+            builder.Services.AddScoped<ISearch, SearchService>();
+
 
             builder.Services.AddHttpClient<UserClient>(client => 
             {
                 client.BaseAddress = new Uri("http://localhost:5116/");
             });
+
+            
+            //var algoliaConfig = new SearchConfig("ATO7HNMOJI", "8bc946dbb7800988993b963f146f6cdf");
+            //var client = new SearchClient(algoliaConfig);
 
             builder.Services.AddControllers()
                 .AddJsonOptions(options =>

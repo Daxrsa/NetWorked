@@ -3,6 +3,7 @@ import { DataGrid } from '@mui/x-data-grid'
 import React from 'react'
 import moment from "moment";
 import { IJob } from '../../Interfaces/global.typing'
+import Button from "@mui/material/Button/Button";
 
 const column: GridColDef[] = [
     { field: "id", headerName: "Id", width: 100 },
@@ -17,6 +18,30 @@ const column: GridColDef[] = [
         headerName: "Creation Time",
         width: 150,
         renderCell: (params) => moment(params.row.createdAt).fromNow(),
+    },
+    {
+        field: "edit",
+        headerName: "Edit",
+        width: 100,
+        renderCell: (params) => (
+            <a href="#">
+                <Button variant="contained" color="success">
+                    Edit
+                </Button>
+            </a>
+        )
+    },
+    {
+        field: "delete",
+        headerName: "Delete",
+        width: 100,
+        renderCell: (params) => (
+            <a href="#">
+                <Button variant="outlined" color="error">
+                    Delete
+                </Button>
+            </a>
+        )
     },
 ];
 

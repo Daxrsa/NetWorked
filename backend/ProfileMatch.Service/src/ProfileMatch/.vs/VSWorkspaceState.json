@@ -1,8 +1,16 @@
 {
   "ExpandedNodes": [
     "",
-    "\\API"
+    "\\Application",
+    "\\Application\\Core",
+    "\\Application\\Core\\InterfaceRepos",
+    "\\Domain",
+    "\\Domain\\AutoMapperConfig",
+    "\\Domain\\Enum",
+    "\\Domain\\ReadDTOs",
+    "\\Persistance",
+    "\\Persistance\\Migrations"
   ],
-  "SelectedNode": "\\API\\appsettings.json",
+  "SelectedNode": "\\Application\\Services\\ResultsService.cs",
   "PreviewInSolutionExplorer": false
 }

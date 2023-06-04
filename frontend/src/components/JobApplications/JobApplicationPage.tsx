@@ -40,7 +40,7 @@ function JobApplicationPage() {
             {loading ? (
                 <CircularProgress size={100} />
             ) : applications.length === 0 ? (
-                <h1>No Job Application</h1>
+                <h1>No Job Application Found</h1>
             ) : (
                 <ApplicationsGrid data={applications} />
             )}

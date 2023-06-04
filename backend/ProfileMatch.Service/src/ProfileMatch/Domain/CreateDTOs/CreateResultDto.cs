@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace Domain.CreateDTOs
 {
-    public class DTO
+    public class CreateResultDto
     {
-        public double Result { get; set; }
+        public string ApplicationId { get; set; }
     }
 }

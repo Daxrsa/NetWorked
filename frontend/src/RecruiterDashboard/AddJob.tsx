@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { ICreateJobDto, ICompany } from '../../Interfaces/global.typing'
+import { ICreateJobDto, ICompany } from '../Interfaces/global.typing'
 import { } from '@mui/material'
 import TextField from '@mui/material/TextField/TextField'
 import FormControl from "@mui/material/FormControl/FormControl";
@@ -8,7 +8,7 @@ import Select from "@mui/material/Select/Select";
 import MenuItem from "@mui/material/MenuItem/MenuItem";
 import Button from "@mui/material/Button/Button";
 import { useNavigate } from "react-router-dom";
-import httpModule from "../../helpers/http.module";
+import httpModule from "../helpers/http.module";
 
 const AddJob = () => {
     const [job, setJob] = useState<ICreateJobDto>({

@@ -1,5 +1,7 @@
 ﻿using Application.Core.InterfaceRepos;
+using Domain.CreateDTOs;
 using Domain.Models;
+using Domain.ReadDTOs;
 using Microsoft.EntityFrameworkCore;
 using Persistence;
 using System;
@@ -24,7 +26,17 @@ namespace Application.Services
             return true;
         }
 
+        public bool Add(CreateResultDto entity)
+        {
+            throw new NotImplementedException();
+        }
+
         public Task<bool> Delete(ProfileMatchingResult entity)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<bool> Delete(Guid id)
         {
             throw new NotImplementedException();
         }
@@ -39,7 +51,22 @@ namespace Application.Services
             throw new NotImplementedException();
         }
 
+        public Task<ResultReadDto> GetById(Guid id)
+        {
+            throw new NotImplementedException();
+        }
+
         public Task<bool> Update(ProfileMatchingResult entity)
+        {
+            throw new NotImplementedException();
+        }
+
+        public ProfileMatchingResult Update(Guid id, ProfileMatchingResult result)
+        {
+            throw new NotImplementedException();
+        }
+
+        Task<IEnumerable<ResultReadDto>> IResultsRepo.GetAll()
         {
             throw new NotImplementedException();
         }

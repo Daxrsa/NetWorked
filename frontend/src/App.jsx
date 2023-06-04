@@ -12,7 +12,7 @@ import GlobalStyles from "./styles/GlobalStyles";
 import CompanyPage from "./components/Companies/CompanyPage";
 import AddCompany from "./components/Companies/AddCompany";
 import JobPage from "./components/Jobs/JobPage";
-import AddJob from "./components/Jobs/AddJob";
+import AddJob from "./RecruiterDashboard/AddJob";
 import JobApplicationPage from "./components/JobApplications/JobApplicationPage";
 import AddApplication from "./components/JobApplications/AddApplication";
 

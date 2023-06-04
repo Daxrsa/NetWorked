@@ -5,6 +5,7 @@ import moment from "moment";
 import { IApplication } from '../../Interfaces/global.typing'
 import { baseJobUrl } from '../../constants/urlConstants';
 import { PictureAsPdf } from '@mui/icons-material'
+import Button from "@mui/material/Button/Button";
 
 const column: GridColDef[] = [
     { field: "id", headerName: "Id", width: 300 },
@@ -15,14 +16,38 @@ const column: GridColDef[] = [
         width: 200,
         renderCell: (params) => moment(params.row.dateApplied).fromNow(),
     },
-    { field: "jobTitle", headerName: "jobTitle", width: 200 },
+    { field: "jobTitle", headerName: "Applied At:", width: 200 },
     {
         field: "resumeUrl",
-        headerName: "Download",
+        headerName: "Download Resume",
         width: 250,
         renderCell: (params) => (
             <a href={`${baseJobUrl}/Application/download/${params.row.resumeUrl}`}>Download Resume
                 <PictureAsPdf />
+            </a>
+        )
+    },
+    {
+        field: "edit",
+        headerName: "Edit",
+        width: 100,
+        renderCell: (params) => (
+            <a href="#">
+                <Button variant="contained" color="success">
+                    Edit
+                </Button>
+            </a>
+        )
+    },
+    {
+        field: "delete",
+        headerName: "Delete",
+        width: 100,
+        renderCell: (params) => (
+            <a href="#">
+                <Button variant="outlined" color="error">
+                    Delete
+                </Button>
             </a>
         )
     },

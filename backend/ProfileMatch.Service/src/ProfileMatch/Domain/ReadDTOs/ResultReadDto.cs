@@ -1,16 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Domain.Models
+namespace Domain.ReadDTOs
 {
-    public class Reccomendation
+    public class ResultReadDto
     {
-        [Key]
         public Guid Id { get; set; }
         public double Result { get; set; }
+        public string ApplicationId { get; set; }
     }
 }
