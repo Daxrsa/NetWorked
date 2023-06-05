@@ -92,8 +92,18 @@ const Header: React.FC = () => {
     navigate("/notifications");
   };
 
-  const handlePostClick = () => {
-    navigate("/posts");
+  // const handlePostClick = () => {
+  //   navigate("/posts");
+  // const handleApplicationsClick = () => {
+  //   navigate('/jobApplications');
+  //   setMenuOpen(false);
+  //   setActiveButton('jobApplications');
+  // };
+
+  const handleCompaniesClick = () => {
+    navigate('/companies');
+    setMenuOpen(false);
+    setActiveButton('companies');
   };
 
   return (
@@ -127,13 +137,13 @@ const Header: React.FC = () => {
               <span>Jobs</span>
             </button>
 
-            <button
+            {/* <button
               className={activeButton === "posts" ? "active" : ""}
               onClick={handlePostClick}
             >
               <JobsIcon />
               <span>Posts</span>
-            </button>
+            </button> */}
 
             <button
               className={activeButton === "messages" ? "active" : ""}
@@ -169,6 +179,9 @@ const Header: React.FC = () => {
                     <button onClick={handleLoginClick}>Login</button>
                     <button onClick={handleProfilePageClick}>My Profile</button>
                     <button onClick={logout}>Logout</button>
+                    <button onClick={handleJobsClick}>Jobs</button>
+                    {/* <button onClick={handleApplicationsClick}>Applications</button> */}
+                    <button onClick={handleCompaniesClick}>Companies</button>
                   </DropdownMenu>
                 )}
               </span>

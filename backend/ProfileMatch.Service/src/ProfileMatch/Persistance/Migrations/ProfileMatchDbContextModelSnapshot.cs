@@ -22,11 +22,15 @@ namespace Persistence.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("Domain.ProfileMatchingResult", b =>
+            modelBuilder.Entity("Domain.Models.ProfileMatchingResult", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("ApplicationId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<double>("Result")
                         .HasColumnType("float");
@@ -34,20 +38,6 @@ namespace Persistence.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Results");
-                });
-
-            modelBuilder.Entity("Domain.Reccomendation", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<double>("Result")
-                        .HasColumnType("float");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Reccomendations");
                 });
 #pragma warning restore 612, 618
         }

@@ -1,0 +1,15 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\Job",
+    "\\Job\\JobService",
+    "\\Job\\JobService\\JobService",
+    "\\Job\\JobService\\JobService\\Core",
+    "\\Job\\JobService\\JobService\\Core\\Dtos",
+    "\\Job\\JobService\\JobService\\Core\\Dtos\\JobPosition",
+    "\\Job\\JobService\\JobService\\Services",
+    "\\Job\\JobService\\JobService\\Services\\Interfaces"
+  ],
+  "SelectedNode": "\\Job\\JobService\\JobService\\JobService.csproj",
+  "PreviewInSolutionExplorer": false
+}
