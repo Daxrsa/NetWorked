@@ -19,8 +19,6 @@ import AddJob from "./RecruiterDashboard/AddJob";
 import JobApplicationPage from "./components/JobApplications/JobApplicationPage";
 import AddApplication from "./components/JobApplications/AddApplication";
 
-//const HomePage = lazy(() => import("./components/HomePage"))
-
 function App()
 {
   return (
@@ -31,10 +29,6 @@ function App()
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
         <Route path="/posts" element={<PostDashboard />} />
-        <Route element={<PrivateRoutes />}>
-          <Route path="/mainchat" element={<MainChat />} />
-          <Route path="/profilePage" element={<ProfilePage />} />
-        <Route path="/mainchat" element={<MainChat />} />
         <Route path="/companies">
           <Route index element={<CompanyPage />} />
           <Route path="add" element={<AddCompany />} />
@@ -46,6 +40,11 @@ function App()
         <Route path="/jobApplications">
           <Route index element={<JobApplicationPage />} />
           <Route path="add" element={<AddApplication />} />
+        </Route>
+        <Route element={<PrivateRoutes />}>
+          <Route path="/mainchat" element={<MainChat />} />
+          <Route path="/profilePage" element={<ProfilePage />} />
+          <Route path="/mainchat" element={<MainChat />} />
         </Route>
       </Routes>
     </>
