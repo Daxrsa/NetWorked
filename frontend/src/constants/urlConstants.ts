@@ -1,0 +1,1 @@
+export const baseJobUrl = "http://localhost:33364/api/v1";

@@ -1,14 +1,16 @@
 {
   "version": 2,
-  "dgSpecHash": "XZVnWp1+cn43zYVcH/jxxmGfwAc3VlPMJ7iQNzezpWVv8oTs5dZnDfXcVPInShmGVwu0/iqpV0HDXGlxn+gGLg==",
+  "dgSpecHash": "mh+dcvtBAIGpP74RAWcbOnwk2+o3cDC1YPpSYlsgFDDq2xVcC8Kg7vawkYSgjPO79eFGSRfBgX7i3PakcRiZJg==",
   "success": true,
   "projectFilePath": "C:\\Users\\fitor\\ProjektiLab2\\NetWorked\\backend\\ProfileMatch.Service\\src\\ProfileMatch\\Persistance\\Persistence.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\fitor\\.nuget\\packages\\automapper\\12.0.1\\automapper.12.0.1.nupkg.sha512",
+    "C:\\Users\\fitor\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\12.0.1\\automapper.extensions.microsoft.dependencyinjection.12.0.1.nupkg.sha512",
     "C:\\Users\\fitor\\.nuget\\packages\\azure.core\\1.24.0\\azure.core.1.24.0.nupkg.sha512",
     "C:\\Users\\fitor\\.nuget\\packages\\azure.identity\\1.6.0\\azure.identity.1.6.0.nupkg.sha512",
     "C:\\Users\\fitor\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
     "C:\\Users\\fitor\\.nuget\\packages\\microsoft.bcl.asyncinterfaces\\1.1.1\\microsoft.bcl.asyncinterfaces.1.1.1.nupkg.sha512",
-    "C:\\Users\\fitor\\.nuget\\packages\\microsoft.csharp\\4.5.0\\microsoft.csharp.4.5.0.nupkg.sha512",
+    "C:\\Users\\fitor\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",
     "C:\\Users\\fitor\\.nuget\\packages\\microsoft.data.sqlclient\\5.0.1\\microsoft.data.sqlclient.5.0.1.nupkg.sha512",
     "C:\\Users\\fitor\\.nuget\\packages\\microsoft.data.sqlclient.sni.runtime\\5.0.1\\microsoft.data.sqlclient.sni.runtime.5.0.1.nupkg.sha512",
     "C:\\Users\\fitor\\.nuget\\packages\\microsoft.entityframeworkcore\\7.0.5\\microsoft.entityframeworkcore.7.0.5.nupkg.sha512",

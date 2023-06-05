@@ -17,13 +17,13 @@ namespace API.Controllers
         [HttpGet]
         public async Task<ActionResult> GetAll()
         {
-            return Ok(await _contract.GetAll());
+            return Ok();
         }
 
         [HttpPost]
         public async Task<IActionResult> Add(ProfileMatchingResult p)
         {
-            return Ok(await _contract.Add(p));
+            return Ok();
         }
     }
 }

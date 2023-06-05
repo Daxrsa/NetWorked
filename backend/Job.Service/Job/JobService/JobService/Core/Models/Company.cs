@@ -11,6 +11,7 @@ namespace JobService.Core.Models
         public string Name { get; set; }
         public CompanySize Size { get; set; }
         public City CityLocation { get; set; }
+        public byte[] Logo { get; set; }
 
         //JOBS HERE
         public ICollection<JobPosition> jobPositions { get; set; }

@@ -3,6 +3,7 @@ body {
   height: 100%;
   width: 100%;
 }
+
 Form Button {
   width: 100%;
 }
@@ -10,10 +11,11 @@ Form Button {
 h2 {
   color: #313131;
 }
+
 .h2c {
   color: white;
   padding-top: 70px;
-  font-family: "Times New Roman", Times, serif;
+  font-family: 'Times New Roman', Times, serif;
   font-size: 60px;
 }
 
@@ -25,6 +27,7 @@ hr.line {
   border: 1px solid #313131;
   width: 175px;
 }
+
 .app {
   position: fixed;
   top: 0;
@@ -34,13 +37,15 @@ hr.line {
   width: 100%;
   height: 100%;
   text-align: center;
-  background-color: #25262f;
+  background-color: #25262F;
   color: white;
 }
+
 
 .lobby {
   width: 400px;
   margin: auto;
+
 }
 
 .chat {
@@ -83,11 +88,14 @@ hr.line {
   background: none;
   border: none;
   cursor: pointer;
+
 }
 
 .delete-icon {
   color: red;
+
 }
+
 .delete-button {
   position: absolute;
   top: 0;
@@ -117,35 +125,12 @@ hr.line {
   margin-right: 5px;
 }
 
-@media screen and (max-width: 400px) {
-  #features {
-    padding: 20px;
-    width: 111%;
-  }
-  #about,
-  #services,
-  #testimonials,
-  #team,
-  #contact,
-  #footer {
-    width: 111%;
-  }
-
-  #portfolio {
-    width: 110%;
-  }
+.companies {
+  background-color: white;
+  color: #25262F;
 }
 
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+.h2c {
+  color: #25262F;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
-}
