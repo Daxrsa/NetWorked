@@ -16,7 +16,15 @@ import axios from "axios";
 
 export default function ProfilePage() {
   const [isEditMode, setIsEditMode] = useState(false);
-  const [loggedInUser, setLoggedInUser] = useState(null);
+  const [loggedInUserName, setUsername] = useState(null);
+  const [loggedInFullname, setFullname] = useState(null);
+  const [loggedInEmail, setEmail] = useState(null);
+  const [loggedInPhone, setPhone] = useState(null);
+  const [loggedInAddress, setAddress] = useState(null);
+  const [loggedInProfession, setProfession] = useState(null);
+  const [loggedInSkills, setSkills] = useState(null);
+  const [loggedInBio, setBio] = useState(null);
+
 
   const handleEditClick = () => {
     setIsEditMode(true);
@@ -45,7 +53,14 @@ export default function ProfilePage() {
       });
       const data = response.data; // No need to parse the JSON object
       console.log(data);
-      setLoggedInUser(data);
+      setUsername(data.username);
+      setFullname(data.fullname);
+      setEmail(data.email);
+      setPhone(data.phone);
+      setAddress(data.address);
+      setProfession(data.profession);
+      setSkills(data.skills);
+      setBio(data.bio);
     } catch (error) {
       console.error("Error fetching logged-in user:", error);
     }
@@ -58,7 +73,7 @@ export default function ProfilePage() {
         <MDBRow>
           <MDBCol>
             <MDBBreadcrumb className="bg-light rounded-3 p-3 mb-4">
-              <MDBBreadcrumbItem active>Welcome back, {loggedInUser}!</MDBBreadcrumbItem> 
+              <MDBBreadcrumbItem active>Welcome back, {loggedInUserName}!</MDBBreadcrumbItem> 
             </MDBBreadcrumb>
           </MDBCol>
         </MDBRow>
@@ -75,13 +90,7 @@ export default function ProfilePage() {
                 />
                 <p>Bio</p>
                 <div className="d-flex justify-content-center mb-2">
-                  Hello, I'm John, a passionate PHP developer with over 8 years
-                  of experience in creating dynamic and powerful web
-                  applications. Throughout my career, I have honed my skills in
-                  PHP development, specializing in building scalable backend
-                  systems and crafting efficient database structures. I am
-                  well-versed in popular PHP frameworks like Laravel, which
-                  allows me to create robust and maintainable code.{" "}
+                  {loggedInBio}.{" "}
                 </div>
               </MDBCardBody>
             </MDBCard>
@@ -95,7 +104,7 @@ export default function ProfilePage() {
                   </MDBCol>
                   <MDBCol sm="9">
                     <MDBCardText className="text-muted">
-                      Johnatan Smith
+                    {loggedInFullname}
                     </MDBCardText>
                   </MDBCol>
                 </MDBRow>
@@ -106,7 +115,7 @@ export default function ProfilePage() {
                   </MDBCol>
                   <MDBCol sm="9">
                     <MDBCardText className="text-muted">
-                      example@example.com
+                      {loggedInEmail}
                     </MDBCardText>
                   </MDBCol>
                 </MDBRow>
@@ -117,7 +126,7 @@ export default function ProfilePage() {
                   </MDBCol>
                   <MDBCol sm="9">
                     <MDBCardText className="text-muted">
-                      (097) 234-5678
+                      {loggedInPhone}
                     </MDBCardText>
                   </MDBCol>
                 </MDBRow>
@@ -128,7 +137,7 @@ export default function ProfilePage() {
                   </MDBCol>
                   <MDBCol sm="9">
                     <MDBCardText className="text-muted">
-                      Bay Area, San Francisco, CA
+                      {loggedInAddress}
                     </MDBCardText>
                   </MDBCol>
                 </MDBRow>
@@ -139,7 +148,7 @@ export default function ProfilePage() {
                   </MDBCol>
                   <MDBCol sm="9">
                     <MDBCardText className="text-muted">
-                      Senior PHP Developer
+                      {loggedInProfession}
                     </MDBCardText>
                   </MDBCol>
                 </MDBRow>
@@ -150,7 +159,7 @@ export default function ProfilePage() {
                   </MDBCol>
                   <MDBCol sm="9">
                     <MDBCardText className="text-muted">
-                      Pure PHP, Laravel, Slim, Docker
+                      {loggedInSkills}
                     </MDBCardText>
                   </MDBCol>
                 </MDBRow>

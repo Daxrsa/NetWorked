@@ -10,5 +10,6 @@ namespace Application.DTOs
         public string Address { get; set; }
         public string Profession { get; set; }
         public string Skills { get; set; }
+        public string Bio { get; set; }
     }
 }

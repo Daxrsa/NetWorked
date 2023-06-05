@@ -17,13 +17,39 @@ namespace Application.Services.UserRepo
             _httpContextAccessor = httpContextAccessor;
         }
 
-        public string GetLoggedInUser()
+        public static Guid GetIdClaim(ClaimsPrincipal claimsPrincipal)
         {
-            var result = string.Empty;
+            string idValue = claimsPrincipal.FindFirstValue(ClaimTypes.NameIdentifier);
+            Guid id = Guid.Parse(idValue);
+            return id;
+        }
+
+        public User GetLoggedInUser()
+        {
+            User result = null;
+
             if (_httpContextAccessor.HttpContext != null)
             {
-                result = _httpContextAccessor.HttpContext.User.FindFirstValue(ClaimTypes.Name);
+                var claimsPrincipal = _httpContextAccessor.HttpContext.User;
+
+                if (claimsPrincipal != null)
+                {
+                    result = new User
+                    {
+                        Username = claimsPrincipal.FindFirstValue(ClaimTypes.Name),
+                        Email = claimsPrincipal.FindFirstValue(ClaimTypes.Email),
+                        //Role = claimsPrincipal.FindFirstValue(ClaimTypes.Role),
+                        Id = GetIdClaim(claimsPrincipal),
+                        Phone = claimsPrincipal.FindFirstValue(ClaimTypes.MobilePhone),
+                        Fullname = claimsPrincipal.FindFirstValue(ClaimTypes.GivenName),
+                        Address = claimsPrincipal.FindFirstValue(ClaimTypes.StreetAddress),
+                        Skills = claimsPrincipal.FindFirstValue(ClaimTypes.UserData),
+                        Profession = claimsPrincipal.FindFirstValue(ClaimTypes.HomePhone),
+                        Bio = claimsPrincipal.FindFirstValue(ClaimTypes.CookiePath)
+                    };
+                }
             }
+
             return result;
         }
 
@@ -41,6 +67,19 @@ namespace Application.Services.UserRepo
         {
             var users = await _context.User.ToListAsync();
             return Result<List<User>>.IsSuccess(users);
+        }
+
+        public async Task<Result<User>> DeleteUser(Guid id)
+        {
+            var user = await _context.User.FindAsync(id);
+            if (user is null)
+            {
+                return Result<User>.Failure("User not found.");
+            }
+            _context.User.Remove(user);
+            await _context.SaveChangesAsync();
+
+            return Result<User>.IsSuccess(user);
         }
     }
 }

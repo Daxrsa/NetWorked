@@ -27,5 +27,11 @@ namespace API.Controllers
         {
             return Ok(await _userRepo.GetUserById(id));
         }
+
+        [HttpDelete]
+        public async Task<ActionResult<User>> DeleteUser(Guid id)
+        {
+            return Ok(await _userRepo.DeleteUser(id));
+        }
     }
 }

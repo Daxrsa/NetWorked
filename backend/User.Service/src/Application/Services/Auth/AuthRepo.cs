@@ -101,7 +101,8 @@ namespace Application.Services.Auth
                 new Claim(ClaimTypes.GivenName, user.Fullname),
                 new Claim(ClaimTypes.StreetAddress, user.Address),
                 new Claim(ClaimTypes.UserData, user.Skills),
-                new Claim(ClaimTypes.HomePhone, user.Profession)
+                new Claim(ClaimTypes.HomePhone, user.Profession),
+                new Claim(ClaimTypes.CookiePath, user.Bio)
             };
 
             var key = new SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes(

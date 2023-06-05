@@ -39,7 +39,8 @@ namespace API.Controllers
                     Phone = request.Phone,
                     Address = request.Address,
                     Profession = request.Profession,
-                    Skills = request.Skills
+                    Skills = request.Skills,
+                    Bio = request.Bio
                 }, 
                 request.Password
             );

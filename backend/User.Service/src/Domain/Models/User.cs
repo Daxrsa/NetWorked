@@ -10,6 +10,7 @@ namespace Domain.Models
         public string Address { get; set; }
         public string Profession { get; set; }
         public string Skills { get; set; }
+        public string Bio { get; set; }
         public byte[] PasswordHash { get; set; }
         public byte[] PasswordSalt { get; set; }
         public string RefreshToken { get; set; }

@@ -7,6 +7,7 @@ namespace Application.Services.UserRepo
     {
         Task<Result<List<User>>> GetUsers();
         Task<Result<User>> GetUserById(Guid id);
-        string GetLoggedInUser();
+        Task<Result<User>> DeleteUser(Guid id);
+        User GetLoggedInUser();
     }
 }
