@@ -1,7 +1,5 @@
 using Application.Core;
 using Application.DTOs;
-using Application.Services.Auth;
-using Application.Services.UserRepo;
 using Domain.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;

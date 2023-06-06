@@ -15,6 +15,7 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { NavLink } from "react-router-dom";
 import "../App.css";
 import axios from "axios";
+import { TextArea } from "semantic-ui-react";
 
 function Copyright(props: any) {
   return (
@@ -46,6 +47,7 @@ export default function SignIn() {
   const [profession, setProfession] = useState("");
   const [skills, setSkills] = useState("");
   const [password, setPassword] = useState("");
+  const [bio, setBio] = useState("");
 
   const handleSubmit = async (event: any) => {
     event.preventDefault();
@@ -61,7 +63,8 @@ export default function SignIn() {
           phone,
           address,
           profession,
-          skills
+          skills,
+          bio,
         }
       );
       console.log("Register success.", response.data);
@@ -280,6 +283,30 @@ export default function SignIn() {
                   },
                 }}
               />
+
+              <TextField
+                margin="normal"
+                required
+                fullWidth
+                name="bio"
+                label="bio"
+                type="bio"
+                value={password}
+                id="bio"
+                onChange={(e) => setBio(e.target.value)}
+                autoComplete="current-bio"
+                InputLabelProps={{
+                  style: { color: "black" },
+                }}
+                InputProps={{
+                  sx: {
+                    "& .MuiOutlinedInput-notchedOutline": {
+                      borderColor: "black !important",
+                    },
+                  },
+                }}
+              />
+
               <FormControlLabel
                 control={<Checkbox sx={{ color: "black" }} value="remember" />}
                 label="Remember me"

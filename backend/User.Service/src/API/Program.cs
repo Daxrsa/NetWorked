@@ -1,7 +1,7 @@
 global using Application.Services.Auth;
 global using Application.Services.UserRepo;
 using API.Middleware;
-using Application.Services;
+using Application.Mapping;
 using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
@@ -42,11 +42,10 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
           };
       });
 
-builder.Services.AddFluentValidationAutoValidation();
-builder.Services.AddFluentValidationClientsideAdapters();
+// builder.Services.AddFluentValidationAutoValidation();
+// builder.Services.AddFluentValidationClientsideAdapters();
 
-// Assembly registerDtoAssembly = typeof(RegisterDTOValidator).Assembly;
-// builder.Services.AddValidatorsFromAssembly(registerDtoAssembly);
+builder.Services.AddAutoMapper(typeof(MappingProfiles).Assembly);
 
 builder.Services.AddDbContext<DataContext>(opt =>
 {

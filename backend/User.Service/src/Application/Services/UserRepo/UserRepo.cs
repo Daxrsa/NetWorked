@@ -1,5 +1,7 @@
 using System.Security.Claims;
 using Application.Core;
+using Application.DTOs;
+using AutoMapper;
 using Domain.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
@@ -11,8 +13,10 @@ namespace Application.Services.UserRepo
     {
         private readonly DataContext _context;
         private readonly IHttpContextAccessor _httpContextAccessor;
-        public UserRepo(DataContext context, IHttpContextAccessor httpContextAccessor)
+        private readonly IMapper _mapper;
+        public UserRepo(DataContext context, IHttpContextAccessor httpContextAccessor, IMapper mapper)
         {
+            _mapper = mapper;
             _context = context;
             _httpContextAccessor = httpContextAccessor;
         }
@@ -24,9 +28,9 @@ namespace Application.Services.UserRepo
             return id;
         }
 
-        public User GetLoggedInUser()
+        public UserDTO GetLoggedInUser()
         {
-            User result = null;
+            UserDTO result = null;
 
             if (_httpContextAccessor.HttpContext != null)
             {
@@ -34,7 +38,7 @@ namespace Application.Services.UserRepo
 
                 if (claimsPrincipal != null)
                 {
-                    result = new User
+                    result = new UserDTO
                     {
                         Username = claimsPrincipal.FindFirstValue(ClaimTypes.Name),
                         Email = claimsPrincipal.FindFirstValue(ClaimTypes.Email),
@@ -53,33 +57,36 @@ namespace Application.Services.UserRepo
             return result;
         }
 
-        public async Task<Result<User>> GetUserById(Guid id)
+        public async Task<Result<UserDTO>> GetUserById(Guid id)
         {
             var user = await _context.User.FindAsync(id);
             if (user is null)
             {
-                return Result<User>.Failure("User not found.");
+                return Result<UserDTO>.Failure("User not found.");
             }
-            return Result<User>.IsSuccess(user);
+            var userDto = _mapper.Map<UserDTO>(user);
+            return Result<UserDTO>.IsSuccess(userDto);
         }
 
-        public async Task<Result<List<User>>> GetUsers()
+        public async Task<Result<List<UserDTO>>> GetUsers()
         {
             var users = await _context.User.ToListAsync();
-            return Result<List<User>>.IsSuccess(users);
+            var userDtos = _mapper.Map<List<UserDTO>>(users);
+            return Result<List<UserDTO>>.IsSuccess(userDtos);
         }
 
-        public async Task<Result<User>> DeleteUser(Guid id)
+        public async Task<Result<UserDTO>> DeleteUser(Guid id)
         {
             var user = await _context.User.FindAsync(id);
             if (user is null)
             {
-                return Result<User>.Failure("User not found.");
+                return Result<UserDTO>.Failure("User not found.");
             }
             _context.User.Remove(user);
             await _context.SaveChangesAsync();
 
-            return Result<User>.IsSuccess(user);
+            var userDto = _mapper.Map<UserDTO>(user);
+            return Result<UserDTO>.IsSuccess(userDto);
         }
     }
 }
