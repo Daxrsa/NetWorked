@@ -1,12 +1,11 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import useFetch from "../../hooks/useFetch";
 import Search from '../Search/Search'
-
+import axios from 'axios'
 import {
   Container,
   Wrapper,
-  SearchInput,
   HomeIcon,
   NetworkIcon,
   JobsIcon,
@@ -42,13 +41,30 @@ const Header: React.FC = () => {
   const [activeButton, setActiveButton] = useState("home");
   const [menuOpen, setMenuOpen] = useState(false); // Track the state of the dropdown menu
   const [notificationOpen, setNotificationOpen] = useState(false); // Track the state of the notification dropdown
-
+  const [loggedInUserName, setUsername] = useState(null);
   const handleChatsClick = () => {
     navigate("/mainchat");
     setMenuOpen(false);
     setActiveButton("messages");
   };
-
+  const fetchLoggedInUser = async () => {
+    try {
+      const token = localStorage.getItem('jwtToken'); // Retrieve the token from localStorage
+      const response = await axios.get("http://localhost:5116/api/Auth/GetloggedInUser", {
+        headers: {
+          Authorization: `Bearer ${token}` // Add the token to the request headers
+        }
+      });
+      const udata = response.data; // No need to parse the JSON object
+      console.log(udata);
+      setUsername(udata.username);
+    } catch (error) {
+      console.error("Error fetching logged-in user:", error);
+    }
+  };
+  useEffect(() => {
+    fetchLoggedInUser();
+  }, []);
   const handleNetworkClick = () => {
     navigate("/");
     setActiveButton("home");
@@ -172,7 +188,7 @@ const Header: React.FC = () => {
             >
               <ProfileCircle src="https://avatars.githubusercontent.com/u/93683494?v=" />
               <span>
-                Me <CaretDownIcon />
+              {loggedInUserName} <CaretDownIcon />
                 {menuOpen && (
                   <DropdownMenu>
                     <button onClick={handleRegisterClick}>Register</button>
