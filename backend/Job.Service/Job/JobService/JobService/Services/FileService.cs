@@ -1,5 +1,4 @@
-﻿using JobService.Data;
-using JobService.Services.Interfaces;
+﻿using JobService.Services.Interfaces;
 
 namespace JobService.Services
 {

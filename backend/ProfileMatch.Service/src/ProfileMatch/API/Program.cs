@@ -1,5 +1,4 @@
-using Application.Core.InterfaceRepos;
-using Application.Services;
+using Application.Services.ResultsService;
 using Domain.AutoMapperConfig;
 using Microsoft.EntityFrameworkCore;
 using Persistence;

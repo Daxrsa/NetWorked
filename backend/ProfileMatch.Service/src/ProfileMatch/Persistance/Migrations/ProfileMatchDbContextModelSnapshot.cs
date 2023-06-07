@@ -22,22 +22,60 @@ namespace Persistence.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
+            modelBuilder.Entity("Domain.Models.Application", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<Guid>("ApplicantId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("DateApplied")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("JobId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("ResumeUrl")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Applications");
+                });
+
             modelBuilder.Entity("Domain.Models.ProfileMatchingResult", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<string>("ApplicationId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("ApplicationId")
+                        .HasColumnType("int");
 
                     b.Property<double>("Result")
                         .HasColumnType("float");
 
                     b.HasKey("Id");
 
+                    b.HasIndex("ApplicationId");
+
                     b.ToTable("Results");
+                });
+
+            modelBuilder.Entity("Domain.Models.ProfileMatchingResult", b =>
+                {
+                    b.HasOne("Domain.Models.Application", "Application")
+                        .WithMany()
+                        .HasForeignKey("ApplicationId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Application");
                 });
 #pragma warning restore 612, 618
         }

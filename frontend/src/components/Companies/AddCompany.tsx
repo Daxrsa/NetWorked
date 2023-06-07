@@ -22,8 +22,15 @@ const AddCompany = () => {
         }
         console.log(company.name)
         console.log(company.file)
+        //console.log(image);
+        const newFormData = new FormData();
+        newFormData.append("Name", company.name);
+        newFormData.append("Size", company.size);
+        newFormData.append("CityLocation", company.cityLocation);
+        newFormData.append("file", company.file);
+
         httpModule
-            .post("/Company", company)
+            .post("/Company", newFormData)
             .then((responst) => redirect("/companies"))
             .catch((error) => console.log(error));
     };
@@ -69,7 +76,7 @@ const AddCompany = () => {
                     </Select>
                 </FormControl>
 
-                <input type="file" onChange={(e) => setCompany({ ...company, file: e.target.value })} />
+                <input type="file" onChange={(event) => setCompany({ ...company, file: event.target.value })} />
 
                 <div className="btns">
                     <Button variant="outlined" color="primary" onClick={handleClickSaveBtn}>

@@ -24,9 +24,9 @@ namespace JobService.Services
             try
             {
                 var company = _mapper.Map<Company>(entity);
-                if (entity.ImageFile != null)
+                if (entity.file != null)
                 {
-                    var fileResult = _fileService.SaveImage(entity.ImageFile);
+                    var fileResult = _fileService.SaveImage(entity.file);
                     if (fileResult.Item1 == 1)
                     {
                         company.Logo = fileResult.Item2;

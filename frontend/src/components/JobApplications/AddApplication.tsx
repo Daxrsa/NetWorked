@@ -40,6 +40,7 @@ const AddApplication = () => {
             return;
         }
 
+        console.log(pdfFile)
         const newFormData = new FormData();
         newFormData.append("jobId", application.jobId);
         newFormData.append("applicantId", application.applicantId);

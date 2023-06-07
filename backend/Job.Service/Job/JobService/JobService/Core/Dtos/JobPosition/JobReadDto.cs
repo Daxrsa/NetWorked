@@ -13,6 +13,7 @@ namespace JobService.Core.Dtos.JobPosition
         public JobLevel JobLevel { get; set; }
         public Guid CompanyId { get; set;}
         public string CompanyName { get; set; }
+        public string CompanyLogo { get; set; }
         public DateTime CreatedAt { get; set; } = DateTime.Now;
     }
 }

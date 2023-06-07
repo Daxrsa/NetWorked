@@ -1,6 +1,6 @@
-﻿using JobService.Core.Dtos.Application;
+﻿using JobService.Core.Dtos;
+using JobService.Core.Dtos.Application;
 using JobService.Services.Interfaces;
-using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 
 namespace JobService.Controllers
@@ -58,7 +58,13 @@ namespace JobService.Controllers
         [HttpPost]
         public async Task<ActionResult> Apply([FromForm] ApplicationCreateDto dto, IFormFile file)
         {
-            return Ok(await _contract.Add(dto, file));
+            var result = await _contract.Add(dto, file);
+            var status = new Status()
+            {
+                StatusCode = result ? 1 : 0,
+                StatusMessage = result ? "Applied successfully" : "Error has occured"
+            };
+            return Ok(status);
         }
     }
 }

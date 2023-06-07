@@ -1,7 +1,4 @@
-﻿using Algolia.Search.Clients;
-using Algolia.Search.Http;
-using Algolia.Search.Models.Search;
-using AutoMapper;
+﻿using AutoMapper;
 using JobService.Core.Dtos.JobPosition;
 using JobService.Core.Models;
 using JobService.Data;

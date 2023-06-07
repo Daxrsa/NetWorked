@@ -1,4 +1,4 @@
-﻿using JobService.Core.Dtos.Company;
+﻿using JobService.Core.Dtos;
 using JobService.Core.Dtos.JobPosition;
 using JobService.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
@@ -30,14 +30,25 @@ namespace JobService.Controllers
         [HttpPost]
         public ActionResult AddJob(JobCreateDto dto)
         {
-            _contract.Add(dto);
-            return Ok();
+            var result = _contract.Add(dto);
+            var status = new Status()
+            {
+                StatusCode = result ? 1 : 0,
+                StatusMessage = result ? "Added successfully": "Error has occured"
+            };
+            return Ok(status);
         }
 
         [HttpDelete("{id}")]
         public async Task<ActionResult> DeleteJob(int id)
         {
-            return Ok(await _contract.Delete(id));
+            var result = await _contract.Delete(id);
+            var status = new Status()
+            {
+                StatusCode = result ? 1 : 0,
+                StatusMessage = result ? "Deleted successfully" : "Error has occured"
+            };
+            return Ok(status);
         }
     }
 }

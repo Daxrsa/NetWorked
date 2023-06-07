@@ -9,7 +9,7 @@ namespace JobService.Core.Dtos.Company
         public CompanySize Size { get; set; }
         public City CityLocation { get; set; }
 
-        [NotMapped]
-        public IFormFile? ImageFile { get; set; }
+        //[NotMapped]
+        public IFormFile? file { get; set; }
     }
 }

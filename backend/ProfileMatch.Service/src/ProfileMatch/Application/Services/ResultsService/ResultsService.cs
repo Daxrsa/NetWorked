@@ -1,23 +1,17 @@
-﻿using Application.Core.InterfaceRepos;
-using Domain.CreateDTOs;
+﻿using Domain.CreateDTOs;
 using Domain.Models;
 using Domain.ReadDTOs;
 using Microsoft.EntityFrameworkCore;
 using Persistence;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace Application.Services
+namespace Application.Services.ResultsService
 {
     public class ResultsService : IResultsRepo
     {
         private readonly ProfileMatchDbContext _context;
-        public ResultsService(ProfileMatchDbContext context) 
+        public ResultsService(ProfileMatchDbContext context)
         {
-            _context= context;
+            _context = context;
         }
         public async Task<bool> Add(ProfileMatchingResult entity)
         {

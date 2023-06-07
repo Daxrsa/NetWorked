@@ -8,9 +8,9 @@ using System.Text;
 using System.Threading.Tasks;
 using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 
-namespace Application.Core.InterfaceRepos
+namespace Application.Services.ResultsService
 {
-    public interface IResultsRepo 
+    public interface IResultsRepo
     {
         Task<IEnumerable<ResultReadDto>> GetAll();
         Task<ResultReadDto> GetById(Guid id);

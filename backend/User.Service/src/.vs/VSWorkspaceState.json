@@ -10,6 +10,6 @@
     "\\Application\\Services\\UserRepo",
     "\\Persistence"
   ],
-  "SelectedNode": "\\Application\\Services\\Auth\\AuthRepo.cs",
+  "SelectedNode": "\\Application\\Services\\Auth\\IAuthRepo.cs",
   "PreviewInSolutionExplorer": false
 }

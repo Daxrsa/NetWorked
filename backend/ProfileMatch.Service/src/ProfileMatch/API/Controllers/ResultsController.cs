@@ -1,4 +1,4 @@
-﻿using Application.Core.InterfaceRepos;
+﻿using Application.Services.ResultsService;
 using Domain.Models;
 using Microsoft.AspNetCore.Mvc;
 

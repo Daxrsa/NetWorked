@@ -9,7 +9,5 @@ namespace Application.Services.UserRepo
         Task<Result<User>> GetUserById(Guid id);
         Task<Result<User>> DeleteUser(Guid id);
         User GetLoggedInUser();
-        bool IsUserAuthenticated();
-        Guid GetUserId();
     }
 }

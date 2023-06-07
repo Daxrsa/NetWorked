@@ -5,22 +5,25 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Application
+namespace Application.Core
 {
     public class CalculateMatch
     {
-        public int GetReview(string review) 
+        public int GetReview(string review)
         {
             if (review.ToUpper().Equals(Review.BAD))
             {
                 return 0;
-            } else if (review.ToUpper().Equals(Review.GOOD))
+            }
+            else if (review.ToUpper().Equals(Review.GOOD))
             {
                 return 2;
-            }else if (review.ToUpper().Equals(Review.VERY_GOOD))
+            }
+            else if (review.ToUpper().Equals(Review.VERY_GOOD))
             {
                 return 3;
-            }else if (review.ToUpper().Equals(Review.PERFECT))
+            }
+            else if (review.ToUpper().Equals(Review.PERFECT))
             {
                 return 5;
             }

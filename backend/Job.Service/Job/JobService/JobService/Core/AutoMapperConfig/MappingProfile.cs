@@ -18,7 +18,9 @@ namespace JobService.Core.AutoMapperConfig
             CreateMap<JobCreateDto, JobPosition>();
             CreateMap<JobPosition, JobReadDto>()
                 .ForMember(dest => dest.CompanyName, 
-                opt => opt.MapFrom(src => src.Company.Name));
+                opt => opt.MapFrom(src => src.Company.Name))
+                .ForMember(dest => dest.CompanyLogo, 
+                opt => opt.MapFrom(src=>src.Company.Logo));
 
             //Application mapping
             CreateMap<ApplicationCreateDto, Application>();

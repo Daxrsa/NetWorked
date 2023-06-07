@@ -1,11 +1,8 @@
 ﻿using AutoMapper;
-using JobService.Clients;
 using JobService.Core.Dtos.Application;
-using JobService.Core.Dtos.JobPosition;
 using JobService.Core.Models;
 using JobService.Data;
 using JobService.Services.Interfaces;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace JobService.Services
@@ -14,12 +11,10 @@ namespace JobService.Services
     {
         private readonly JobDbContext _context;
         private readonly IMapper _mapper;
-        private readonly UserClient userClient;
-        public ApplicationService(JobDbContext context, IMapper mapper, UserClient userClient) 
+        public ApplicationService(JobDbContext context, IMapper mapper) 
         {
             _context= context;
             _mapper= mapper;
-            this.userClient= userClient;
         }
 
         public async Task<IEnumerable<ApplicationReadDto>> GetAll()
@@ -79,11 +74,8 @@ namespace JobService.Services
                     await file.CopyToAsync(stream);
                 }
 
-                //var user = await userClient.GetUserAsync();
-
                 var a = _mapper.Map<Application>(dto);
                 a.ResumeUrl = resumeUrl;
-                //a.ApplicantId = user.Id;
                 await _context.Applications.AddAsync(a);
                 await _context.SaveChangesAsync();
 

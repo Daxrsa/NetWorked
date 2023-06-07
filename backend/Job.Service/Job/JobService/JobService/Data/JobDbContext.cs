@@ -1,5 +1,4 @@
-﻿using JobService.Core.Enums;
-using JobService.Core.Models;
+﻿using JobService.Core.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace JobService.Data
