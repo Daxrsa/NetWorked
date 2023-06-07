@@ -1,0 +1,15 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\API",
+    "\\API\\Controllers",
+    "\\Application",
+    "\\Application\\Core",
+    "\\Application\\Services",
+    "\\Application\\Services\\Auth",
+    "\\Application\\Services\\UserRepo",
+    "\\Persistence"
+  ],
+  "SelectedNode": "\\Application\\Services\\Auth\\AuthRepo.cs",
+  "PreviewInSolutionExplorer": false
+}

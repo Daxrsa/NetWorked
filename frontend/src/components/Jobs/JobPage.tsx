@@ -6,6 +6,7 @@ import { Button, CircularProgress } from '@mui/material'
 import { useNavigate } from 'react-router-dom'
 import JobsGrid from "./JobsGrid.tsx"
 import { Add } from '@mui/icons-material'
+import Header from "../DesktopHeader";
 
 function JobPage() {
   const [jobs, setJobs] = useState<IJob[]>([]);
@@ -30,6 +31,7 @@ function JobPage() {
 
   return (
     <div className='app companies'>
+      <Header/>
       <div className="heading">
         <h2 className="h2c">Jobs Positions</h2>
         <Button variant='outlined' onClick={() => redirect("/jobs/add")}>

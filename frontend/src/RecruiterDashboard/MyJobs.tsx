@@ -1,4 +1,5 @@
-import React from 'react'
+import React from 'react';
+import { Card, CardContent, Typography, List, ListItem, ListItemText } from '@mui/material';
 
 const MyJobs = () => {
     return (

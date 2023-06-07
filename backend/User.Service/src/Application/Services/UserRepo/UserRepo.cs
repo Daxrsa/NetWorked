@@ -49,7 +49,6 @@ namespace Application.Services.UserRepo
                     };
                 }
             }
-
             return result;
         }
 
@@ -80,6 +79,18 @@ namespace Application.Services.UserRepo
             await _context.SaveChangesAsync();
 
             return Result<User>.IsSuccess(user);
+        }
+
+        public bool IsUserAuthenticated()
+        {
+            return _httpContextAccessor.HttpContext.User.Identity.IsAuthenticated;
+        }
+
+        public Guid GetUserId()
+        {
+            string idValue = _httpContextAccessor.HttpContext.User?.FindFirstValue(ClaimTypes.NameIdentifier);
+            Guid id = Guid.Parse(idValue);
+            return id;
         }
     }
 }

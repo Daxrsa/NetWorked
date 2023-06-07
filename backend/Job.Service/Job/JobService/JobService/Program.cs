@@ -26,8 +26,8 @@ namespace JobService
             builder.Services.AddAutoMapper(typeof(MappingProfile));
 
             // Add services to the container.
-            builder.Services.AddSingleton<ISearchClient, SearchClient>();
-            builder.Services.AddSingleton<ISearchClient>(new SearchClient("ATO7HNMOJI", "8bc946dbb7800988993b963f146f6cdf"));
+           // builder.Services.AddSingleton<ISearchClient, SearchClient>();
+            //builder.Services.AddSingleton<ISearchClient>(new SearchClient("ATO7HNMOJI", "8bc946dbb7800988993b963f146f6cdf"));
 
 
             builder.Services.AddScoped<ICompany, CompanyService>();

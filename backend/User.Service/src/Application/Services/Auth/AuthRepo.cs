@@ -13,6 +13,12 @@ namespace Application.Services.Auth
     {
         private readonly DataContext _context;
         private readonly IConfiguration _config;
+        public string UserNamee;
+
+        //public string Username;
+
+        public string Username { get; set; }
+
         public AuthRepo(DataContext context, IConfiguration config)
         {
             _context = context;
@@ -36,10 +42,19 @@ namespace Application.Services.Auth
             }
             else
             {
+                Username = user.Username;
                 response.Data = CreateToken(user);
+                response.UserName = user.Username;
+                Console.Write(Username);
+
             }
             return response;
         }
+
+        /*public string GetUserName()
+        {
+            return Username;
+        }*/
 
         public async Task<Result<Guid>> Register(User user, string password)
         {

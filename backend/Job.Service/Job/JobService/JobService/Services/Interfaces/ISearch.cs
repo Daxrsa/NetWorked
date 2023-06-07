@@ -5,6 +5,6 @@ namespace JobService.Services.Interfaces
 {
     public interface ISearch
     {
-        List<JobReadDto> Search(string title);
+        Task<List<JobReadDto>> Search(string? title);
     }
 }

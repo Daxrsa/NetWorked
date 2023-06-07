@@ -4,12 +4,13 @@
     "\\Job",
     "\\Job\\JobService",
     "\\Job\\JobService\\JobService",
+    "\\Job\\JobService\\JobService\\Controllers",
     "\\Job\\JobService\\JobService\\Core",
     "\\Job\\JobService\\JobService\\Core\\Dtos",
     "\\Job\\JobService\\JobService\\Core\\Dtos\\JobPosition",
     "\\Job\\JobService\\JobService\\Services",
     "\\Job\\JobService\\JobService\\Services\\Interfaces"
   ],
-  "SelectedNode": "\\Job\\JobService\\JobService\\JobService.csproj",
+  "SelectedNode": "\\Job\\JobService\\JobService\\Core\\Dtos\\JobPosition\\JobReadDto.cs",
   "PreviewInSolutionExplorer": false
 }

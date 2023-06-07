@@ -33,5 +33,17 @@ namespace API.Controllers
         {
             return Ok(await _userRepo.DeleteUser(id));
         }
+
+        [HttpGet("Logged")]
+        public ActionResult<User> GetLoggedInUser() 
+        {
+            var userId = _userRepo.GetUserId();
+            var isAuth = _userRepo.IsUserAuthenticated();
+            if (isAuth)
+            {
+                return Ok(_userRepo.GetUserById(userId));
+            }
+            return Ok(null);
+        }
     }
 }

@@ -14,6 +14,7 @@ namespace API.Controllers
     {
         private readonly IAuthRepo _authRepo;
         private readonly IUserRepo _userRepo;
+       // private string Username;
         public AuthController(IAuthRepo authRepo, IUserRepo userRepo)
         {
             _authRepo = authRepo;
@@ -59,7 +60,15 @@ namespace API.Controllers
             {
                 return BadRequest(response);
             }
+            //Username = response.UserName;
+           // Console.WriteLine(Username);
             return Ok(response);
-        } 
+        }
+
+        [HttpGet("GetUserName")]
+        public string UserName()
+        {
+            return _authRepo.Username;
+        }
     }
 }

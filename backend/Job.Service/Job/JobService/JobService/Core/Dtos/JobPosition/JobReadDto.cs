@@ -5,8 +5,6 @@ namespace JobService.Core.Dtos.JobPosition
 {
     public class JobReadDto
     {
-        [JsonPropertyAttribute("objectID")]
-        public string ObjectId { get; set; }
         public int Id { get; set; }
         public string Title { get; set; }
         public string Description { get; set; }
