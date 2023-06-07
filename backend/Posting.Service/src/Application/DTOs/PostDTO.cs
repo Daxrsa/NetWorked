@@ -6,5 +6,6 @@ namespace Application.DTOs
         public string Title { get; set; }
         public string Description { get; set; }
         public DateTime DateCreated { get; set; }
+        public string? FilePath { get; set; }
     }
 }
