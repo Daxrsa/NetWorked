@@ -1,4 +1,6 @@
-﻿using JobService.Core.Dtos.Company;
+﻿using JobService.Core.Dtos;
+using JobService.Core.Dtos.Company;
+using JobService.Core.Models;
 using JobService.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
@@ -27,10 +29,36 @@ namespace JobService.Controllers
         }
 
         [HttpPost]
-        public ActionResult AddCompany([FromForm] CompanyCreateDto dto, IFormFile file)
+        public IActionResult AddCompany([FromForm] CompanyCreateDto model)
         {
-            
-            return Ok(_contract.Add(dto, file));
+            var status = new Status();
+            if(!ModelState.IsValid)
+            {
+                status.StatusCode = 0;
+                status.StatusMessage = "Please write valid data";
+                return Ok(status);
+            }
+            /*if(model.ImageFile != null)
+            {
+                var fileResult = _fileService.SaveImage(model.ImageFile);
+                if(fileResult.Item1 == 1)
+                {
+                    model.Logo = fileResult.Item2;
+                }
+            }*/
+            var companyResult = _contract.Add(model);
+            if (companyResult)
+            {
+                status.StatusCode = 1;
+                status.StatusMessage = "Added successfully";
+            }
+            else
+            {
+                status.StatusCode = 0;
+                status.StatusMessage = "Error on adding company";
+            }
+
+            return Ok(status);
         }
 
         [HttpDelete("{id}")]

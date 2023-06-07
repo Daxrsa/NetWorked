@@ -1,5 +1,6 @@
 ﻿using JobService.Core.Enums;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace JobService.Core.Models
 {
@@ -11,7 +12,10 @@ namespace JobService.Core.Models
         public string Name { get; set; }
         public CompanySize Size { get; set; }
         public City CityLocation { get; set; }
-        public byte[] Logo { get; set; }
+        public string? Logo { get; set; }
+
+        [NotMapped]
+        public IFormFile? ImageFile {get; set;}
 
         //JOBS HERE
         public ICollection<JobPosition> jobPositions { get; set; }

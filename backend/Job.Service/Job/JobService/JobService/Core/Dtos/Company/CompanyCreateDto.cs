@@ -1,4 +1,5 @@
 ﻿using JobService.Core.Enums;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace JobService.Core.Dtos.Company
 {
@@ -7,5 +8,8 @@ namespace JobService.Core.Dtos.Company
         public string Name { get; set; }
         public CompanySize Size { get; set; }
         public City CityLocation { get; set; }
+
+        [NotMapped]
+        public IFormFile? ImageFile { get; set; }
     }
 }

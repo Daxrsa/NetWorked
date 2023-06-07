@@ -12,40 +12,26 @@ namespace JobService.Services
     {
         private readonly JobDbContext _context;
         private readonly IMapper _mapper;
-        public CompanyService(JobDbContext context, IMapper mapper) 
+        private readonly IFileService _fileService;
+        public CompanyService(JobDbContext context, IMapper mapper, IFileService fileService) 
         { 
             _context= context;
             _mapper= mapper;
+            _fileService= fileService;
         }
-        public bool Add(CompanyCreateDto entity, IFormFile file)
+        public bool Add(CompanyCreateDto entity)
         {
             try
             {
                 var company = _mapper.Map<Company>(entity);
-                var type1 = "image/jpeg";
-                var type2 = "image/png";
-                var type3 = "application/png";
-
-                /*if (file.ContentType != type1 && file.ContentType != type2 && file.ContentType != type3)
+                if (entity.ImageFile != null)
                 {
-                    return false;
-                }*/
-                if (company.Name == "") 
-                {
-                    throw new Exception("Company could not be added, some properties where null!");
-                }
-
-                byte[] pic = null;
-
-                using(var stream = file.OpenReadStream())
-                {
-                    using (var memoryStream = new MemoryStream())
+                    var fileResult = _fileService.SaveImage(entity.ImageFile);
+                    if (fileResult.Item1 == 1)
                     {
-                        stream.CopyTo(memoryStream);
-                        pic = memoryStream.ToArray();
+                        company.Logo = fileResult.Item2;
                     }
                 }
-                company.Logo = pic;
                 _context.Companies.Add(company);
                 _context.SaveChanges();
                 return true;
@@ -77,12 +63,6 @@ namespace JobService.Services
         public async Task<IEnumerable<CompanyReadDto>> GetAll()
         {
             var companies = await _context.Companies.ToListAsync();
-            /*foreach (Company comp in companies)
-            {
-                byte[] bytes = (byte[])comp.Logo;
-                comp.Logo = bytes;
-
-            }*/
             var convertedComps = _mapper.Map<IEnumerable<CompanyReadDto>>(companies);
 
             return convertedComps;
