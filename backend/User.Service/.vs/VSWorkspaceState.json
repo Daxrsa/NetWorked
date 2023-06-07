@@ -1,8 +1,11 @@
 {
   "ExpandedNodes": [
     "",
-    "\\src"
+    "\\src",
+    "\\src\\Application",
+    "\\src\\Application\\Services",
+    "\\src\\Application\\Services\\Auth"
   ],
-  "SelectedNode": "\\src\\User.Service.sln",
+  "SelectedNode": "\\src\\Application\\Services\\Auth\\IAuthRepo.cs",
   "PreviewInSolutionExplorer": false
 }

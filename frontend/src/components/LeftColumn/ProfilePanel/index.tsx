@@ -7,6 +7,7 @@ import { Container } from './styles';
 
 const ProfilePanel: React.FC = () => {
   const [loggedInUserName, setUsername] = useState(null);
+  const [loggedInSkills, setSkills] = useState(null);
   const fetchLoggedInUser = async () => {
     try {
       const token = localStorage.getItem('jwtToken'); // Retrieve the token from localStorage
@@ -18,6 +19,7 @@ const ProfilePanel: React.FC = () => {
       const udata = response.data; // No need to parse the JSON object
       console.log(udata);
       setUsername(udata.username);
+      setSkills(udata.skills);
     } catch (error) {
       console.error("Error fetching logged-in user:", error);
     }
@@ -37,8 +39,7 @@ const ProfilePanel: React.FC = () => {
         <h1> {loggedInUserName}</h1>
 
         <h2>
-          Fullstack Developer | Node.js | ReactJS | React Native | IT
-          Infrastructure Analyst
+        {loggedInSkills}
         </h2>
 
         <div className="separator"></div>
