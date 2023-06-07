@@ -1,4 +1,5 @@
-﻿using Application.Services.ResultsService;
+﻿using Application.Core;
+using Application.Services.ResultsService;
 using Domain.Models;
 using Microsoft.AspNetCore.Mvc;
 
@@ -9,14 +10,17 @@ namespace API.Controllers
     public class ResultsController : ControllerBase
     {
         private readonly IResultsRepo _contract;
-        public ResultsController(IResultsRepo contract)
+        private readonly CalculateMatch _calculate;
+        public ResultsController(IResultsRepo contract, CalculateMatch calculate)
         {
             _contract = contract;
+            _calculate = calculate;
         }
 
         [HttpGet]
         public async Task<ActionResult> GetAll()
         {
+            Console.WriteLine(_calculate.GetScore());
             return Ok();
         }
 
