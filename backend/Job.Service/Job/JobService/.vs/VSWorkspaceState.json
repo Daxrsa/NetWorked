@@ -2,15 +2,15 @@
   "ExpandedNodes": [
     "",
     "\\JobService",
-    "\\JobService\\Clients",
-    "\\JobService\\Controllers",
     "\\JobService\\Core",
-    "\\JobService\\Core\\AutoMapperConfig",
     "\\JobService\\Core\\Dtos",
-    "\\JobService\\Core\\Dtos\\JobPosition",
+    "\\JobService\\Core\\Dtos\\Company",
     "\\JobService\\Core\\Enums",
-    "\\JobService\\Services"
+    "\\JobService\\Core\\Models",
+    "\\JobService\\Migrations",
+    "\\JobService\\Services",
+    "\\JobService\\Services\\Interfaces"
   ],
-  "SelectedNode": "\\JobService\\Core\\Enums\\JobCategory.cs",
+  "SelectedNode": "\\JobService\\Services\\FileService.cs",
   "PreviewInSolutionExplorer": false
 }

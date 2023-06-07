@@ -7,6 +7,8 @@ using Application.Validators;
 using FluentValidation;
 using System.Reflection;
 using API.Middleware;
+using Application.Services.FileService;
+using Microsoft.Extensions.FileProviders;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -25,6 +27,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Services.AddScoped<IPostService, PostService>();
+builder.Services.AddTransient<IFileService, FileService>();
 
 builder.Services.AddAutoMapper(typeof(MappingProfiles).Assembly);
 
@@ -47,6 +50,21 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+app.UseCors(options =>
+{
+    options
+    .AllowAnyOrigin()
+    .AllowAnyMethod()
+    .AllowAnyHeader();
+});
+
+app.UseStaticFiles(new StaticFileOptions
+{
+    FileProvider = new PhysicalFileProvider(
+            Path.Combine(builder.Environment.ContentRootPath, "Uploads")),
+    RequestPath = "/Resources"
+});
 
 app.UseAuthorization();
 

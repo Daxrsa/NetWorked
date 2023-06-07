@@ -1,10 +1,12 @@
 using Application.Core;
 using Application.DTOs;
+using Application.Services.FileService;
 using AutoMapper;
 using AutoMapper.QueryableExtensions;
 using Domain;
 using Microsoft.EntityFrameworkCore;
 using Persistence;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 
 namespace Application.Services.PostService
 {
@@ -12,16 +14,26 @@ namespace Application.Services.PostService
     {
         private readonly IMapper _mapper;
         public readonly DataContext _context;
-        public PostService(DataContext context, IMapper mapper)
+        private readonly IFileService _fileService;
+        public PostService(DataContext context, IMapper mapper, IFileService fileService)
         {
             _context = context;
             _mapper = mapper;    
+            _fileService = fileService;
         }
-        public async Task<Result<List<PostDTO>>> AddPost(PostDTO postDto)
+        public async Task<Result<List<PostDTO>>> AddPost(CreatePostDto postDto)
         {
              try
             {
                 var post = _mapper.Map<Post>(postDto);
+                if (postDto.formFile != null)
+                {
+                    var fileResult = _fileService.SaveImage(postDto.formFile);
+                    if (fileResult.Item1 == 1)
+                    {
+                        post.FilePath = fileResult.Item2;
+                    }
+                }
                 _context.Posts.Add(post);
                 var result = await _context.SaveChangesAsync() > 0;
                 if(!result) {
