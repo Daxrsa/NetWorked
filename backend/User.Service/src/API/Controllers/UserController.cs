@@ -1,4 +1,4 @@
-using Domain.Models;
+using Application.DTOs;
 using Microsoft.AspNetCore.Mvc;
 
 namespace API.Controllers
@@ -15,21 +15,27 @@ namespace API.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<List<User>>> GetAllUsers()
+        public async Task<ActionResult<List<UserDTO>>> GetAllUsers()
         {
             return Ok(await _userRepo.GetUsers());
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<User>> GetUserById(Guid id)
+        public async Task<ActionResult<UserDTO>> GetUserById(Guid id)
         {
             return Ok(await _userRepo.GetUserById(id));
         }
 
         [HttpDelete]
-        public async Task<ActionResult<User>> DeleteUser(Guid id)
+        public async Task<ActionResult<UserDTO>> DeleteUser(Guid id)
         {
             return Ok(await _userRepo.DeleteUser(id));
+        }
+
+        [HttpPut]
+        public async Task<ActionResult<EditUserDTO>> EditUser(Guid id, EditUserDTO requestDto)
+        {
+            return Ok(await _userRepo.EditUser(id, requestDto));
         }
     }
 }

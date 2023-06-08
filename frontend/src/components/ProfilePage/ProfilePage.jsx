@@ -15,55 +15,23 @@ import EditProfile from "./EditProfile";
 import axios from "axios";
 
 export default function ProfilePage() {
+
+  //axios states:-----------------------------------------------------------------------
+
   const [isEditMode, setIsEditMode] = useState(false);
-  const [loggedInUserName, setUsername] = useState(null);
-  const [loggedInFullname, setFullname] = useState(null);
-  const [loggedInEmail, setEmail] = useState(null);
-  const [loggedInPhone, setPhone] = useState(null);
-  const [loggedInAddress, setAddress] = useState(null);
-  const [loggedInProfession, setProfession] = useState(null);
-  const [loggedInSkills, setSkills] = useState(null);
-  const [loggedInBio, setBio] = useState(null);
-  const [fullname, setEditedFullName] = useState("");
-  const [email, setEditedEmail] = useState("");
-  const [skills, setEditedSkills] = useState("");
-  const [phone, setEditedPhone] = useState("");
-  const [address, setEditedAddress] = useState("");
-  const [profession, setEditedProfession] = useState("");
-  const [bio, setEditedBio] = useState("");
+  const [loggedInUserName, setLoggedInUsername] = useState(null);
+  const [loggedInFullname, setLoggedInFullname] = useState(null);
+  const [loggedInEmail, setLoggedInEmail] = useState(null);
+  const [loggedInPhone, setLoggedInPhone] = useState(null);
+  const [loggedInAddress, setLoggedInAddress] = useState(null);
+  const [loggedInProfession, setLoggedInProfession] = useState(null);
+  const [loggedInSkills, setLoggedInSkills] = useState(null);
+  const [loggedInBio, setLoggedInBio] = useState(null);
 
-  //for editing
-  const handleFullNameChange = (event) => {
-    setEditedFullName(event.target.value);
-  };
+  //-------------------------------------------------------------------------------------
 
-  const handleEmailChange = (event) => {
-    setEditedEmail(event.target.value);
-  };
+  //functions----------------------------------------------------------------------------
 
-  const handlePhoneChange = (event) => {
-    setEditedPhone(event.target.value);
-  };
-
-  const handleAddressChange = (event) => {
-    setEditedAddress(event.target.value);
-  };
-
-  const handleProfessionChange = (event) => {
-    setEditedProfession(event.target.value);
-  };
-
-  const handleSkillsChange = (event) => {
-    setEditedSkills(event.target.value);
-  };
-
-  const handleBioChange = (event) => {
-    setEditedBio(event.target.value);
-  };
-
-  //----------------------------------------------------------------------------
-
-  //for buttons
   const handleEditClick = () => {
     setIsEditMode(true);
   };
@@ -74,19 +42,6 @@ export default function ProfilePage() {
 
   const handleSubmitClick = () => {
     setIsEditMode(false);
-    console.log("Full Name:", fullname);
-    console.log("Email:", email);
-    console.log("Phone", phone);
-    console.log("Address", address);
-    console.log("Profession", profession);
-    console.log("Skills", skills);
-    console.log("Bio", bio);
-    setEditedFullName(fullname);
-    setEditedEmail(email);
-    setEditedPhone(phone);
-    setEditedAddress(address);
-    setEditedProfession(profession);
-    setEditedSkills(skills);
   };
 
   //--------------------------------------------------------------------
@@ -108,16 +63,16 @@ export default function ProfilePage() {
       );
       const data = response.data;
       console.log(data);
-      setUsername(data.username);
-      setFullname(data.fullname);
-      setEmail(data.email);
-      setPhone(data.phone);
-      setAddress(data.address);
-      setProfession(data.profession);
-      setSkills(data.skills);
-      setBio(data.bio);
+      setLoggedInUsername(data.username);
+      setLoggedInFullname(data.fullname);
+      setLoggedInEmail(data.email);
+      setLoggedInPhone(data.phone);
+      setLoggedInAddress(data.address);
+      setLoggedInProfession(data.profession);
+      setLoggedInSkills(data.skills);
+      setLoggedInBio(data.bio);
     } catch (error) {
-      console.error("Error fetching logged-in user:", error);
+      alert("Error fetching logged-in user:", error);
     }
   };
 
@@ -229,13 +184,6 @@ export default function ProfilePage() {
           <EditProfile
             cancel={handleCancelClick}
             submit={handleSubmitClick}
-            editFullname={handleFullNameChange}
-            editEmail={handleEmailChange}
-            editPhone={handlePhoneChange}
-            editAddress={handleAddressChange}
-            editProfession={handleProfessionChange}
-            editSkills={handleSkillsChange}
-            editBio={handleBioChange}
           />
         ) : (
           <MDBBtn onClick={handleEditClick}>Edit</MDBBtn>

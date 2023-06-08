@@ -2,6 +2,7 @@ using System.Security.Claims;
 using Application.Core;
 using Application.DTOs;
 using AutoMapper;
+using AutoMapper.QueryableExtensions;
 using Domain.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
@@ -59,34 +60,90 @@ namespace Application.Services.UserRepo
 
         public async Task<Result<UserDTO>> GetUserById(Guid id)
         {
-            var user = await _context.User.FindAsync(id);
-            if (user is null)
+            try
             {
-                return Result<UserDTO>.Failure("User not found.");
+                var user = await _context.User.FindAsync(id);
+                if (user is null)
+                {
+                    return Result<UserDTO>.Failure($"User with id {id} not found.");
+                }
+                var userDto = _mapper.Map<UserDTO>(user);
+                return Result<UserDTO>.IsSuccess(userDto);
             }
-            var userDto = _mapper.Map<UserDTO>(user);
-            return Result<UserDTO>.IsSuccess(userDto);
+            catch (Exception ex)
+            {
+                return Result<UserDTO>.Failure(ex.Message);
+            }
         }
 
         public async Task<Result<List<UserDTO>>> GetUsers()
         {
-            var users = await _context.User.ToListAsync();
-            var userDtos = _mapper.Map<List<UserDTO>>(users);
-            return Result<List<UserDTO>>.IsSuccess(userDtos);
+            try
+            {
+                var users = await _context.User.ToListAsync();
+                if (users is null)
+                {
+                    return Result<List<UserDTO>>.Failure("No users found.");
+                }
+                var userDtos = _mapper.Map<List<UserDTO>>(users);
+                return Result<List<UserDTO>>.IsSuccess(userDtos);
+            }
+            catch (Exception ex)
+            {
+                return Result<List<UserDTO>>.Failure(ex.Message);
+            }
         }
 
         public async Task<Result<UserDTO>> DeleteUser(Guid id)
         {
-            var user = await _context.User.FindAsync(id);
-            if (user is null)
+            try
             {
-                return Result<UserDTO>.Failure("User not found.");
-            }
-            _context.User.Remove(user);
-            await _context.SaveChangesAsync();
+                var user = await _context.User.FindAsync(id);
+                if (user is null)
+                {
+                    return Result<UserDTO>.Failure($"User with id {id} not found.");
+                }
+                _context.User.Remove(user);
 
-            var userDto = _mapper.Map<UserDTO>(user);
-            return Result<UserDTO>.IsSuccess(userDto);
+                var result = await _context.SaveChangesAsync() > 0;
+                if (!result)
+                {
+                    return Result<UserDTO>.Failure("Failed to remove the user.");
+                }
+
+                var userDto = _mapper.Map<UserDTO>(user);
+                return Result<UserDTO>.IsSuccess(userDto);
+            }
+            catch (Exception ex)
+            {
+                return Result<UserDTO>.Failure(ex.Message);
+            }
+        }
+
+        public async Task<Result<List<EditUserDTO>>> EditUser(Guid id, EditUserDTO requestDto)
+        {
+            try
+            {
+                var user = await _context.User.FindAsync(id);
+                if (user is null)
+                {
+                    return Result<List<EditUserDTO>>.Failure($"User with id {id} not found.");
+                }
+
+                _mapper.Map(requestDto, user);
+
+                var result = await _context.SaveChangesAsync() > 0;
+                if (!result)
+                {
+                    return Result<List<EditUserDTO>>.Failure("Failed to update the user.");
+                }
+                var users = await _context.User.ProjectTo<EditUserDTO>(_mapper.ConfigurationProvider).ToListAsync();
+                return Result<List<EditUserDTO>>.IsSuccess(users);
+            }
+            catch (Exception ex)
+            {
+                return Result<List<EditUserDTO>>.Failure(ex.Message);
+            }
         }
     }
 }
