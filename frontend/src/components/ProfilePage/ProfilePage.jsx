@@ -24,8 +24,46 @@ export default function ProfilePage() {
   const [loggedInProfession, setProfession] = useState(null);
   const [loggedInSkills, setSkills] = useState(null);
   const [loggedInBio, setBio] = useState(null);
+  const [fullname, setEditedFullName] = useState("");
+  const [email, setEditedEmail] = useState("");
+  const [skills, setEditedSkills] = useState("");
+  const [phone, setEditedPhone] = useState("");
+  const [address, setEditedAddress] = useState("");
+  const [profession, setEditedProfession] = useState("");
+  const [bio, setEditedBio] = useState("");
 
+  //for editing
+  const handleFullNameChange = (event) => {
+    setEditedFullName(event.target.value);
+  };
 
+  const handleEmailChange = (event) => {
+    setEditedEmail(event.target.value);
+  };
+
+  const handlePhoneChange = (event) => {
+    setEditedPhone(event.target.value);
+  };
+
+  const handleAddressChange = (event) => {
+    setEditedAddress(event.target.value);
+  };
+
+  const handleProfessionChange = (event) => {
+    setEditedProfession(event.target.value);
+  };
+
+  const handleSkillsChange = (event) => {
+    setEditedSkills(event.target.value);
+  };
+
+  const handleBioChange = (event) => {
+    setEditedBio(event.target.value);
+  };
+
+  //----------------------------------------------------------------------------
+
+  //for buttons
   const handleEditClick = () => {
     setIsEditMode(true);
   };
@@ -35,9 +73,23 @@ export default function ProfilePage() {
   };
 
   const handleSubmitClick = () => {
-    //additional logic here
     setIsEditMode(false);
+    console.log("Full Name:", fullname);
+    console.log("Email:", email);
+    console.log("Phone", phone);
+    console.log("Address", address);
+    console.log("Profession", profession);
+    console.log("Skills", skills);
+    console.log("Bio", bio);
+    setEditedFullName(fullname);
+    setEditedEmail(email);
+    setEditedPhone(phone);
+    setEditedAddress(address);
+    setEditedProfession(profession);
+    setEditedSkills(skills);
   };
+
+  //--------------------------------------------------------------------
 
   useEffect(() => {
     fetchLoggedInUser();
@@ -45,13 +97,16 @@ export default function ProfilePage() {
 
   const fetchLoggedInUser = async () => {
     try {
-      const token = localStorage.getItem('jwtToken'); // Retrieve the token from localStorage
-      const response = await axios.get("http://localhost:5116/api/Auth/GetloggedInUser", {
-        headers: {
-          Authorization: `Bearer ${token}` // Add the token to the request headers
+      const token = localStorage.getItem("jwtToken");
+      const response = await axios.get(
+        "http://localhost:5116/api/Auth/GetloggedInUser",
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
         }
-      });
-      const data = response.data; // No need to parse the JSON object
+      );
+      const data = response.data;
       console.log(data);
       setUsername(data.username);
       setFullname(data.fullname);
@@ -73,7 +128,9 @@ export default function ProfilePage() {
         <MDBRow>
           <MDBCol>
             <MDBBreadcrumb className="bg-light rounded-3 p-3 mb-4">
-              <MDBBreadcrumbItem active>Welcome back, {loggedInUserName}!</MDBBreadcrumbItem> 
+              <MDBBreadcrumbItem active>
+                Welcome back, {loggedInUserName}!
+              </MDBBreadcrumbItem>
             </MDBBreadcrumb>
           </MDBCol>
         </MDBRow>
@@ -104,7 +161,7 @@ export default function ProfilePage() {
                   </MDBCol>
                   <MDBCol sm="9">
                     <MDBCardText className="text-muted">
-                    {loggedInFullname}
+                      {loggedInFullname}
                     </MDBCardText>
                   </MDBCol>
                 </MDBRow>
@@ -169,7 +226,17 @@ export default function ProfilePage() {
         </MDBRow>
         <hr />
         {isEditMode ? (
-          <EditProfile cancel={handleCancelClick} submit={handleSubmitClick} />
+          <EditProfile
+            cancel={handleCancelClick}
+            submit={handleSubmitClick}
+            editFullname={handleFullNameChange}
+            editEmail={handleEmailChange}
+            editPhone={handlePhoneChange}
+            editAddress={handleAddressChange}
+            editProfession={handleProfessionChange}
+            editSkills={handleSkillsChange}
+            editBio={handleBioChange}
+          />
         ) : (
           <MDBBtn onClick={handleEditClick}>Edit</MDBBtn>
         )}

@@ -16,6 +16,7 @@ import { NavLink } from "react-router-dom";
 import "../App.css";
 import axios from "axios";
 import { TextArea } from "semantic-ui-react";
+import { Card } from "@mui/material";
 
 function Copyright(props: any) {
   return (
@@ -289,9 +290,9 @@ export default function SignIn() {
                 required
                 fullWidth
                 name="bio"
-                label="bio"
+                label="Tell us about yourself"
                 type="bio"
-                value={password}
+                value={bio}
                 id="bio"
                 onChange={(e) => setBio(e.target.value)}
                 autoComplete="current-bio"

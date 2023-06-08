@@ -1,6 +1,4 @@
-using Application.Services.UserRepo;
 using Domain.Models;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace API.Controllers
