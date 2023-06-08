@@ -11,6 +11,7 @@ router.use(express.json());
 router.post('/', async (req, res) => {
   try {
     const newNotification = {
+      username:req.body.username,
       description: req.body.description,
     };
 
@@ -26,9 +27,16 @@ router.post('/', async (req, res) => {
 router.get("/",async(req,res)=>{
   try{
     let notifications = await Notification.find();
-    const descriptions = notifications.map(notification => notification.description);
+    const mappedData = notifications.map(notification => {
+      return {
+        
+        username: notification.username,
+        description: notification.description
+      };
+    });
+    
 res.json({
-  descriptions
+  mappedData
 });
   }catch(err){
       res.status(500).json({

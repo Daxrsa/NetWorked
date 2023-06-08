@@ -18,30 +18,28 @@ import {
 } from "./styles";
 import NetworkLogo from "./networklogo.png";
 import { logout } from "../AuthService";
-interface ResponseData {
-  descriptions: string[];
+interface Notification {
+  username: string;
+  description: string;
 }
+
+interface ResponseData {
+  mappedData: Notification[];
+}
+
+
 const Header: React.FC = () => {
-  const { data, loading, error } = useFetch<ResponseData>(
-    "http://localhost:8800/notifications"
-  );
+ 
 
-  let notifications: { id: number; message: string }[] = [];
-
-  if (data && data.descriptions) {
-    notifications = data.descriptions.map((description, index) => ({
-      id: index + 1,
-      message: description,
-    }));
-  }
-
-  console.log(notifications);
+  
 
   const navigate = useNavigate();
   const [activeButton, setActiveButton] = useState("home");
   const [menuOpen, setMenuOpen] = useState(false); // Track the state of the dropdown menu
   const [notificationOpen, setNotificationOpen] = useState(false); // Track the state of the notification dropdown
   const [loggedInUserName, setUsername] = useState(null);
+  const [notifications, setNotifications] = useState<Notification[]>([]);
+
   const handleChatsClick = () => {
     navigate("/mainchat");
     setMenuOpen(false);
@@ -56,7 +54,7 @@ const Header: React.FC = () => {
         }
       });
       const udata = response.data; // No need to parse the JSON object
-      console.log(udata);
+      
       setUsername(udata.username);
     } catch (error) {
       console.error("Error fetching logged-in user:", error);
@@ -65,6 +63,28 @@ const Header: React.FC = () => {
   useEffect(() => {
     fetchLoggedInUser();
   }, []);
+  const fetchNotifs = async () => {
+    try {
+      const response = await axios.get<ResponseData>("http://localhost:8800/notifications");
+      const { mappedData } = response.data;
+      
+      // Map the username and description from notifications array
+      const notificationsData = mappedData.map((notification) => ({
+        username: notification.username,
+        description: notification.description,
+      }));
+      console.log(notificationsData)
+      setNotifications(notificationsData);
+    } catch (error) {
+      console.error("Error fetching notifications:", error);
+    }
+  };
+  
+  useEffect(() => {
+    fetchNotifs();
+  }, []);
+  
+  
   const handleNetworkClick = () => {
     navigate("/");
     setActiveButton("home");
@@ -175,12 +195,18 @@ const Header: React.FC = () => {
               <NotificationsIcon />
               <span>Notifications</span>
               {notificationOpen && (
-                <NotificationsDropdownMenu>
-                  {notifications.map((notification) => (
-                    <p key={notification.id}>{notification.message}</p>
-                  ))}
-                </NotificationsDropdownMenu>
-              )}
+  <NotificationsDropdownMenu>
+    {notifications.map(notification => (
+      <div key={notification.username}>
+        <p>
+          <span>{notification.username}</span>{" "}
+          <span>{notification.description}</span>
+        </p>
+      </div>
+    ))}
+  </NotificationsDropdownMenu>
+)}
+
             </button>
             <button
               onClick={handleMeClick}
