@@ -1,21 +1,30 @@
 ﻿using AutoMapper;
-using JobService.Core.Dtos.Company;
+using Azure.Core;
 using JobService.Core.Dtos.JobPosition;
 using JobService.Core.Models;
 using JobService.Data;
 using JobService.Services.Interfaces;
+using Microsoft.AspNetCore.Http.Headers;
 using Microsoft.EntityFrameworkCore;
+using System.Net.Http;
+using System.Net.Http.Headers;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Authentication;
 
 namespace JobService.Services
 {
-    public class JobPositionService:IJobPosition
+    public class JobPositionService : IJobPosition
     {
         private readonly JobDbContext _context;
         private readonly IMapper _mapper;
-        public JobPositionService(JobDbContext context, IMapper mapper) 
+        private readonly HttpClient _httpClient;
+        private readonly IHttpContextAccessor _httpContextAccessor;
+        public JobPositionService(JobDbContext context, IMapper mapper, IHttpClientFactory httpClientFactory, IHttpContextAccessor httpContextAccessor)
         {
-            _mapper= mapper;
-            _context= context;
+            _mapper = mapper;
+            _context = context;
+            _httpClient = httpClientFactory.CreateClient();
+            _httpContextAccessor = httpContextAccessor;
         }
 
         public async Task<IEnumerable<JobReadDto>> GetAll()
@@ -40,11 +49,21 @@ namespace JobService.Services
             }
         }
 
-        public bool Add(JobCreateDto dto)
+        public async Task<bool> Add(JobCreateDto dto)
         {
             try
             {
+                //string token = _httpContextAccessor.HttpContext.Request.Headers["Authorization"].ToString().Split(' ')[1];
+                
+                //Claims.FirstOrDefault(c => c.Type == "username");
+
+               // _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+                //HttpResponseMessage usernameResponse = await _httpClient.GetAsync("http://localhost:5116/api/Auth/GetloggedInUser");
+                //usernameResponse.EnsureSuccessStatusCode();
+
+                //string username = await usernameResponse.Content.ReadAsStringAsync();
                 var job = _mapper.Map<JobPosition>(dto);
+               // job.Username = username;
                 _context.JobPositions.Add(job);
                 _context.SaveChanges();
                 return true;

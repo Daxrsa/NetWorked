@@ -1,9 +1,11 @@
 global using Application.Services.Auth;
 global using Application.Services.UserRepo;
+using API;
 using API.Middleware;
 using Application.Services;
 using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;

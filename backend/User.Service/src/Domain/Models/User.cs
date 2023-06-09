@@ -11,10 +11,13 @@ namespace Domain.Models
         public string Profession { get; set; }
         public string Skills { get; set; }
         public string Bio { get; set; }
+        public string Role { get; set; }
         public byte[] PasswordHash { get; set; }
         public byte[] PasswordSalt { get; set; }
         public string RefreshToken { get; set; }
         public DateTime TokenCreated { get; set; }
         public DateTime TokenExpires { get; set; }
+        //public DateTime? ResetTokenExpires { get; set; }
+       // public string PasswordResetToken { get; set; }
     }
 }

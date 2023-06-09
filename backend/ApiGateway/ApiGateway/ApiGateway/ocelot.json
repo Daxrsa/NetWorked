@@ -1,0 +1,21 @@
+{
+  "Routes": [
+    {
+      "UpstreamPathTemplate": "/api/v1/JobPosition",
+      "UpstreamHttpMethod": [ "Get", "Post" ],
+      "DowstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "",
+          "Port": 80
+        }
+      ]
+    }
+  ],
+  "GlobalConfiguration": {
+    "BaseUrl": "http://localhost:800"
+  }
+}
+
+//upstream -> incomming request to the api gateway
+    //downstream -> request to be routed to the api services

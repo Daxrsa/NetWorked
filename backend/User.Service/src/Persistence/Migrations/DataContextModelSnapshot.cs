@@ -55,6 +55,9 @@ namespace Persistence.Migrations
                     b.Property<string>("RefreshToken")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("Role")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Skills")
                         .HasColumnType("nvarchar(max)");
 

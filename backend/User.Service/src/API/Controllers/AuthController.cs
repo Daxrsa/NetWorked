@@ -2,6 +2,7 @@ using Application.Core;
 using Application.DTOs;
 using Application.Services.Auth;
 using Application.Services.UserRepo;
+using Azure;
 using Domain.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -40,7 +41,8 @@ namespace API.Controllers
                     Address = request.Address,
                     Profession = request.Profession,
                     Skills = request.Skills,
-                    Bio = request.Bio
+                    Bio = request.Bio,
+                    Role = "Applicant"
                 }, 
                 request.Password
             );

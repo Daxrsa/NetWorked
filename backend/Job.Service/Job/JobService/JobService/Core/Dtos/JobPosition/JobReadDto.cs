@@ -1,5 +1,4 @@
 ﻿using JobService.Core.Enums;
-using Newtonsoft.Json;
 
 namespace JobService.Core.Dtos.JobPosition
 {
@@ -14,6 +13,7 @@ namespace JobService.Core.Dtos.JobPosition
         public Guid CompanyId { get; set;}
         public string CompanyName { get; set; }
         public string CompanyLogo { get; set; }
+        public string Username { get; set; }
         public DateTime CreatedAt { get; set; } = DateTime.Now;
     }
 }

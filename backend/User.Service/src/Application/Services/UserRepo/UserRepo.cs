@@ -38,7 +38,7 @@ namespace Application.Services.UserRepo
                     {
                         Username = claimsPrincipal.FindFirstValue(ClaimTypes.Name),
                         Email = claimsPrincipal.FindFirstValue(ClaimTypes.Email),
-                        //Role = claimsPrincipal.FindFirstValue(ClaimTypes.Role),
+                        Role = claimsPrincipal.FindFirstValue(ClaimTypes.Role),
                         Id = GetIdClaim(claimsPrincipal),
                         Phone = claimsPrincipal.FindFirstValue(ClaimTypes.MobilePhone),
                         Fullname = claimsPrincipal.FindFirstValue(ClaimTypes.GivenName),
