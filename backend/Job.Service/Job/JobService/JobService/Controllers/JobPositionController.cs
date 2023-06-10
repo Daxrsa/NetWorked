@@ -1,4 +1,5 @@
-﻿using JobService.Core.Dtos;
+﻿using JobService.Clients;
+using JobService.Core.Dtos;
 using JobService.Core.Dtos.JobPosition;
 using JobService.Services.Interfaces;
 using Microsoft.AspNetCore.Authorization;
@@ -11,11 +12,10 @@ namespace JobService.Controllers
     public class JobPositionController: ControllerBase
     {
         private readonly IJobPosition _contract;
-        private readonly HttpClient _httpClient;
-        public JobPositionController(IJobPosition contract, IHttpClientFactory httpClientFactory)
+        
+        public JobPositionController(IJobPosition contract)
         {
             _contract = contract;
-            _httpClient = httpClientFactory.CreateClient();
         }
 
         [HttpGet]

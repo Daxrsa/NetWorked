@@ -15,9 +15,7 @@ namespace Domain.Models
         public byte[] PasswordHash { get; set; }
         public byte[] PasswordSalt { get; set; }
         public string RefreshToken { get; set; }
-        public DateTime TokenCreated { get; set; }
+        public DateTime TokenCreated { get; set; } = DateTime.UtcNow;
         public DateTime TokenExpires { get; set; }
-        //public DateTime? ResetTokenExpires { get; set; }
-       // public string PasswordResetToken { get; set; }
     }
 }

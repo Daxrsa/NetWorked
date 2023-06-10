@@ -3,7 +3,6 @@ using JobService.Core.AutoMapperConfig;
 using JobService.Data;
 using JobService.Services;
 using JobService.Services.Interfaces;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.FileProviders;
 using Microsoft.OpenApi.Models;
@@ -24,6 +23,11 @@ namespace JobService
                 options.UseSqlServer(builder.Configuration.GetConnectionString("local"));
             });
 
+            builder.Services.AddHttpClient<UserClient>(client =>
+            {
+                client.BaseAddress = new Uri("http://localhost:5116/");
+            });
+
             //Automapper Configuration
             builder.Services.AddAutoMapper(typeof(MappingProfile));
 
@@ -33,26 +37,6 @@ namespace JobService
             builder.Services.AddScoped<IApplication, ApplicationService>();
             builder.Services.AddScoped<ISearch, SearchService>();
             builder.Services.AddTransient<IFileService, FileService>();
-
-
-            /*builder.Services.AddHttpClient<UserClient>(client => 
-            {
-                client.BaseAddress = new Uri("http://localhost:5116/");
-            });*/
-            builder.Services.AddHttpContextAccessor();
-
-            builder.Services.AddHttpClient();
-           /* builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-            .AddJwtBearer(options =>
-            {
-                options.Authority = "http://localhost:5116/"; // URL of the token issuer
-                options.Audience = "http://localhost:33364/"; // Audience of the token
-            });*/
-
-            builder.Services.AddAuthorization();
-            
-            //var algoliaConfig = new SearchConfig("ATO7HNMOJI", "8bc946dbb7800988993b963f146f6cdf");
-            //var client = new SearchClient(algoliaConfig);
 
             builder.Services.AddControllers()
                 .AddJsonOptions(options =>
@@ -97,8 +81,7 @@ namespace JobService
                         Path.Combine(builder.Environment.ContentRootPath, "Documents\\Images")),
                         RequestPath = "/Resources"
                         });
-            app.UseAuthentication();
-            app.UseAuthorization();
+
             app.UseRouting();
 
 
