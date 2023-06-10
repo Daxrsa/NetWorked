@@ -3,9 +3,10 @@
     "",
     "\\src",
     "\\src\\Application",
+    "\\src\\Application\\Core",
     "\\src\\Application\\Services",
     "\\src\\Application\\Services\\Auth"
   ],
-  "SelectedNode": "\\src\\Application\\Services\\Auth\\IAuthRepo.cs",
+  "SelectedNode": "\\src\\Application\\Core\\Result.cs",
   "PreviewInSolutionExplorer": false
 }

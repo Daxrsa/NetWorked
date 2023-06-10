@@ -2,16 +2,27 @@ import express from 'express'
 import Notification from '../models/notifications.js'
 import algoliaSearch from 'algoliasearch'
 import dotenv from 'dotenv';
+import axios from 'axios'
 dotenv.config();
+
 
 const router= express.Router();
 router.use(express.json());
 
 
+
 router.post('/', async (req, res) => {
   try {
+    const token = req.headers.authorization.split(' ')[1]; // Extract the token from the Authorization header
+
+    const usernameResponse = await axios.get("http://localhost:5116/api/Auth/GetloggedInUser", {
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    });
+
     const newNotification = {
-      username:req.body.username,
+      username: usernameResponse.data.username, // Use the username from the Axios response
       description: req.body.description,
     };
 
@@ -23,6 +34,7 @@ router.post('/', async (req, res) => {
     res.status(500).json({ error: error.message });
   }
 });
+
 //GET API
 router.get("/",async(req,res)=>{
   try{
