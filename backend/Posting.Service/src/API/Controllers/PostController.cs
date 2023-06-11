@@ -1,11 +1,5 @@
 using Application.DTOs;
 using Microsoft.AspNetCore.Mvc;
-using System.Net.Http.Headers;
-using System;
-using System.Collections.Generic;
-using System.Net.Http;
-using System.Net.Http.Headers;
-using System.Threading.Tasks;
 
 namespace API.Controllers
 {
@@ -45,7 +39,7 @@ namespace API.Controllers
         }
 
         [HttpDelete("{id}")]
-        public async Task<ActionResult<List<PostDTO>>> DeleteExam(Guid id)
+        public async Task<ActionResult<List<PostDTO>>> DeletePost(Guid id)
         {
             return HandleResult(await _postService.DeletePost(id));
         }

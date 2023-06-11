@@ -7,6 +7,7 @@ using Application.Validators;
 using FluentValidation;
 using System.Reflection;
 using API.Middleware;
+using Application.Services.LikesService;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -25,6 +26,8 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Services.AddScoped<IPostService, PostService>();
+
+builder.Services.AddScoped<ILikesService, LikesService>();
 
 builder.Services.AddAutoMapper(typeof(MappingProfiles).Assembly);
 
