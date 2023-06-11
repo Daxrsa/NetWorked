@@ -15,6 +15,7 @@ import {
   CaretDownIcon,
   DropdownMenu,
   NotificationsDropdownMenu,
+  CartIcon
 } from "./styles";
 import NetworkLogo from "./networklogo.png";
 import { logout } from "../AuthService";
@@ -94,6 +95,11 @@ const Header: React.FC = () => {
     navigate("/");
     setMenuOpen(false);
     setActiveButton("home");
+  };
+  const handleCartClick = () => {
+    navigate("/payment");
+    setMenuOpen(false);
+    setActiveButton("cart");
   };
 
   const handleJobsClick = () => {
@@ -207,6 +213,13 @@ const Header: React.FC = () => {
   </NotificationsDropdownMenu>
 )}
 
+            </button>
+            <button
+              className={activeButton === "cart" ? "active" : ""}
+              onClick={handleCartClick}
+            >
+              <CartIcon />
+              <span>Cart</span>
             </button>
             <button
               onClick={handleMeClick}

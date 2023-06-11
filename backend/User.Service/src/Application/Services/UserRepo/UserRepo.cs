@@ -67,6 +67,16 @@ namespace Application.Services.UserRepo
             var users = await _context.User.ToListAsync();
             return Result<List<User>>.IsSuccess(users);
         }
+        public async Task UpdateUser(User user)
+        {
+            var existingUser = await _context.User.FindAsync(user.Id);
+
+            if (existingUser != null)
+            {
+                existingUser.Role = user.Role;
+                await _context.SaveChangesAsync();
+            }
+        }
 
         public async Task<Result<User>> DeleteUser(Guid id)
         {

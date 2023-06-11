@@ -3,6 +3,7 @@ import { GrLinkedin } from 'react-icons/gr';
 import { FiUsers, FiMessageSquare } from 'react-icons/fi';
 import { BsBriefcase } from 'react-icons/bs';
 import { AiFillHome, AiOutlineBell, AiFillCaretDown } from 'react-icons/ai';
+import { BiCart } from 'react-icons/bi';
 
 export const Container = styled.div`
 background: rgb(2,0,36);
@@ -86,8 +87,8 @@ export const Wrapper = styled.div`
 
 
 const generalIconCSS = css`
-  width: 24px;
-  height: 24px;
+  width: 20px;
+  height: 20px;
 `;
 
 export const HomeIcon = styled(AiFillHome)`
@@ -109,7 +110,10 @@ export const MessagesIcon = styled(FiMessageSquare)`
 export const NotificationsIcon = styled(AiOutlineBell)`
   ${generalIconCSS}
 `;
-
+export const CartIcon = styled(BiCart)`
+  ${generalIconCSS}
+  
+`;
 export const ProfileCircle = styled.img`
   width: 24px;
   height: 24px;

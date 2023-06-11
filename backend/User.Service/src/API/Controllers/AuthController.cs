@@ -27,13 +27,12 @@ namespace API.Controllers
             var user = _userRepo.GetLoggedInUser();
             return Ok(user);
         }
-
         [HttpPost("Register")]
         public async Task<ActionResult<Result<Guid>>> Register(UserRegisterDTO request)
         {
             var response = await _authRepo.Register(
-                new User 
-                { 
+                new User
+                {
                     Username = request.Username,
                     Fullname = request.Fullname,
                     Email = request.Email,
@@ -43,7 +42,7 @@ namespace API.Controllers
                     Skills = request.Skills,
                     Bio = request.Bio,
                     Role = "Applicant"
-                }, 
+                },
                 request.Password
             );
             if (!response.Success)
@@ -52,6 +51,33 @@ namespace API.Controllers
             }
             return Ok(response);
         }
+
+        [HttpPost("ChangeUserRole")]
+        //[Authorize(Roles = "Admin")] // Add appropriate authorization for this endpoint
+        public async Task<ActionResult<string>> ChangeUserRole(Guid id)
+        {
+            var result = await _userRepo.GetUserById(id);
+
+            if (result == null || !result.Success || result.Data == null)
+            {
+                return NotFound();
+            }
+
+            if (result.Data.Role != "Applicant")
+            {
+                return BadRequest("User role is not 'Applicant'.");
+            }
+
+            result.Data.Role = "Recruiter";
+
+            // Update the user role in the repository
+            await _userRepo.UpdateUser(result.Data);
+
+            return Ok(result);
+        }
+
+
+
 
         [HttpPost("Login")]
         public async Task<ActionResult<Result<Guid>>> Login(UserLoginDTO request)
