@@ -1,3 +1,6 @@
+using Microsoft.AspNetCore.Http;
+using System.ComponentModel.DataAnnotations.Schema;
+
 namespace Domain.Models
 {
     public class User
@@ -17,5 +20,10 @@ namespace Domain.Models
         public string RefreshToken { get; set; }
         public DateTime TokenCreated { get; set; } = DateTime.UtcNow;
         public DateTime TokenExpires { get; set; }
+
+        public string? ProfilePictureUrl { get; set; }
+
+        [NotMapped]
+        public IFormFile? formFile { get; set; }
     }
 }

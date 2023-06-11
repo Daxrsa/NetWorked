@@ -28,7 +28,7 @@ namespace API.Controllers
             return Ok(user);
         }
         [HttpPost("Register")]
-        public async Task<ActionResult<Result<Guid>>> Register(UserRegisterDTO request)
+        public async Task<ActionResult<Result<Guid>>> Register([FromForm]UserRegisterDTO request)
         {
             var response = await _authRepo.Register(
                 new User
@@ -41,10 +41,11 @@ namespace API.Controllers
                     Profession = request.Profession,
                     Skills = request.Skills,
                     Bio = request.Bio,
-                    Role = "Applicant"
+                    Role = "Applicant",
+                    formFile = request.formFile
                 },
                 request.Password
-            );
+            ); ;
             if (!response.Success)
             {
                 return BadRequest(response);

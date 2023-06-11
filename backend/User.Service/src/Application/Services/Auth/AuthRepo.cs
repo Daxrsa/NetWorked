@@ -3,6 +3,7 @@ using System.Security.Claims;
 using Application.Core;
 using Application.DTOs;
 using Domain.Models;
+using File.Package.FileService;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
@@ -14,11 +15,13 @@ namespace Application.Services.Auth
     {
         private readonly DataContext _context;
         private readonly IConfiguration _config;
+        private readonly IFileService _fileService;
 
-        public AuthRepo(DataContext context, IConfiguration config)
+        public AuthRepo(DataContext context, IConfiguration config, IFileService fileService)
         {
             _context = context;
             _config = config;
+            _fileService = fileService;
         }
 
         public async Task<Result<string>> Login(string username, string password)
@@ -53,6 +56,15 @@ namespace Application.Services.Auth
                 response.Success = false;
                 response.Message = "User already exists";
                 return response;
+            }
+
+            if(user.formFile!= null)
+            {
+                var fileResult = _fileService.SaveImage(user.formFile);
+                if(fileResult.Item1 == 1)
+                {
+                    user.ProfilePictureUrl= fileResult.Item2;
+                }
             }
 
             CreatePasswordHash(password, out byte[] passwordHash, out byte[] passwordSalt);
