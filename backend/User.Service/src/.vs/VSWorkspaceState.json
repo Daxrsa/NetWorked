@@ -11,6 +11,6 @@
     "\\Persistence",
     "\\Persistence\\Migrations"
   ],
-  "SelectedNode": "\\Domain\\Models\\User.cs",
+  "SelectedNode": "\\API\\appsettings.json",
   "PreviewInSolutionExplorer": false
 }

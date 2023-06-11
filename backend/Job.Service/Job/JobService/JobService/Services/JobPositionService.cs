@@ -10,7 +10,6 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Authentication;
-using JobService.Clients;
 
 namespace JobService.Services
 {

@@ -1,12 +1,11 @@
-﻿using JobService.Clients;
-using JobService.Core.Dtos;
+﻿using JobService.Core.Dtos;
 using JobService.Core.Dtos.JobPosition;
 using JobService.Services.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using System.Net.Http;
 using System.Net.Http.Headers;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace JobService.Controllers
 {
@@ -15,7 +14,6 @@ namespace JobService.Controllers
     public class JobPositionController: ControllerBase
     {
         private readonly IJobPosition _contract;
-        
         public JobPositionController(IJobPosition contract)
         {
             _contract = contract;
@@ -34,63 +32,40 @@ namespace JobService.Controllers
         }
 
         [HttpPost]
-        //[Authorize]
         public async Task<ActionResult> AddJob(JobCreateDto dto)
         {
-            var result = await _contract.Add(dto);
+            var token = Request.Headers["Authorization"].ToString().Split(' ')[1];
 
-            // Check if the job was added successfully
-            if (result)
+            //get user data
+            using (var httpClient = new HttpClient())
             {
-                // Create a new notification object
+                httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+                var userResponse = await httpClient.GetAsync("http://localhost:5116/api/Auth/GetloggedInUser");
+                string userString = await userResponse.Content.ReadAsStringAsync();
+                var responseJson = JObject.Parse(userString);
+                string username = responseJson["username"].ToString();
+                dto.Username = username;
+                _contract.Add(dto);
+            }
+
+            //send notification on job creation
                 var newNotification = new
                 {
                     description = dto.Description
                 };
 
-                // Serialize the notification object
                 var notificationContent = new StringContent(JsonConvert.SerializeObject(newNotification));
                 notificationContent.Headers.ContentType = new MediaTypeHeaderValue("application/json");
 
-                // Extract the token from the Authorization header or provide your own token
-                var token = Request.Headers["Authorization"].ToString().Split(' ')[1];
-
-                // Make a POST request to the notification endpoint
-                using (var httpClient = new HttpClient())
-                {
-                    httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
-                    var response = await httpClient.PostAsync("http://localhost:8800/notifications", notificationContent);
-
-                    if (response.IsSuccessStatusCode)
-                    {
-                        var status = new
-                        {
-                            StatusCode = 1,
-                            StatusMessage = "Added successfully"
-                        };
-                        return Ok(status);
-                    }
-                    else
-                    {
-                        var status = new
-                        {
-                            StatusCode = 0,
-                            StatusMessage = "Error occurred while creating the notification"
-                        };
-                        return StatusCode((int)response.StatusCode, status);
-                    }
-                }
-            }
-            else
+            using (var httpClient = new HttpClient())
             {
-                var status = new
-                {
-                    StatusCode = 0,
-                    StatusMessage = "Error occurred while adding the job"
-                };
-                return BadRequest(status);
+                httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+
+                var response = await httpClient.PostAsync("http://localhost:8800/notifications", notificationContent);
             }
+            return Ok(dto);
         }
+
         [HttpDelete("{id}")]
         public async Task<ActionResult> DeleteJob(int id)
         {

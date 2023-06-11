@@ -1,4 +1,3 @@
-using JobService.Clients;
 using JobService.Core.AutoMapperConfig;
 using JobService.Data;
 using JobService.Services;
@@ -21,11 +20,6 @@ namespace JobService
             builder.Services.AddDbContext<JobDbContext>(options =>
             {
                 options.UseSqlServer(builder.Configuration.GetConnectionString("local"));
-            });
-
-            builder.Services.AddHttpClient<UserClient>(client =>
-            {
-                client.BaseAddress = new Uri("http://localhost:5116/");
             });
 
             //Automapper Configuration

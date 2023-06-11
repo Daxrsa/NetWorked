@@ -2,15 +2,15 @@
   "ExpandedNodes": [
     "",
     "\\JobService",
+    "\\JobService\\Clients",
+    "\\JobService\\Controllers",
     "\\JobService\\Core",
-    "\\JobService\\Core\\Dtos",
-    "\\JobService\\Core\\Dtos\\JobPosition",
     "\\JobService\\Core\\Models",
     "\\JobService\\Migrations",
     "\\JobService\\Properties",
     "\\JobService\\Services",
     "\\JobService\\Services\\Interfaces"
   ],
-  "SelectedNode": "\\JobService\\Program.cs",
+  "SelectedNode": "\\JobService\\Controllers\\JobPositionController.cs",
   "PreviewInSolutionExplorer": false
 }
