@@ -19,6 +19,7 @@ import AddJob from "./RecruiterDashboard/AddJob";
 import JobApplicationPage from "./components/JobApplications/JobApplicationPage";
 import AddApplication from "./components/JobApplications/AddApplication";
 import JobCard from "./components/Jobs/JobCard";
+import Payment from "./components/Payment/Payment"
 
 function App()
 {
@@ -46,7 +47,7 @@ function App()
         <Route element={<PrivateRoutes />}>
           <Route path="/mainchat" element={<MainChat />} />
           <Route path="/profilePage" element={<ProfilePage />} />
-          <Route path="/mainchat" element={<MainChat />} />
+          <Route path="/payment" element={<Payment />} />
         </Route>
       </Routes>
     </>
