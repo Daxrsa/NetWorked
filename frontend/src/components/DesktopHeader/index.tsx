@@ -230,8 +230,11 @@ const Header: React.FC = () => {
               {loggedInUserName} <CaretDownIcon />
                 {menuOpen && (
                   <DropdownMenu>
-                    <button onClick={handleRegisterClick}>Register</button>
-                    <button onClick={handleLoginClick}>Login</button>
+                    {!loggedInUserName &&  (
+                      <> 
+                      <button onClick={handleRegisterClick}>Register</button>
+                      <button onClick={handleLoginClick}>Login</button></>
+                  )}
                     <button onClick={handleProfilePageClick}>My Profile</button>
                     <button onClick={logout}>Logout</button>
                     <button onClick={handleJobsClick}>Jobs</button>
