@@ -7,8 +7,8 @@ using Application.Validators;
 using FluentValidation;
 using System.Reflection;
 using API.Middleware;
-using Application.Services.FileService;
 using Microsoft.Extensions.FileProviders;
+using File.Package.FileService;
 
 var builder = WebApplication.CreateBuilder(args);
 

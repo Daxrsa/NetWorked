@@ -259,3 +259,7 @@ C:\Users\fitor\ProjektiLab2\NetWorked\backend\Posting.Service\src\API\obj\Debug\
 C:\Users\fitor\ProjektiLab2\NetWorked\backend\Posting.Service\src\API\obj\Debug\net7.0\API.pdb
 C:\Users\fitor\ProjektiLab2\NetWorked\backend\Posting.Service\src\API\obj\Debug\net7.0\API.genruntimeconfig.cache
 C:\Users\fitor\ProjektiLab2\NetWorked\backend\Posting.Service\src\API\obj\Debug\net7.0\ref\API.dll
+C:\Users\fitor\ProjektiLab2\NetWorked\backend\Posting.Service\src\API\bin\Debug\net7.0\File.Package.dll
+C:\Users\fitor\ProjektiLab2\NetWorked\backend\Posting.Service\src\API\bin\Debug\net7.0\Microsoft.AspNetCore.Server.Kestrel.Https.dll
+C:\Users\fitor\ProjektiLab2\NetWorked\backend\Posting.Service\src\API\bin\Debug\net7.0\Microsoft.AspNetCore.Server.Kestrel.Transport.Abstractions.dll
+C:\Users\fitor\ProjektiLab2\NetWorked\backend\Posting.Service\src\API\bin\Debug\net7.0\Newtonsoft.Json.dll

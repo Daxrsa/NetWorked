@@ -1,9 +1,9 @@
 using Application.Core;
 using Application.DTOs;
-using Application.Services.FileService;
 using AutoMapper;
 using AutoMapper.QueryableExtensions;
 using Domain;
+using File.Package.FileService;
 using Microsoft.EntityFrameworkCore;
 using Persistence;
 using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;

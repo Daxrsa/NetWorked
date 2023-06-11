@@ -1,16 +1,16 @@
 {
   "ExpandedNodes": [
     "",
+    "\\API",
     "\\Application",
     "\\Application\\Core",
     "\\Application\\DTOs",
     "\\Application\\Services",
-    "\\Application\\Services\\FileService",
     "\\Application\\Services\\PostService",
     "\\Domain",
     "\\Persistence",
     "\\Persistence\\Migrations"
   ],
-  "SelectedNode": "\\Application\\DTOs\\PostDTO.cs",
+  "SelectedNode": "\\API\\Program.cs",
   "PreviewInSolutionExplorer": false
 }
