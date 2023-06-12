@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "GQvOmB/CVylMrA2H1YF5RBS9Ahcwp0eXns6cUn3Ws6wqjD4A3orPrGpV5hd5RH4MokXb+zdysOWwqUMIaH6+SQ==",
+  "dgSpecHash": "t4ENk1Q9l5SXPfM+OZNaNCh64OnXfuEuwHZbvgz0tnpXYlMGsktkDue8gsFyVuGvxG8W/4dQ7F6tQqEalMBq8A==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Razer\\Documents\\GitHub\\NetWorked\\backend\\Posting.Service\\src\\Persistence\\Persistence.csproj",
+  "projectFilePath": "c:\\Users\\Razer\\Documents\\GitHub\\NetWorked\\backend\\Posting.Service\\src\\Persistence\\Persistence.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Razer\\.nuget\\packages\\azure.core\\1.24.0\\azure.core.1.24.0.nupkg.sha512",
     "C:\\Users\\Razer\\.nuget\\packages\\azure.identity\\1.6.0\\azure.identity.1.6.0.nupkg.sha512",

@@ -2,7 +2,6 @@ global using Application.Services.Auth;
 global using Application.Services.UserRepo;
 using API.Middleware;
 using Application.Mapping;
-using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
