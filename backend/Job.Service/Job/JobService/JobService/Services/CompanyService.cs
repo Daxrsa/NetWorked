@@ -1,10 +1,10 @@
 ﻿using AutoMapper;
+using File.Package.FileService;
 using JobService.Core.Dtos.Company;
 using JobService.Core.Models;
 using JobService.Data;
 using JobService.Services.Interfaces;
 using Microsoft.EntityFrameworkCore;
-using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 
 namespace JobService.Services
 {
@@ -52,6 +52,7 @@ namespace JobService.Services
                 }
                 _context.Remove(company);
                 await _context.SaveChangesAsync();
+                _fileService.DeleteFile(company.Logo);
                 return true;
             }
             catch(Exception ex) 

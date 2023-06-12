@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using File.Package.FileService;
 using JobService.Core.Dtos.Application;
 using JobService.Core.Models;
 using JobService.Data;
@@ -11,10 +12,12 @@ namespace JobService.Services
     {
         private readonly JobDbContext _context;
         private readonly IMapper _mapper;
-        public ApplicationService(JobDbContext context, IMapper mapper) 
+        private readonly IFileService _fileService;
+        public ApplicationService(JobDbContext context, IMapper mapper, IFileService fileService) 
         {
             _context= context;
             _mapper= mapper;
+            _fileService= fileService;
         }
 
         public async Task<IEnumerable<ApplicationReadDto>> GetAll()
@@ -59,23 +62,9 @@ namespace JobService.Services
         {
             try
             {
-                var fiveMegaBytes = 5 * 1024 * 1024;
-                var pdfType = "application/pdf";
-
-                if(file.Length > fiveMegaBytes || file.ContentType != pdfType)
-                {
-                    return false;
-                }
-
-                var resumeUrl = Guid.NewGuid().ToString() + ".pdf";
-                var filePath = Path.Combine(Directory.GetCurrentDirectory(), "Documents", "pdfs", resumeUrl);
-                using (var stream = new FileStream(filePath, FileMode.Create))
-                {
-                    await file.CopyToAsync(stream);
-                }
-
                 var a = _mapper.Map<Application>(dto);
-                a.ResumeUrl = resumeUrl;
+                a.ResumeUrl = _fileService.SavePdfAsync(file).Result;
+                Console.WriteLine(a.ResumeUrl);
                 await _context.Applications.AddAsync(a);
                 await _context.SaveChangesAsync();
 

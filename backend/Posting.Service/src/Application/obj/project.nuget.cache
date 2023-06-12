@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "iARyWikDy33wcNbmZ9K0W1+OyHryixtDGFYvugS2TXNzJH9hGxYsrEXf12jenq/K5Tvt6TQU65JEDfMYlIEQng==",
+  "dgSpecHash": "4m5To1m6RNoODxxfoDcPmeXm5NFt6Oxh6UUMvLwVc7JgPT+e/GUIcdLz+WBhR4DdA0BfI+Fv8bkaA9pzdmebCA==",
   "success": true,
   "projectFilePath": "C:\\Users\\fitor\\ProjektiLab2\\NetWorked\\backend\\Posting.Service\\src\\Application\\Application.csproj",
   "expectedPackageFiles": [
@@ -8,7 +8,6 @@
     "C:\\Users\\fitor\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\12.0.1\\automapper.extensions.microsoft.dependencyinjection.12.0.1.nupkg.sha512",
     "C:\\Users\\fitor\\.nuget\\packages\\azure.core\\1.24.0\\azure.core.1.24.0.nupkg.sha512",
     "C:\\Users\\fitor\\.nuget\\packages\\azure.identity\\1.6.0\\azure.identity.1.6.0.nupkg.sha512",
-    "C:\\Users\\fitor\\.nuget\\packages\\file.package\\1.0.0\\file.package.1.0.0.nupkg.sha512",
     "C:\\Users\\fitor\\.nuget\\packages\\fluentvalidation\\11.5.1\\fluentvalidation.11.5.1.nupkg.sha512",
     "C:\\Users\\fitor\\.nuget\\packages\\fluentvalidation.aspnetcore\\11.3.0\\fluentvalidation.aspnetcore.11.3.0.nupkg.sha512",
     "C:\\Users\\fitor\\.nuget\\packages\\fluentvalidation.dependencyinjectionextensions\\11.5.1\\fluentvalidation.dependencyinjectionextensions.11.5.1.nupkg.sha512",
@@ -90,6 +89,7 @@
     "C:\\Users\\fitor\\.nuget\\packages\\microsoft.win32.registry\\5.0.0\\microsoft.win32.registry.5.0.0.nupkg.sha512",
     "C:\\Users\\fitor\\.nuget\\packages\\microsoft.win32.systemevents\\5.0.0\\microsoft.win32.systemevents.5.0.0.nupkg.sha512",
     "C:\\Users\\fitor\\.nuget\\packages\\mono.texttemplating\\2.2.1\\mono.texttemplating.2.2.1.nupkg.sha512",
+    "C:\\Users\\fitor\\.nuget\\packages\\networked.utilities.filemanager\\1.0.0\\networked.utilities.filemanager.1.0.0.nupkg.sha512",
     "C:\\Users\\fitor\\.nuget\\packages\\newtonsoft.json\\13.0.3\\newtonsoft.json.13.0.3.nupkg.sha512",
     "C:\\Users\\fitor\\.nuget\\packages\\swashbuckle.aspnetcore\\6.5.0\\swashbuckle.aspnetcore.6.5.0.nupkg.sha512",
     "C:\\Users\\fitor\\.nuget\\packages\\swashbuckle.aspnetcore.swagger\\6.5.0\\swashbuckle.aspnetcore.swagger.6.5.0.nupkg.sha512",

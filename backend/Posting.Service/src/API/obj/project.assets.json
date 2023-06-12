@@ -75,20 +75,6 @@
           }
         }
       },
-      "File.Package/1.0.0": {
-        "type": "package",
-        "dependencies": {
-          "Microsoft.AspNetCore": "2.1.7",
-          "Newtonsoft.Json": "13.0.3",
-          "Swashbuckle.AspNetCore": "6.5.0"
-        },
-        "compile": {
-          "lib/net7.0/File.Package.dll": {}
-        },
-        "runtime": {
-          "lib/net7.0/File.Package.dll": {}
-        }
-      },
       "FluentValidation/11.5.1": {
         "type": "package",
         "compile": {
@@ -1542,6 +1528,20 @@
           "lib/netstandard2.0/Mono.TextTemplating.dll": {}
         }
       },
+      "Networked.Utilities.FileManager/1.0.0": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.AspNetCore": "2.1.7",
+          "Newtonsoft.Json": "13.0.3",
+          "Swashbuckle.AspNetCore": "6.5.0"
+        },
+        "compile": {
+          "lib/net7.0/File.Package.dll": {}
+        },
+        "runtime": {
+          "lib/net7.0/File.Package.dll": {}
+        }
+      },
       "Newtonsoft.Json/13.0.3": {
         "type": "package",
         "compile": {
@@ -2133,9 +2133,9 @@
         "dependencies": {
           "AutoMapper.Extensions.Microsoft.DependencyInjection": "12.0.1",
           "Domain": "1.0.0",
-          "File.Package": "1.0.0",
           "FluentValidation.AspNetCore": "11.3.0",
           "Microsoft.EntityFrameworkCore": "7.0.5",
+          "Networked.Utilities.FileManager": "1.0.0",
           "Persistence": "1.0.0"
         },
         "compile": {
@@ -2241,17 +2241,6 @@
         "azureicon.png",
         "lib/netstandard2.0/Azure.Identity.dll",
         "lib/netstandard2.0/Azure.Identity.xml"
-      ]
-    },
-    "File.Package/1.0.0": {
-      "sha512": "G3dxU6Z8oSBWhLkb9rD8mbp3V+qCLH/7YS1GQOXJNes5aH8/rrMwQ3MhwnvJqwj+KiuoTkh3HBNljFWsO++lAw==",
-      "type": "package",
-      "path": "file.package/1.0.0",
-      "files": [
-        ".nupkg.metadata",
-        "file.package.1.0.0.nupkg.sha512",
-        "file.package.nuspec",
-        "lib/net7.0/File.Package.dll"
       ]
     },
     "FluentValidation/11.5.1": {
@@ -4028,6 +4017,18 @@
         "mono.texttemplating.nuspec"
       ]
     },
+    "Networked.Utilities.FileManager/1.0.0": {
+      "sha512": "wPKBtgNcvEQ16V3klH6bNATdQE6mrv44qqWCXVEFfY2BxGlAVV1f3iLQLg9ApsoDpr0CoE+M+w1rYtmSEBcBGA==",
+      "type": "package",
+      "path": "networked.utilities.filemanager/1.0.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/net7.0/File.Package.dll",
+        "networked.utilities.filemanager.1.0.0.nupkg.sha512",
+        "networked.utilities.filemanager.nuspec"
+      ]
+    },
     "Newtonsoft.Json/13.0.3": {
       "sha512": "HrC5BXdl00IP9zeV+0Z848QWPAoCr9P3bDEZguI+gkLcBKAOxix/tLEAAHC+UvDNPv4a2d18lOReHMOagPa+zQ==",
       "type": "package",
@@ -5587,12 +5588,12 @@
     "net7.0": [
       "Application >= 1.0.0",
       "AutoMapper.Extensions.Microsoft.DependencyInjection >= 12.0.1",
-      "File.Package >= 1.0.0",
       "FluentValidation.AspNetCore >= 11.3.0",
       "Microsoft.AspNetCore.OpenApi >= 7.0.2",
       "Microsoft.EntityFrameworkCore >= 7.0.5",
       "Microsoft.EntityFrameworkCore.Design >= 7.0.5",
       "Microsoft.EntityFrameworkCore.SqlServer >= 7.0.5",
+      "Networked.Utilities.FileManager >= 1.0.0",
       "Swashbuckle.AspNetCore >= 6.5.0"
     ]
   },
@@ -5649,10 +5650,6 @@
             "target": "Package",
             "version": "[12.0.1, )"
           },
-          "File.Package": {
-            "target": "Package",
-            "version": "[1.0.0, )"
-          },
           "FluentValidation.AspNetCore": {
             "target": "Package",
             "version": "[11.3.0, )"
@@ -5674,6 +5671,10 @@
           "Microsoft.EntityFrameworkCore.SqlServer": {
             "target": "Package",
             "version": "[7.0.5, )"
+          },
+          "Networked.Utilities.FileManager": {
+            "target": "Package",
+            "version": "[1.0.0, )"
           },
           "Swashbuckle.AspNetCore": {
             "target": "Package",

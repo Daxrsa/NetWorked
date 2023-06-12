@@ -6,7 +6,6 @@ using Domain;
 using File.Package.FileService;
 using Microsoft.EntityFrameworkCore;
 using Persistence;
-using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 
 namespace Application.Services.PostService
 {
@@ -28,7 +27,7 @@ namespace Application.Services.PostService
                 var post = _mapper.Map<Post>(postDto);
                 if (postDto.formFile != null)
                 {
-                    var fileResult = _fileService.SaveImage(postDto.formFile);
+                    var fileResult = _fileService.SaveImageAndVideo(postDto.formFile);
                     if (fileResult.Item1 == 1)
                     {
                         post.FilePath = fileResult.Item2;
@@ -63,6 +62,7 @@ namespace Application.Services.PostService
                     return Result<List<PostDTO>>.Failure("Failed to delete the post.");
                 }
                 var posts = await _context.Posts.ProjectTo<PostDTO>(_mapper.ConfigurationProvider).ToListAsync();
+                _fileService.DeleteFile(post.FilePath);
                 return Result<List<PostDTO>>.Success(posts);
             }
             catch (Exception ex)

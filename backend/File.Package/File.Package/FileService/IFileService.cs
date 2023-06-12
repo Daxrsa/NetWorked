@@ -4,7 +4,10 @@ namespace File.Package.FileService
 {
     public interface IFileService
     {
-        public Tuple<int, string> SaveImage(IFormFile file);
-        public bool DeleteImage(string fileName);
+        Tuple<int, string> SaveImage(IFormFile file);
+        bool DeleteFile(string fileName);
+        byte[] DownloadPdfFile(string url);
+        Task<string> SavePdfAsync(IFormFile file);
+        Tuple<int, string> SaveImageAndVideo(IFormFile file);
     }
 }

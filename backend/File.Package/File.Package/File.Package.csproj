@@ -4,6 +4,12 @@
     <TargetFramework>net7.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+    <PackageId>Networked.Utilities.FileManager</PackageId>
+    <Authors>Fitore</Authors>
+    <Description>Library to manage files</Description>
+    <PackageLicense>MIT</PackageLicense>
+    <PackageTags>File, IFileService, File Manager, IFormFile</PackageTags>
+    <RepositoryUrl>https://github.com/Daxrsa/NetWorked</RepositoryUrl>
   </PropertyGroup>
 
   <ItemGroup>

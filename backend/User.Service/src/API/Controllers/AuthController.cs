@@ -21,7 +21,7 @@ namespace API.Controllers
             _userRepo = userRepo;
         }
 
-        [HttpGet("GetloggedInUser"), Authorize]
+        [HttpGet("GetloggedInUser"), Authorize(Roles ="Applicant")]
         public ActionResult<string> GetLoggedInUser()
         {
             var user = _userRepo.GetLoggedInUser();

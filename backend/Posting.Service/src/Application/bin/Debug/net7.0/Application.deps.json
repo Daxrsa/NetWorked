@@ -10,10 +10,10 @@
         "dependencies": {
           "AutoMapper.Extensions.Microsoft.DependencyInjection": "12.0.1",
           "Domain": "1.0.0",
-          "File.Package": "1.0.0",
           "FluentValidation.AspNetCore": "11.3.0",
           "Microsoft.EntityFrameworkCore": "7.0.5",
           "Microsoft.EntityFrameworkCore.Design": "7.0.5",
+          "Networked.Utilities.FileManager": "1.0.0",
           "Persistence": "1.0.0"
         },
         "runtime": {
@@ -74,19 +74,6 @@
           "lib/netstandard2.0/Azure.Identity.dll": {
             "assemblyVersion": "1.6.0.0",
             "fileVersion": "1.600.22.20503"
-          }
-        }
-      },
-      "File.Package/1.0.0": {
-        "dependencies": {
-          "Microsoft.AspNetCore": "2.1.7",
-          "Newtonsoft.Json": "13.0.3",
-          "Swashbuckle.AspNetCore": "6.5.0"
-        },
-        "runtime": {
-          "lib/net7.0/File.Package.dll": {
-            "assemblyVersion": "1.0.0.0",
-            "fileVersion": "1.0.0.0"
           }
         }
       },
@@ -774,6 +761,19 @@
           }
         }
       },
+      "Networked.Utilities.FileManager/1.0.0": {
+        "dependencies": {
+          "Microsoft.AspNetCore": "2.1.7",
+          "Newtonsoft.Json": "13.0.3",
+          "Swashbuckle.AspNetCore": "6.5.0"
+        },
+        "runtime": {
+          "lib/net7.0/File.Package.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      },
       "Newtonsoft.Json/13.0.3": {
         "runtime": {
           "lib/net6.0/Newtonsoft.Json.dll": {
@@ -1101,13 +1101,6 @@
       "sha512": "sha512-EycyMsb6rD2PK9P0SyibFfEhvWWttdrYhyPF4f41uzdB/44yQlV+2Wehxyg489Rj6gbPvSPgbKq0xsHJBhipZA==",
       "path": "azure.identity/1.6.0",
       "hashPath": "azure.identity.1.6.0.nupkg.sha512"
-    },
-    "File.Package/1.0.0": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "sha512-G3dxU6Z8oSBWhLkb9rD8mbp3V+qCLH/7YS1GQOXJNes5aH8/rrMwQ3MhwnvJqwj+KiuoTkh3HBNljFWsO++lAw==",
-      "path": "file.package/1.0.0",
-      "hashPath": "file.package.1.0.0.nupkg.sha512"
     },
     "FluentValidation/11.5.1": {
       "type": "package",
@@ -1675,6 +1668,13 @@
       "sha512": "sha512-KZYeKBET/2Z0gY1WlTAK7+RHTl7GSbtvTLDXEZZojUdAPqpQNDL6tHv7VUpqfX5VEOh+uRGKaZXkuD253nEOBQ==",
       "path": "mono.texttemplating/2.2.1",
       "hashPath": "mono.texttemplating.2.2.1.nupkg.sha512"
+    },
+    "Networked.Utilities.FileManager/1.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-wPKBtgNcvEQ16V3klH6bNATdQE6mrv44qqWCXVEFfY2BxGlAVV1f3iLQLg9ApsoDpr0CoE+M+w1rYtmSEBcBGA==",
+      "path": "networked.utilities.filemanager/1.0.0",
+      "hashPath": "networked.utilities.filemanager.1.0.0.nupkg.sha512"
     },
     "Newtonsoft.Json/13.0.3": {
       "type": "package",

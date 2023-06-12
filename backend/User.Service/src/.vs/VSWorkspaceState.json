@@ -5,12 +5,13 @@
     "\\API\\Controllers",
     "\\Application",
     "\\Application\\Services",
+    "\\Application\\Services\\Auth",
     "\\Application\\Services\\UserRepo",
     "\\Domain",
     "\\Domain\\Models",
     "\\Persistence",
     "\\Persistence\\Migrations"
   ],
-  "SelectedNode": "\\API\\appsettings.json",
+  "SelectedNode": "\\API\\Program.cs",
   "PreviewInSolutionExplorer": false
 }

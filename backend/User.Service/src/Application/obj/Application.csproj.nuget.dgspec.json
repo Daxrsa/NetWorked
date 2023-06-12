@@ -52,10 +52,6 @@
         "net7.0": {
           "targetAlias": "net7.0",
           "dependencies": {
-            "File.Package": {
-              "target": "Package",
-              "version": "[1.0.0, )"
-            },
             "FluentValidation.AspNetCore": {
               "target": "Package",
               "version": "[11.3.0, )"
@@ -83,6 +79,10 @@
               "suppressParent": "All",
               "target": "Package",
               "version": "[7.0.5, )"
+            },
+            "Networked.Utilities.FileManager": {
+              "target": "Package",
+              "version": "[1.0.0, )"
             },
             "Stripe.net": {
               "target": "Package",

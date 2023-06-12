@@ -2512,7 +2512,7 @@
     "version": "1.0.0",
     "restore": {
       "projectUniqueName": "C:\\Users\\fitor\\ProjektiLab2\\NetWorked\\backend\\File.Package\\File.Package\\File.Package.csproj",
-      "projectName": "File.Package",
+      "projectName": "Networked.Utilities.FileManager",
       "projectPath": "C:\\Users\\fitor\\ProjektiLab2\\NetWorked\\backend\\File.Package\\File.Package\\File.Package.csproj",
       "packagesPath": "C:\\Users\\fitor\\.nuget\\packages\\",
       "outputPath": "C:\\Users\\fitor\\ProjektiLab2\\NetWorked\\backend\\File.Package\\File.Package\\obj\\",
