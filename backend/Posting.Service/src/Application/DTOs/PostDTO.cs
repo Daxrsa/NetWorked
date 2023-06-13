@@ -6,7 +6,6 @@ namespace Application.DTOs
         public string Title { get; set; }
         public string Description { get; set; }
         public DateTime DateCreated { get; set; }
-        public int Likes { get; set; }
-        public List<CommentDTO> Comments { get; set; }
+        public string? FilePath { get; set; }
     }
 }

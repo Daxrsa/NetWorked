@@ -22,5 +22,7 @@ namespace JobService.Core.Models
         public Company Company { get; set; }
 
         public ICollection<Application> Applications { get; set; }
+
+        public string Username { get; set; }
     }
 }

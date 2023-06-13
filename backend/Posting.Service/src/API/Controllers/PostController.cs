@@ -29,7 +29,7 @@ namespace API.Controllers
         }
 
         [HttpPost("add")]
-        public async Task<ActionResult<List<PostDTO>>> AddPost(PostDTO postDto)
+        public async Task<ActionResult<List<PostDTO>>> AddPost([FromForm]CreatePostDto postDto)
         {
             return HandleResult(await _postService.AddPost(postDto));
         }

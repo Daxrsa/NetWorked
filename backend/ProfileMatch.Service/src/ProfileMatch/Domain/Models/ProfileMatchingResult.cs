@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace Domain.Models
 {
@@ -12,6 +7,8 @@ namespace Domain.Models
         [Key]
         public Guid Id { get; set; }
         public double Result { get; set; }
-        public string ApplicationId { get; set; }
+
+        public int ApplicationId { get; set; }
+        public Application Application { get; set; }
     }
 }

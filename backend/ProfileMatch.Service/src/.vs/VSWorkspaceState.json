@@ -1,0 +1,16 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\ProfileMatch",
+    "\\ProfileMatch\\API",
+    "\\ProfileMatch\\API\\Controllers",
+    "\\ProfileMatch\\Application",
+    "\\ProfileMatch\\Application\\Services",
+    "\\ProfileMatch\\Application\\Services\\ResultsService",
+    "\\ProfileMatch\\Domain",
+    "\\ProfileMatch\\Domain\\Enum",
+    "\\ProfileMatch\\Persistance"
+  ],
+  "SelectedNode": "\\ProfileMatch\\Application\\Core\\CalculateMatch.cs",
+  "PreviewInSolutionExplorer": false
+}

@@ -22,6 +22,7 @@ export interface IJob {
     jobLevel: string
     companyName: string
     createdAt: string
+    imgPath: string
 }
 
 export interface ICreateJob {

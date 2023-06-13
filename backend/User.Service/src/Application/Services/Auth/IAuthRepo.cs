@@ -1,4 +1,5 @@
 using Application.Core;
+using Application.DTOs;
 using Domain.Models;
 
 namespace Application.Services.Auth

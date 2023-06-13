@@ -12,6 +12,10 @@ _id: {
 type: Schema.Types.ObjectId,
 auto: true,
 },
+username:{
+type:String,
+required:true,
+},
 description: {
 type: String,
 required: true,

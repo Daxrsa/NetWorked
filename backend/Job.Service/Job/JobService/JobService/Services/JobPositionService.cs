@@ -1,21 +1,26 @@
 ﻿using AutoMapper;
-using JobService.Core.Dtos.Company;
+using Azure.Core;
 using JobService.Core.Dtos.JobPosition;
 using JobService.Core.Models;
 using JobService.Data;
 using JobService.Services.Interfaces;
+using Microsoft.AspNetCore.Http.Headers;
 using Microsoft.EntityFrameworkCore;
+using System.Net.Http;
+using System.Net.Http.Headers;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Authentication;
 
 namespace JobService.Services
 {
-    public class JobPositionService:IJobPosition
+    public class JobPositionService : IJobPosition
     {
         private readonly JobDbContext _context;
         private readonly IMapper _mapper;
-        public JobPositionService(JobDbContext context, IMapper mapper) 
+        public JobPositionService(JobDbContext context, IMapper mapper)
         {
-            _mapper= mapper;
-            _context= context;
+            _mapper = mapper;
+            _context = context;
         }
 
         public async Task<IEnumerable<JobReadDto>> GetAll()
@@ -40,7 +45,7 @@ namespace JobService.Services
             }
         }
 
-        public bool Add(JobCreateDto dto)
+        public async Task<bool> Add(JobCreateDto dto)
         {
             try
             {

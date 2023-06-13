@@ -1,6 +1,7 @@
-﻿using JobService.Core.Dtos.Application;
+﻿using File.Package.FileService;
+using JobService.Core.Dtos;
+using JobService.Core.Dtos.Application;
 using JobService.Services.Interfaces;
-using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 
 namespace JobService.Controllers
@@ -10,9 +11,11 @@ namespace JobService.Controllers
     public class ApplicationController:ControllerBase
     {
         private readonly IApplication _contract;
-        public ApplicationController(IApplication contract) 
+        private readonly IFileService _fileService;
+        public ApplicationController(IApplication contract, IFileService fileService) 
         {
             _contract= contract;
+            _fileService= fileService;
         }
 
         [HttpGet]
@@ -43,22 +46,28 @@ namespace JobService.Controllers
         [Route("download/{url}")]
         public IActionResult DownloadPdfFile(string url)
         {
-            var filePath = Path.Combine(Directory.GetCurrentDirectory(), "Documents", "pdfs", url);
-
-            if (!System.IO.File.Exists(filePath))
+            try
+            {
+                var pdfBytes = _fileService.DownloadPdfFile(url);
+                var file = File(pdfBytes, "application/pdf", url);
+                return file;
+            }
+            catch (FileNotFoundException)
             {
                 return NotFound("File Not Found");
             }
-
-            var pdfBytes = System.IO.File.ReadAllBytes(filePath);
-            var file = File(pdfBytes, "application/pdf", url);
-            return file;
         }
 
         [HttpPost]
         public async Task<ActionResult> Apply([FromForm] ApplicationCreateDto dto, IFormFile file)
         {
-            return Ok(await _contract.Add(dto, file));
+            var result = await _contract.Add(dto, file);
+            var status = new Status()
+            {
+                StatusCode = result ? 1 : 0,
+                StatusMessage = result ? "Applied successfully" : "Error has occured"
+            };
+            return Ok(status);
         }
     }
 }

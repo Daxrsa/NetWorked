@@ -1,11 +1,9 @@
 ﻿using AutoMapper;
-using JobService.Clients;
+using File.Package.FileService;
 using JobService.Core.Dtos.Application;
-using JobService.Core.Dtos.JobPosition;
 using JobService.Core.Models;
 using JobService.Data;
 using JobService.Services.Interfaces;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace JobService.Services
@@ -14,12 +12,12 @@ namespace JobService.Services
     {
         private readonly JobDbContext _context;
         private readonly IMapper _mapper;
-        private readonly UserClient userClient;
-        public ApplicationService(JobDbContext context, IMapper mapper, UserClient userClient) 
+        private readonly IFileService _fileService;
+        public ApplicationService(JobDbContext context, IMapper mapper, IFileService fileService) 
         {
             _context= context;
             _mapper= mapper;
-            this.userClient= userClient;
+            _fileService= fileService;
         }
 
         public async Task<IEnumerable<ApplicationReadDto>> GetAll()
@@ -64,26 +62,9 @@ namespace JobService.Services
         {
             try
             {
-                var fiveMegaBytes = 5 * 1024 * 1024;
-                var pdfType = "application/pdf";
-
-                if(file.Length > fiveMegaBytes || file.ContentType != pdfType)
-                {
-                    return false;
-                }
-
-                var resumeUrl = Guid.NewGuid().ToString() + ".pdf";
-                var filePath = Path.Combine(Directory.GetCurrentDirectory(), "Documents", "pdfs", resumeUrl);
-                using (var stream = new FileStream(filePath, FileMode.Create))
-                {
-                    await file.CopyToAsync(stream);
-                }
-
-                //var user = await userClient.GetUserAsync();
-
                 var a = _mapper.Map<Application>(dto);
-                a.ResumeUrl = resumeUrl;
-                //a.ApplicantId = user.Id;
+                a.ResumeUrl = _fileService.SavePdfAsync(file).Result;
+                Console.WriteLine(a.ResumeUrl);
                 await _context.Applications.AddAsync(a);
                 await _context.SaveChangesAsync();
 

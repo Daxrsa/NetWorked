@@ -1,0 +1,12 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\src",
+    "\\src\\API",
+    "\\src\\Application",
+    "\\src\\Application\\Services",
+    "\\src\\Application\\Services\\PostService"
+  ],
+  "SelectedNode": "\\src\\Application\\Services\\PostService\\PostService.cs",
+  "PreviewInSolutionExplorer": false
+}

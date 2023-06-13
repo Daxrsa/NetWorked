@@ -1,18 +1,14 @@
-global using Application.Services.PostService;
 global using Microsoft.EntityFrameworkCore;
-using System.Reflection;
-using API.Middleware;
+global using Application.Services.PostService;
 using Application.Core;
-using Application.Services.CommentService;
-using Application.Services.LikesService;
+using Persistence;
+using FluentValidation.AspNetCore;
 using Application.Validators;
 using FluentValidation;
-using FluentValidation.AspNetCore;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.IdentityModel.Tokens;
-using Microsoft.OpenApi.Models;
-using Persistence;
-using Swashbuckle.AspNetCore.Filters;
+using System.Reflection;
+using API.Middleware;
+using Microsoft.Extensions.FileProviders;
+using File.Package.FileService;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -26,41 +22,12 @@ builder.Services.AddFluentValidationClientsideAdapters();
 Assembly postDtoAssembly = typeof(PostDTOValidator).Assembly;
 builder.Services.AddValidatorsFromAssembly(postDtoAssembly);
 
-Assembly commentDtoAssembly = typeof(CommentDTOValidator).Assembly;
-builder.Services.AddValidatorsFromAssembly(commentDtoAssembly);
-
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen(c =>
-{
-    c.AddSecurityDefinition("oauth2", new OpenApiSecurityScheme
-    {
-        Description = """Standard Authorization header using the Bearer scheme. Example: "bearer {token}" """,
-        In = ParameterLocation.Header,
-        Name = "Authorization",
-        Type = SecuritySchemeType.ApiKey
-    });
-    c.OperationFilter<SecurityRequirementsOperationFilter>();
-});
-
-
-builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-      .AddJwtBearer(options =>
-      {
-          options.TokenValidationParameters = new TokenValidationParameters
-          {
-              ValidateIssuerSigningKey = true,
-              IssuerSigningKey = new SymmetricSecurityKey(System.Text.Encoding.UTF8
-            .GetBytes(builder.Configuration.GetSection("AppSettings:Token").Value!)),
-              ValidateIssuer = false,
-              ValidateAudience = false
-          };
-      });
+builder.Services.AddSwaggerGen();
 
 builder.Services.AddScoped<IPostService, PostService>();
-builder.Services.AddScoped<ILikesService, LikesService>();
-builder.Services.AddScoped<ICommentService, CommentService>();
-builder.Services.AddHttpClient();
+builder.Services.AddTransient<IFileService, FileService>();
 
 builder.Services.AddAutoMapper(typeof(MappingProfiles).Assembly);
 
@@ -83,6 +50,21 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+app.UseCors(options =>
+{
+    options
+    .AllowAnyOrigin()
+    .AllowAnyMethod()
+    .AllowAnyHeader();
+});
+
+app.UseStaticFiles(new StaticFileOptions
+{
+    FileProvider = new PhysicalFileProvider(
+            Path.Combine(builder.Environment.ContentRootPath, "Uploads")),
+    RequestPath = "/Resources"
+});
 
 app.UseAuthorization();
 

@@ -1,9 +1,14 @@
 global using Application.Services.Auth;
 global using Application.Services.UserRepo;
+using API;
 using API.Middleware;
-using Application.Mapping;
+using Application.Services;
+using File.Package.FileService;
+using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.FileProviders;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using Persistence;
@@ -24,9 +29,12 @@ builder.Services.AddSwaggerGen(c => {
     });
     c.OperationFilter<SecurityRequirementsOperationFilter>();
 });
+var secretKey = "sk_test_51MjoO4HN6QfgSK30DuaK9qoyxCjNqXU9cr7RVZ28Qslt0lFurJsHY43U4tZMtSC2yiw5AhLhMFUiLtIgNBj03mUe00YlsAg3Kt";
+builder.Services.AddStripeInfrastructure(secretKey);
 
 builder.Services.AddScoped<IAuthRepo, AuthRepo>();
 builder.Services.AddScoped<IUserRepo, UserRepo>();
+builder.Services.AddTransient<IFileService, FileService>();
 
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
       .AddJwtBearer(options =>
@@ -41,10 +49,11 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
           };
       });
 
-// builder.Services.AddFluentValidationAutoValidation();
-// builder.Services.AddFluentValidationClientsideAdapters();
+builder.Services.AddFluentValidationAutoValidation();
+builder.Services.AddFluentValidationClientsideAdapters();
 
-builder.Services.AddAutoMapper(typeof(MappingProfiles).Assembly);
+// Assembly registerDtoAssembly = typeof(RegisterDTOValidator).Assembly;
+// builder.Services.AddValidatorsFromAssembly(registerDtoAssembly);
 
 builder.Services.AddDbContext<DataContext>(opt =>
 {
@@ -76,6 +85,13 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 app.UseCors();
+
+app.UseStaticFiles(new StaticFileOptions
+{
+    FileProvider = new PhysicalFileProvider(
+            Path.Combine(builder.Environment.ContentRootPath, "Uploads\\Images")),
+    RequestPath = "/Resources"
+});
 
 app.UseAuthentication();
 

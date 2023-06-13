@@ -13,9 +13,9 @@ namespace JobService.Controllers
             _contract = contract;
         }
         [HttpGet]
-        public IActionResult GetSearch(string result)
+        public async Task<ActionResult> GetSearch(string? result)
         {
-            var searchResult = _contract.Search(result);
+            var searchResult =await _contract.Search(result);
             return Ok(searchResult);
         }
 

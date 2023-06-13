@@ -5,6 +5,7 @@ import Chat from "./Chat";
 import "../App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Header from '../components/DesktopHeader/index'
+import axios from 'axios'
 
 const MainChat = () => {
   const [connection, setConnection] = useState();
@@ -14,13 +15,15 @@ const MainChat = () => {
   useEffect(() => {
     const fetchUsername = async () => {
       try {
-        const response = await fetch("https://localhost:7212/api/Auth/Getloggedinuser", {
+        const token = localStorage.getItem('jwtToken');
+        const response = await axios.get("http://localhost:5116/api/Auth/GetloggedInUser", {
           headers: {
-            Authorization: "bearer eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTUxMiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6IjI3NTk5NTYwLWI2MjYtNGY0OC1kM2U5LTA4ZGI1YWZlNGVlNyIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL25hbWUiOiJlcm9zaTEyM2EiLCJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3JvbGUiOiJBZG1pbiIsImV4cCI6MTY4NDg3MTY3NH0.IxqR3z7rLJ5foeeJ8Mzpr-9P50zv--a0JKjzHRq_Yx19TUQ8Qi3cE7FBbt6dWcWPCkv4Hy_EpcM2Gc4dhoIpTQ", // Replace YOUR_TOKEN_HERE with your actual token
+            Authorization: `Bearer ${token}` // Add the token to the request headers
           },
         });
 
-        const user = await response.text();
+        const user = await response.data.username;
+        console.log(user);
         setUsername(user);
       } catch (error) {
         console.log(error);

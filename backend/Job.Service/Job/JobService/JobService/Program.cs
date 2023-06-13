@@ -1,11 +1,12 @@
-using Algolia.Search;
-using Algolia.Search.Clients;
-using JobService.Clients;
+using File.Package.FileService;
 using JobService.Core.AutoMapperConfig;
 using JobService.Data;
 using JobService.Services;
 using JobService.Services.Interfaces;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.FileProviders;
+using Microsoft.OpenApi.Models;
+using Swashbuckle.AspNetCore.Filters;
 using System.Text.Json.Serialization;
 
 namespace JobService
@@ -25,25 +26,12 @@ namespace JobService
             //Automapper Configuration
             builder.Services.AddAutoMapper(typeof(MappingProfile));
 
-            // Add services to the container.
-            builder.Services.AddSingleton<ISearchClient, SearchClient>();
-            builder.Services.AddSingleton<ISearchClient>(new SearchClient("ATO7HNMOJI", "8bc946dbb7800988993b963f146f6cdf"));
-
 
             builder.Services.AddScoped<ICompany, CompanyService>();
             builder.Services.AddScoped<IJobPosition, JobPositionService>();
             builder.Services.AddScoped<IApplication, ApplicationService>();
             builder.Services.AddScoped<ISearch, SearchService>();
-
-
-            builder.Services.AddHttpClient<UserClient>(client => 
-            {
-                client.BaseAddress = new Uri("http://localhost:5116/");
-            });
-
-            
-            //var algoliaConfig = new SearchConfig("ATO7HNMOJI", "8bc946dbb7800988993b963f146f6cdf");
-            //var client = new SearchClient(algoliaConfig);
+            builder.Services.AddTransient<IFileService, FileService>();
 
             builder.Services.AddControllers()
                 .AddJsonOptions(options =>
@@ -52,7 +40,18 @@ namespace JobService
                 });
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
-            builder.Services.AddSwaggerGen();
+            //builder.Services.AddSwaggerGen();
+
+            builder.Services.AddSwaggerGen(c => {
+                c.AddSecurityDefinition("oauth2", new OpenApiSecurityScheme
+                {
+                    Description = """Standard Authorization header using the Bearer scheme. Example: "bearer {token}" """,
+                    In = ParameterLocation.Header,
+                    Name = "Authorization",
+                    Type = SecuritySchemeType.ApiKey
+                });
+                c.OperationFilter<SecurityRequirementsOperationFilter>();
+            });
 
             var app = builder.Build();
 
@@ -71,7 +70,14 @@ namespace JobService
                 .AllowAnyHeader();
             });
 
-            app.UseAuthorization();
+            app.UseStaticFiles(new StaticFileOptions
+            {
+                FileProvider = new PhysicalFileProvider(
+                        Path.Combine(builder.Environment.ContentRootPath, "Documents\\Images")),
+                        RequestPath = "/Resources"
+                        });
+
+            app.UseRouting();
 
 
             app.MapControllers();

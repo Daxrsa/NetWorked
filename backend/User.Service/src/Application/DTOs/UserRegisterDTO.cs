@@ -1,3 +1,6 @@
+using Microsoft.AspNetCore.Http;
+using System.ComponentModel.DataAnnotations.Schema;
+
 namespace Application.DTOs
 {
     public class UserRegisterDTO
@@ -11,5 +14,7 @@ namespace Application.DTOs
         public string Profession { get; set; }
         public string Skills { get; set; }
         public string Bio { get; set; }
+        [NotMapped]
+        public IFormFile? formFile { get; set; }
     }
 }

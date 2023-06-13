@@ -1,7 +1,9 @@
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using Application.Core;
+using Application.DTOs;
 using Domain.Models;
+using File.Package.FileService;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
@@ -13,10 +15,13 @@ namespace Application.Services.Auth
     {
         private readonly DataContext _context;
         private readonly IConfiguration _config;
-        public AuthRepo(DataContext context, IConfiguration config)
+        private readonly IFileService _fileService;
+
+        public AuthRepo(DataContext context, IConfiguration config, IFileService fileService)
         {
             _context = context;
             _config = config;
+            _fileService = fileService;
         }
 
         public async Task<Result<string>> Login(string username, string password)
@@ -37,6 +42,8 @@ namespace Application.Services.Auth
             else
             {
                 response.Data = CreateToken(user);
+                response.UserName = user.Username;
+
             }
             return response;
         }
@@ -49,6 +56,15 @@ namespace Application.Services.Auth
                 response.Success = false;
                 response.Message = "User already exists";
                 return response;
+            }
+
+            if(user.formFile!= null)
+            {
+                var fileResult = _fileService.SaveImage(user.formFile);
+                if(fileResult.Item1 == 1)
+                {
+                    user.ProfilePictureUrl= fileResult.Item2;
+                }
             }
 
             CreatePasswordHash(password, out byte[] passwordHash, out byte[] passwordSalt);
@@ -95,7 +111,7 @@ namespace Application.Services.Auth
             {
                 new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
                 new Claim(ClaimTypes.Name, user.Username),
-                new Claim(ClaimTypes.Role, "Admin"),
+                new Claim(ClaimTypes.Role, user.Role),   //caktimi i rolit
                 new Claim(ClaimTypes.Email, user.Email),
                 new Claim(ClaimTypes.MobilePhone, user.Phone),
                 new Claim(ClaimTypes.GivenName, user.Fullname),

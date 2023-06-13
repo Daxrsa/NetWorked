@@ -14,8 +14,8 @@ const Lobby = ({ joinRoom, username }) => {
       >
         <Form.Group>
           <Form.Control
-            placeholder={username} // Set the placeholder value to the username obtained from the backend
-            onChange={(e) => setRoom(e.target.value)}
+            placeholder={username} disabled={username} 
+            onChange={(e) => setRoom(e.target.value)} 
           />
           <Form.Control
             placeholder="room"

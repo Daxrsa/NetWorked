@@ -1,12 +1,11 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import useFetch from "../../hooks/useFetch";
 import Search from '../Search/Search'
-
+import axios from 'axios'
 import {
   Container,
   Wrapper,
-  SearchInput,
   HomeIcon,
   NetworkIcon,
   JobsIcon,
@@ -16,39 +15,77 @@ import {
   CaretDownIcon,
   DropdownMenu,
   NotificationsDropdownMenu,
+  CartIcon
 } from "./styles";
 import NetworkLogo from "./networklogo.png";
 import { logout } from "../AuthService";
-interface ResponseData {
-  descriptions: string[];
+interface Notification {
+  username: string;
+  description: string;
 }
+
+interface ResponseData {
+  mappedData: Notification[];
+}
+
+
 const Header: React.FC = () => {
-  const { data, loading, error } = useFetch<ResponseData>(
-    "http://localhost:8800/notifications"
-  );
+ 
 
-  let notifications: { id: number; message: string }[] = [];
-
-  if (data && data.descriptions) {
-    notifications = data.descriptions.map((description, index) => ({
-      id: index + 1,
-      message: description,
-    }));
-  }
-
-  console.log(notifications);
+  
 
   const navigate = useNavigate();
   const [activeButton, setActiveButton] = useState("home");
   const [menuOpen, setMenuOpen] = useState(false); // Track the state of the dropdown menu
   const [notificationOpen, setNotificationOpen] = useState(false); // Track the state of the notification dropdown
+  const [loggedInUserName, setUsername] = useState(null);
+  const [notifications, setNotifications] = useState<Notification[]>([]);
 
   const handleChatsClick = () => {
     navigate("/mainchat");
     setMenuOpen(false);
     setActiveButton("messages");
   };
-
+  const fetchLoggedInUser = async () => {
+    try {
+      const token = localStorage.getItem('jwtToken'); // Retrieve the token from localStorage
+      const response = await axios.get("http://localhost:5116/api/Auth/GetloggedInUser", {
+        headers: {
+          Authorization: `Bearer ${token}` // Add the token to the request headers
+        }
+      });
+      const udata = response.data; // No need to parse the JSON object
+      
+      setUsername(udata.username);
+    } catch (error) {
+      console.error("Error fetching logged-in user:", error);
+    }
+  };
+  useEffect(() => {
+    fetchLoggedInUser();
+  }, []);
+  const fetchNotifs = async () => {
+    try {
+      const response = await axios.get<ResponseData>("http://localhost:8800/notifications");
+      const { mappedData } = response.data;
+      
+      // Map the username and description from notifications array
+      const notificationsData = mappedData.map((notification) => ({
+        username: notification.username,
+        description: notification.description,
+      }));
+      console.log(notificationsData)
+      setNotifications(notificationsData);
+    } catch (error) {
+      console.error("Error fetching notifications:", error);
+    }
+  };
+  
+  useEffect(() => {
+    fetchNotifs();
+  }, []);
+  
+  
   const handleNetworkClick = () => {
     navigate("/");
     setActiveButton("home");
@@ -58,6 +95,11 @@ const Header: React.FC = () => {
     navigate("/");
     setMenuOpen(false);
     setActiveButton("home");
+  };
+  const handleCartClick = () => {
+    navigate("/payment");
+    setMenuOpen(false);
+    setActiveButton("cart");
   };
 
   const handleJobsClick = () => {
@@ -159,12 +201,25 @@ const Header: React.FC = () => {
               <NotificationsIcon />
               <span>Notifications</span>
               {notificationOpen && (
-                <NotificationsDropdownMenu>
-                  {notifications.map((notification) => (
-                    <p key={notification.id}>{notification.message}</p>
-                  ))}
-                </NotificationsDropdownMenu>
-              )}
+  <NotificationsDropdownMenu>
+    {notifications.map(notification => (
+      <div key={notification.username}>
+        <p>
+          <span>{notification.username}</span>{" "}
+          <span>{notification.description}</span>
+        </p>
+      </div>
+    ))}
+  </NotificationsDropdownMenu>
+)}
+
+            </button>
+            <button
+              className={activeButton === "cart" ? "active" : ""}
+              onClick={handleCartClick}
+            >
+              <CartIcon />
+              <span>Cart</span>
             </button>
             <button
               onClick={handleMeClick}
@@ -172,11 +227,14 @@ const Header: React.FC = () => {
             >
               <ProfileCircle src="https://avatars.githubusercontent.com/u/93683494?v=" />
               <span>
-                Me <CaretDownIcon />
+              {loggedInUserName} <CaretDownIcon />
                 {menuOpen && (
                   <DropdownMenu>
-                    <button onClick={handleRegisterClick}>Register</button>
-                    <button onClick={handleLoginClick}>Login</button>
+                    {!loggedInUserName &&  (
+                      <> 
+                      <button onClick={handleRegisterClick}>Register</button>
+                      <button onClick={handleLoginClick}>Login</button></>
+                  )}
                     <button onClick={handleProfilePageClick}>My Profile</button>
                     <button onClick={logout}>Logout</button>
                     <button onClick={handleJobsClick}>Jobs</button>

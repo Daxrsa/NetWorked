@@ -1,4 +1,4 @@
-import { Box } from '@mui/material'
+import { Box, CardMedia } from '@mui/material'
 import { DataGrid } from '@mui/x-data-grid'
 import React from 'react'
 import moment from "moment";
@@ -41,6 +41,19 @@ const column: GridColDef[] = [
                     Delete
                 </Button>
             </a>
+        )
+    },
+    {
+        field: "img",
+        headerName: "Logo",
+        width: 100,
+        renderCell: (params) => (
+            <CardMedia
+                component="img"
+                height="200"
+                image 
+                sx={{ objectFit: 'contain' }}
+            />
         )
     },
 ];

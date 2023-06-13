@@ -1,5 +1,4 @@
 ﻿using JobService.Core.Dtos.Application;
-using JobService.Core.Dtos.Company;
 using JobService.Core.Models;
 using Microsoft.AspNetCore.Mvc;
 

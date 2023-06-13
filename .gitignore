@@ -9,3 +9,16 @@ backend/Job.Service/Job/.vs/Job/v17/.suo
 backend/Job.Service/Job/Job/obj/Container/ContainerName.cache
 *.v2
 *.cache
+backend/User.Service/src/.vs/User.Service/v17/.suo
+backend/User.Service/src/.vs/User.Service/v17/.suo
+backend/User.Service/src/API/bin/Debug/net7.0/API.dll
+backend/User.Service/src/API/bin/Debug/net7.0/API.pdb
+backend/User.Service/src/API/bin/Debug/net7.0/Application.dll
+backend/User.Service/src/API/bin/Debug/net7.0/Application.pdb
+backend/User.Service/src/API/obj/Debug/net7.0/API.csproj.AssemblyReference.cache
+backend/User.Service/src/API/obj/Debug/net7.0/API.dll
+backend/User.Service/src/API/obj/Debug/net7.0/API.pdb
+backend/User.Service/src/Application/bin/Debug/net7.0/Application.dll
+backend/User.Service/src/Application/bin/Debug/net7.0/Application.pdb
+backend/User.Service/src/Application/obj/Debug/net7.0/Application.dll
+backend/User.Service/src/Application/obj/Debug/net7.0/Application.pdb

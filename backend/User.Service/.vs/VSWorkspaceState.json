@@ -1,0 +1,13 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\src",
+    "\\src\\API",
+    "\\src\\Application",
+    "\\src\\Application\\Core",
+    "\\src\\Application\\Services",
+    "\\src\\Application\\Services\\Auth"
+  ],
+  "SelectedNode": "\\src\\API\\appsettings.json",
+  "PreviewInSolutionExplorer": false
+}
