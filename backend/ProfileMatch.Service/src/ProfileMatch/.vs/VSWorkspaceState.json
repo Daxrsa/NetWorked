@@ -3,14 +3,15 @@
     "",
     "\\Application",
     "\\Application\\Core",
-    "\\Application\\Core\\InterfaceRepos",
+    "\\Application\\Services",
+    "\\Application\\Services\\ResultsService",
     "\\Domain",
     "\\Domain\\AutoMapperConfig",
-    "\\Domain\\Enum",
-    "\\Domain\\ReadDTOs",
+    "\\Domain\\DTOs",
+    "\\Domain\\Models",
     "\\Persistance",
     "\\Persistance\\Migrations"
   ],
-  "SelectedNode": "\\Application\\Services\\ResultsService.cs",
+  "SelectedNode": "\\Application\\Services\\ResultsService\\IResultsRepo.cs",
   "PreviewInSolutionExplorer": false
 }

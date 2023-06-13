@@ -16,6 +16,5 @@ namespace Persistence
         }
 
         public DbSet<ProfileMatchingResult> Results { get; set; }
-        public DbSet<Application> Applications { get; set; }
     }
 }
