@@ -4,5 +4,6 @@
     {
         public Guid ApplicantId { get; set; }
         public int JobId { get; set; }
+        public string ApplicantName { get; set; }
     }
 }

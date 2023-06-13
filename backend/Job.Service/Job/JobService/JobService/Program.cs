@@ -73,7 +73,7 @@ namespace JobService
             app.UseStaticFiles(new StaticFileOptions
             {
                 FileProvider = new PhysicalFileProvider(
-                        Path.Combine(builder.Environment.ContentRootPath, "Documents\\Images")),
+                        Path.Combine(builder.Environment.ContentRootPath, "Uploads\\Images")),
                         RequestPath = "/Resources"
                         });
 

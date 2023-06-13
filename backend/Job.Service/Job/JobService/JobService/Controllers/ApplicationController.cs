@@ -3,6 +3,8 @@ using JobService.Core.Dtos;
 using JobService.Core.Dtos.Application;
 using JobService.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json.Linq;
+using System.Net.Http.Headers;
 
 namespace JobService.Controllers
 {
@@ -61,6 +63,23 @@ namespace JobService.Controllers
         [HttpPost]
         public async Task<ActionResult> Apply([FromForm] ApplicationCreateDto dto, IFormFile file)
         {
+            var token = Request.Headers["Authorization"].ToString().Split(' ')[1];
+            string userSkills = "";
+            //get user data
+            using (var httpClient = new HttpClient())
+            {
+                httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+                var userResponse = await httpClient.GetAsync("http://localhost:5116/api/Auth/GetloggedInUser");
+                string userString = await userResponse.Content.ReadAsStringAsync();
+                var responseJson = JObject.Parse(userString);
+                string username = responseJson["username"].ToString();
+                Guid userId = (Guid)responseJson["id"];
+                //userSkills = responseJson["skills"].ToString();
+                Console.WriteLine(userId);
+                dto.ApplicantId = userId;
+                dto.ApplicantName= username;
+            }
+
             var result = await _contract.Add(dto, file);
             var status = new Status()
             {

@@ -5,9 +5,10 @@
         public Guid ApplicantId { get; set; }
         public DateTime DateApplied { get; set; }
         public string ResumeUrl { get; set; }
+        public string ApplicantName { get; set; }
         public int JobId { get; set; }
         public string JobTitle { get; set; }
 
-        public string Id { get; set; }
+        public int Id { get; set; }
     }
 }
