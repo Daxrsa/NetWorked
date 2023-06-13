@@ -1,10 +1,7 @@
-﻿using System.ComponentModel.DataAnnotations;
-
-namespace Domain.Models
+﻿namespace Domain.DTOs
 {
-    public class ProfileMatchingResult
+    public class ResultReadDto
     {
-        [Key]
         public Guid Id { get; set; }
         public double Result { get; set; }
         public Guid ApplicationId { get; set; }

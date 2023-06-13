@@ -1,5 +1,6 @@
 ﻿using Application.Core;
 using Application.Services.ResultsService;
+using Domain.DTOs;
 using Domain.Models;
 using Microsoft.AspNetCore.Mvc;
 
@@ -10,24 +11,34 @@ namespace API.Controllers
     public class ResultsController : ControllerBase
     {
         private readonly IResultsRepo _contract;
-        private readonly CalculateMatch _calculate;
-        public ResultsController(IResultsRepo contract, CalculateMatch calculate)
+        public ResultsController(IResultsRepo contract)
         {
             _contract = contract;
-            _calculate = calculate;
         }
 
         [HttpGet]
         public async Task<ActionResult> GetAll()
         {
-            Console.WriteLine(_calculate.GetScore());
-            return Ok();
+            return Ok(await _contract.GetAll());
+        }
+
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetById(Guid id)
+        {
+            return Ok(await _contract.GetById(id));
         }
 
         [HttpPost]
-        public async Task<IActionResult> Add(ProfileMatchingResult p)
+        public IActionResult Add([FromForm]CreateResultDto dto)
         {
-            return Ok();
+            var result = _contract.Add(dto);
+            return Ok(result);
+        }
+
+        [HttpDelete]
+        public async Task<IActionResult> Delete(Guid id)
+        {
+            return Ok(await _contract.Delete(id));
         }
     }
 }

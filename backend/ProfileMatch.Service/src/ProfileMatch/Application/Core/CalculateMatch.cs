@@ -1,37 +1,24 @@
-﻿using Domain.Enum;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using static System.Runtime.InteropServices.JavaScript.JSType;
-
-namespace Application.Core
+﻿namespace Application.Core
 {
     public class CalculateMatch
     {
-        //me i mar parasysh edhe reviews te kompanive, to be done later
+        //me i mar parasysh edhe manual vleresimin nga rekruteri
         public int GetReview(string review)
         {
-            if (review.ToUpper().Equals(Review.BAD))
-            {
-                return 0;
-            }
-            else if (review.ToUpper().Equals(Review.GOOD))
-            {
-                return 2;
-            }
-            else if (review.ToUpper().Equals(Review.VERY_GOOD))
-            {
-                return 3;
-            }
-            else if (review.ToUpper().Equals(Review.PERFECT))
-            {
-                return 5;
-            }
-            return 0;
-        }
+            string upperReview = review.ToUpper();
 
+            switch (upperReview)
+            {
+                case "BAD":
+                    return 0;
+                case "GOOD":
+                    return 3;
+                case "PERFECT":
+                    return 5;
+                default:
+                    return 0;
+            }
+        }
 
         //Kjo metod kthen numrin e skills te ngjashme ne mes te kerkesave te job dhe aftesive te aplikuesit
         public int CountSimilarities(List<string> jobRequirements, List<string> applicantSkills)
@@ -57,11 +44,15 @@ namespace Application.Core
         }
 
         //return matching percentage
-        public double GetPercentage(int similarities, int requirements)
+        public double GetPercentage(int similarities, int requirements, int? review)
         {
             try
             {
                 double result = ((double)similarities / requirements) * 100;
+                if(review.HasValue)
+                {
+                    result += review.Value;
+                }
                 return Math.Round((Double)result, 2);
             }catch (DivideByZeroException ex)
             {
@@ -78,7 +69,7 @@ namespace Application.Core
             int similarities = CountSimilarities(jobReq, skills);
             int length = jobReq.Count();
 
-            return GetPercentage(similarities, length);
+            return GetPercentage(similarities, length,3);
         }
     }
 }

@@ -1,7 +1,6 @@
 ﻿using AutoMapper;
-using Domain.CreateDTOs;
+using Domain.DTOs;
 using Domain.Models;
-using Domain.ReadDTOs;
 
 namespace Domain.AutoMapperConfig
 {
@@ -9,7 +8,7 @@ namespace Domain.AutoMapperConfig
     {
         public MappingProfile() 
         {
-            CreateMap<CreateResultDto, ProfileMatchingResult>();
+            //CreateMap<CreateResultDto, ProfileMatchingResult>();
             CreateMap<ProfileMatchingResult, ResultReadDto>();
         }
     }
