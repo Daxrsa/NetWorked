@@ -7,7 +7,7 @@ namespace Application.Services.PostService
     {
         Task<Result<List<PostDTO>>> GetPosts();
         Task<Result<PostDTO>> GetPostById(Guid id);
-        Task<Result<List<PostDTO>>> AddPost(CreatePostDto postDto);
+        Task<Result<PostDTO>> AddPost(CreatePostDto postDto);
         Task<Result<List<PostDTO>>> UpdatePost(Guid id, PostDTO postDto);
         Task<Result<List<PostDTO>>> DeletePost(Guid id);
     }

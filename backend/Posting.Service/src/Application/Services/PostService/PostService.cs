@@ -25,7 +25,7 @@ namespace Application.Services.PostService
             _fileService = fileService;
             _httpClient = httpClient;
         }
-        public async Task<Result<List<PostDTO>>> AddPost(CreatePostDto postDto)
+        public async Task<Result<PostDTO>> AddPost(CreatePostDto postDto)
         {
             try
             {
@@ -42,14 +42,14 @@ namespace Application.Services.PostService
                 var result = await _context.SaveChangesAsync() > 0;
                 if (!result)
                 {
-                    return Result<List<PostDTO>>.Failure("Failed to add the post.");
+                    return Result<PostDTO>.Failure("Failed to add the post.");
                 }
-                var posts = await _context.Posts.ProjectTo<PostDTO>(_mapper.ConfigurationProvider).ToListAsync();
-                return Result<List<PostDTO>>.Success(posts);
+                var posts = _mapper.Map<PostDTO>(post);
+                return Result<PostDTO>.Success(posts);
             }
             catch (Exception ex)
             {
-                return Result<List<PostDTO>>.Failure(ex.Message);
+                return Result<PostDTO>.Failure(ex.Message);
             }
         }
 
