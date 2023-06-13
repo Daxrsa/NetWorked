@@ -21,14 +21,14 @@ namespace API.Controllers
             _userRepo = userRepo;
         }
 
-        [HttpGet("GetloggedInUser"), Authorize(Roles ="Applicant")]
+        [HttpGet("GetloggedInUser"), Authorize]
         public ActionResult<string> GetLoggedInUser()
         {
             var user = _userRepo.GetLoggedInUser();
             return Ok(user);
         }
         [HttpPost("Register")]
-        public async Task<ActionResult<Result<Guid>>> Register([FromForm]UserRegisterDTO request)
+        public async Task<ActionResult<Result<Guid>>> Register([FromForm] UserRegisterDTO request)
         {
             var response = await _authRepo.Register(
                 new User
@@ -53,31 +53,29 @@ namespace API.Controllers
             return Ok(response);
         }
 
-        [HttpPost("ChangeUserRole")]
-        //[Authorize(Roles = "Admin")] // Add appropriate authorization for this endpoint
-        public async Task<ActionResult<string>> ChangeUserRole(Guid id)
-        {
-            var result = await _userRepo.GetUserById(id);
+        // [HttpPost("ChangeUserRole")]
+        // //[Authorize(Roles = "Admin")] // Add appropriate authorization for this endpoint
+        // public async Task<ActionResult<string>> ChangeUserRole(Guid id)
+        // {
+        //     var result = await _userRepo.GetUserById(id);
 
-            if (result == null || !result.Success || result.Data == null)
-            {
-                return NotFound();
-            }
+        //     if (result == null || !result.Success || result.Data == null)
+        //     {
+        //         return NotFound();
+        //     }
 
-            if (result.Data.Role != "Applicant")
-            {
-                return BadRequest("User role is not 'Applicant'.");
-            }
+        //     if (result.Data.Role != "Applicant")
+        //     {
+        //         return BadRequest("User role is not 'Applicant'.");
+        //     }
 
-            result.Data.Role = "Recruiter";
+        //     result.Data.Role = "Recruiter";
 
-            // Update the user role in the repository
-            await _userRepo.UpdateUser(result.Data);
+        //     // Update the user role in the repository
+        //     await _userRepo.UpdateUser(result.Data);
 
-            return Ok(result);
-        }
-
-
+        //     return Ok(result);
+        // }
 
 
         [HttpPost("Login")]

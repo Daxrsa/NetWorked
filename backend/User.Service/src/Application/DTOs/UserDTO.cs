@@ -1,3 +1,5 @@
+using Microsoft.AspNetCore.Http;
+
 namespace Application.DTOs
 {
     public class UserDTO
@@ -11,5 +13,8 @@ namespace Application.DTOs
         public string Profession { get; set; }
         public string Skills { get; set; }
         public string Bio { get; set; }
+        public string Role { get; set; }
+        public string? ProfilePictureUrl { get; set; }
+        public IFormFile? formFile { get; set; }
     }
 }

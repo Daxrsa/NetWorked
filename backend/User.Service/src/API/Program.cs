@@ -2,6 +2,7 @@ global using Application.Services.Auth;
 global using Application.Services.UserRepo;
 using API;
 using API.Middleware;
+using Application.Mapping;
 using Application.Services;
 using File.Package.FileService;
 using FluentValidation.AspNetCore;
@@ -35,6 +36,8 @@ builder.Services.AddStripeInfrastructure(secretKey);
 builder.Services.AddScoped<IAuthRepo, AuthRepo>();
 builder.Services.AddScoped<IUserRepo, UserRepo>();
 builder.Services.AddTransient<IFileService, FileService>();
+
+builder.Services.AddAutoMapper(typeof(MappingProfiles).Assembly);
 
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
       .AddJwtBearer(options =>
