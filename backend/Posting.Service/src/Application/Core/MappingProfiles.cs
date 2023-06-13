@@ -9,6 +9,7 @@ namespace Application.Core
         public MappingProfiles()
         {
             CreateMap<Post, PostDTO>().ReverseMap();
+            CreateMap<Comment, CommentDTO>().ReverseMap();
         }
     }
 }

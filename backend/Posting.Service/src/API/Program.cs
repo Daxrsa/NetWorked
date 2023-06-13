@@ -3,15 +3,16 @@ global using Microsoft.EntityFrameworkCore;
 using System.Reflection;
 using API.Middleware;
 using Application.Core;
+using Application.Services.CommentService;
 using Application.Services.LikesService;
 using Application.Validators;
 using FluentValidation;
 using FluentValidation.AspNetCore;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using Persistence;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Swashbuckle.AspNetCore.Filters;
-using Microsoft.IdentityModel.Tokens;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -24,6 +25,9 @@ builder.Services.AddFluentValidationClientsideAdapters();
 
 Assembly postDtoAssembly = typeof(PostDTOValidator).Assembly;
 builder.Services.AddValidatorsFromAssembly(postDtoAssembly);
+
+Assembly commentDtoAssembly = typeof(CommentDTOValidator).Assembly;
+builder.Services.AddValidatorsFromAssembly(commentDtoAssembly);
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
@@ -55,6 +59,7 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
 
 builder.Services.AddScoped<IPostService, PostService>();
 builder.Services.AddScoped<ILikesService, LikesService>();
+builder.Services.AddScoped<ICommentService, CommentService>();
 builder.Services.AddAutoMapper(typeof(MappingProfiles).Assembly);
 
 builder.Services.AddDbContext<DataContext>(opt =>

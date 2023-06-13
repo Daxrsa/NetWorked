@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "jpXg6OTzvZOycCDgeUDycXpuvLSgAx+qzbTPViP5BcVhN63IsvhzIECZOx3QFgYbtEiHzwi9JFWjpTpnM2aoWg==",
+  "dgSpecHash": "h+94UzGb+Carr++OaWKgxckxu4RLE8j7h7LFbnzyO2Srui5OK4VgADjmn+PZ+eWKQDRgIb/grx2IDvAalxCsEw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Razer\\Documents\\GitHub\\NetWorked\\backend\\Posting.Service\\src\\Application\\Application.csproj",
+  "projectFilePath": "c:\\Users\\Razer\\Documents\\GitHub\\NetWorked\\backend\\Posting.Service\\src\\Application\\Application.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Razer\\.nuget\\packages\\automapper\\12.0.1\\automapper.12.0.1.nupkg.sha512",
     "C:\\Users\\Razer\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\12.0.1\\automapper.extensions.microsoft.dependencyinjection.12.0.1.nupkg.sha512",
@@ -48,6 +48,7 @@
     "C:\\Users\\Razer\\.nuget\\packages\\microsoft.win32.registry\\5.0.0\\microsoft.win32.registry.5.0.0.nupkg.sha512",
     "C:\\Users\\Razer\\.nuget\\packages\\microsoft.win32.systemevents\\5.0.0\\microsoft.win32.systemevents.5.0.0.nupkg.sha512",
     "C:\\Users\\Razer\\.nuget\\packages\\mono.texttemplating\\2.2.1\\mono.texttemplating.2.2.1.nupkg.sha512",
+    "C:\\Users\\Razer\\.nuget\\packages\\newtonsoft.json\\13.0.3\\newtonsoft.json.13.0.3.nupkg.sha512",
     "C:\\Users\\Razer\\.nuget\\packages\\scrutor\\3.3.0\\scrutor.3.3.0.nupkg.sha512",
     "C:\\Users\\Razer\\.nuget\\packages\\swashbuckle.aspnetcore.filters\\7.0.6\\swashbuckle.aspnetcore.filters.7.0.6.nupkg.sha512",
     "C:\\Users\\Razer\\.nuget\\packages\\swashbuckle.aspnetcore.filters.abstractions\\7.0.6\\swashbuckle.aspnetcore.filters.abstractions.7.0.6.nupkg.sha512",

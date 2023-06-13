@@ -7,5 +7,6 @@ namespace Domain
         public string Description { get; set; }
         public DateTime DateCreated { get; set; }
         public int Likes { get; set; }
+        public ICollection<Comment> Comment { get; set; } = new List<Comment>();
     }
 }

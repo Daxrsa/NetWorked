@@ -1,7 +1,7 @@
 {
   "format": 1,
   "restore": {
-    "c:\\Users\\Razer\\Documents\\GitHub\\NetWorked\\backend\\Posting.Service\\src\\Persistence\\Persistence.csproj": {}
+    "C:\\Users\\Razer\\Documents\\GitHub\\NetWorked\\backend\\Posting.Service\\src\\Persistence\\Persistence.csproj": {}
   },
   "projects": {
     "C:\\Users\\Razer\\Documents\\GitHub\\NetWorked\\backend\\Posting.Service\\src\\Domain\\Domain.csproj": {
@@ -59,14 +59,14 @@
         }
       }
     },
-    "c:\\Users\\Razer\\Documents\\GitHub\\NetWorked\\backend\\Posting.Service\\src\\Persistence\\Persistence.csproj": {
+    "C:\\Users\\Razer\\Documents\\GitHub\\NetWorked\\backend\\Posting.Service\\src\\Persistence\\Persistence.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "c:\\Users\\Razer\\Documents\\GitHub\\NetWorked\\backend\\Posting.Service\\src\\Persistence\\Persistence.csproj",
+        "projectUniqueName": "C:\\Users\\Razer\\Documents\\GitHub\\NetWorked\\backend\\Posting.Service\\src\\Persistence\\Persistence.csproj",
         "projectName": "Persistence",
-        "projectPath": "c:\\Users\\Razer\\Documents\\GitHub\\NetWorked\\backend\\Posting.Service\\src\\Persistence\\Persistence.csproj",
+        "projectPath": "C:\\Users\\Razer\\Documents\\GitHub\\NetWorked\\backend\\Posting.Service\\src\\Persistence\\Persistence.csproj",
         "packagesPath": "C:\\Users\\Razer\\.nuget\\packages\\",
-        "outputPath": "c:\\Users\\Razer\\Documents\\GitHub\\NetWorked\\backend\\Posting.Service\\src\\Persistence\\obj\\",
+        "outputPath": "C:\\Users\\Razer\\Documents\\GitHub\\NetWorked\\backend\\Posting.Service\\src\\Persistence\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Razer\\AppData\\Roaming\\NuGet\\NuGet.Config",
