@@ -10,6 +10,7 @@ namespace Application.Core
         {
             CreateMap<Post, PostDTO>().ReverseMap();
             CreateMap<Post, CreatePostDto>().ReverseMap();
+            CreateMap<Comment, CommentDTO>().ReverseMap();
         }
     }
 }

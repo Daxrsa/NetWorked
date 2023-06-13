@@ -1,43 +1,38 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\fitor\\ProjektiLab2\\NetWorked\\backend\\Posting.Service\\src\\Application\\Application.csproj": {}
+    "C:\\Users\\Razer\\Documents\\GitHub\\NetWorked\\backend\\Posting.Service\\src\\Application\\Application.csproj": {}
   },
   "projects": {
-    "C:\\Users\\fitor\\ProjektiLab2\\NetWorked\\backend\\Posting.Service\\src\\Application\\Application.csproj": {
+    "C:\\Users\\Razer\\Documents\\GitHub\\NetWorked\\backend\\Posting.Service\\src\\Application\\Application.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\fitor\\ProjektiLab2\\NetWorked\\backend\\Posting.Service\\src\\Application\\Application.csproj",
+        "projectUniqueName": "C:\\Users\\Razer\\Documents\\GitHub\\NetWorked\\backend\\Posting.Service\\src\\Application\\Application.csproj",
         "projectName": "Application",
-        "projectPath": "C:\\Users\\fitor\\ProjektiLab2\\NetWorked\\backend\\Posting.Service\\src\\Application\\Application.csproj",
-        "packagesPath": "C:\\Users\\fitor\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\fitor\\ProjektiLab2\\NetWorked\\backend\\Posting.Service\\src\\Application\\obj\\",
+        "projectPath": "C:\\Users\\Razer\\Documents\\GitHub\\NetWorked\\backend\\Posting.Service\\src\\Application\\Application.csproj",
+        "packagesPath": "C:\\Users\\Razer\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Razer\\Documents\\GitHub\\NetWorked\\backend\\Posting.Service\\src\\Application\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\"
-        ],
         "configFilePaths": [
-          "C:\\Users\\fitor\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+          "C:\\Users\\Razer\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net7.0"
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Users\\fitor\\ProjektiLab2\\NetWorked\\backend\\packages": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net7.0": {
             "targetAlias": "net7.0",
             "projectReferences": {
-              "C:\\Users\\fitor\\ProjektiLab2\\NetWorked\\backend\\Posting.Service\\src\\Domain\\Domain.csproj": {
-                "projectPath": "C:\\Users\\fitor\\ProjektiLab2\\NetWorked\\backend\\Posting.Service\\src\\Domain\\Domain.csproj"
+              "C:\\Users\\Razer\\Documents\\GitHub\\NetWorked\\backend\\Posting.Service\\src\\Domain\\Domain.csproj": {
+                "projectPath": "C:\\Users\\Razer\\Documents\\GitHub\\NetWorked\\backend\\Posting.Service\\src\\Domain\\Domain.csproj"
               },
-              "C:\\Users\\fitor\\ProjektiLab2\\NetWorked\\backend\\Posting.Service\\src\\Persistence\\Persistence.csproj": {
-                "projectPath": "C:\\Users\\fitor\\ProjektiLab2\\NetWorked\\backend\\Posting.Service\\src\\Persistence\\Persistence.csproj"
+              "C:\\Users\\Razer\\Documents\\GitHub\\NetWorked\\backend\\Posting.Service\\src\\Persistence\\Persistence.csproj": {
+                "projectPath": "C:\\Users\\Razer\\Documents\\GitHub\\NetWorked\\backend\\Posting.Service\\src\\Persistence\\Persistence.csproj"
               }
             }
           }
@@ -73,6 +68,10 @@
             "Networked.Utilities.FileManager": {
               "target": "Package",
               "version": "[1.0.0, )"
+            },
+            "System.ComponentModel.Annotations": {
+              "target": "Package",
+              "version": "[5.0.0, )"
             }
           },
           "imports": [
@@ -91,33 +90,28 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.203\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.102\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\fitor\\ProjektiLab2\\NetWorked\\backend\\Posting.Service\\src\\Domain\\Domain.csproj": {
+    "C:\\Users\\Razer\\Documents\\GitHub\\NetWorked\\backend\\Posting.Service\\src\\Domain\\Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\fitor\\ProjektiLab2\\NetWorked\\backend\\Posting.Service\\src\\Domain\\Domain.csproj",
+        "projectUniqueName": "C:\\Users\\Razer\\Documents\\GitHub\\NetWorked\\backend\\Posting.Service\\src\\Domain\\Domain.csproj",
         "projectName": "Domain",
-        "projectPath": "C:\\Users\\fitor\\ProjektiLab2\\NetWorked\\backend\\Posting.Service\\src\\Domain\\Domain.csproj",
-        "packagesPath": "C:\\Users\\fitor\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\fitor\\ProjektiLab2\\NetWorked\\backend\\Posting.Service\\src\\Domain\\obj\\",
+        "projectPath": "C:\\Users\\Razer\\Documents\\GitHub\\NetWorked\\backend\\Posting.Service\\src\\Domain\\Domain.csproj",
+        "packagesPath": "C:\\Users\\Razer\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Razer\\Documents\\GitHub\\NetWorked\\backend\\Posting.Service\\src\\Domain\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\"
-        ],
         "configFilePaths": [
-          "C:\\Users\\fitor\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+          "C:\\Users\\Razer\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net7.0"
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Users\\fitor\\ProjektiLab2\\NetWorked\\backend\\packages": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -139,6 +133,10 @@
             "Microsoft.AspNetCore.Http.Features": {
               "target": "Package",
               "version": "[5.0.17, )"
+            },
+            "System.ComponentModel.Annotations": {
+              "target": "Package",
+              "version": "[5.0.0, )"
             }
           },
           "imports": [
@@ -157,41 +155,36 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.203\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.102\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\fitor\\ProjektiLab2\\NetWorked\\backend\\Posting.Service\\src\\Persistence\\Persistence.csproj": {
+    "C:\\Users\\Razer\\Documents\\GitHub\\NetWorked\\backend\\Posting.Service\\src\\Persistence\\Persistence.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\fitor\\ProjektiLab2\\NetWorked\\backend\\Posting.Service\\src\\Persistence\\Persistence.csproj",
+        "projectUniqueName": "C:\\Users\\Razer\\Documents\\GitHub\\NetWorked\\backend\\Posting.Service\\src\\Persistence\\Persistence.csproj",
         "projectName": "Persistence",
-        "projectPath": "C:\\Users\\fitor\\ProjektiLab2\\NetWorked\\backend\\Posting.Service\\src\\Persistence\\Persistence.csproj",
-        "packagesPath": "C:\\Users\\fitor\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\fitor\\ProjektiLab2\\NetWorked\\backend\\Posting.Service\\src\\Persistence\\obj\\",
+        "projectPath": "C:\\Users\\Razer\\Documents\\GitHub\\NetWorked\\backend\\Posting.Service\\src\\Persistence\\Persistence.csproj",
+        "packagesPath": "C:\\Users\\Razer\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Razer\\Documents\\GitHub\\NetWorked\\backend\\Posting.Service\\src\\Persistence\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\"
-        ],
         "configFilePaths": [
-          "C:\\Users\\fitor\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+          "C:\\Users\\Razer\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net7.0"
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Users\\fitor\\ProjektiLab2\\NetWorked\\backend\\packages": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net7.0": {
             "targetAlias": "net7.0",
             "projectReferences": {
-              "C:\\Users\\fitor\\ProjektiLab2\\NetWorked\\backend\\Posting.Service\\src\\Domain\\Domain.csproj": {
-                "projectPath": "C:\\Users\\fitor\\ProjektiLab2\\NetWorked\\backend\\Posting.Service\\src\\Domain\\Domain.csproj"
+              "C:\\Users\\Razer\\Documents\\GitHub\\NetWorked\\backend\\Posting.Service\\src\\Domain\\Domain.csproj": {
+                "projectPath": "C:\\Users\\Razer\\Documents\\GitHub\\NetWorked\\backend\\Posting.Service\\src\\Domain\\Domain.csproj"
               }
             }
           }
@@ -243,7 +236,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.203\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.102\\RuntimeIdentifierGraph.json"
         }
       }
     }

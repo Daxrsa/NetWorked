@@ -1,5 +1,5 @@
-using Microsoft.AspNetCore.Http;
 using System.ComponentModel.DataAnnotations.Schema;
+using Microsoft.AspNetCore.Http;
 
 
 namespace Domain
@@ -11,8 +11,10 @@ namespace Domain
         public string Description { get; set; }
         public DateTime DateCreated { get; set; } = DateTime.UtcNow;
         public string? FilePath { get; set; }
+        public int Likes { get; set; }
 
         [NotMapped]
         public IFormFile? formFile { get; set; }
+        public virtual ICollection<Comment> Comments { get; set; } = new List<Comment>();
     }
 }

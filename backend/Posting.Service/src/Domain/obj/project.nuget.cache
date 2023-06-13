@@ -1,12 +1,13 @@
 {
   "version": 2,
-  "dgSpecHash": "lbqHnz4TeqML3mdly8erjzUi7iysy7tX4J+CgNs/A/bJzMURjgOwJLyWwg4hQMX6FxFW8upH2yRbsCLu9NMcvg==",
+  "dgSpecHash": "ZGz4En6uIscyHDrrq/NAVy4mNjaEmS5x8FgKJgnqP9tlL238MdzD+/j4ss7lLQEQJJPkOyCtXdNKzICoJFGCfg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\fitor\\ProjektiLab2\\NetWorked\\backend\\Posting.Service\\src\\Domain\\Domain.csproj",
+  "projectFilePath": "C:\\Users\\Razer\\Documents\\GitHub\\NetWorked\\backend\\Posting.Service\\src\\Domain\\Domain.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\fitor\\.nuget\\packages\\microsoft.aspnetcore.http.features\\5.0.17\\microsoft.aspnetcore.http.features.5.0.17.nupkg.sha512",
-    "C:\\Users\\fitor\\.nuget\\packages\\microsoft.extensions.primitives\\5.0.1\\microsoft.extensions.primitives.5.0.1.nupkg.sha512",
-    "C:\\Users\\fitor\\.nuget\\packages\\system.io.pipelines\\5.0.2\\system.io.pipelines.5.0.2.nupkg.sha512"
+    "C:\\Users\\Razer\\.nuget\\packages\\microsoft.aspnetcore.http.features\\5.0.17\\microsoft.aspnetcore.http.features.5.0.17.nupkg.sha512",
+    "C:\\Users\\Razer\\.nuget\\packages\\microsoft.extensions.primitives\\5.0.1\\microsoft.extensions.primitives.5.0.1.nupkg.sha512",
+    "C:\\Users\\Razer\\.nuget\\packages\\system.componentmodel.annotations\\5.0.0\\system.componentmodel.annotations.5.0.0.nupkg.sha512",
+    "C:\\Users\\Razer\\.nuget\\packages\\system.io.pipelines\\5.0.2\\system.io.pipelines.5.0.2.nupkg.sha512"
   ],
   "logs": []
 }

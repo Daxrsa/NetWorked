@@ -9,6 +9,8 @@ using System.Reflection;
 using API.Middleware;
 using Microsoft.Extensions.FileProviders;
 using File.Package.FileService;
+using Application.Services.LikesService;
+using Application.Services.CommentService;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -28,6 +30,9 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddScoped<IPostService, PostService>();
 builder.Services.AddTransient<IFileService, FileService>();
+builder.Services.AddScoped<ILikesService, LikesService>();
+builder.Services.AddScoped<ICommentService, CommentService>();
+builder.Services.AddHttpClient();
 
 builder.Services.AddAutoMapper(typeof(MappingProfiles).Assembly);
 

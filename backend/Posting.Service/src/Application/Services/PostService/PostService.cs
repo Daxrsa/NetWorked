@@ -17,12 +17,12 @@ namespace Application.Services.PostService
         public PostService(DataContext context, IMapper mapper, IFileService fileService)
         {
             _context = context;
-            _mapper = mapper;    
+            _mapper = mapper;
             _fileService = fileService;
         }
         public async Task<Result<List<PostDTO>>> AddPost(CreatePostDto postDto)
         {
-             try
+            try
             {
                 var post = _mapper.Map<Post>(postDto);
                 if (postDto.formFile != null)
@@ -35,7 +35,8 @@ namespace Application.Services.PostService
                 }
                 _context.Posts.Add(post);
                 var result = await _context.SaveChangesAsync() > 0;
-                if(!result) {
+                if (!result)
+                {
                     return Result<List<PostDTO>>.Failure("Failed to add the post.");
                 }
                 var candidates = await _context.Posts.ProjectTo<PostDTO>(_mapper.ConfigurationProvider).ToListAsync();
@@ -58,7 +59,8 @@ namespace Application.Services.PostService
                 }
                 _context.Posts.Remove(post);
                 var result = await _context.SaveChangesAsync() > 0;
-                if(!result) {
+                if (!result)
+                {
                     return Result<List<PostDTO>>.Failure("Failed to delete the post.");
                 }
                 var posts = await _context.Posts.ProjectTo<PostDTO>(_mapper.ConfigurationProvider).ToListAsync();
@@ -94,9 +96,12 @@ namespace Application.Services.PostService
             try
             {
                 var posts = await _context.Posts.ProjectTo<PostDTO>(_mapper.ConfigurationProvider).ToListAsync();
-                if (posts != null){
+                if (posts != null)
+                {
                     return Result<List<PostDTO>>.Success(posts);
-                }else{
+                }
+                else
+                {
                     return Result<List<PostDTO>>.Failure("No posts were found");
                 }
             }
@@ -108,18 +113,19 @@ namespace Application.Services.PostService
 
         public async Task<Result<List<PostDTO>>> UpdatePost(Guid id, PostDTO requestDto)
         {
-             try
+            try
             {
                 var post = await _context.Posts.FindAsync(id);
                 if (post is null)
                 {
                     return Result<List<PostDTO>>.Failure($"Post with id {id} not found.");
                 }
-                
+
                 _mapper.Map(requestDto, post);
 
                 var result = await _context.SaveChangesAsync() > 0;
-                if(!result) {
+                if (!result)
+                {
                     return Result<List<PostDTO>>.Failure("Failed to update the post.");
                 }
                 var candidates = await _context.Posts.ProjectTo<PostDTO>(_mapper.ConfigurationProvider).ToListAsync();

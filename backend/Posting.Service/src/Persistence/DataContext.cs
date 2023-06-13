@@ -15,7 +15,7 @@ namespace Persistence
 
             modelBuilder.Entity<Comment>()
             .HasOne(a => a.Post)
-            .WithMany(c => c.Comment)
+            .WithMany(c => c.Comments)
             .OnDelete(DeleteBehavior.Cascade);
         }
     }
