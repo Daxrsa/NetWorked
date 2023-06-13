@@ -3,9 +3,11 @@ using JobService.Core.Dtos;
 using JobService.Core.Dtos.Application;
 using JobService.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
 
 namespace JobService.Controllers
 {
+    [Authorize]
     [Route("api/v1/[controller]")]
     [ApiController]
     public class ApplicationController:ControllerBase

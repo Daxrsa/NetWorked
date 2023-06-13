@@ -1,3 +1,4 @@
+using System.Net.Http.Headers;
 using Application.DTOs;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -5,19 +6,17 @@ using Newtonsoft.Json;
 
 namespace API.Controllers
 {
-    //[Authorize]
+    [Authorize(Roles = "Applicant")]
     [ApiController]
     [Route("api/[controller]")]
     public class PostController : BaseApiController
     {
         private readonly HttpClient _httpClient;
-        private readonly string _userMicroserviceUrl;
         private readonly IPostService _postService;
         public PostController(IPostService postService, HttpClient httpClient, IConfiguration configuration)
         {
             _postService = postService;
             _httpClient = httpClient;
-             _userMicroserviceUrl = configuration.GetValue<string>("UserMicroserviceUrl");
         }
 
         [HttpGet("getLoggedInUserFromUserService")]
@@ -25,7 +24,26 @@ namespace API.Controllers
         {
             try
             {
-                var response = await _httpClient.GetAsync($"{_userMicroserviceUrl}/getLoggedInUser");
+                // var authorizationHeader = Request.Headers["Authorization"].ToString();
+
+                // if (string.IsNullOrEmpty(authorizationHeader))
+                // {
+                //     return BadRequest("Authorization header is missing.");
+                // }
+
+                // var tokenParts = authorizationHeader.Split(' ');
+
+                // if (tokenParts.Length < 2)
+                // {
+                //     return BadRequest("Invalid Authorization header format.");
+                // }
+
+                // var token = tokenParts[1];
+               var token = Request.Headers["Authorization"].ToString().Split(' ')[1];
+
+                _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+
+                var response = await _httpClient.GetAsync("http://localhost:5116/api/Auth/GetloggedInUser");
 
                 if (response.IsSuccessStatusCode)
                 {
@@ -38,19 +56,16 @@ namespace API.Controllers
             }
             catch (Exception ex)
             {
-                // Log the exception or handle it as needed
                 return StatusCode(500, ex.Message);
             }
         }
-
-        // Other endpoints and actions for the PostController
 
         [HttpGet]
         public async Task<ActionResult<List<PostDTO>>> GetAllPosts()
         {
             return HandleResult(await _postService.GetPosts());
         }
-        
+
         [HttpGet("{id}")]
         public async Task<ActionResult<PostDTO>> GetPostById(Guid id)
         {
@@ -58,7 +73,7 @@ namespace API.Controllers
         }
 
         [HttpPost("add")]
-        public async Task<ActionResult<List<PostDTO>>> AddPost([FromForm]CreatePostDto postDto)
+        public async Task<ActionResult<List<PostDTO>>> AddPost([FromForm] CreatePostDto postDto)
         {
             return HandleResult(await _postService.AddPost(postDto));
         }

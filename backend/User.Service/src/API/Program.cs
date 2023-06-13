@@ -1,13 +1,11 @@
 global using Application.Services.Auth;
 global using Application.Services.UserRepo;
-using API;
 using API.Middleware;
 using Application.Mapping;
 using Application.Services;
 using File.Package.FileService;
 using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.FileProviders;
 using Microsoft.IdentityModel.Tokens;

@@ -1,13 +1,15 @@
+using System.Text.Json.Serialization;
 using File.Package.FileService;
 using JobService.Core.AutoMapperConfig;
 using JobService.Data;
 using JobService.Services;
 using JobService.Services.Interfaces;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.FileProviders;
+using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using Swashbuckle.AspNetCore.Filters;
-using System.Text.Json.Serialization;
 
 namespace JobService
 {
@@ -42,7 +44,8 @@ namespace JobService
             builder.Services.AddEndpointsApiExplorer();
             //builder.Services.AddSwaggerGen();
 
-            builder.Services.AddSwaggerGen(c => {
+            builder.Services.AddSwaggerGen(c =>
+            {
                 c.AddSecurityDefinition("oauth2", new OpenApiSecurityScheme
                 {
                     Description = """Standard Authorization header using the Bearer scheme. Example: "bearer {token}" """,
@@ -52,6 +55,19 @@ namespace JobService
                 });
                 c.OperationFilter<SecurityRequirementsOperationFilter>();
             });
+
+            builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+      .AddJwtBearer(options =>
+      {
+          options.TokenValidationParameters = new TokenValidationParameters
+          {
+              ValidateIssuerSigningKey = true,
+              IssuerSigningKey = new SymmetricSecurityKey(System.Text.Encoding.UTF8
+            .GetBytes(builder.Configuration.GetSection("AppSettings:Token").Value!)),
+              ValidateIssuer = false,
+              ValidateAudience = false
+          };
+      });
 
             var app = builder.Build();
 
@@ -70,17 +86,24 @@ namespace JobService
                 .AllowAnyHeader();
             });
 
-            app.UseStaticFiles(new StaticFileOptions
-            {
-                FileProvider = new PhysicalFileProvider(
-                        Path.Combine(builder.Environment.ContentRootPath, "Documents\\Images")),
-                        RequestPath = "/Resources"
-                        });
+            // app.UseStaticFiles(new StaticFileOptions
+            // {
+            //     FileProvider = new PhysicalFileProvider(
+            //             Path.Combine(builder.Environment.ContentRootPath, "Documents\\Images")),
+            //     RequestPath = "/Resources"
+            // });
 
             app.UseRouting();
 
 
+            app.UseAuthentication();
+
+            app.UseAuthorization();
+
             app.MapControllers();
+
+
+
 
             app.Run();
         }

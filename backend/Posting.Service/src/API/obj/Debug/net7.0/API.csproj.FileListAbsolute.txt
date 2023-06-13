@@ -267,3 +267,7 @@ C:\Users\Razer\Documents\GitHub\NetWorked\backend\Posting.Service\src\API\bin\De
 C:\Users\Razer\Documents\GitHub\NetWorked\backend\Posting.Service\src\API\bin\Debug\net7.0\Microsoft.AspNetCore.Server.Kestrel.Transport.Abstractions.dll
 C:\Users\Razer\Documents\GitHub\NetWorked\backend\Posting.Service\src\API\bin\Debug\net7.0\File.Package.dll
 C:\Users\Razer\Documents\GitHub\NetWorked\backend\Posting.Service\src\API\bin\Debug\net7.0\Newtonsoft.Json.dll
+C:\Users\Razer\Documents\GitHub\NetWorked\backend\Posting.Service\src\API\bin\Debug\net7.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+C:\Users\Razer\Documents\GitHub\NetWorked\backend\Posting.Service\src\API\bin\Debug\net7.0\Scrutor.dll
+C:\Users\Razer\Documents\GitHub\NetWorked\backend\Posting.Service\src\API\bin\Debug\net7.0\Swashbuckle.AspNetCore.Filters.dll
+C:\Users\Razer\Documents\GitHub\NetWorked\backend\Posting.Service\src\API\bin\Debug\net7.0\Swashbuckle.AspNetCore.Filters.Abstractions.dll
