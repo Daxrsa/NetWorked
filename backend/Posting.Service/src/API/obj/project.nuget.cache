@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "KGvhKiii2r7tHM8tYsNFFSaRud5LFe5yqB3DXjhvQNRLw/4x4Z3Zy72xPdiIXyf+KkI907S1MkCcAytCEjhYJg==",
+  "dgSpecHash": "jsSSGgairVzwQKvx6HRffOkSKhLhmpVnhH+GYMo48Y8ej4XPXMkxnViBMiMsVzDhlBJdcArEcitU5mAYXiVlfQ==",
   "success": true,
-  "projectFilePath": "c:\\Users\\Razer\\Documents\\GitHub\\NetWorked\\backend\\Posting.Service\\src\\API\\API.csproj",
+  "projectFilePath": "C:\\Users\\Razer\\Documents\\GitHub\\NetWorked\\backend\\Posting.Service\\src\\API\\API.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Razer\\.nuget\\packages\\automapper\\12.0.1\\automapper.12.0.1.nupkg.sha512",
     "C:\\Users\\Razer\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\12.0.1\\automapper.extensions.microsoft.dependencyinjection.12.0.1.nupkg.sha512",

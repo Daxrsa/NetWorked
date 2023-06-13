@@ -3901,11 +3901,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "c:\\Users\\Razer\\Documents\\GitHub\\NetWorked\\backend\\Posting.Service\\src\\Application\\Application.csproj",
+      "projectUniqueName": "C:\\Users\\Razer\\Documents\\GitHub\\NetWorked\\backend\\Posting.Service\\src\\Application\\Application.csproj",
       "projectName": "Application",
-      "projectPath": "c:\\Users\\Razer\\Documents\\GitHub\\NetWorked\\backend\\Posting.Service\\src\\Application\\Application.csproj",
+      "projectPath": "C:\\Users\\Razer\\Documents\\GitHub\\NetWorked\\backend\\Posting.Service\\src\\Application\\Application.csproj",
       "packagesPath": "C:\\Users\\Razer\\.nuget\\packages\\",
-      "outputPath": "c:\\Users\\Razer\\Documents\\GitHub\\NetWorked\\backend\\Posting.Service\\src\\Application\\obj\\",
+      "outputPath": "C:\\Users\\Razer\\Documents\\GitHub\\NetWorked\\backend\\Posting.Service\\src\\Application\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Razer\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -3915,17 +3915,18 @@
         "net7.0"
       ],
       "sources": {
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
         "net7.0": {
           "targetAlias": "net7.0",
           "projectReferences": {
-            "c:\\Users\\Razer\\Documents\\GitHub\\NetWorked\\backend\\Posting.Service\\src\\Domain\\Domain.csproj": {
-              "projectPath": "c:\\Users\\Razer\\Documents\\GitHub\\NetWorked\\backend\\Posting.Service\\src\\Domain\\Domain.csproj"
+            "C:\\Users\\Razer\\Documents\\GitHub\\NetWorked\\backend\\Posting.Service\\src\\Domain\\Domain.csproj": {
+              "projectPath": "C:\\Users\\Razer\\Documents\\GitHub\\NetWorked\\backend\\Posting.Service\\src\\Domain\\Domain.csproj"
             },
-            "c:\\Users\\Razer\\Documents\\GitHub\\NetWorked\\backend\\Posting.Service\\src\\Persistence\\Persistence.csproj": {
-              "projectPath": "c:\\Users\\Razer\\Documents\\GitHub\\NetWorked\\backend\\Posting.Service\\src\\Persistence\\Persistence.csproj"
+            "C:\\Users\\Razer\\Documents\\GitHub\\NetWorked\\backend\\Posting.Service\\src\\Persistence\\Persistence.csproj": {
+              "projectPath": "C:\\Users\\Razer\\Documents\\GitHub\\NetWorked\\backend\\Posting.Service\\src\\Persistence\\Persistence.csproj"
             }
           }
         }

@@ -60,6 +60,8 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
 builder.Services.AddScoped<IPostService, PostService>();
 builder.Services.AddScoped<ILikesService, LikesService>();
 builder.Services.AddScoped<ICommentService, CommentService>();
+builder.Services.AddHttpClient();
+
 builder.Services.AddAutoMapper(typeof(MappingProfiles).Assembly);
 
 builder.Services.AddDbContext<DataContext>(opt =>

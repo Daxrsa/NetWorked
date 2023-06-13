@@ -21,63 +21,7 @@ namespace Application.Services.CommentService
             _httpClient = httpClient;
         }
 
-        public async Task<Result<List<CommentDTO>>> AddComment(Guid postId, CommentDTO commentDto)
-        {
-            try
-            {
-                var post = await _context.Posts.FindAsync(postId);
-
-                if (post == null)
-                {
-                    return Result<List<CommentDTO>>.Failure("Post not found.");
-                }
-
-                // Retrieve user information from the User microservice using an API call
-                var userMicroserviceUrl = "http://user-microservice/api/getLoggedInUser";
-                var response = await _httpClient.GetAsync(userMicroserviceUrl);
-
-                if (!response.IsSuccessStatusCode)
-                {
-                    return Result<List<CommentDTO>>.Failure("Failed to retrieve the logged-in user information.");
-                }
-
-                var userResponseContent = await response.Content.ReadAsStringAsync();
-                var user = JsonConvert.DeserializeObject<UserDTO>(userResponseContent);
-
-                // Create the comment DTO object with the retrieved user information
-                var commentDtoWithUser = new CommentDTO
-                {
-                    Author = user.Username,
-                    Body = commentDto.Body
-                };
-
-                var comment = _mapper.Map<Comment>(commentDtoWithUser);
-                comment.Post = post;
-
-                _context.Comments.Add(comment);
-
-                var result = await _context.SaveChangesAsync() > 0;
-
-                if (!result)
-                {
-                    return Result<List<CommentDTO>>.Failure("Failed to add the comment.");
-                }
-
-                var comments = await _context.Comments
-                    .Where(x => x.Post.Id == postId)
-                    .ProjectTo<CommentDTO>(_mapper.ConfigurationProvider)
-                    .ToListAsync();
-
-                return Result<List<CommentDTO>>.Success(comments);
-            }
-            catch (Exception ex)
-            {
-                return Result<List<CommentDTO>>.Failure(ex.Message);
-            }
-        }
-
-
-
+        
         public async Task<Result<List<CommentDTO>>> DeleteComment(int id)
         {
             try
@@ -120,12 +64,12 @@ namespace Application.Services.CommentService
             }
         }
 
-        public async Task<Result<List<CommentDTO>>> GetComments(PostDTO request)
+        public async Task<Result<List<CommentDTO>>> GetComments(Guid postId)
         {
             try
             {
                 var comments = await _context.Comments
-                    .Where(x => x.Post.Id == request.Id)
+                    .Where(x => x.Post.Id == postId)
                     .OrderBy(x => x.CreatedAt)
                     .ProjectTo<CommentDTO>(_mapper.ConfigurationProvider)
                     .ToListAsync();
