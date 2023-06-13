@@ -30,7 +30,7 @@ NotificationSchema.plugin(mongooseAlgolia, {
 appId: process.env.ALGOLIA_APP_ID || '', // Provide a default value if ALGOLIA_APP_ID is not defined
 apiKey: process.env.ALGOLIA_API_KEY || '', // Provide a default value if ALGOLIA_API_KEY is not defined
 indexName: "NETWORKED",
-selector: 'description',
+selector: 'username',
 debug: true,
 });
 
@@ -38,7 +38,7 @@ const NotificationModel = mongoose.model('Notification', NotificationSchema);
 
 NotificationModel.SyncToAlgolia(); // Clear the Algolia index and synchronize all documents
 NotificationModel.SetAlgoliaSettings({
-searchableAttributes: ["description"],
+searchableAttributes: ["username"],
 });
 
 export default NotificationModel;
