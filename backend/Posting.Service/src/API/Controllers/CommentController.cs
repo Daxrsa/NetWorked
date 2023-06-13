@@ -11,7 +11,7 @@ namespace API.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class CommentController : BaseApiController
+    public class CommentController : ControllerBase
     {
         private readonly ICommentService _commentService;
         private readonly DataContext _context;
@@ -29,14 +29,14 @@ namespace API.Controllers
         [HttpGet]
         public async Task<ActionResult<List<CommentDTO>>> GetComments(Guid postId)
         {
-            return HandleResult(await _commentService.GetComments(postId));
+            return Ok(await _commentService.GetComments(postId));
         }
 
 
         [HttpGet("{id}")]
         public async Task<ActionResult<CommentDTO>> GetCommentById(int id)
         {
-            return HandleResult(await _commentService.GetCommentById(id));
+            return Ok(await _commentService.GetCommentById(id));
         }
 
         [HttpPost("add")]
@@ -102,13 +102,13 @@ namespace API.Controllers
         [HttpPut("{id}/edit")]
         public async Task<ActionResult<List<CommentDTO>>> UpdateComment(int id, CommentDTO request)
         {
-            return HandleResult(await _commentService.UpdateComment(id, request));
+            return Ok(await _commentService.UpdateComment(id, request));
         }
 
         [HttpDelete("{id}")]
         public async Task<ActionResult<List<CommentDTO>>> DeleteComment(int id)
         {
-            return HandleResult(await _commentService.DeleteComment(id));
+            return Ok(await _commentService.DeleteComment(id));
         }
     }
 }

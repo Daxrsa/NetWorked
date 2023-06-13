@@ -8,7 +8,7 @@ namespace API.Controllers
     //[Authorize]
     [ApiController]
     [Route("api/[controller]")]
-    public class LikesController : BaseApiController
+    public class LikesController : ControllerBase
     {
         public readonly ILikesService _likeService;
         public LikesController(ILikesService likeService)
@@ -19,13 +19,13 @@ namespace API.Controllers
         [HttpPost("{id}/like")]
         public async Task<ActionResult<PostDTO>> LikePost(Guid id)
         {
-            return HandleResult(await _likeService.LikePost(id));
+            return Ok(await _likeService.LikePost(id));
         }
 
         [HttpPost("{id}/unlike")]
         public async Task<ActionResult<PostDTO>> UnlikePost(Guid id)
         {
-            return HandleResult(await _likeService.UnlikePost(id));
+            return Ok(await _likeService.UnlikePost(id));
         }
     }
 }

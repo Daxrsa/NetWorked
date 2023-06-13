@@ -1,3 +1,4 @@
+using System.Net.Http.Headers;
 using Application.Core;
 using Application.DTOs;
 using AutoMapper;
@@ -5,6 +6,7 @@ using AutoMapper.QueryableExtensions;
 using Domain;
 using File.Package.FileService;
 using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json;
 using Persistence;
 
 namespace Application.Services.PostService
@@ -14,11 +16,14 @@ namespace Application.Services.PostService
         private readonly IMapper _mapper;
         public readonly DataContext _context;
         private readonly IFileService _fileService;
-        public PostService(DataContext context, IMapper mapper, IFileService fileService)
+        private readonly HttpClient _httpClient;
+
+        public PostService(DataContext context, IMapper mapper, IFileService fileService, HttpClient httpClient)
         {
             _context = context;
             _mapper = mapper;
             _fileService = fileService;
+            _httpClient = httpClient;
         }
         public async Task<Result<List<PostDTO>>> AddPost(CreatePostDto postDto)
         {
@@ -39,8 +44,8 @@ namespace Application.Services.PostService
                 {
                     return Result<List<PostDTO>>.Failure("Failed to add the post.");
                 }
-                var candidates = await _context.Posts.ProjectTo<PostDTO>(_mapper.ConfigurationProvider).ToListAsync();
-                return Result<List<PostDTO>>.Success(candidates);
+                var posts = await _context.Posts.ProjectTo<PostDTO>(_mapper.ConfigurationProvider).ToListAsync();
+                return Result<List<PostDTO>>.Success(posts);
             }
             catch (Exception ex)
             {
