@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 const SearchContainer = styled.div`
   display: flex;
@@ -38,14 +39,17 @@ const SearchButton = styled.button`
 `;
 
 const SearchComponent = () => {
+  const navigate = useNavigate();
   const [searchQuery, setSearchQuery] = useState('');
   const [searchResults, setSearchResults] = useState([]);
 
   const handleSearch = async () => {
     try {
-      const response = await axios.post('http://localhost:8800/notifications/search', { description: searchQuery });
+      const response = await axios.post('http://localhost:8800/notifications/search', { username: searchQuery });
       console.log(response.data)
       setSearchResults(response.data);
+      // Navigate to a new page passing the searchQuery as a URL parameter
+      navigate(`/user/${searchQuery}`);
     } catch (error) {
       console.log(error);
     }
