@@ -97,7 +97,7 @@ namespace JobService.Controllers
                 ApplicationId = dto.Id
             };
 
-            _messageProducer.SendMessage<DTO>(profileMatchingResult);
+            _messageProducer.SendMessage<DTO>(profileMatchingResult, "profile_match_service");
 
             var status = new Status()
             {

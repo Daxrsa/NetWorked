@@ -17,16 +17,16 @@ namespace JobService.RabbitMqConfig
             _password = "guest";
             _username = "guest";
         }
-        public void SendMessage<T>(T message)
+        public void SendMessage<T>(T message, string queueName)
         {
             if (ConnectionExists())
             {
                 using IModel channel = _connection.CreateModel();
-                channel.QueueDeclare("user",durable: true, exclusive: false);
+                channel.QueueDeclare(queueName, durable: true, exclusive: false);
 
                 var jsonString = JsonSerializer.Serialize(message);
                 var body = Encoding.UTF8.GetBytes(jsonString);
-                channel.BasicPublish("", "user", body: body);
+                channel.BasicPublish("", queueName, body: body);
             }
             else
             {
