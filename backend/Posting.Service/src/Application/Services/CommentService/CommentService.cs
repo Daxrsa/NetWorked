@@ -21,7 +21,6 @@ namespace Application.Services.CommentService
             _httpClient = httpClient;
         }
 
-        
         public async Task<Result<List<CommentDTO>>> DeleteComment(int id)
         {
             try
@@ -108,5 +107,36 @@ namespace Application.Services.CommentService
                 return Result<List<CommentDTO>>.Failure(ex.Message);
             }
         }
+
+        public async Task<Result<List<CommentDTO>>> AddCommentToPost(Guid postId, CommentDTO commentDto)
+        {
+            try
+            {
+                var post = await _context.Posts.FindAsync(postId);
+
+                if (post == null)
+                {
+                    return Result<List<CommentDTO>>.Failure($"Post with ID {postId} not found.");
+                }
+
+                var comment = _mapper.Map<Comment>(commentDto);
+                comment.Post = post;
+                _context.Comments.Add(comment);
+
+                await _context.SaveChangesAsync();
+
+                var comments = await _context.Comments
+                    .Where(c => c.PostId == postId)
+                    .ProjectTo<CommentDTO>(_mapper.ConfigurationProvider)
+                    .ToListAsync();
+
+                return Result<List<CommentDTO>>.Success(comments);
+            }
+            catch (Exception ex)
+            {
+                return Result<List<CommentDTO>>.Failure(ex.Message);
+            }
+        }
+
     }
 }

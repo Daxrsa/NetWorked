@@ -6,7 +6,7 @@ using Newtonsoft.Json;
 
 namespace API.Controllers
 {
-    [Authorize(Roles = "Applicant")]
+    //[Authorize(Roles = "Applicant")]
     [ApiController]
     [Route("api/[controller]")]
     public class PostController : BaseApiController
@@ -23,13 +23,13 @@ namespace API.Controllers
         [HttpGet]
         public async Task<ActionResult<List<PostDTO>>> GetAllPosts()
         {
-            return Ok(await _postService.GetPosts());
+            return HandleResult(await _postService.GetPosts());
         }
 
         [HttpGet("{id}")]
         public async Task<ActionResult<PostDTO>> GetPostById(Guid id)
         {
-            return Ok(await _postService.GetPostById(id));
+            return HandleResult(await _postService.GetPostById(id));
         }
 
         [HttpPost("add")]
@@ -48,7 +48,7 @@ namespace API.Controllers
                     var content = await response.Content.ReadAsStringAsync();
                     var loggedInUser = JsonConvert.DeserializeObject<UserDTO>(content);
                     postDto.Username = loggedInUser.Username;
-                    return Ok(await _postService.AddPost(postDto));
+                    return HandleResult(await _postService.AddPost(postDto)); //was Ok()
                 }
 
                 return BadRequest("Failed to retrieve the logged-in user.");
@@ -62,13 +62,19 @@ namespace API.Controllers
         [HttpPut("{id}/edit")]
         public async Task<ActionResult<List<PostDTO>>> UpdatePost(Guid id, PostDTO request)
         {
-            return Ok(await _postService.UpdatePost(id, request));
+            return HandleResult(await _postService.UpdatePost(id, request));
         }
 
         [HttpDelete("{id}")]
         public async Task<ActionResult<List<PostDTO>>> DeletePost(Guid id)
         {
-            return Ok(await _postService.DeletePost(id));
+            return HandleResult(await _postService.DeletePost(id));
+        }
+
+        [HttpGet("filter-posts")]
+        public async Task<ActionResult<List<PostDTO>>> FilterPosts(string username) //for user's profile posts
+        {
+            return HandleResult(await _postService.FilterPostsByUser(username));
         }
     }
 }

@@ -7,6 +7,5 @@ namespace Application.DTOs
         public string Body { get; set; }
         public string Author { get; set; }
         public string Fullname { get; set; }
-        //edhe nji image property na duhet ma von
     }
 }

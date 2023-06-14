@@ -1,3 +1,4 @@
+using System.Net.Http.Headers;
 using Application.DTOs;
 using Application.Services.CommentService;
 using AutoMapper;
@@ -11,19 +12,15 @@ namespace API.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class CommentController : ControllerBase
+    public class CommentController : BaseApiController
     {
         private readonly ICommentService _commentService;
-        private readonly DataContext _context;
         private readonly HttpClient _httpClient;
-        private readonly IMapper _mapper;
 
-        public CommentController(ICommentService commentService, DataContext context, HttpClient httpClient, IMapper mapper)
+        public CommentController(ICommentService commentService, HttpClient httpClient)
         {
             _commentService = commentService;
-            _context = context;
             _httpClient = httpClient;
-            _mapper = mapper;
         }
 
         [HttpGet]
@@ -32,7 +29,6 @@ namespace API.Controllers
             return Ok(await _commentService.GetComments(postId));
         }
 
-
         [HttpGet("{id}")]
         public async Task<ActionResult<CommentDTO>> GetCommentById(int id)
         {
@@ -40,62 +36,29 @@ namespace API.Controllers
         }
 
         [HttpPost("add")]
-        // public async Task<ActionResult<List<CommentDTO>>> AddComment(Guid postId, CommentDTO commentDto)
-        // {
-        //     return HandleResult(await _commentService.AddComment(postId, commentDto));
-        // }
-        public async Task<ActionResult<CommentDTO>> AddComment(Guid postId, CommentDTO commentDto)
+        public async Task<ActionResult<List<CommentDTO>>> AddCommentToPost(Guid postId, CommentDTO commentDto)
         {
             try
             {
-                var post = await _context.Posts.FindAsync(postId);
+                var token = Request.Headers["Authorization"].ToString().Split(' ')[1];
 
-                if (post == null)
+                _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+
+                var response = await _httpClient.GetAsync("http://localhost:5116/api/Auth/GetloggedInUser");
+
+                if (response.IsSuccessStatusCode)
                 {
-                    return BadRequest("Post not found.");
+                    var content = await response.Content.ReadAsStringAsync();
+                    var loggedInUser = JsonConvert.DeserializeObject<UserDTO>(content);
+                    commentDto.Author = loggedInUser.Username;
+                    return HandleResult(await _commentService.AddCommentToPost(postId, commentDto));
                 }
 
-                // Retrieve user information from the User microservice using an API call
-                var userMicroserviceUrl = "http://localhost:5116/api/Auth/GetloggedInUser";
-                var response = await _httpClient.GetAsync(userMicroserviceUrl);
-
-                if (!response.IsSuccessStatusCode)
-                {
-                    return BadRequest("Failed to retrieve the logged-in user information.");
-                }
-
-                var userResponseContent = await response.Content.ReadAsStringAsync();
-                var user = JsonConvert.DeserializeObject<UserDTO>(userResponseContent);
-
-                // Create the comment DTO object with the retrieved user information
-                var commentDtoWithUser = new CommentDTO
-                {
-                    Author = user.Username,
-                    Body = commentDto.Body
-                };
-
-                var comment = _mapper.Map<Comment>(commentDtoWithUser);
-                comment.Post = post;
-
-                _context.Comments.Add(comment);
-
-                var result = await _context.SaveChangesAsync() > 0;
-
-                if (!result)
-                {
-                    return BadRequest("Failed to add the comment.");
-                }
-
-                var comments = await _context.Comments
-                    .Where(x => x.Post.Id == postId)
-                    .ProjectTo<CommentDTO>(_mapper.ConfigurationProvider)
-                    .ToListAsync();
-
-                return Ok(comments);
+                return BadRequest("Failed to retrieve the logged-in user.");
             }
             catch (Exception ex)
             {
-                throw new Exception(ex.Message);
+                return BadRequest(ex.Message);
             }
         }
 

@@ -141,5 +141,28 @@ namespace Application.Services.PostService
                 return Result<List<PostDTO>>.Failure(ex.Message);
             }
         }
+
+        public async Task<Result<List<PostDTO>>> FilterPostsByUser(string username)
+        {
+            try
+            {
+                var userPosts = await _context.Posts
+                    .Where(p => p.Username == username)
+                    .ToListAsync();
+
+                if (userPosts.Count == 0)
+                {
+                    return Result<List<PostDTO>>.Failure($"No posts found for user: {username}");
+                }
+
+                var postDtos = _mapper.Map<List<PostDTO>>(userPosts);
+
+                return Result<List<PostDTO>>.Success(postDtos);
+            }
+            catch (Exception ex)
+            {
+                return Result<List<PostDTO>>.Failure(ex.Message);
+            }
+        }
     }
 }
