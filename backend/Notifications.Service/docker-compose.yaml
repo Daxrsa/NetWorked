@@ -1,0 +1,6 @@
+version: '3'
+services:
+  notifications:
+    image: erosi321/notifications-service:latest
+    ports:
+      - 8800:8800

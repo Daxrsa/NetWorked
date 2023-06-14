@@ -2,6 +2,7 @@ using System.Text.Json.Serialization;
 using File.Package.FileService;
 using JobService.Core.AutoMapperConfig;
 using JobService.Data;
+using JobService.RabbitMqConfig;
 using JobService.Services;
 using JobService.Services.Interfaces;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -34,6 +35,8 @@ namespace JobService
             builder.Services.AddScoped<IApplication, ApplicationService>();
             builder.Services.AddScoped<ISearch, SearchService>();
             builder.Services.AddTransient<IFileService, FileService>();
+            builder.Services.AddScoped<IMessageProducer, RabbitMqMessageSender>();
+            builder.Services.AddScoped<IGetJobReq, JobPositionService>();
 
             builder.Services.AddControllers()
                 .AddJsonOptions(options =>
@@ -86,12 +89,12 @@ namespace JobService
                 .AllowAnyHeader();
             });
 
-            // app.UseStaticFiles(new StaticFileOptions
-            // {
-            //     FileProvider = new PhysicalFileProvider(
-            //             Path.Combine(builder.Environment.ContentRootPath, "Documents\\Images")),
-            //     RequestPath = "/Resources"
-            // });
+            app.UseStaticFiles(new StaticFileOptions
+            {
+                FileProvider = new PhysicalFileProvider(
+                        Path.Combine(builder.Environment.ContentRootPath, "Uploads\\Images")),
+                        RequestPath = "/Resources"
+                        });
 
             app.UseRouting();
 

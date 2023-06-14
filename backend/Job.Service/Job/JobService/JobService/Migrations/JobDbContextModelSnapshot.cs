@@ -24,20 +24,32 @@ namespace JobService.Migrations
 
             modelBuilder.Entity("JobService.Core.Models.Application", b =>
                 {
-                    b.Property<int>("JobId")
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<Guid>("ApplicantId")
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<string>("ApplicantName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<DateTime>("DateApplied")
                         .HasColumnType("datetime2");
+
+                    b.Property<int>("JobId")
+                        .HasColumnType("int");
 
                     b.Property<string>("ResumeUrl")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("JobId", "ApplicantId");
+                    b.HasKey("Id");
+
+                    b.HasIndex("JobId");
 
                     b.ToTable("Applications");
                 });

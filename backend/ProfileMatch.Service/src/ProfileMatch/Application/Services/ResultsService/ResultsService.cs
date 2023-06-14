@@ -25,8 +25,7 @@ namespace Application.Services.ResultsService
             {
                 int review = _calculate.GetReview(entity.ResumeReview);
                 int similarities = _calculate.CountSimilarities(entity.JobRequirements, entity.ApplicantSkills);
-                var arrayLength = entity.JobRequirements.Count();
-                double result = _calculate.GetPercentage(similarities, arrayLength, review);
+                double result = _calculate.GetPercentage(similarities, entity.JobRequirements, review);
                 var MatchingResult = new ProfileMatchingResult()
                 {
                     Result = result,
@@ -64,8 +63,6 @@ namespace Application.Services.ResultsService
                 return false;
             }
         }
-
-        
 
         public async Task<ResultReadDto> GetById(Guid id)
         {

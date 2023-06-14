@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using System.Net.Http.Headers;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using JobService.RabbitMqConfig;
 
 namespace JobService.Controllers
 {
@@ -14,9 +15,11 @@ namespace JobService.Controllers
     public class JobPositionController: ControllerBase
     {
         private readonly IJobPosition _contract;
-        public JobPositionController(IJobPosition contract)
+        private readonly IMessageProducer _messageProducer;
+        public JobPositionController(IJobPosition contract, IMessageProducer messageProducer)
         {
             _contract = contract;
+            _messageProducer = messageProducer;
         }
 
         [HttpGet]
@@ -36,7 +39,7 @@ namespace JobService.Controllers
         {
             var token = Request.Headers["Authorization"].ToString().Split(' ')[1];
 
-            //get user data
+            // Get user data
             using (var httpClient = new HttpClient())
             {
                 httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
@@ -48,23 +51,19 @@ namespace JobService.Controllers
                 _contract.Add(dto);
             }
 
-            //send notification on job creation
-                var newNotification = new
-                {
-                    description = dto.Description
-                };
-
-                var notificationContent = new StringContent(JsonConvert.SerializeObject(newNotification));
-                notificationContent.Headers.ContentType = new MediaTypeHeaderValue("application/json");
-
-            using (var httpClient = new HttpClient())
+            // Send notification on job creation
+            var newNotification = new NotificationsDTO
             {
-                httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+                Description = dto.Description,
+                Username = dto.Username
+            };
 
-                var response = await httpClient.PostAsync("http://localhost:8800/notifications", notificationContent);
-            }
+           
+
+            _messageProducer.SendMessage<NotificationsDTO>(newNotification, "notifications_service");
             return Ok(dto);
         }
+
 
         [HttpDelete("{id}")]
         public async Task<ActionResult> DeleteJob(int id)

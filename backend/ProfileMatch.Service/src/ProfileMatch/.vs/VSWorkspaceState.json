@@ -2,7 +2,6 @@
   "ExpandedNodes": [
     "",
     "\\Application",
-    "\\Application\\Core",
     "\\Application\\Services",
     "\\Application\\Services\\ResultsService",
     "\\Domain",
@@ -12,6 +11,6 @@
     "\\Persistance",
     "\\Persistance\\Migrations"
   ],
-  "SelectedNode": "\\Application\\Services\\ResultsService\\IResultsRepo.cs",
+  "SelectedNode": "\\Application\\Services\\ResultsService\\ResultsService.cs",
   "PreviewInSolutionExplorer": false
 }

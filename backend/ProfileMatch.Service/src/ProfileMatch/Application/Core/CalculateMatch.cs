@@ -20,7 +20,7 @@
             }
         }
 
-        //Kjo metod kthen numrin e skills te ngjashme ne mes te kerkesave te job dhe aftesive te aplikuesit
+        //Kjo metod ka mu perdor later ne permiresim
         public int CountSimilarities(List<string> jobRequirements, List<string> applicantSkills)
         {
             HashSet<string> uniqueSkills = new HashSet<string>(jobRequirements.SelectMany(skill => skill.ToLower().Split(' ')));
@@ -43,12 +43,27 @@
             return count;
         }
 
+        //simplified method
+        public int CountSimilarities(string jobRequirements, string skills)
+        {
+            jobRequirements = jobRequirements.ToLower();
+            skills = skills.ToLower();
+
+            string[] jobReqs = jobRequirements.Split(new char[] { ' ', ',' }, StringSplitOptions.RemoveEmptyEntries);
+            string[] applicantSkills = skills.Split(new char[] { ' ', ',' }, StringSplitOptions.RemoveEmptyEntries);
+
+            var similarities = jobReqs.Intersect(applicantSkills).ToList();
+            return similarities.Count;
+        }
+
         //return matching percentage
-        public double GetPercentage(int similarities, int requirements, int? review)
+        public double GetPercentage(int similarities, string jobRequirements, int? review)
         {
             try
             {
-                double result = ((double)similarities / requirements) * 100;
+                string[] jobReqs = jobRequirements.Split(new char[] { ' ', ',' }, StringSplitOptions.RemoveEmptyEntries);
+                int length = jobReqs.Length;
+                double result = ((double)similarities / length) * 100;
                 if(review.HasValue)
                 {
                     result += review.Value;
@@ -61,7 +76,7 @@
         }
 
         //just a test method
-        public double GetScore()
+       /* public double GetScore()
         {
             List<string> jobReq = new List<string> { "Frontend Developer","Java","Javascript","Backend", "Full stack", "DevKm"};
             List<string> skills = new List<string> { "Frontend", "java","full", "StaCk", "DevkM"};
@@ -70,6 +85,6 @@
             int length = jobReq.Count();
 
             return GetPercentage(similarities, length,3);
-        }
+        }*/
     }
 }

@@ -7,6 +7,17 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Clients\**" />
+    <Compile Remove="Documents\**" />
+    <Content Remove="Clients\**" />
+    <Content Remove="Documents\**" />
+    <EmbeddedResource Remove="Clients\**" />
+    <EmbeddedResource Remove="Documents\**" />
+    <None Remove="Clients\**" />
+    <None Remove="Documents\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.1" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="7.0.5" />
     <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="7.0.5" />
@@ -19,13 +30,9 @@
     <PackageReference Include="Microsoft.Extensions.Http" Version="7.0.0" />
     <PackageReference Include="Networked.Utilities.FileManager" Version="1.0.0" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+    <PackageReference Include="RabbitMQ.Client" Version="6.5.0" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
     <PackageReference Include="Swashbuckle.AspNetCore.Filters" Version="7.0.6" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Clients\" />
-    <Folder Include="Documents\pdfs\" />
   </ItemGroup>
 
 </Project>
