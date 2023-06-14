@@ -13,11 +13,14 @@ import {
 import Header from "../DesktopHeader";
 import EditProfile from "./EditProfile";
 import axios from "axios";
-import UserPostList from '../Posts/UserPostList'
+import UserPosts from "../Posts/UserPosts";
+import { Post } from "../../models/Post";
 
 export default function ProfilePage() {
 
   //axios states:-----------------------------------------------------------------------
+
+  const [posts, setPosts] = useState<Post[]>([]);
 
   const [isEditMode, setIsEditMode] = useState(false);
   const [loggedInUserName, setLoggedInUsername] = useState(null);
@@ -73,9 +76,23 @@ export default function ProfilePage() {
       setLoggedInSkills(data.skills);
       setLoggedInBio(data.bio);
     } catch (error) {
-      alert("Error fetching logged-in user:", error);
+      alert("Error fetching logged-in user.");
     }
   };
+
+  useEffect(() => {
+    const token = localStorage.getItem("jwtToken");
+    axios
+      .get<Post[]>("http://localhost:5263/api/Post/filter-posts", {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .then((response) => {
+        console.log(response);
+        setPosts(response.data);
+      });
+  }, []);
 
   return (
     <section style={{ backgroundColor: "#eee" }}>
@@ -189,7 +206,7 @@ export default function ProfilePage() {
           <MDBBtn onClick={handleEditClick}>Edit</MDBBtn>
         )}
         <hr />
-        <UserPostList />
+        <UserPosts posts={posts}/>
       </MDBContainer>
     </section>
   );
