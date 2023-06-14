@@ -28,6 +28,11 @@ router.post('/', async (req, res) => {
       // Process the received message
       const receivedMessage = JSON.parse(msg.content.toString());
       const { Username, Description } = receivedMessage;
+      const newNotification = new Notification({
+        username: Username,
+        description: Description
+      });
+      const savedNotification =  newNotification.save();
       console.log('Received message:', receivedMessage);
 
       // Set the response JSON with only Username and Description
