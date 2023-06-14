@@ -10,7 +10,7 @@ using JobService.RabbitMqConfig;
 
 namespace JobService.Controllers
 {
-    [Authorize]
+    //[Authorize]
     [Route("api/v1/[controller]")]
     [ApiController]
     public class ApplicationController:ControllerBase
@@ -70,6 +70,7 @@ namespace JobService.Controllers
         [HttpPost]
         public async Task<ActionResult> Apply([FromForm] ApplicationCreateDto dto, IFormFile file)
         {
+            int counter = 1;
             var token = Request.Headers["Authorization"].ToString().Split(' ')[1];
             string userSkills = "";
             //get user data
@@ -84,7 +85,7 @@ namespace JobService.Controllers
                 userSkills = responseJson["skills"].ToString();
                 Console.WriteLine(userId);
                 dto.ApplicantId = userId;
-                dto.ApplicantName= username;
+                dto.ApplicantName = username;
             }
 
             var jobReq = _getJobReq.GetJobReqById(dto.JobId);
@@ -94,11 +95,10 @@ namespace JobService.Controllers
             {
                 ApplicantSkills = userSkills,
                 JobRequirements = jobReq,
-                ApplicationId = dto.Id
+                ApplicationId = counter++
             };
 
             _messageProducer.SendMessage<DTO>(profileMatchingResult, "profile_match_service");
-
             var status = new Status()
             {
                 StatusCode = result ? 1 : 0,

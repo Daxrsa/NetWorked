@@ -1,3 +1,9 @@
+C:\Users\fitor\ProjektiLab2\NetWorked\backend\ProfileMatch.Service\src\ProfileMatch\API\obj\Debug\net7.0\API.csproj.AssemblyReference.cache
+C:\Users\fitor\ProjektiLab2\NetWorked\backend\ProfileMatch.Service\src\ProfileMatch\API\obj\Debug\net7.0\API.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\fitor\ProjektiLab2\NetWorked\backend\ProfileMatch.Service\src\ProfileMatch\API\obj\Debug\net7.0\API.AssemblyInfoInputs.cache
+C:\Users\fitor\ProjektiLab2\NetWorked\backend\ProfileMatch.Service\src\ProfileMatch\API\obj\Debug\net7.0\API.AssemblyInfo.cs
+C:\Users\fitor\ProjektiLab2\NetWorked\backend\ProfileMatch.Service\src\ProfileMatch\API\obj\Debug\net7.0\API.csproj.CoreCompileInputs.cache
+C:\Users\fitor\ProjektiLab2\NetWorked\backend\ProfileMatch.Service\src\ProfileMatch\API\obj\Debug\net7.0\API.MvcApplicationPartsAssemblyInfo.cache
 C:\Users\fitor\ProjektiLab2\NetWorked\backend\ProfileMatch.Service\src\ProfileMatch\API\bin\Debug\net7.0\appsettings.Development.json
 C:\Users\fitor\ProjektiLab2\NetWorked\backend\ProfileMatch.Service\src\ProfileMatch\API\bin\Debug\net7.0\appsettings.json
 C:\Users\fitor\ProjektiLab2\NetWorked\backend\ProfileMatch.Service\src\ProfileMatch\API\bin\Debug\net7.0\API.exe
@@ -31,6 +37,8 @@ C:\Users\fitor\ProjektiLab2\NetWorked\backend\ProfileMatch.Service\src\ProfileMa
 C:\Users\fitor\ProjektiLab2\NetWorked\backend\ProfileMatch.Service\src\ProfileMatch\API\bin\Debug\net7.0\Microsoft.SqlServer.Server.dll
 C:\Users\fitor\ProjektiLab2\NetWorked\backend\ProfileMatch.Service\src\ProfileMatch\API\bin\Debug\net7.0\Microsoft.Win32.SystemEvents.dll
 C:\Users\fitor\ProjektiLab2\NetWorked\backend\ProfileMatch.Service\src\ProfileMatch\API\bin\Debug\net7.0\Mono.TextTemplating.dll
+C:\Users\fitor\ProjektiLab2\NetWorked\backend\ProfileMatch.Service\src\ProfileMatch\API\bin\Debug\net7.0\Newtonsoft.Json.dll
+C:\Users\fitor\ProjektiLab2\NetWorked\backend\ProfileMatch.Service\src\ProfileMatch\API\bin\Debug\net7.0\RabbitMQ.Client.dll
 C:\Users\fitor\ProjektiLab2\NetWorked\backend\ProfileMatch.Service\src\ProfileMatch\API\bin\Debug\net7.0\Swashbuckle.AspNetCore.Swagger.dll
 C:\Users\fitor\ProjektiLab2\NetWorked\backend\ProfileMatch.Service\src\ProfileMatch\API\bin\Debug\net7.0\Swashbuckle.AspNetCore.SwaggerGen.dll
 C:\Users\fitor\ProjektiLab2\NetWorked\backend\ProfileMatch.Service\src\ProfileMatch\API\bin\Debug\net7.0\Swashbuckle.AspNetCore.SwaggerUI.dll
@@ -61,13 +69,7 @@ C:\Users\fitor\ProjektiLab2\NetWorked\backend\ProfileMatch.Service\src\ProfileMa
 C:\Users\fitor\ProjektiLab2\NetWorked\backend\ProfileMatch.Service\src\ProfileMatch\API\bin\Debug\net7.0\Application.pdb
 C:\Users\fitor\ProjektiLab2\NetWorked\backend\ProfileMatch.Service\src\ProfileMatch\API\bin\Debug\net7.0\Domain.pdb
 C:\Users\fitor\ProjektiLab2\NetWorked\backend\ProfileMatch.Service\src\ProfileMatch\API\bin\Debug\net7.0\Persistence.pdb
-C:\Users\fitor\ProjektiLab2\NetWorked\backend\ProfileMatch.Service\src\ProfileMatch\API\obj\Debug\net7.0\API.csproj.AssemblyReference.cache
-C:\Users\fitor\ProjektiLab2\NetWorked\backend\ProfileMatch.Service\src\ProfileMatch\API\obj\Debug\net7.0\API.GeneratedMSBuildEditorConfig.editorconfig
-C:\Users\fitor\ProjektiLab2\NetWorked\backend\ProfileMatch.Service\src\ProfileMatch\API\obj\Debug\net7.0\API.AssemblyInfoInputs.cache
-C:\Users\fitor\ProjektiLab2\NetWorked\backend\ProfileMatch.Service\src\ProfileMatch\API\obj\Debug\net7.0\API.AssemblyInfo.cs
-C:\Users\fitor\ProjektiLab2\NetWorked\backend\ProfileMatch.Service\src\ProfileMatch\API\obj\Debug\net7.0\API.csproj.CoreCompileInputs.cache
 C:\Users\fitor\ProjektiLab2\NetWorked\backend\ProfileMatch.Service\src\ProfileMatch\API\obj\Debug\net7.0\API.MvcApplicationPartsAssemblyInfo.cs
-C:\Users\fitor\ProjektiLab2\NetWorked\backend\ProfileMatch.Service\src\ProfileMatch\API\obj\Debug\net7.0\API.MvcApplicationPartsAssemblyInfo.cache
 C:\Users\fitor\ProjektiLab2\NetWorked\backend\ProfileMatch.Service\src\ProfileMatch\API\obj\Debug\net7.0\staticwebassets\msbuild.API.Microsoft.AspNetCore.StaticWebAssets.props
 C:\Users\fitor\ProjektiLab2\NetWorked\backend\ProfileMatch.Service\src\ProfileMatch\API\obj\Debug\net7.0\staticwebassets\msbuild.build.API.props
 C:\Users\fitor\ProjektiLab2\NetWorked\backend\ProfileMatch.Service\src\ProfileMatch\API\obj\Debug\net7.0\staticwebassets\msbuild.buildMultiTargeting.API.props

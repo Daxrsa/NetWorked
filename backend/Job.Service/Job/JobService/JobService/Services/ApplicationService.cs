@@ -63,9 +63,9 @@ namespace JobService.Services
             try
             {
                 var a = _mapper.Map<Application>(dto);
+                await _context.Applications.AddAsync(a);
                 a.ResumeUrl = _fileService.SavePdfAsync(file).Result;
                 Console.WriteLine(a.ResumeUrl);
-                await _context.Applications.AddAsync(a);
                 await _context.SaveChangesAsync();
 
                 return true;

@@ -3,7 +3,9 @@ using AutoMapper;
 using Domain.DTOs;
 using Domain.Models;
 using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json;
 using Persistence;
+using System.Text.Json.Serialization;
 
 namespace Application.Services.ResultsService
 {
@@ -12,7 +14,7 @@ namespace Application.Services.ResultsService
         private readonly ProfileMatchDbContext _context;
         private readonly IMapper _mapper;
         private readonly CalculateMatch _calculate;
-        public ResultsService(ProfileMatchDbContext context, IMapper mapper, CalculateMatch calculate)
+        public ResultsService(ProfileMatchDbContext context, IMapper mapper, CalculateMatch calculate )
         {
             _context = context;
             _mapper = mapper;
@@ -23,6 +25,9 @@ namespace Application.Services.ResultsService
         {
             try
             {
+                //var message = _messageConsumer.getMessage("profile_match_service");
+                //ConsumerDTO consumer = JsonConvert.DeserializeObject<ConsumerDTO>(message);
+
                 int review = _calculate.GetReview(entity.ResumeReview);
                 int similarities = _calculate.CountSimilarities(entity.JobRequirements, entity.ApplicantSkills);
                 double result = _calculate.GetPercentage(similarities, entity.JobRequirements, review);

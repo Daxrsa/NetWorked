@@ -28,8 +28,8 @@ namespace Persistence.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid>("ApplicationId")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<int>("ApplicationId")
+                        .HasColumnType("int");
 
                     b.Property<double>("Result")
                         .HasColumnType("float");

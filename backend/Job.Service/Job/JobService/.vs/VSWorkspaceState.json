@@ -5,13 +5,12 @@
     "\\JobService\\Core",
     "\\JobService\\Core\\AutoMapperConfig",
     "\\JobService\\Core\\Dtos",
-    "\\JobService\\Core\\Dtos\\JobPosition",
+    "\\JobService\\Core\\Dtos\\Application",
     "\\JobService\\Core\\Models",
     "\\JobService\\Data",
     "\\JobService\\RabbitMqConfig",
-    "\\JobService\\Services",
-    "\\JobService\\Services\\Interfaces"
+    "\\JobService\\Services"
   ],
-  "SelectedNode": "\\JobService\\RabbitMqConfig\\RabbitMqMessageSender.cs",
+  "SelectedNode": "\\JobService\\Controllers\\ApplicationController.cs",
   "PreviewInSolutionExplorer": false
 }
