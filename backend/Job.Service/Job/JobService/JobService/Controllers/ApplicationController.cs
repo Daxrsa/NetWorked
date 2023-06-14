@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json.Linq;
 using System.Net.Http.Headers;
 using Microsoft.AspNetCore.Authorization;
+using JobService.RabbitMqConfig;
 
 namespace JobService.Controllers
 {
@@ -16,10 +17,14 @@ namespace JobService.Controllers
     {
         private readonly IApplication _contract;
         private readonly IFileService _fileService;
-        public ApplicationController(IApplication contract, IFileService fileService) 
+        private readonly IMessageProducer _messageProducer;
+        private readonly IGetJobReq _getJobReq;
+        public ApplicationController(IApplication contract, IFileService fileService, IMessageProducer messageProducer, IGetJobReq getJobReq) 
         {
-            _contract= contract;
-            _fileService= fileService;
+            _contract = contract;
+            _fileService = fileService;
+            _messageProducer = messageProducer;
+            _getJobReq = getJobReq;
         }
 
         [HttpGet]
@@ -76,13 +81,24 @@ namespace JobService.Controllers
                 var responseJson = JObject.Parse(userString);
                 string username = responseJson["username"].ToString();
                 Guid userId = (Guid)responseJson["id"];
-                //userSkills = responseJson["skills"].ToString();
+                userSkills = responseJson["skills"].ToString();
                 Console.WriteLine(userId);
                 dto.ApplicantId = userId;
                 dto.ApplicantName= username;
             }
 
+            var jobReq = _getJobReq.GetJobReqById(dto.JobId);
+
             var result = await _contract.Add(dto, file);
+            var profileMatchingResult = new DTO
+            {
+                ApplicantSkills = userSkills,
+                JobRequirements = jobReq,
+                ApplicationId = dto.Id
+            };
+
+            _messageProducer.SendMessage<DTO>(profileMatchingResult);
+
             var status = new Status()
             {
                 StatusCode = result ? 1 : 0,

@@ -13,7 +13,7 @@ using Microsoft.AspNetCore.Authentication;
 
 namespace JobService.Services
 {
-    public class JobPositionService : IJobPosition
+    public class JobPositionService : IJobPosition, IGetJobReq
     {
         private readonly JobDbContext _context;
         private readonly IMapper _mapper;
@@ -82,6 +82,19 @@ namespace JobService.Services
         public JobPosition Update(int id, JobPosition job)
         {
             throw new NotImplementedException();
+        }
+
+        public string GetJobReqById(int jobId)
+        {
+            try
+            {
+                var job = _context.JobPositions.Find(jobId);
+                return job.Requirements;
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
         }
     }
 }
