@@ -93,6 +93,10 @@
               "target": "Package",
               "version": "[1.0.0, )"
             },
+            "RabbitMQ.Client": {
+              "target": "Package",
+              "version": "[6.5.0, )"
+            },
             "Stripe.net": {
               "target": "Package",
               "version": "[41.20.0, )"
