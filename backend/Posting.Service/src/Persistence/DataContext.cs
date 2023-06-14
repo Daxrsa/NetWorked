@@ -17,6 +17,11 @@ namespace Persistence
             .HasOne(a => a.Post)
             .WithMany(c => c.Comments)
             .OnDelete(DeleteBehavior.Cascade);
+
+            modelBuilder.Entity<Comment>()
+            .HasOne(c => c.Post)
+            .WithMany(p => p.Comments)
+            .HasForeignKey(c => c.PostId);
         }
     }
 }

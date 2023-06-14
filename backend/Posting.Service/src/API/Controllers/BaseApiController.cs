@@ -1,8 +1,5 @@
-using System.Net.Http.Headers;
 using Application.Core;
-using Application.DTOs;
 using Microsoft.AspNetCore.Mvc;
-using Newtonsoft.Json;
 
 namespace API.Controllers
 {

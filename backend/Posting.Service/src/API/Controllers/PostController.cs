@@ -6,7 +6,7 @@ using Newtonsoft.Json;
 
 namespace API.Controllers
 {
-    //[Authorize(Roles = "Applicant")]
+    [Authorize(Roles = "Applicant")]
     [ApiController]
     [Route("api/[controller]")]
     public class PostController : BaseApiController
@@ -48,7 +48,7 @@ namespace API.Controllers
                     var content = await response.Content.ReadAsStringAsync();
                     var loggedInUser = JsonConvert.DeserializeObject<UserDTO>(content);
                     postDto.Username = loggedInUser.Username;
-                    return HandleResult(await _postService.AddPost(postDto)); //was Ok()
+                    return HandleResult(await _postService.AddPost(postDto)); 
                 }
 
                 return BadRequest("Failed to retrieve the logged-in user.");
@@ -72,9 +72,30 @@ namespace API.Controllers
         }
 
         [HttpGet("filter-posts")]
-        public async Task<ActionResult<List<PostDTO>>> FilterPosts(string username) //for user's profile posts
+        public async Task<ActionResult<List<PostDTO>>> FilterPosts() //for user's profile posts
         {
-            return HandleResult(await _postService.FilterPostsByUser(username));
+             try
+            {
+                var token = Request.Headers["Authorization"].ToString().Split(' ')[1];
+
+                httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+
+                var response = await httpClient.GetAsync("http://localhost:5116/api/Auth/GetloggedInUser");
+
+                if (response.IsSuccessStatusCode)
+                {
+                    var content = await response.Content.ReadAsStringAsync();
+                    var loggedInUser = JsonConvert.DeserializeObject<UserDTO>(content);
+                    var username = loggedInUser.Username;
+                    return HandleResult(await _postService.FilterPostsByUser(username)); 
+                }
+
+                return BadRequest("Failed to retrieve the logged-in user.");
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
     }
 }

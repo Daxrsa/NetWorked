@@ -36,7 +36,7 @@ namespace API.Controllers
         }
 
         [HttpPost("add")]
-        public async Task<ActionResult<List<CommentDTO>>> AddCommentToPost(Guid postId, CommentDTO commentDto)
+        public async Task<ActionResult<List<CommentDTO>>> AddCommentToPost(Guid postId, CommentDTO commentDto) //Index was outside the bounds of the array.
         {
             try
             {
@@ -51,6 +51,7 @@ namespace API.Controllers
                     var content = await response.Content.ReadAsStringAsync();
                     var loggedInUser = JsonConvert.DeserializeObject<UserDTO>(content);
                     commentDto.Author = loggedInUser.Username;
+                    commentDto.Fullname = loggedInUser.Fullname;
                     return HandleResult(await _commentService.AddCommentToPost(postId, commentDto));
                 }
 

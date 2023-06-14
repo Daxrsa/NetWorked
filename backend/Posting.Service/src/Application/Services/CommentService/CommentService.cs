@@ -108,7 +108,7 @@ namespace Application.Services.CommentService
             }
         }
 
-        public async Task<Result<List<CommentDTO>>> AddCommentToPost(Guid postId, CommentDTO commentDto)
+        public async Task<Result<List<CommentDTO>>> AddCommentToPost(Guid postId, CommentDTO commentDto) //Index was outside the bounds of the array.
         {
             try
             {
@@ -125,12 +125,19 @@ namespace Application.Services.CommentService
 
                 await _context.SaveChangesAsync();
 
-                var comments = await _context.Comments
-                    .Where(c => c.PostId == postId)
-                    .ProjectTo<CommentDTO>(_mapper.ConfigurationProvider)
-                    .ToListAsync();
+                try
+                {
+                    var comments = await _context.Comments
+                        .Where(c => c.PostId == postId)
+                        .ProjectTo<CommentDTO>(_mapper.ConfigurationProvider)
+                        .ToListAsync();
 
-                return Result<List<CommentDTO>>.Success(comments);
+                    return Result<List<CommentDTO>>.Success(comments);
+                }
+                catch (ArgumentOutOfRangeException)
+                {
+                    return Result<List<CommentDTO>>.Failure("An error occurred while retrieving comments for the post.");
+                }
             }
             catch (Exception ex)
             {

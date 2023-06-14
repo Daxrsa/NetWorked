@@ -13,6 +13,7 @@ import {
 import Header from "../DesktopHeader";
 import EditProfile from "./EditProfile";
 import axios from "axios";
+import UserPostList from '../Posts/UserPostList'
 
 export default function ProfilePage() {
 
@@ -179,7 +180,6 @@ export default function ProfilePage() {
             </MDBCard>
           </MDBCol>
         </MDBRow>
-        <hr />
         {isEditMode ? (
           <EditProfile
             cancel={handleCancelClick}
@@ -188,6 +188,8 @@ export default function ProfilePage() {
         ) : (
           <MDBBtn onClick={handleEditClick}>Edit</MDBBtn>
         )}
+        <hr />
+        <UserPostList />
       </MDBContainer>
     </section>
   );
