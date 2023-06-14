@@ -2,6 +2,7 @@ import express from 'express'
 import Notification from '../models/notifications.js'
 import algoliaSearch from 'algoliasearch'
 import dotenv from 'dotenv';
+import amqp from 'amqplib';
 dotenv.config();
 
 
@@ -12,21 +13,40 @@ router.use(express.json());
 
 router.post('/', async (req, res) => {
   try {
-    
+    // ...
 
-    const newNotification = {
-      username: req.body.username, 
-      description: req.body.description,
-    };
+    // ...
 
+    // Connect to RabbitMQ and consume the message
+    const connection = await amqp.connect('amqp://localhost');
+    const channel = await connection.createChannel();
 
-    const createdNotification = await Notification.create(newNotification);
+    const queueName = 'notifications_service';
 
-    res.status(201).json(createdNotification);
+    // Consume messages from the queue
+    await channel.consume(queueName, (msg) => {
+      // Process the received message
+      const receivedMessage = JSON.parse(msg.content.toString());
+      const { Username, Description } = receivedMessage;
+      console.log('Received message:', receivedMessage);
+
+      // Set the response JSON with only Username and Description
+      res.status(201).json({ username: Username, description: Description });
+
+      // Your code to process the message and save it to the database
+      // ...
+
+      // Acknowledge the message to remove it from the queue
+      channel.ack(msg);
+    });
+
+    // ...
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
 });
+
+
 
 //GET API
 router.get("/",async(req,res)=>{

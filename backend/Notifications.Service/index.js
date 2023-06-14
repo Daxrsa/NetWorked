@@ -18,18 +18,16 @@ const connect = async () => {
     const channel = await connection.createChannel();
 
     const exchangeName = 'my-exchange';
-    const queueName = 'my-queue';
+    const queueName = 'notifications_service';
 
     // Create exchange
     await channel.assertExchange(exchangeName, 'direct', { durable: true });
 
-    // Create queue
-    await channel.assertQueue(queueName, { durable: true });
-
-    // Bind queue to exchange
-    await channel.bindQueue(queueName, exchangeName, '');
+    // Consume messages from the queue
+  
 
     console.log('RabbitMQ setup completed.');
+    
   } catch (error) {
     console.error('Error setting up RabbitMQ:', error);
   }
