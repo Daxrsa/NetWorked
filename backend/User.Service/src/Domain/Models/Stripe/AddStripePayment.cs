@@ -12,4 +12,6 @@ namespace Domain.Models.Stripe
         string Description,
         string Currency,
         long Amount);
+
+    public record AddStripeId(string CustomerId);
 }
