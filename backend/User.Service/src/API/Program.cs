@@ -1,6 +1,7 @@
 global using Application.Services.Auth;
 global using Application.Services.UserRepo;
 using API.Middleware;
+using API.RabbitMQConfig;
 using Application.Mapping;
 using Application.Services;
 using File.Package.FileService;
@@ -52,6 +53,7 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
 
 builder.Services.AddFluentValidationAutoValidation();
 builder.Services.AddFluentValidationClientsideAdapters();
+builder.Services.AddScoped<IMessageProducer, RabbitMqMessageSender>();
 
 // Assembly registerDtoAssembly = typeof(RegisterDTOValidator).Assembly;
 // builder.Services.AddValidatorsFromAssembly(registerDtoAssembly);

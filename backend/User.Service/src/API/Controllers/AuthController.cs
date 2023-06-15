@@ -1,3 +1,4 @@
+using API.RabbitMQConfig;
 using Application.Core;
 using Application.DTOs;
 using Application.Services.Auth;
@@ -15,10 +16,12 @@ namespace API.Controllers
     {
         private readonly IAuthRepo _authRepo;
         private readonly IUserRepo _userRepo;
-        public AuthController(IAuthRepo authRepo, IUserRepo userRepo)
+        private readonly IMessageProducer _messageProducer;
+        public AuthController(IAuthRepo authRepo, IUserRepo userRepo, IMessageProducer messageProducer)
         {
             _authRepo = authRepo;
             _userRepo = userRepo;
+            _messageProducer = messageProducer;
         }
 
         [HttpGet("GetloggedInUser"), Authorize]
@@ -86,6 +89,9 @@ namespace API.Controllers
             {
                 return BadRequest(response);
             }
+            var user = new DTO { Username = response.UserName };
+            _messageProducer.SendMessage<DTO>(user, "user_service");
+
             return Ok(response);
         }
     }
