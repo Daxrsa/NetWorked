@@ -11,7 +11,7 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using dotenv.net;
-using ChatService.RabbitMQConsumer;
+
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -24,7 +24,7 @@ var mongoConnectionString = Environment.GetEnvironmentVariable("DATABASE");
 builder.Services.AddSingleton<IMongoClient>(new MongoClient(mongoConnectionString));
 builder.Services.AddScoped<IMongoDatabase>(sp => sp.GetService<IMongoClient>().GetDatabase("NetWorked"));
 builder.Services.AddSingleton<IDictionary<string, UserConnection>>(opts => new Dictionary<string, UserConnection>());
-builder.Services.AddHostedService<RabbitMqConsumer>();
+
 builder.Services.AddCors(options =>
 {
     options.AddDefaultPolicy(builder =>
