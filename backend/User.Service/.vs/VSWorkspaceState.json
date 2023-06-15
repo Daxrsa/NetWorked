@@ -8,6 +8,6 @@
     "\\src\\Application\\Services",
     "\\src\\Application\\Services\\Auth"
   ],
-  "SelectedNode": "\\src\\Application\\Services\\Auth\\AuthRepo.cs",
+  "SelectedNode": "\\src\\API\\appsettings.json",
   "PreviewInSolutionExplorer": false
 }
