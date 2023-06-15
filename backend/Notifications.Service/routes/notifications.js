@@ -1,5 +1,6 @@
 import express from 'express'
 import Notification from '../models/notifications.js'
+import User from '../models/User.js'
 import algoliaSearch from 'algoliasearch'
 import dotenv from 'dotenv';
 import amqp from 'amqplib';
@@ -52,8 +53,6 @@ router.post('/', async (req, res) => {
 });
 
 
-
-//GET API
 router.get("/",async(req,res)=>{
   try{
     let notifications = await Notification.find();
