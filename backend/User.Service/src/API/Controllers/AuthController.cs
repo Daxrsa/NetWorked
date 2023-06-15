@@ -3,6 +3,7 @@ using Application.Core;
 using Application.DTOs;
 using Application.Services.Auth;
 using Application.Services.UserRepo;
+using AutoMapper;
 using Azure;
 using Domain.Models;
 using Microsoft.AspNetCore.Authorization;
@@ -17,11 +18,13 @@ namespace API.Controllers
         private readonly IAuthRepo _authRepo;
         private readonly IUserRepo _userRepo;
         private readonly IMessageProducer _messageProducer;
-        public AuthController(IAuthRepo authRepo, IUserRepo userRepo, IMessageProducer messageProducer)
+        private readonly IMapper _mapper;
+        public AuthController(IAuthRepo authRepo, IUserRepo userRepo, IMessageProducer messageProducer, IMapper mapper)
         {
             _authRepo = authRepo;
             _userRepo = userRepo;
             _messageProducer = messageProducer;
+            _mapper = mapper;
         }
 
         [HttpGet("GetloggedInUser"), Authorize]
@@ -56,29 +59,30 @@ namespace API.Controllers
             return Ok(response);
         }
 
-        // [HttpPost("ChangeUserRole")]
-        // //[Authorize(Roles = "Admin")] // Add appropriate authorization for this endpoint
-        // public async Task<ActionResult<string>> ChangeUserRole(Guid id)
-        // {
-        //     var result = await _userRepo.GetUserById(id);
+         [HttpPost("ChangeUserRole")]
+         //[Authorize(Roles = "Admin")] // Add appropriate authorization for this endpoint
+         public async Task<ActionResult<string>> ChangeUserRole(Guid id)
+         {
+             var result = await _userRepo.GetUserById(id);
 
-        //     if (result == null || !result.Success || result.Data == null)
-        //     {
-        //         return NotFound();
-        //     }
+             if (result == null || !result.Success || result.Data == null)
+             {
+                 return NotFound();
+             }
 
-        //     if (result.Data.Role != "Applicant")
-        //     {
-        //         return BadRequest("User role is not 'Applicant'.");
-        //     }
+             if (result.Data.Role != "Applicant")
+             {
+                 return BadRequest("User role is not 'Applicant'.");
+             }
 
-        //     result.Data.Role = "Recruiter";
+             result.Data.Role = "Recruiter";
 
-        //     // Update the user role in the repository
-        //     await _userRepo.UpdateUser(result.Data);
+            // Update the user role in the repository
+            var user = _mapper.Map<User>(result.Data);
+            await _userRepo.UpdateUser(user);
 
-        //     return Ok(result);
-        // }
+             return Ok(result);
+         }
 
 
         [HttpPost("Login")]

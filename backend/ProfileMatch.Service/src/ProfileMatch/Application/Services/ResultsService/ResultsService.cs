@@ -3,9 +3,7 @@ using AutoMapper;
 using Domain.DTOs;
 using Domain.Models;
 using Microsoft.EntityFrameworkCore;
-using Newtonsoft.Json;
 using Persistence;
-using System.Text.Json.Serialization;
 
 namespace Application.Services.ResultsService
 {
@@ -51,35 +49,26 @@ namespace Application.Services.ResultsService
 
         public async Task<bool> Delete(Guid id)
         {
-            try
+            var result = await _context.Results.FindAsync(id);
+            if (result is null)
             {
-                var result = await _context.Results.FindAsync(id);
-                if (result is null)
-                {
-                    throw new Exception("The given result does not exist");
-                }
-                _context.Remove(result);
-                await _context.SaveChangesAsync();
-                return true;
+                throw new Exception("The given result does not exist");
             }
-            catch (Exception)
-            {
-                return false;
-            }
+            _context.Remove(result);
+            await _context.SaveChangesAsync();
+            return true;
         }
 
         public async Task<ResultReadDto> GetById(Guid id)
         {
-            try
+           
+            var result = await _context.Results.Where(result => result.Id.Equals(id)).FirstOrDefaultAsync();
+            if (result is null)
             {
-                var result = await _context.Results.Where(result => result.Id.Equals(id)).FirstOrDefaultAsync();
-                var convertedResult = _mapper.Map<ResultReadDto>(result);
-                return convertedResult;
+                throw new Exception("The given result does not exist");
             }
-            catch (Exception ex)
-            {
-                return null;
-            }
+            var convertedResult = _mapper.Map<ResultReadDto>(result);
+            return convertedResult;
         }
     }
 }

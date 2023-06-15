@@ -1,10 +1,14 @@
-﻿namespace Application.Core
+﻿using Microsoft.IdentityModel.Tokens;
+
+namespace Application.Core
 {
     public class CalculateMatch
     {
         //me i mar parasysh edhe manual vleresimin nga rekruteri
-        public int GetReview(string review)
+        public int GetReview(string? review)
         {
+            if(review.IsNullOrEmpty()) return 0;
+
             string upperReview = review.ToUpper();
 
             switch (upperReview)
@@ -74,17 +78,5 @@
                 throw new InvalidOperationException("Divisor cannot be zero.", ex);
             }
         }
-
-        //just a test method
-       /* public double GetScore()
-        {
-            List<string> jobReq = new List<string> { "Frontend Developer","Java","Javascript","Backend", "Full stack", "DevKm"};
-            List<string> skills = new List<string> { "Frontend", "java","full", "StaCk", "DevkM"};
-
-            int similarities = CountSimilarities(jobReq, skills);
-            int length = jobReq.Count();
-
-            return GetPercentage(similarities, length,3);
-        }*/
     }
 }

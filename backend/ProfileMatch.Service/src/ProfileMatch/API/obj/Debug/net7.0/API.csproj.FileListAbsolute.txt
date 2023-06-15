@@ -10,6 +10,7 @@ C:\Users\fitor\ProjektiLab2\NetWorked\backend\ProfileMatch.Service\src\ProfileMa
 C:\Users\fitor\ProjektiLab2\NetWorked\backend\ProfileMatch.Service\src\ProfileMatch\API\bin\Debug\net7.0\Azure.Core.dll
 C:\Users\fitor\ProjektiLab2\NetWorked\backend\ProfileMatch.Service\src\ProfileMatch\API\bin\Debug\net7.0\Azure.Identity.dll
 C:\Users\fitor\ProjektiLab2\NetWorked\backend\ProfileMatch.Service\src\ProfileMatch\API\bin\Debug\net7.0\Humanizer.dll
+C:\Users\fitor\ProjektiLab2\NetWorked\backend\ProfileMatch.Service\src\ProfileMatch\API\bin\Debug\net7.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
 C:\Users\fitor\ProjektiLab2\NetWorked\backend\ProfileMatch.Service\src\ProfileMatch\API\bin\Debug\net7.0\Microsoft.AspNetCore.OpenApi.dll
 C:\Users\fitor\ProjektiLab2\NetWorked\backend\ProfileMatch.Service\src\ProfileMatch\API\bin\Debug\net7.0\Microsoft.Bcl.AsyncInterfaces.dll
 C:\Users\fitor\ProjektiLab2\NetWorked\backend\ProfileMatch.Service\src\ProfileMatch\API\bin\Debug\net7.0\Microsoft.Data.SqlClient.dll
@@ -33,6 +34,9 @@ C:\Users\fitor\ProjektiLab2\NetWorked\backend\ProfileMatch.Service\src\ProfileMa
 C:\Users\fitor\ProjektiLab2\NetWorked\backend\ProfileMatch.Service\src\ProfileMatch\API\bin\Debug\net7.0\Mono.TextTemplating.dll
 C:\Users\fitor\ProjektiLab2\NetWorked\backend\ProfileMatch.Service\src\ProfileMatch\API\bin\Debug\net7.0\Newtonsoft.Json.dll
 C:\Users\fitor\ProjektiLab2\NetWorked\backend\ProfileMatch.Service\src\ProfileMatch\API\bin\Debug\net7.0\RabbitMQ.Client.dll
+C:\Users\fitor\ProjektiLab2\NetWorked\backend\ProfileMatch.Service\src\ProfileMatch\API\bin\Debug\net7.0\Scrutor.dll
+C:\Users\fitor\ProjektiLab2\NetWorked\backend\ProfileMatch.Service\src\ProfileMatch\API\bin\Debug\net7.0\Swashbuckle.AspNetCore.Filters.dll
+C:\Users\fitor\ProjektiLab2\NetWorked\backend\ProfileMatch.Service\src\ProfileMatch\API\bin\Debug\net7.0\Swashbuckle.AspNetCore.Filters.Abstractions.dll
 C:\Users\fitor\ProjektiLab2\NetWorked\backend\ProfileMatch.Service\src\ProfileMatch\API\bin\Debug\net7.0\Swashbuckle.AspNetCore.Swagger.dll
 C:\Users\fitor\ProjektiLab2\NetWorked\backend\ProfileMatch.Service\src\ProfileMatch\API\bin\Debug\net7.0\Swashbuckle.AspNetCore.SwaggerGen.dll
 C:\Users\fitor\ProjektiLab2\NetWorked\backend\ProfileMatch.Service\src\ProfileMatch\API\bin\Debug\net7.0\Swashbuckle.AspNetCore.SwaggerUI.dll

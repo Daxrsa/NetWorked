@@ -1,13 +1,13 @@
-﻿using Application.Core;
-using Application.Services.ResultsService;
-using Domain.DTOs;
-using Domain.Models;
+﻿using Application.Services.ResultsService;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace API.Controllers
 {
     [ApiController]
     [Route("api/v1/[controller]")]
+    [Authorize]
+    [AllowAnonymous]
     public class ResultsController : ControllerBase
     {
         private readonly IResultsRepo _contract;
@@ -17,12 +17,21 @@ namespace API.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles ="Recruiter")]
         public async Task<ActionResult> GetAll()
         {
-            return Ok(await _contract.GetAll());
+            try
+            {
+                return Ok(await _contract.GetAll());
+            }catch(Exception)
+            {
+                return BadRequest("Bad request");
+            }
+            
         }
 
         [HttpGet("{id}")]
+        [Authorize(Roles ="Recruiter")]
         public async Task<IActionResult> GetById(Guid id)
         {
             try
@@ -35,6 +44,7 @@ namespace API.Controllers
         }
 
         [HttpDelete]
+        [Authorize(Roles ="Recruiter")]
         public async Task<IActionResult> Delete(Guid id)
         {
             try

@@ -2,21 +2,49 @@ using API.RabbitMqConsumer;
 using Application.Core;
 using Application.Services.ResultsService;
 using Domain.AutoMapperConfig;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
+using Microsoft.OpenApi.Models;
 using Persistence;
+using Swashbuckle.AspNetCore.Filters;
 using System.Windows.Input;
 
 var builder = WebApplication.CreateBuilder(args);
-
-// Add services to the container.
 
 builder.Services.AddControllers();
 builder.Services.AddScoped<IResultsRepo, ResultsService>();
 builder.Services.AddScoped<CalculateMatch>();
 builder.Services.AddHostedService<RabbitMqConsumer>();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+builder.Services.AddSwaggerGen(c => {
+    c.AddSecurityDefinition("oauth2", new OpenApiSecurityScheme
+    {
+        Description = """Standard Authorization header using the Bearer scheme. Example: "bearer {token}" """,
+        In = ParameterLocation.Header,
+        Name = "Authorization",
+        Type = SecuritySchemeType.ApiKey
+    });
+    c.OperationFilter<SecurityRequirementsOperationFilter>();
+});
+
+builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+      .AddJwtBearer(options =>
+      {
+          options.TokenValidationParameters = new TokenValidationParameters
+          {
+              ValidateIssuerSigningKey = true,
+              IssuerSigningKey = new SymmetricSecurityKey(System.Text.Encoding.UTF8
+            .GetBytes(builder.Configuration.GetSection("AppSettings:Token").Value!)),
+              ValidateIssuer = false,
+              ValidateAudience = false
+          };
+      });
+
+//var dbHost = Environment.GetEnvironmentVariable("DB_HOST");
+//var dbName = Environment.GetEnvironmentVariable("DB_NAME");
+//var connectionString = $"Server={dbHost};Database={dbName};Trusted_Connection=True;TrustServerCertificate=True;";
 
 builder.Services.AddDbContext<ProfileMatchDbContext>(option =>
     option.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
@@ -32,6 +60,14 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+app.UseCors(options =>
+{
+    options
+    .AllowAnyOrigin()
+    .AllowAnyMethod()
+    .AllowAnyHeader();
+});
 
 app.UseAuthorization();
 

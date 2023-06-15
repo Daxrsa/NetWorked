@@ -46,10 +46,8 @@ namespace API.RabbitMqConsumer
                     {
                         ApplicantSkills = dto.ApplicantSkills,
                         ApplicationId= dto.ApplicationId,
-                        JobRequirements= dto.JobRequirements,
-                        ResumeReview = "PERFECT"
+                        JobRequirements= dto.JobRequirements
                     };
-                    Console.WriteLine(resultDto.ApplicantSkills);
                     resultsRepo.Add(resultDto);
                     _channel.BasicAck(ea.DeliveryTag, false);
                 }
