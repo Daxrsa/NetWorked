@@ -1,15 +1,13 @@
 ﻿using AutoMapper;
-using Azure.Core;
 using JobService.Core.Dtos.JobPosition;
 using JobService.Core.Models;
 using JobService.Data;
 using JobService.Services.Interfaces;
-using Microsoft.AspNetCore.Http.Headers;
 using Microsoft.EntityFrameworkCore;
-using System.Net.Http;
 using System.Net.Http.Headers;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Authentication;
+using JobService.RabbitMqConfig;
+using JobService.Core.Dtos;
+using Newtonsoft.Json;
 
 namespace JobService.Services
 {
@@ -17,10 +15,14 @@ namespace JobService.Services
     {
         private readonly JobDbContext _context;
         private readonly IMapper _mapper;
-        public JobPositionService(JobDbContext context, IMapper mapper)
+        private readonly IMessageProducer _messageProducer;
+        private readonly HttpClient _httpClient;
+        public JobPositionService(JobDbContext context, IMapper mapper, IMessageProducer messageProducer, HttpClient httpClient)
         {
             _mapper = mapper;
             _context = context;
+            _httpClient = httpClient;
+            _messageProducer = messageProducer;
         }
 
         public async Task<IEnumerable<JobReadDto>> GetAll()
@@ -45,11 +47,29 @@ namespace JobService.Services
             }
         }
 
-        public async Task<bool> Add(JobCreateDto dto)
+        public async Task<bool> Add(JobCreateDto dto, string authorizationHeader)
         {
             try
             {
+                var token = authorizationHeader.Split(' ')[1];
                 var job = _mapper.Map<JobPosition>(dto);
+
+                _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+                var userResponse = await _httpClient.GetAsync("http://localhost:5116/api/Auth/GetloggedInUser");
+                if (userResponse != null)
+                {
+                    string content = await userResponse.Content.ReadAsStringAsync();
+                    var loggedInUser = JsonConvert.DeserializeObject<UserDto>(content);
+                    job.Username = loggedInUser.username;
+
+                }
+
+                var newNotification = new NotificationsDTO
+                {
+                    Description = job.Description,
+                    Username = job.Username
+                };
+                _messageProducer.SendMessage<NotificationsDTO>(newNotification, "notifications_service");
                 _context.JobPositions.Add(job);
                 _context.SaveChanges();
                 return true;
@@ -79,7 +99,7 @@ namespace JobService.Services
             }
         }
 
-        public JobPosition Update(int id, JobPosition job)
+            public JobPosition Update(int id, JobPosition job)
         {
             throw new NotImplementedException();
         }

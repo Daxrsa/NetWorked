@@ -25,20 +25,27 @@ namespace API.Controllers
         [HttpGet("{id}")]
         public async Task<IActionResult> GetById(Guid id)
         {
-            return Ok(await _contract.GetById(id));
-        }
-
-        [HttpPost]
-        public IActionResult Add([FromForm]CreateResultDto dto)
-        {
-            var result = _contract.Add(dto);
-            return Ok(result);
+            try
+            {
+                var result = await _contract.GetById(id);
+                return Ok(result);
+            }catch(Exception) {
+                return BadRequest("No result found with id \""+id+"\"");
+            }
         }
 
         [HttpDelete]
         public async Task<IActionResult> Delete(Guid id)
         {
-            return Ok(await _contract.Delete(id));
+            try
+            {
+                var result = await _contract.Delete(id);
+                return Ok(result);
+            }catch(Exception)
+            {
+                return BadRequest("No result found with the given id");
+            }
+            
         }
     }
 }

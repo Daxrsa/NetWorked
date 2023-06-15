@@ -21,9 +21,6 @@ namespace JobService.Data
                 .WithMany(company => company.jobPositions)
                 .HasForeignKey(job => job.CompanyId);
 
-           /* modelBuilder.Entity<Application>()
-                .HasKey(application => new { application.JobId, application.ApplicantId });*/
-
             modelBuilder.Entity<Application>()
                 .HasOne(application => application.JobPosition)
                 .WithMany(job => job.Applications)

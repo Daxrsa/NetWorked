@@ -3,14 +3,14 @@
     "",
     "\\ProfileMatch",
     "\\ProfileMatch\\Application",
-    "\\ProfileMatch\\Application\\Core",
-    "\\ProfileMatch\\Application\\RabbitMqConsumer",
+    "\\ProfileMatch\\Application\\Services",
+    "\\ProfileMatch\\Application\\Services\\ResultsService",
     "\\ProfileMatch\\Domain",
     "\\ProfileMatch\\Domain\\DTOs",
     "\\ProfileMatch\\Domain\\Models",
     "\\ProfileMatch\\Persistance",
     "\\ProfileMatch\\Persistance\\Migrations"
   ],
-  "SelectedNode": "\\ProfileMatch\\Application\\RabbitMqConsumer\\RabbitMQConsumer.cs",
+  "SelectedNode": "\\ProfileMatch\\Application\\Services\\ResultsService\\ResultsService.cs",
   "PreviewInSolutionExplorer": false
 }

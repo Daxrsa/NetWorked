@@ -3,14 +3,14 @@
     "",
     "\\JobService",
     "\\JobService\\Core",
-    "\\JobService\\Core\\AutoMapperConfig",
     "\\JobService\\Core\\Dtos",
-    "\\JobService\\Core\\Dtos\\Application",
-    "\\JobService\\Core\\Models",
+    "\\JobService\\Core\\Dtos\\JobPosition",
+    "\\JobService\\Core\\Enums",
     "\\JobService\\Data",
     "\\JobService\\RabbitMqConfig",
-    "\\JobService\\Services"
+    "\\JobService\\Services",
+    "\\JobService\\Services\\Interfaces"
   ],
-  "SelectedNode": "\\JobService\\Controllers\\ApplicationController.cs",
+  "SelectedNode": "\\JobService\\Program.cs",
   "PreviewInSolutionExplorer": false
 }
