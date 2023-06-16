@@ -1,43 +1,43 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Admin\\Desktop\\Net14\\NetWorked\\backend\\User.Service\\src\\Application\\Application.csproj": {}
+    "C:\\Users\\fitor\\ProjektiLab2\\NetWorked\\backend\\User.Service\\src\\Application\\Application.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Admin\\Desktop\\Net14\\NetWorked\\backend\\User.Service\\src\\Application\\Application.csproj": {
+    "C:\\Users\\fitor\\ProjektiLab2\\NetWorked\\backend\\User.Service\\src\\Application\\Application.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Admin\\Desktop\\Net14\\NetWorked\\backend\\User.Service\\src\\Application\\Application.csproj",
+        "projectUniqueName": "C:\\Users\\fitor\\ProjektiLab2\\NetWorked\\backend\\User.Service\\src\\Application\\Application.csproj",
         "projectName": "Application",
-        "projectPath": "C:\\Users\\Admin\\Desktop\\Net14\\NetWorked\\backend\\User.Service\\src\\Application\\Application.csproj",
-        "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Admin\\Desktop\\Net14\\NetWorked\\backend\\User.Service\\src\\Application\\obj\\",
+        "projectPath": "C:\\Users\\fitor\\ProjektiLab2\\NetWorked\\backend\\User.Service\\src\\Application\\Application.csproj",
+        "packagesPath": "C:\\Users\\fitor\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\fitor\\ProjektiLab2\\NetWorked\\backend\\User.Service\\src\\Application\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+          "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\"
         ],
         "configFilePaths": [
-          "C:\\Users\\Admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "C:\\Users\\fitor\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net7.0"
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files\\dotnet\\library-packs": {},
+          "C:\\Users\\fitor\\ProjektiLab2\\NetWorked\\backend\\packages": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net7.0": {
             "targetAlias": "net7.0",
             "projectReferences": {
-              "C:\\Users\\Admin\\Desktop\\Net14\\NetWorked\\backend\\User.Service\\src\\Domain\\Domain.csproj": {
-                "projectPath": "C:\\Users\\Admin\\Desktop\\Net14\\NetWorked\\backend\\User.Service\\src\\Domain\\Domain.csproj"
+              "C:\\Users\\fitor\\ProjektiLab2\\NetWorked\\backend\\User.Service\\src\\Domain\\Domain.csproj": {
+                "projectPath": "C:\\Users\\fitor\\ProjektiLab2\\NetWorked\\backend\\User.Service\\src\\Domain\\Domain.csproj"
               },
-              "C:\\Users\\Admin\\Desktop\\Net14\\NetWorked\\backend\\User.Service\\src\\Persistence\\Persistence.csproj": {
-                "projectPath": "C:\\Users\\Admin\\Desktop\\Net14\\NetWorked\\backend\\User.Service\\src\\Persistence\\Persistence.csproj"
+              "C:\\Users\\fitor\\ProjektiLab2\\NetWorked\\backend\\User.Service\\src\\Persistence\\Persistence.csproj": {
+                "projectPath": "C:\\Users\\fitor\\ProjektiLab2\\NetWorked\\backend\\User.Service\\src\\Persistence\\Persistence.csproj"
               }
             }
           }
@@ -121,29 +121,29 @@
         }
       }
     },
-    "C:\\Users\\Admin\\Desktop\\Net14\\NetWorked\\backend\\User.Service\\src\\Domain\\Domain.csproj": {
+    "C:\\Users\\fitor\\ProjektiLab2\\NetWorked\\backend\\User.Service\\src\\Domain\\Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Admin\\Desktop\\Net14\\NetWorked\\backend\\User.Service\\src\\Domain\\Domain.csproj",
+        "projectUniqueName": "C:\\Users\\fitor\\ProjektiLab2\\NetWorked\\backend\\User.Service\\src\\Domain\\Domain.csproj",
         "projectName": "Domain",
-        "projectPath": "C:\\Users\\Admin\\Desktop\\Net14\\NetWorked\\backend\\User.Service\\src\\Domain\\Domain.csproj",
-        "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Admin\\Desktop\\Net14\\NetWorked\\backend\\User.Service\\src\\Domain\\obj\\",
+        "projectPath": "C:\\Users\\fitor\\ProjektiLab2\\NetWorked\\backend\\User.Service\\src\\Domain\\Domain.csproj",
+        "packagesPath": "C:\\Users\\fitor\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\fitor\\ProjektiLab2\\NetWorked\\backend\\User.Service\\src\\Domain\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+          "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\"
         ],
         "configFilePaths": [
-          "C:\\Users\\Admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "C:\\Users\\fitor\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net7.0"
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files\\dotnet\\library-packs": {},
+          "C:\\Users\\fitor\\ProjektiLab2\\NetWorked\\backend\\packages": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -195,37 +195,37 @@
         }
       }
     },
-    "C:\\Users\\Admin\\Desktop\\Net14\\NetWorked\\backend\\User.Service\\src\\Persistence\\Persistence.csproj": {
+    "C:\\Users\\fitor\\ProjektiLab2\\NetWorked\\backend\\User.Service\\src\\Persistence\\Persistence.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Admin\\Desktop\\Net14\\NetWorked\\backend\\User.Service\\src\\Persistence\\Persistence.csproj",
+        "projectUniqueName": "C:\\Users\\fitor\\ProjektiLab2\\NetWorked\\backend\\User.Service\\src\\Persistence\\Persistence.csproj",
         "projectName": "Persistence",
-        "projectPath": "C:\\Users\\Admin\\Desktop\\Net14\\NetWorked\\backend\\User.Service\\src\\Persistence\\Persistence.csproj",
-        "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Admin\\Desktop\\Net14\\NetWorked\\backend\\User.Service\\src\\Persistence\\obj\\",
+        "projectPath": "C:\\Users\\fitor\\ProjektiLab2\\NetWorked\\backend\\User.Service\\src\\Persistence\\Persistence.csproj",
+        "packagesPath": "C:\\Users\\fitor\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\fitor\\ProjektiLab2\\NetWorked\\backend\\User.Service\\src\\Persistence\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+          "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\"
         ],
         "configFilePaths": [
-          "C:\\Users\\Admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "C:\\Users\\fitor\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net7.0"
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files\\dotnet\\library-packs": {},
+          "C:\\Users\\fitor\\ProjektiLab2\\NetWorked\\backend\\packages": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net7.0": {
             "targetAlias": "net7.0",
             "projectReferences": {
-              "C:\\Users\\Admin\\Desktop\\Net14\\NetWorked\\backend\\User.Service\\src\\Domain\\Domain.csproj": {
-                "projectPath": "C:\\Users\\Admin\\Desktop\\Net14\\NetWorked\\backend\\User.Service\\src\\Domain\\Domain.csproj"
+              "C:\\Users\\fitor\\ProjektiLab2\\NetWorked\\backend\\User.Service\\src\\Domain\\Domain.csproj": {
+                "projectPath": "C:\\Users\\fitor\\ProjektiLab2\\NetWorked\\backend\\User.Service\\src\\Domain\\Domain.csproj"
               }
             }
           }

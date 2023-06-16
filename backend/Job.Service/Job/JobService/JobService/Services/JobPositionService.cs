@@ -27,7 +27,9 @@ namespace JobService.Services
 
         public async Task<IEnumerable<JobReadDto>> GetAll()
         {
-            var jobs = await _context.JobPositions.Include("Company").ToListAsync();
+            var jobs = await _context.JobPositions.Include("Company")
+                .OrderByDescending(x => x.CreatedAt)
+                .ToListAsync();
             var convertedJobs = _mapper.Map<IEnumerable<JobReadDto>>(jobs);
 
             return convertedJobs;

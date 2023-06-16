@@ -1,9 +1,8 @@
 {
   "ExpandedNodes": [
     "",
-    "\\API",
-    "\\API\\Controllers",
     "\\Application",
+    "\\Application\\RabbitMqConsumer",
     "\\Application\\Services",
     "\\Application\\Services\\ResultsService",
     "\\Domain",
