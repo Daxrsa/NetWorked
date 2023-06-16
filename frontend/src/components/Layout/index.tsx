@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import MobileHeader from '../MobileHeader';
 import DesktopHeader from '../DesktopHeader';
 import AdBanner from '../AdBanner';
 import LeftColumn from '../LeftColumn';
@@ -18,7 +17,6 @@ const Layout: React.FC = () => {
 
   return (
     <Container>
-      <MobileHeader />
       <DesktopHeader />
 
       <span>{!isLoading && <AdBanner />}</span>
