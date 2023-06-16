@@ -1,32 +1,32 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\fitor\\ProjektiLab2\\NetWorked\\backend\\Job.Service\\Job\\JobService\\JobService\\JobService.csproj": {}
+    "C:\\Users\\Admin\\Desktop\\Net14\\NetWorked\\backend\\Job.Service\\Job\\JobService\\JobService\\JobService.csproj": {}
   },
   "projects": {
-    "C:\\Users\\fitor\\ProjektiLab2\\NetWorked\\backend\\Job.Service\\Job\\JobService\\JobService\\JobService.csproj": {
+    "C:\\Users\\Admin\\Desktop\\Net14\\NetWorked\\backend\\Job.Service\\Job\\JobService\\JobService\\JobService.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\fitor\\ProjektiLab2\\NetWorked\\backend\\Job.Service\\Job\\JobService\\JobService\\JobService.csproj",
+        "projectUniqueName": "C:\\Users\\Admin\\Desktop\\Net14\\NetWorked\\backend\\Job.Service\\Job\\JobService\\JobService\\JobService.csproj",
         "projectName": "JobService",
-        "projectPath": "C:\\Users\\fitor\\ProjektiLab2\\NetWorked\\backend\\Job.Service\\Job\\JobService\\JobService\\JobService.csproj",
-        "packagesPath": "C:\\Users\\fitor\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\fitor\\ProjektiLab2\\NetWorked\\backend\\Job.Service\\Job\\JobService\\JobService\\obj\\",
+        "projectPath": "C:\\Users\\Admin\\Desktop\\Net14\\NetWorked\\backend\\Job.Service\\Job\\JobService\\JobService\\JobService.csproj",
+        "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Admin\\Desktop\\Net14\\NetWorked\\backend\\Job.Service\\Job\\JobService\\JobService\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\"
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\fitor\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+          "C:\\Users\\Admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net7.0"
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Users\\fitor\\ProjektiLab2\\NetWorked\\backend\\packages": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
