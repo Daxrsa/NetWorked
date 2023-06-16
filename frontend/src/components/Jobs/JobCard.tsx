@@ -4,8 +4,18 @@ import { Column } from '../MiddleColumn/FeedPost/styles';
 import { IJob } from '../../Interfaces/global.typing'
 import './jobs.css';
 import moment from 'moment';
+import httpModule from '../../Helpers/http.module'
+import { useEffect, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 
 const JobCard = (props) => {
+    const [id, setId] = useState();
+    const redirect = useNavigate();
+
+    const handleClickBtn = (id: int) => {
+        redirect(`/jobDetails/${id}`)
+    }
+
     return (
         <Box className="box">
             <Grid container>
@@ -20,7 +30,7 @@ const JobCard = (props) => {
                     <Typography variant=''>CREATED | CATEGORY | LEVEL</Typography>
                     <Typography variant='caption'>{moment(props.createdAt).fromNow()} | {props.jobCategory} | {props.jobLevel}</Typography>
                     <Box mt-2>
-                        <Button variant='outlined'>Check</Button>
+                        <Button onClick={() => handleClickBtn(props.id)} variant='outlined'>Check</Button>
                     </Box>
                 </Grid>
             </Grid>

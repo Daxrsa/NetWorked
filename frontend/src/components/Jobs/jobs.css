@@ -13,6 +13,8 @@
     padding: 2%;
     border-radius: 5px;
     display: inline-block;
+    width: 150px;
+    text-align: center;
 }
 
 .skills {
@@ -27,4 +29,17 @@
 .box:hover {
     box-shadow: 0px 5px 25px rgba(0, 0, 0, 1);
     border-left: 6px solid #4d64e4;
+}
+
+.jobWrap {
+    margin-top: 10%;
+}
+
+.file-upload-container {
+    margin-bottom: 16px;
+}
+
+.error-message {
+    color: red;
+    margin-top: 8px;
 }

@@ -65,12 +65,11 @@ namespace JobService.Controllers
         {
             string authorizationHeader = Request.Headers["Authorization"].ToString();
             var result = await _contract.Add(dto, file, authorizationHeader);
-            var status = new Status()
+            if (result)
             {
-                StatusCode = result ? 1 : 0,
-                StatusMessage = result ? "Applied successfully" : "Error has occured"
-            };
-            return Ok(status);
+                return Ok(result);
+            }
+            return BadRequest("You have already applied for this position!");
         }
     }
 }

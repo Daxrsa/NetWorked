@@ -26,9 +26,8 @@ const JobDisplay = () => {
             });
     }, []);
     return (
-        <div className="heading">
+        <div className="heading jobWrap">
             <Header />
-            <h2 className="h2c">I need to add something else here</h2>
             {jobs.map(job => <JobCard key={job.id} {...job} />)}
         </div>
     )

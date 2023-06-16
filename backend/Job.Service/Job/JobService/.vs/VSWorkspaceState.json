@@ -5,13 +5,13 @@
     "\\JobService\\Controllers",
     "\\JobService\\Core",
     "\\JobService\\Core\\Dtos",
-    "\\JobService\\Core\\Dtos\\JobPosition",
-    "\\JobService\\Core\\Enums",
+    "\\JobService\\Core\\Dtos\\Application",
+    "\\JobService\\Core\\Models",
     "\\JobService\\Data",
     "\\JobService\\RabbitMqConfig",
     "\\JobService\\Services",
     "\\JobService\\Services\\Interfaces"
   ],
-  "SelectedNode": "\\JobService\\Services\\JobPositionService.cs",
+  "SelectedNode": "\\JobService\\Controllers\\ApplicationController.cs",
   "PreviewInSolutionExplorer": false
 }

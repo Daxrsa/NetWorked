@@ -32,7 +32,7 @@ function App()
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
         <Route path="/posts" element={<PostDashboard />} />
-        <Route path="jobDetails" element={<JobPositonDetails />} />
+        <Route path="jobDetails/:id" element={<JobPositonDetails />} />
         <Route path="/jobs" element={<JobDisplay />} />
         <Route path="/companies">
           <Route index element={<CompanyPage />} />
