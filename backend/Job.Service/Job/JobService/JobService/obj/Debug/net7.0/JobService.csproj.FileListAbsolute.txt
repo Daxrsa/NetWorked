@@ -428,3 +428,6 @@ C:\Users\fitor\ProjektiLab2\NetWorked\backend\Job.Service\Job\JobService\JobServ
 C:\Users\fitor\ProjektiLab2\NetWorked\backend\Job.Service\Job\JobService\JobService\obj\Debug\net7.0\JobService.pdb
 C:\Users\fitor\ProjektiLab2\NetWorked\backend\Job.Service\Job\JobService\JobService\obj\Debug\net7.0\JobService.genruntimeconfig.cache
 C:\Users\fitor\ProjektiLab2\NetWorked\backend\Job.Service\Job\JobService\JobService\obj\Debug\net7.0\ref\JobService.dll
+C:\Users\fitor\ProjektiLab2\NetWorked\backend\Job.Service\Job\JobService\JobService\bin\Debug\net7.0\BouncyCastle.Cryptography.dll
+C:\Users\fitor\ProjektiLab2\NetWorked\backend\Job.Service\Job\JobService\JobService\bin\Debug\net7.0\MailKit.dll
+C:\Users\fitor\ProjektiLab2\NetWorked\backend\Job.Service\Job\JobService\JobService\bin\Debug\net7.0\MimeKit.dll

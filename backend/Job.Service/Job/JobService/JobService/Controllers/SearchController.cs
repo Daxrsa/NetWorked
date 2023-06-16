@@ -18,6 +18,5 @@ namespace JobService.Controllers
             var searchResult =await _contract.Search(result);
             return Ok(searchResult);
         }
-
     }
 }

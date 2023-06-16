@@ -4,6 +4,7 @@ import React from 'react'
 import moment from "moment";
 import { IJob } from '../../Interfaces/global.typing'
 import Button from "@mui/material/Button/Button";
+// import './grid.css'
 
 const column: GridColDef[] = [
     { field: "id", headerName: "Id", width: 100 },
@@ -51,7 +52,7 @@ const column: GridColDef[] = [
             <CardMedia
                 component="img"
                 height="200"
-                image 
+                image
                 sx={{ objectFit: 'contain' }}
             />
         )

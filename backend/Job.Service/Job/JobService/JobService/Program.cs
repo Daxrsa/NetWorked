@@ -35,6 +35,7 @@ namespace JobService
             builder.Services.AddTransient<IFileService, FileService>();
             builder.Services.AddScoped<IMessageProducer, RabbitMqMessageSender>();
             builder.Services.AddScoped<IGetJobReq, JobPositionService>();
+            builder.Services.AddScoped<IEmail, EmailService>();
             builder.Services.AddHttpClient();
 
             builder.Services.AddControllers()
