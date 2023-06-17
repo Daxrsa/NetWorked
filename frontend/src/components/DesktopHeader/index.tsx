@@ -64,26 +64,41 @@ const Header: React.FC = () => {
   useEffect(() => {
     fetchLoggedInUser();
   }, []);
-  const fetchNotifs = async () => {
-    try {
-      const response = await axios.get<ResponseData>("http://localhost:8800/notifications");
-      const { mappedData } = response.data;
-      
-      // Map the username and description from notifications array
-      const notificationsData = mappedData.map((notification) => ({
-        username: notification.username,
-        description: notification.description,
-      }));
-      console.log(notificationsData)
-      setNotifications(notificationsData);
-    } catch (error) {
-      console.error("Error fetching notifications:", error);
-    }
-  };
-  
-  useEffect(() => {
-    fetchNotifs();
-  }, []);
+const fetchNotifs = async () => {
+  try {
+    const response = await axios.get<ResponseData>("http://localhost:8800/notifications");
+    const token = localStorage.getItem('jwtToken');
+    const responsep = await axios.get("http://localhost:5116/api/Auth/GetloggedInUser", {
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    });
+    const udata = responsep.data;
+    const profession = udata.profession.toLowerCase(); // Convert to lowercase
+    const { mappedData } = response.data;
+
+    // Filter notifications based on profession (case-insensitive)
+    const filteredNotifications = mappedData.filter((notification) =>
+      notification.description.toLowerCase().includes(profession)
+    );
+
+    // Map the username and description from filtered notifications
+    const notificationsData = filteredNotifications.map((notification) => ({
+      username: notification.username,
+      description: notification.description,
+    }));
+
+    console.log(notificationsData);
+    setNotifications(notificationsData);
+  } catch (error) {
+    console.error("Error fetching notifications:", error);
+  }
+};
+
+useEffect(() => {
+  fetchNotifs();
+}, []);
+
   
   
   const handleNetworkClick = () => {
