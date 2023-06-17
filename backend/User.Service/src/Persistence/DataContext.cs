@@ -7,5 +7,6 @@ namespace Persistence
     {
         public DataContext(DbContextOptions options) : base(options) { }
         public DbSet<User> User { get; set; }
+        public DbSet<Payment> Payments { get; set; }
     }
 }

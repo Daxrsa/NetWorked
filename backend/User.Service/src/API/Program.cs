@@ -4,6 +4,7 @@ using API.Middleware;
 using API.RabbitMQConfig;
 using Application.Mapping;
 using Application.Services;
+using Application.Services.PaymentRepo;
 using File.Package.FileService;
 using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -35,6 +36,7 @@ builder.Services.AddStripeInfrastructure(builder.Configuration);
 builder.Services.AddScoped<IAuthRepo, AuthRepo>();
 builder.Services.AddScoped<IUserRepo, UserRepo>();
 builder.Services.AddScoped<IChangeRole, UserRepo>();
+builder.Services.AddScoped<IPayment, PaymentRepo>();
 builder.Services.AddTransient<IFileService, FileService>();
 
 builder.Services.AddAutoMapper(typeof(MappingProfiles).Assembly);
