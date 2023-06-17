@@ -1,5 +1,6 @@
 using System.Runtime.CompilerServices;
 using System.Security.Claims;
+using System.Threading.Tasks;
 using Application.Core;
 using Application.DTOs;
 using AutoMapper;
@@ -182,6 +183,7 @@ namespace Application.Services.UserRepo
             int userCount = await _context.User.CountAsync();
             return userCount;
         }
+
         public Task<EditUserDTO> UpdateUser(EditUserDTO requestDto)
         {
             throw new NotImplementedException();

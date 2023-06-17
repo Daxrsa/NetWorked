@@ -19,6 +19,7 @@ import { Post } from "../../models/Post";
 export default function ProfilePage() {
 
   //axios states:-----------------------------------------------------------------------
+  const [confirmation, setConfirmation] = useState(false);
 
   const [posts, setPosts] = useState<Post[]>([]);
 
@@ -47,6 +48,10 @@ export default function ProfilePage() {
   const handleSubmitClick = () => {
     setIsEditMode(false);
   };
+
+  const handleConfirmationOpen = () => {
+    setConfirmation(true);
+  }
 
   //--------------------------------------------------------------------
 
@@ -197,6 +202,7 @@ export default function ProfilePage() {
             </MDBCard>
           </MDBCol>
         </MDBRow>
+        <MDBBtn color="danger">Delete Account</MDBBtn>
         {isEditMode ? (
           <EditProfile
             cancel={handleCancelClick}

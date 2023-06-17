@@ -36,7 +36,28 @@ namespace API.Controllers
         [HttpDelete]
         public async Task<ActionResult<UserDTO>> DeleteUser(Guid id)
         {
-            return Ok(await _userRepo.DeleteUser(id));
+            try
+            {
+                var token = Request.Headers["Authorization"].ToString().Split(' ')[1];
+
+                _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+
+                var response = await _httpClient.GetAsync("http://localhost:5116/api/Auth/GetloggedInUser");
+
+                if (response.IsSuccessStatusCode)
+                {
+                    var content = await response.Content.ReadAsStringAsync();
+                    var loggedInUser = JsonConvert.DeserializeObject<UserDTO>(content);
+                    id = loggedInUser.Id;
+                    return Ok(await _userRepo.DeleteUser(id));
+                }
+
+                return BadRequest("Failed to retrieve the logged-in user.");
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
 
         [HttpGet("countUsers")]
@@ -61,7 +82,7 @@ namespace API.Controllers
                     var content = await response.Content.ReadAsStringAsync();
                     var loggedInUser = JsonConvert.DeserializeObject<UserDTO>(content);
                     id = loggedInUser.Id;
-                    return Ok(await _userRepo.EditUser(id,requestDto));  
+                    return Ok(await _userRepo.EditUser(id, requestDto));
                 }
 
                 return BadRequest("Failed to retrieve the logged-in user.");
@@ -72,6 +93,5 @@ namespace API.Controllers
             }
         }
 
-        
     }
 }
