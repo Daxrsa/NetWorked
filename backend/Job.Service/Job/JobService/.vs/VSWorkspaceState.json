@@ -2,7 +2,6 @@
   "ExpandedNodes": [
     "",
     "\\JobService",
-    "\\JobService\\Controllers",
     "\\JobService\\Core",
     "\\JobService\\Core\\Dtos",
     "\\JobService\\Core\\Dtos\\Application",

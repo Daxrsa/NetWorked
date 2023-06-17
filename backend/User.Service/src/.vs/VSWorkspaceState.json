@@ -12,6 +12,6 @@
     "\\Persistence",
     "\\Persistence\\Migrations"
   ],
-  "SelectedNode": "\\Application\\Services\\Auth\\IAuthRepo.cs",
+  "SelectedNode": "\\API\\appsettings.json",
   "PreviewInSolutionExplorer": false
 }

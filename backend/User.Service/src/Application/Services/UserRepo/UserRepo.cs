@@ -175,5 +175,10 @@ namespace Application.Services.UserRepo
             await UpdateUser(user);
             return true;
         }
+
+        public Task<EditUserDTO> UpdateUser(EditUserDTO requestDto)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
