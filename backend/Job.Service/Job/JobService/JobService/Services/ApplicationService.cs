@@ -130,5 +130,11 @@ namespace JobService.Services
         {
             return await _context.Applications.Where(x => x.ApplicantId.Equals(applicantId) && x.JobId == jobId).AnyAsync();
         }
+
+        public async Task<int> GetApplicationCount()
+        {
+            int appCount = await _context.Applications.CountAsync();
+            return appCount;
+        }
     }
 }

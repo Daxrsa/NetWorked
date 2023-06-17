@@ -33,10 +33,16 @@ namespace API.Controllers
             return Ok(await _userRepo.DeleteUser(id));
         }
 
-        [HttpPut]
-        public async Task<ActionResult<User>> EditUser(EditUserDTO requestDto)
+        [HttpGet("countUsers")]
+        public async Task<ActionResult<int>> CountUsers()
         {
-            return Ok(await _userRepo.UpdateUser(requestDto)); 
+            return Ok(await _userRepo.GetUserCount());
         }
+
+        // [HttpPut]
+        // public async Task<ActionResult<User>> EditUser(User requestDto)
+        // {
+        //     return Ok(await _userRepo.UpdateUser(requestDto)); 
+        // }
     }
 }

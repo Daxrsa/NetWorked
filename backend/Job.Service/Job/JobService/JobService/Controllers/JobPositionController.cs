@@ -49,5 +49,11 @@ namespace JobService.Controllers
             };
             return Ok(status);
         }
+
+        [HttpGet("countJobPositions")]
+        public async Task<ActionResult<int>> GetJobPositionCount()
+        {
+            return Ok(await _contract.GetJobPositionCount());
+        }
     }
 }

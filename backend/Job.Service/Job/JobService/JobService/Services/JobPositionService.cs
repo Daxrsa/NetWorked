@@ -118,5 +118,11 @@ namespace JobService.Services
                 return null;
             }
         }
+
+        public async Task<int> GetJobPositionCount()
+        {
+            int count = await _context.JobPositions.CountAsync();
+            return count;
+        }
     }
 }

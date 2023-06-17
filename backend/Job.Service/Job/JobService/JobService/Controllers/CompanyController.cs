@@ -63,5 +63,11 @@ namespace JobService.Controllers
             };
             return Ok(status);
         }
+
+        [HttpGet("countCompanies")]
+        public async Task<ActionResult<int>> CouGetCompanyCountntUsers()
+        {
+            return Ok(await _contract.GetCompanyCount());
+        }
     }
 }

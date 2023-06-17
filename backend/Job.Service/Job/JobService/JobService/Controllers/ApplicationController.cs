@@ -75,6 +75,12 @@ namespace JobService.Controllers
             return BadRequest("You have already applied for this position!");
         }
 
+        [HttpGet("countApplications")]
+        public async Task<ActionResult<int>> GetApplicationCount()
+        {
+            return Ok(await _contract.GetApplicationCount());
+        }
+
         /*[HttpPost]
         public IActionResult SendEmail()
         {

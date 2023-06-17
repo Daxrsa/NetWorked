@@ -1,3 +1,4 @@
+using System.Runtime.CompilerServices;
 using System.Security.Claims;
 using Application.Core;
 using Application.DTOs;
@@ -174,6 +175,12 @@ namespace Application.Services.UserRepo
             var user = _mapper.Map<User>(result.Data);
             await UpdateUser(user);
             return true;
+        }
+
+        public async Task<int> GetUserCount()
+        {
+            int userCount = await _context.User.CountAsync();
+            return userCount;
         }
     }
 }

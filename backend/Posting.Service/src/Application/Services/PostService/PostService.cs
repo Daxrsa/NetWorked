@@ -160,5 +160,11 @@ namespace Application.Services.PostService
                 return Result<List<PostDTO>>.Failure(ex.Message);
             }
         }
+
+        public async Task<int> GetPostCount()
+        {
+            int userCount = await _context.Posts.CountAsync();
+            return userCount;
+        }
     }
 }
