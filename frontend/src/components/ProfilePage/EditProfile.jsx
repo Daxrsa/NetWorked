@@ -63,7 +63,7 @@ export default function EditProfile({ cancel, submit }) {
         ></MDBTextArea>
         <hr />
       </MDBCol>
-      <MDBBtn color="success" onClick={postData} type="submit">
+      <MDBBtn color="success" onClick={submit} type="submit">
         Submit
       </MDBBtn>
       <MDBBtn color="danger" onClick={cancel}>

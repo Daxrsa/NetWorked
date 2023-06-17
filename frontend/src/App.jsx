@@ -1,7 +1,6 @@
 import { useContext, lazy, Suspense } from "react";
 import React from "react";
 import { Route, Routes } from "react-router-dom";
-//import HomePage from "./components/HomePage";
 import Login from "./components/Login";
 import Register from "./components/Register";
 import "./App.css";
@@ -21,6 +20,7 @@ import AddApplication from "./components/JobApplications/AddApplication";
 import Payment from "./components/Payment/Payment"
 import JobDisplay from "./components/Jobs/JobDisplay";
 import JobPositonDetails from "./components/Jobs/jobPositionDetails";
+import AdminDashboard from './components/Admin/AdminDashboard';
 
 function App()
 {
@@ -29,6 +29,7 @@ function App()
       <GlobalStyles />
       <Routes>
         <Route path="/" element={<Layout />} />
+        <Route path="/admin" element={<AdminDashboard />} />
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
         <Route path="/posts" element={<PostDashboard />} />
