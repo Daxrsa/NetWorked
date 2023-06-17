@@ -12,5 +12,6 @@ namespace Application.Services.UserRepo
         UserDTO GetLoggedInUser();
         Task UpdateUser(User user);
         Task<int> GetUserCount();
+        Task<Result<EditUserDTO>> EditUser(Guid id, EditUserDTO requestDto);
     }
 }

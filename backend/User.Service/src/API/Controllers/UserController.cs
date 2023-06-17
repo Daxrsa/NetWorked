@@ -39,10 +39,10 @@ namespace API.Controllers
             return Ok(await _userRepo.GetUserCount());
         }
 
-        // [HttpPut]
-        // public async Task<ActionResult<User>> EditUser(User requestDto)
-        // {
-        //     return Ok(await _userRepo.UpdateUser(requestDto)); 
-        // }
+        [HttpPut]
+        public async Task<ActionResult<User>> EditUser(Guid id, EditUserDTO requestDto)
+        {
+            return Ok(await _userRepo.EditUser(id, requestDto)); 
+        }
     }
 }
