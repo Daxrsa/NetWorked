@@ -1,9 +1,8 @@
 import React, { useState } from "react";
 import { MDBCol, MDBBtn, MDBInput, MDBTextArea } from "mdb-react-ui-kit";
+import axios from "axios";
 
 export default function EditProfile({ cancel, submit }) {
-  //capture react states:-------------------------------------------------------------------------
-
   const [fullname, setFullName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
@@ -12,16 +11,23 @@ export default function EditProfile({ cancel, submit }) {
   const [skills, setSkills] = useState("");
   const [bio, setBio] = useState("");
 
-  //functions:-------------------------------------------------------------------------------------
+  const postData = async () => {
+    const data = {
+      fullname,
+      email,
+      phone,
+      address,
+      profession,
+      skills,
+      bio,
+    };
 
-  const postData = () => {
-    console.log(fullname);
-    console.log(email);
-    console.log(phone);
-    console.log(address);
-    console.log(profession);
-    console.log(skills);
-    console.log(bio);
+    try {
+      const response = await axios.put("http://localhost:5116/api/User", data);
+      console.log("Data sent successfully.", response.data);
+    } catch (error) {
+      console.error("Error sending data.", error);
+    }
   };
 
   return (
@@ -63,7 +69,7 @@ export default function EditProfile({ cancel, submit }) {
         ></MDBTextArea>
         <hr />
       </MDBCol>
-      <MDBBtn color="success" onClick={submit} type="submit">
+      <MDBBtn color="success" onClick={postData} type="submit">
         Submit
       </MDBBtn>
       <MDBBtn color="danger" onClick={cancel}>

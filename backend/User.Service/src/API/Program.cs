@@ -38,6 +38,7 @@ builder.Services.AddScoped<IUserRepo, UserRepo>();
 builder.Services.AddScoped<IChangeRole, UserRepo>();
 builder.Services.AddScoped<IPayment, PaymentRepo>();
 builder.Services.AddTransient<IFileService, FileService>();
+builder.Services.AddHttpClient();
 
 builder.Services.AddAutoMapper(typeof(MappingProfiles).Assembly);
 
