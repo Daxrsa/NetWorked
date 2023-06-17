@@ -7,9 +7,9 @@ namespace Application.Services
 {
     public static class StripeInfrastructure
     {
-        public static IServiceCollection AddStripeInfrastructure(this IServiceCollection services, string secretKey)
+        public static IServiceCollection AddStripeInfrastructure(this IServiceCollection services, IConfiguration configuration)
         {
-            StripeConfiguration.ApiKey = secretKey;
+            StripeConfiguration.ApiKey = configuration.GetValue<string>("StripeSettings:SecretKey");
 
             return services
                 .AddScoped<CustomerService>()

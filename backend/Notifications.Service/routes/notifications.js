@@ -1,5 +1,6 @@
 import express from 'express'
 import Notification from '../models/notifications.js'
+
 import algoliaSearch from 'algoliasearch'
 import dotenv from 'dotenv';
 import amqp from 'amqplib';
@@ -10,50 +11,58 @@ const router= express.Router();
 router.use(express.json());
 
 
-
-router.post('/', async (req, res) => {
+async function processMessage(msg, channel) {
   try {
-    // ...
+    // Process the received message
+    const receivedMessage = JSON.parse(msg.content.toString());
+    const { Username, Description } = receivedMessage;
+    const newNotification = new Notification({
+      username: Username,
+      description: Description
+    });
+    const savedNotification = await newNotification.save();
+    console.log('Received message:', receivedMessage);
+    
+    // Acknowledge the message to remove it from the queue
+    channel.ack(msg);
+  } catch (error) {
+    console.error('Error processing message:', error);
+    // You can choose to handle the error here, e.g., retrying, logging, etc.
+  }
+}
 
-    // ...
-
-    // Connect to RabbitMQ and consume the message
+async function consumeMessages() {
+  try {
+    // Connect to RabbitMQ and create a channel
     const connection = await amqp.connect('amqp://localhost');
     const channel = await connection.createChannel();
 
     const queueName = 'notifications_service';
 
-    // Consume messages from the queue
-    await channel.consume(queueName, (msg) => {
-      // Process the received message
-      const receivedMessage = JSON.parse(msg.content.toString());
-      const { Username, Description } = receivedMessage;
-      const newNotification = new Notification({
-        username: Username,
-        description: Description
-      });
-      const savedNotification =  newNotification.save();
-      console.log('Received message:', receivedMessage);
+    // Check if the queue exists
+    const queue = await channel.assertQueue(queueName, { autoDelete: true });
 
-      // Set the response JSON with only Username and Description
-      res.status(201).json({ username: Username, description: Description });
+    // Check the number of messages in the queue
+    const messageCount = queue.messageCount;
 
-      // Your code to process the message and save it to the database
-      // ...
+    if (messageCount > 0) {
+      // Consume messages from the queue
+      await channel.consume(queueName, (msg) => processMessage(msg, channel));
 
-      // Acknowledge the message to remove it from the queue
-      channel.ack(msg);
-    });
-
-    // ...
+      console.log(`Started consuming ${messageCount} messages from RabbitMQ`);
+    } else {
+      console.log('No messages in the queue. The service is still running.');
+    }
   } catch (error) {
-    res.status(500).json({ error: error.message });
+    console.error('Error consuming messages:', error);
   }
-});
+}
+
+// Start consuming messages when the server starts
+consumeMessages();
 
 
 
-//GET API
 router.get("/",async(req,res)=>{
   try{
     let notifications = await Notification.find();

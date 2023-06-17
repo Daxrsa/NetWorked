@@ -4,9 +4,9 @@ namespace Application.Services.ResultsService
 {
     public interface IResultsRepo
     {
-        Task<IEnumerable<ResultReadDto>> GetAll();
-        Task<ResultReadDto> GetById(Guid id);
         bool Add(CreateResultDto entity);
+        Task<IEnumerable<ResultReadDto>> GetAll();
         Task<bool> Delete(Guid id);
+        Task<ResultReadDto> GetById(Guid id);
     }
 }

@@ -7,6 +7,8 @@ import { useNavigate } from 'react-router-dom'
 import JobsGrid from "./JobsGrid.tsx"
 import { Add } from '@mui/icons-material'
 import Header from "../DesktopHeader";
+import Sidebar from "../sidebar/Sidebar"
+import './grid.css'
 
 function JobPage() {
   const [jobs, setJobs] = useState<IJob[]>([]);
@@ -30,11 +32,12 @@ function JobPage() {
   //console.log(companies);
 
   return (
+
     <div className='app companies'>
-      <Header/>
+      <Header />
       <div className="heading">
         <h2 className="h2c">Jobs Positions</h2>
-        <Button variant='outlined' onClick={() => redirect("/jobs/add")}>
+        <Button variant='outlined' onClick={() => redirect("/jobDashboard/add")}>
           <Add />
         </Button>
       </div>
@@ -43,7 +46,7 @@ function JobPage() {
       ) : jobs.length === 0 ? (
         <h1>No Job Position</h1>
       ) : (
-        <JobsGrid data={jobs} />
+        <JobsGrid className="jobs-grid-container" data={jobs} />
       )}
     </div>
   );

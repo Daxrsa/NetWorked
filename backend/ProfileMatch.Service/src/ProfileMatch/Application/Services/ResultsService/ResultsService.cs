@@ -34,7 +34,8 @@ namespace Application.Services.ResultsService
                 _context.Results.Add(MatchingResult);
                 _context.SaveChanges();
                 return true;
-            }catch(Exception ex)
+            }
+            catch (Exception ex)
             {
                 return false;
             }
@@ -48,33 +49,26 @@ namespace Application.Services.ResultsService
 
         public async Task<bool> Delete(Guid id)
         {
-            try
+            var result = await _context.Results.FindAsync(id);
+            if (result is null)
             {
-                var result = await _context.Results.FindAsync(id);
-                if(result is null)
-                {
-                    throw new Exception("The given result does not exist");
-                }
-                _context.Remove(result);
-                await _context.SaveChangesAsync();
-                return true;
-            }catch(Exception)
-            {
-                return false;
+                throw new Exception("The given result does not exist");
             }
+            _context.Remove(result);
+            await _context.SaveChangesAsync();
+            return true;
         }
 
         public async Task<ResultReadDto> GetById(Guid id)
         {
-            try
+           
+            var result = await _context.Results.Where(result => result.Id.Equals(id)).FirstOrDefaultAsync();
+            if (result is null)
             {
-                var result = await _context.Results.Where(result => result.Id.Equals(id)).FirstOrDefaultAsync();
-                var convertedResult = _mapper.Map<ResultReadDto>(result);
-                return convertedResult;
-            }catch(Exception ex)
-            {
-                return null;
+                throw new Exception("The given result does not exist");
             }
+            var convertedResult = _mapper.Map<ResultReadDto>(result);
+            return convertedResult;
         }
     }
 }

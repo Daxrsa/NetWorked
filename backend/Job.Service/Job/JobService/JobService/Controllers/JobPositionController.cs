@@ -3,23 +3,19 @@ using JobService.Core.Dtos.JobPosition;
 using JobService.Services.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using System.Net.Http.Headers;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
-using JobService.RabbitMqConfig;
 
 namespace JobService.Controllers
 {
     [Route("api/v1/[controller]")]
     [ApiController]
+    [Authorize]
+    [AllowAnonymous]
     public class JobPositionController: ControllerBase
     {
         private readonly IJobPosition _contract;
-        private readonly IMessageProducer _messageProducer;
-        public JobPositionController(IJobPosition contract, IMessageProducer messageProducer)
+        public JobPositionController(IJobPosition contract)
         {
             _contract = contract;
-            _messageProducer = messageProducer;
         }
 
         [HttpGet]
@@ -37,31 +33,8 @@ namespace JobService.Controllers
         [HttpPost]
         public async Task<ActionResult> AddJob(JobCreateDto dto)
         {
-            var token = Request.Headers["Authorization"].ToString().Split(' ')[1];
-
-            // Get user data
-            using (var httpClient = new HttpClient())
-            {
-                httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
-                var userResponse = await httpClient.GetAsync("http://localhost:5116/api/Auth/GetloggedInUser");
-                string userString = await userResponse.Content.ReadAsStringAsync();
-                var responseJson = JObject.Parse(userString);
-                string username = responseJson["username"].ToString();
-                dto.Username = username;
-                _contract.Add(dto);
-            }
-
-            // Send notification on job creation
-            var newNotification = new NotificationsDTO
-            {
-                Description = dto.Description,
-                Username = dto.Username
-            };
-
-           
-
-            _messageProducer.SendMessage<NotificationsDTO>(newNotification, "notifications_service");
-            return Ok(dto);
+            string authorizationHeader = Request.Headers["Authorization"].ToString();
+            return Ok(await _contract.Add(dto, authorizationHeader));
         }
 
 

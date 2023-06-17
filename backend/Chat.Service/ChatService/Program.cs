@@ -12,13 +12,14 @@ using System.Linq;
 using System.Threading.Tasks;
 using dotenv.net;
 
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Load environment variables from .env file
 DotEnv.Load();
 
 builder.Services.AddSignalR();
-
+builder.Services.AddControllers();
 var mongoConnectionString = Environment.GetEnvironmentVariable("DATABASE");
 builder.Services.AddSingleton<IMongoClient>(new MongoClient(mongoConnectionString));
 builder.Services.AddScoped<IMongoDatabase>(sp => sp.GetService<IMongoClient>().GetDatabase("NetWorked"));
@@ -44,6 +45,7 @@ app.UseCors();
 app.UseEndpoints(endpoints =>
 {
     endpoints.MapHub<ChatHub>("/chat");
+    endpoints.MapControllers();
 });
 
 app.Run();

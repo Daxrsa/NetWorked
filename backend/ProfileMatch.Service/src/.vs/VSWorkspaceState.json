@@ -2,15 +2,15 @@
   "ExpandedNodes": [
     "",
     "\\ProfileMatch",
-    "\\ProfileMatch\\API",
-    "\\ProfileMatch\\API\\Controllers",
     "\\ProfileMatch\\Application",
     "\\ProfileMatch\\Application\\Services",
     "\\ProfileMatch\\Application\\Services\\ResultsService",
     "\\ProfileMatch\\Domain",
-    "\\ProfileMatch\\Domain\\Enum",
-    "\\ProfileMatch\\Persistance"
+    "\\ProfileMatch\\Domain\\DTOs",
+    "\\ProfileMatch\\Domain\\Models",
+    "\\ProfileMatch\\Persistance",
+    "\\ProfileMatch\\Persistance\\Migrations"
   ],
-  "SelectedNode": "\\ProfileMatch\\Application\\Core\\CalculateMatch.cs",
+  "SelectedNode": "\\ProfileMatch\\Application\\Services\\ResultsService\\ResultsService.cs",
   "PreviewInSolutionExplorer": false
 }

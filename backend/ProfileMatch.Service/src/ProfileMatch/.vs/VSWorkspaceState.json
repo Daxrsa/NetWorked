@@ -2,15 +2,15 @@
   "ExpandedNodes": [
     "",
     "\\Application",
+    "\\Application\\RabbitMqConsumer",
     "\\Application\\Services",
     "\\Application\\Services\\ResultsService",
     "\\Domain",
     "\\Domain\\AutoMapperConfig",
-    "\\Domain\\DTOs",
     "\\Domain\\Models",
     "\\Persistance",
     "\\Persistance\\Migrations"
   ],
-  "SelectedNode": "\\Application\\Services\\ResultsService\\ResultsService.cs",
+  "SelectedNode": "\\API\\Program.cs",
   "PreviewInSolutionExplorer": false
 }

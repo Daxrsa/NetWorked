@@ -28,8 +28,6 @@ namespace JobService
 
             //Automapper Configuration
             builder.Services.AddAutoMapper(typeof(MappingProfile));
-
-
             builder.Services.AddScoped<ICompany, CompanyService>();
             builder.Services.AddScoped<IJobPosition, JobPositionService>();
             builder.Services.AddScoped<IApplication, ApplicationService>();
@@ -37,15 +35,15 @@ namespace JobService
             builder.Services.AddTransient<IFileService, FileService>();
             builder.Services.AddScoped<IMessageProducer, RabbitMqMessageSender>();
             builder.Services.AddScoped<IGetJobReq, JobPositionService>();
+            builder.Services.AddScoped<IEmail, EmailService>();
+            builder.Services.AddHttpClient();
 
             builder.Services.AddControllers()
                 .AddJsonOptions(options =>
                 {
                     options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
                 });
-            // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
-            //builder.Services.AddSwaggerGen();
 
             builder.Services.AddSwaggerGen(c =>
             {
@@ -59,18 +57,18 @@ namespace JobService
                 c.OperationFilter<SecurityRequirementsOperationFilter>();
             });
 
-            builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-      .AddJwtBearer(options =>
-      {
-          options.TokenValidationParameters = new TokenValidationParameters
-          {
-              ValidateIssuerSigningKey = true,
-              IssuerSigningKey = new SymmetricSecurityKey(System.Text.Encoding.UTF8
-            .GetBytes(builder.Configuration.GetSection("AppSettings:Token").Value!)),
-              ValidateIssuer = false,
-              ValidateAudience = false
-          };
-      });
+             builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+              .AddJwtBearer(options =>
+              {
+                  options.TokenValidationParameters = new TokenValidationParameters
+                  {
+                      ValidateIssuerSigningKey = true,
+                      IssuerSigningKey = new SymmetricSecurityKey(System.Text.Encoding.UTF8
+                    .GetBytes(builder.Configuration.GetSection("AppSettings:Token").Value!)),
+                      ValidateIssuer = false,
+                      ValidateAudience = false
+                  };
+              });
 
             var app = builder.Build();
 
@@ -104,9 +102,6 @@ namespace JobService
             app.UseAuthorization();
 
             app.MapControllers();
-
-
-
 
             app.Run();
         }

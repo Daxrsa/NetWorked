@@ -4,7 +4,7 @@
     {
         public string JobRequirements { get; set; }
         public string ApplicantSkills { get; set; }
+        public int ApplicationId { get; set; }
         public string? ResumeReview { get; set; }
-        public Guid ApplicationId { get; set; }
     }
 }

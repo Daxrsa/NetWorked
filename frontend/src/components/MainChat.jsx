@@ -15,15 +15,11 @@ const MainChat = () => {
   useEffect(() => {
     const fetchUsername = async () => {
       try {
-        const token = localStorage.getItem('jwtToken');
-        const response = await axios.get("http://localhost:5116/api/Auth/GetloggedInUser", {
-          headers: {
-            Authorization: `Bearer ${token}` // Add the token to the request headers
-          },
-        });
-
-        const user = await response.data.username;
-        console.log(user);
+        
+        const response = await axios.get("http://localhost:8800/users" );
+        console.log(response);
+        const user = await response.data.users[0];
+        //console.log(user);
         setUsername(user);
       } catch (error) {
         console.log(error);

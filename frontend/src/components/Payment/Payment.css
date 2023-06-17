@@ -53,6 +53,10 @@ input {
   font-weight: 500;
 }
 
+.form-group{
+  margin-top: 5%;
+}
+
 input:focus {
   -moz-box-shadow: none !important;
   -webkit-box-shadow: none !important;

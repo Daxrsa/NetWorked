@@ -24,16 +24,8 @@ namespace Application.Services.Contracts
             _customerService = customerService;
             _tokenService = tokenService;
         }
-
-        /// <summary>
-        /// Create a new customer at Stripe through API using customer and card details from records.
-        /// </summary>
-        /// <param name="customer">Stripe Customer</param>
-        /// <param name="ct">Cancellation Token</param>
-        /// <returns>Stripe Customer</returns>
         public async Task<StripeCustomer> AddStripeCustomerAsync(AddStripeCustomer customer, CancellationToken ct)
         {
-            // Set Stripe Token options based on customer data
             TokenCreateOptions tokenOptions = new TokenCreateOptions
             {
                 Card = new TokenCardOptions
@@ -64,14 +56,6 @@ namespace Application.Services.Contracts
             return new StripeCustomer(createdCustomer.Name, createdCustomer.Email, createdCustomer.Id);
         }
 
-
-        /// <summary>
-        /// Add a new payment at Stripe using Customer and Payment details.
-        /// Customer has to exist at Stripe already.
-        /// </summary>
-        /// <param name="payment">Stripe Payment</param>
-        /// <param name="ct">Cancellation Token</param>
-        /// <returns><Stripe Payment/returns>
         public async Task<StripePayment> AddStripePaymentAsync(AddStripePayment payment, CancellationToken ct)
         {
             // Set the options for the payment we would like to create at Stripe

@@ -3,6 +3,7 @@ import dotenv from 'dotenv';
 import mongoose from 'mongoose';
 import amqp from 'amqplib';
 import NotificationRoute from './routes/notifications.js';
+
 import cors from 'cors';
 
 const app = express();
@@ -40,6 +41,7 @@ app.get('/', (req, res) => {
 // Middlewares
 app.use(cors());
 app.use('/notifications', NotificationRoute);
+
 
 connect().then(() => {
   app.listen(8800, () => {

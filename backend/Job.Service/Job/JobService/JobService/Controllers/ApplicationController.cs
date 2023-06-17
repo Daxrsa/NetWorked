@@ -3,10 +3,7 @@ using JobService.Core.Dtos;
 using JobService.Core.Dtos.Application;
 using JobService.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
-using Newtonsoft.Json.Linq;
-using System.Net.Http.Headers;
 using Microsoft.AspNetCore.Authorization;
-using JobService.RabbitMqConfig;
 
 namespace JobService.Controllers
 {
@@ -17,14 +14,12 @@ namespace JobService.Controllers
     {
         private readonly IApplication _contract;
         private readonly IFileService _fileService;
-        private readonly IMessageProducer _messageProducer;
-        private readonly IGetJobReq _getJobReq;
-        public ApplicationController(IApplication contract, IFileService fileService, IMessageProducer messageProducer, IGetJobReq getJobReq) 
+        private readonly IEmail _email;
+        public ApplicationController(IApplication contract, IFileService fileService, IEmail email) 
         {
             _contract = contract;
             _fileService = fileService;
-            _messageProducer = messageProducer;
-            _getJobReq = getJobReq;
+            _email = email;
         }
 
         [HttpGet]
@@ -70,41 +65,21 @@ namespace JobService.Controllers
         [HttpPost]
         public async Task<ActionResult> Apply([FromForm] ApplicationCreateDto dto, IFormFile file)
         {
-            var token = Request.Headers["Authorization"].ToString().Split(' ')[1];
-            string userSkills = "";
-            //get user data
-            using (var httpClient = new HttpClient())
+            string authorizationHeader = Request.Headers["Authorization"].ToString();
+            var result = await _contract.Add(dto, file, authorizationHeader);
+            if (result)
             {
-                httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
-                var userResponse = await httpClient.GetAsync("http://localhost:5116/api/Auth/GetloggedInUser");
-                string userString = await userResponse.Content.ReadAsStringAsync();
-                var responseJson = JObject.Parse(userString);
-                string username = responseJson["username"].ToString();
-                Guid userId = (Guid)responseJson["id"];
-                userSkills = responseJson["skills"].ToString();
-                Console.WriteLine(userId);
-                dto.ApplicantId = userId;
-                dto.ApplicantName= username;
+                _email.SendEmail();
+                return Ok(result);
             }
-
-            var jobReq = _getJobReq.GetJobReqById(dto.JobId);
-
-            var result = await _contract.Add(dto, file);
-            var profileMatchingResult = new DTO
-            {
-                ApplicantSkills = userSkills,
-                JobRequirements = jobReq,
-                ApplicationId = dto.Id
-            };
-
-            _messageProducer.SendMessage<DTO>(profileMatchingResult, "profile_match_service");
-
-            var status = new Status()
-            {
-                StatusCode = result ? 1 : 0,
-                StatusMessage = result ? "Applied successfully" : "Error has occured"
-            };
-            return Ok(status);
+            return BadRequest("You have already applied for this position!");
         }
+
+        /*[HttpPost]
+        public IActionResult SendEmail()
+        {
+            var result = _email.SendEmail();
+            return Ok(result);
+        }*/
     }
 }

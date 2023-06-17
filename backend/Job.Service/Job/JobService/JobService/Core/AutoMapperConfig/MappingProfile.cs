@@ -27,8 +27,6 @@ namespace JobService.Core.AutoMapperConfig
             CreateMap<Application, ApplicationReadDto>()
                 .ForMember(dest => dest.JobTitle,
                 opt => opt.MapFrom(src => src.JobPosition.Title));
-                //.ForMember(x => x.Id,
-                //y => y.MapFrom(s => s.ApplicantId.ToString() + s.JobId.ToString()));
         }
     }
 }

@@ -1,6 +1,7 @@
 global using Application.Services.Auth;
 global using Application.Services.UserRepo;
 using API.Middleware;
+using API.RabbitMQConfig;
 using Application.Mapping;
 using Application.Services;
 using File.Package.FileService;
@@ -28,11 +29,12 @@ builder.Services.AddSwaggerGen(c => {
     });
     c.OperationFilter<SecurityRequirementsOperationFilter>();
 });
-var secretKey = "sk_test_51MjoO4HN6QfgSK30DuaK9qoyxCjNqXU9cr7RVZ28Qslt0lFurJsHY43U4tZMtSC2yiw5AhLhMFUiLtIgNBj03mUe00YlsAg3Kt";
-builder.Services.AddStripeInfrastructure(secretKey);
+//var secretKey = "sk_test_51MjoO4HN6QfgSK30DuaK9qoyxCjNqXU9cr7RVZ28Qslt0lFurJsHY43U4tZMtSC2yiw5AhLhMFUiLtIgNBj03mUe00YlsAg3Kt";
+builder.Services.AddStripeInfrastructure(builder.Configuration);
 
 builder.Services.AddScoped<IAuthRepo, AuthRepo>();
 builder.Services.AddScoped<IUserRepo, UserRepo>();
+builder.Services.AddScoped<IChangeRole, UserRepo>();
 builder.Services.AddTransient<IFileService, FileService>();
 
 builder.Services.AddAutoMapper(typeof(MappingProfiles).Assembly);
@@ -52,6 +54,7 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
 
 builder.Services.AddFluentValidationAutoValidation();
 builder.Services.AddFluentValidationClientsideAdapters();
+builder.Services.AddScoped<IMessageProducer, RabbitMqMessageSender>();
 
 // Assembly registerDtoAssembly = typeof(RegisterDTOValidator).Assembly;
 // builder.Services.AddValidatorsFromAssembly(registerDtoAssembly);

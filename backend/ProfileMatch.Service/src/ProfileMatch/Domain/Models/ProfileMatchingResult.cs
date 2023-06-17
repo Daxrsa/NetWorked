@@ -7,6 +7,6 @@ namespace Domain.Models
         [Key]
         public Guid Id { get; set; }
         public double Result { get; set; }
-        public Guid ApplicationId { get; set; }
+        public int ApplicationId { get; set; }
     }
 }

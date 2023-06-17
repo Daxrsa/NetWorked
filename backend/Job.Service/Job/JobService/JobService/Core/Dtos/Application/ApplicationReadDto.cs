@@ -8,7 +8,6 @@
         public string ApplicantName { get; set; }
         public int JobId { get; set; }
         public string JobTitle { get; set; }
-
         public int Id { get; set; }
     }
 }

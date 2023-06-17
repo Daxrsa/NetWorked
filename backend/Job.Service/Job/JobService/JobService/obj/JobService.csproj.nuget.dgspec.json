@@ -1,32 +1,32 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Admin\\Desktop\\Net13\\NetWorked\\backend\\Job.Service\\Job\\JobService\\JobService\\JobService.csproj": {}
+    "C:\\Users\\fitor\\ProjektiLab2\\NetWorked\\backend\\Job.Service\\Job\\JobService\\JobService\\JobService.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Admin\\Desktop\\Net13\\NetWorked\\backend\\Job.Service\\Job\\JobService\\JobService\\JobService.csproj": {
+    "C:\\Users\\fitor\\ProjektiLab2\\NetWorked\\backend\\Job.Service\\Job\\JobService\\JobService\\JobService.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Admin\\Desktop\\Net13\\NetWorked\\backend\\Job.Service\\Job\\JobService\\JobService\\JobService.csproj",
+        "projectUniqueName": "C:\\Users\\fitor\\ProjektiLab2\\NetWorked\\backend\\Job.Service\\Job\\JobService\\JobService\\JobService.csproj",
         "projectName": "JobService",
-        "projectPath": "C:\\Users\\Admin\\Desktop\\Net13\\NetWorked\\backend\\Job.Service\\Job\\JobService\\JobService\\JobService.csproj",
-        "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Admin\\Desktop\\Net13\\NetWorked\\backend\\Job.Service\\Job\\JobService\\JobService\\obj\\",
+        "projectPath": "C:\\Users\\fitor\\ProjektiLab2\\NetWorked\\backend\\Job.Service\\Job\\JobService\\JobService\\JobService.csproj",
+        "packagesPath": "C:\\Users\\fitor\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\fitor\\ProjektiLab2\\NetWorked\\backend\\Job.Service\\Job\\JobService\\JobService\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+          "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\"
         ],
         "configFilePaths": [
-          "C:\\Users\\Admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "C:\\Users\\fitor\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net7.0"
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files\\dotnet\\library-packs": {},
+          "C:\\Users\\fitor\\ProjektiLab2\\NetWorked\\backend\\packages": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -48,6 +48,10 @@
             "AutoMapper.Extensions.Microsoft.DependencyInjection": {
               "target": "Package",
               "version": "[12.0.1, )"
+            },
+            "MailKit": {
+              "target": "Package",
+              "version": "[4.0.0, )"
             },
             "Microsoft.AspNetCore.Authentication.JwtBearer": {
               "target": "Package",

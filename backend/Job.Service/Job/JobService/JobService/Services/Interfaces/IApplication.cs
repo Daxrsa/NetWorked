@@ -10,7 +10,7 @@ namespace JobService.Services.Interfaces
         Task<ApplicationReadDto> GetById(string id);
         Task<IEnumerable<ApplicationReadDto>> GetApplicationsByApplicantId(Guid id);
         Task<IEnumerable<ApplicationReadDto>> GetApplicationsByJobId(int id);
-        Task<bool> Add([FromForm] ApplicationCreateDto dto, IFormFile file);
+        Task<bool> Add([FromForm] ApplicationCreateDto dto, IFormFile file, string authorizationHeader);
         Task<bool> Delete(string id);
         Application Update(string id, Application company);
     }

@@ -10,7 +10,7 @@ using Persistence;
 
 namespace Application.Services.UserRepo
 {
-    public class UserRepo : IUserRepo
+    public class UserRepo : IUserRepo,IChangeRole
     {
         private readonly DataContext _context;
         private readonly IHttpContextAccessor _httpContextAccessor;
@@ -153,6 +153,27 @@ namespace Application.Services.UserRepo
             {
                 return Result<List<EditUserDTO>>.Failure(ex.Message);
             }
+        }
+
+        public async Task<bool> ChangeUserRole(Guid id)
+        {
+            var result = await GetUserById(id);
+
+            if (result == null || !result.Success || result.Data == null)
+            {
+                return false;
+            }
+
+            if (result.Data.Role != "Applicant")
+            {
+                return false;
+            }
+
+            result.Data.Role = "Recruiter";
+
+            var user = _mapper.Map<User>(result.Data);
+            await UpdateUser(user);
+            return true;
         }
     }
 }

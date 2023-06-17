@@ -8,7 +8,6 @@ namespace Domain.AutoMapperConfig
     {
         public MappingProfile() 
         {
-            //CreateMap<CreateResultDto, ProfileMatchingResult>();
             CreateMap<ProfileMatchingResult, ResultReadDto>();
         }
     }
