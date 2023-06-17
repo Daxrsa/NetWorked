@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { MDBCol, MDBBtn, MDBInput, MDBTextArea } from "mdb-react-ui-kit";
 import axios from "axios";
+import { logout } from '../AuthService';
 
 export default function EditProfile({ cancel, submit }) {
   const [fullname, setFullName] = useState("");
@@ -22,9 +23,26 @@ export default function EditProfile({ cancel, submit }) {
       bio,
     };
 
+    // Check if JWT token exists in local storage
+    const jwtToken = localStorage.getItem("jwtToken");
+
     try {
-      const response = await axios.put("http://localhost:5116/api/User", data);
+      const config = {
+        headers: {
+          Authorization: `Bearer ${jwtToken}`,
+        },
+      };
+
+      const response = await axios.put(
+        "http://localhost:5116/api/User",
+        data,
+        config
+      );
+
       console.log("Data sent successfully.", response.data);
+
+      // Call logout() function after successful data send
+      logout();
     } catch (error) {
       console.error("Error sending data.", error);
     }
