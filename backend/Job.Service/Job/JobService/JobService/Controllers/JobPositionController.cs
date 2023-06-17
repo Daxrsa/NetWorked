@@ -9,7 +9,7 @@ namespace JobService.Controllers
     [Route("api/v1/[controller]")]
     [ApiController]
     [Authorize]
-    //[AllowAnonymous]
+    [AllowAnonymous]
     public class JobPositionController: ControllerBase
     {
         private readonly IJobPosition _contract;

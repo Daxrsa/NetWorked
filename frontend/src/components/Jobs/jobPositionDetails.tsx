@@ -1,4 +1,4 @@
-import { Box, Button, Container, Skeleton, Typography } from '@mui/material';
+import { Box, Button, Container, Skeleton, Typography, CircularProgress } from '@mui/material';
 import FmdGoodOutlinedIcon from '@mui/icons-material/FmdGoodOutlined';
 import AccessTimeOutlinedIcon from '@mui/icons-material/AccessTimeOutlined';
 import CalendarTodayOutlinedIcon from '@mui/icons-material/CalendarTodayOutlined';
@@ -27,6 +27,7 @@ export default function JobPositonDetails() {
     const [isFileUploaded, setIsFileUploaded] = useState(false);
     const [errorMessage, setErrorMessage] = useState('');
     const [statusCode, setStatusCode] = useState<string | null>(null);
+    const [isLoading, setIsLoading] = useState(false);
 
     const handleFileUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
         const file = event.target.files && event.target.files[0];
@@ -68,7 +69,8 @@ export default function JobPositonDetails() {
 
     const token = localStorage.getItem("jwtToken");
     const handleClickSaveBtn = () => {
-        console.log(pdfFile)
+        setIsLoading(true);
+
         const newFormData = new FormData();
         newFormData.append("jobId", id);
         newFormData.append("applicantId", application.applicantId);
@@ -81,6 +83,7 @@ export default function JobPositonDetails() {
                 },
             })
             .then((response) => {
+                setIsLoading(false);
                 setStatusCode("Applied successfully");
             })
             .catch((error) => {
@@ -89,6 +92,7 @@ export default function JobPositonDetails() {
                 } else {
                     console.log(error);
                 }
+                setIsLoading(false);
             });
     };
 
@@ -146,8 +150,8 @@ export default function JobPositonDetails() {
                                 <p className="status-message">Message: {statusCode}</p>
                             )}
                         </div>
-                        <Button variant="contained" disabled={!isFileUploaded} onClick={handleClickSaveBtn}>
-                            Apply
+                        <Button variant="contained" disabled={!isFileUploaded || isLoading} onClick={handleClickSaveBtn}>
+                            {isLoading ? <CircularProgress size={24} /> : 'Apply'}
                         </Button>
                     </Box>
                 </Box>

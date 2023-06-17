@@ -3,7 +3,8 @@ NetWorked is a social network website we're developing for a university course. 
 
 # Conceptual Architecture
 
-![ConceptualArchitecture](https://user-images.githubusercontent.com/48331808/228575291-27e7bb24-5831-41ad-8dd0-f8ccc927919a.png)
+
+![conceptual](https://github.com/Daxrsa/NetWorked/assets/48331808/4fd811c0-3263-40ea-8e9b-9738a7181823)
 
 ## Description of each service
 1. ### Users microservice: <sub> </sub>
