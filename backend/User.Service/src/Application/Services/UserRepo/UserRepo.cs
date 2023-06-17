@@ -1,3 +1,4 @@
+using System.Runtime.CompilerServices;
 using System.Security.Claims;
 using Application.Core;
 using Application.DTOs;
@@ -129,14 +130,14 @@ namespace Application.Services.UserRepo
             }
         }
 
-        public async Task<Result<List<EditUserDTO>>> EditUser(Guid id, EditUserDTO requestDto)
+        public async Task<Result<EditUserDTO>> EditUser(Guid id, EditUserDTO requestDto)
         {
             try
             {
                 var user = await _context.User.FindAsync(id);
                 if (user is null)
                 {
-                    return Result<List<EditUserDTO>>.Failure($"User with id {id} not found.");
+                    return Result<EditUserDTO>.Failure($"User with id {id} not found.");
                 }
 
                 _mapper.Map(requestDto, user);
@@ -144,14 +145,14 @@ namespace Application.Services.UserRepo
                 var result = await _context.SaveChangesAsync() > 0;
                 if (!result)
                 {
-                    return Result<List<EditUserDTO>>.Failure("Failed to update the user.");
+                    return Result<EditUserDTO>.Failure("Failed to update the user.");
                 }
-                var users = await _context.User.ProjectTo<EditUserDTO>(_mapper.ConfigurationProvider).ToListAsync();
-                return Result<List<EditUserDTO>>.IsSuccess(users);
+                var userDto = _mapper.Map<EditUserDTO>(user);
+                return Result<EditUserDTO>.IsSuccess(userDto);
             }
             catch (Exception ex)
             {
-                return Result<List<EditUserDTO>>.Failure(ex.Message);
+                return Result<EditUserDTO>.Failure(ex.Message);
             }
         }
 
@@ -176,6 +177,11 @@ namespace Application.Services.UserRepo
             return true;
         }
 
+        public async Task<int> GetUserCount()
+        {
+            int userCount = await _context.User.CountAsync();
+            return userCount;
+        }
         public Task<EditUserDTO> UpdateUser(EditUserDTO requestDto)
         {
             throw new NotImplementedException();

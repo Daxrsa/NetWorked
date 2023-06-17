@@ -11,5 +11,6 @@ namespace Application.Services.PostService
         Task<Result<List<PostDTO>>> UpdatePost(Guid id, PostDTO postDto);
         Task<Result<List<PostDTO>>> DeletePost(Guid id);
         Task<Result<List<PostDTO>>> FilterPostsByUser(string username);
+        Task<int> GetPostCount();
     }
 }

@@ -29,7 +29,6 @@ function App()
       <GlobalStyles />
       <Routes>
         <Route path="/" element={<Layout />} />
-        <Route path="/admin" element={<AdminDashboard />} />
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
         <Route path="/posts" element={<PostDashboard />} />
@@ -51,6 +50,7 @@ function App()
           <Route path="/mainchat" element={<MainChat />} />
           <Route path="/profilePage" element={<ProfilePage />} />
           <Route path="/payment" element={<Payment />} />
+          <Route path="/admin" element={<AdminDashboard />} />
         </Route>
       </Routes>
     </>

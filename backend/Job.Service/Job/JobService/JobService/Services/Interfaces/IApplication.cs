@@ -13,5 +13,6 @@ namespace JobService.Services.Interfaces
         Task<bool> Add([FromForm] ApplicationCreateDto dto, IFormFile file, string authorizationHeader);
         Task<bool> Delete(string id);
         Application Update(string id, Application company);
+        Task<int> GetApplicationCount();
     }
 }

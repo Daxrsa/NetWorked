@@ -10,5 +10,6 @@ namespace JobService.Services.Interfaces
         bool Add(CompanyCreateDto entity);
         Task<bool> Delete(Guid id);
         Company Update(Guid id, Company company);
+        Task<int> GetCompanyCount();
     }
 }

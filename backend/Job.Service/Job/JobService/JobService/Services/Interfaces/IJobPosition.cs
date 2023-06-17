@@ -10,5 +10,6 @@ namespace JobService.Services.Interfaces
         Task<bool> Add(JobCreateDto dto, string authorizationHeader);
         Task<bool> Delete(int id);
         JobPosition Update(int id, JobPosition job);
+        Task<int> GetJobPositionCount();
     }
 }

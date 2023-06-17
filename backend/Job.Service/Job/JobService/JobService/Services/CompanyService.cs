@@ -87,5 +87,11 @@ namespace JobService.Services
         {
             throw new NotImplementedException();
         }
+
+        public async Task<int> GetCompanyCount()
+        {
+            int count = await _context.Companies.CountAsync();
+            return count;
+        }
     }
 }

@@ -6,7 +6,7 @@ using Newtonsoft.Json;
 
 namespace API.Controllers
 {
-    [Authorize(Roles = "Applicant")]
+    //[Authorize(Roles = "Applicant")]
     [ApiController]
     [Route("api/[controller]")]
     public class PostController : BaseApiController
@@ -96,6 +96,12 @@ namespace API.Controllers
             {
                 return BadRequest(ex.Message);
             }
+        }
+
+        [HttpGet("countPosts")]
+        public async Task<ActionResult<int>> CountPosts()
+        {
+            return Ok(await _postService.GetPostCount());
         }
     }
 }
