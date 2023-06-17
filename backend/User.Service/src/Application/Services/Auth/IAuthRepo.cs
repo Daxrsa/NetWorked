@@ -1,5 +1,4 @@
 using Application.Core;
-using Application.DTOs;
 using Domain.Models;
 
 namespace Application.Services.Auth
@@ -9,6 +8,8 @@ namespace Application.Services.Auth
         Task<Result<Guid>> Register(User user, string password);
         Task<Result<string>> Login(string username, string password);
         Task<bool> UserExists(string username);
-        void VerifyEmail(string emailAddress);
+        void sendEmail(string emailAddress, string token);
+        string GenerateVerificationCode();
+        Task<string> Verify(string token);
     }
 }

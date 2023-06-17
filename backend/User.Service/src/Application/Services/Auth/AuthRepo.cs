@@ -3,7 +3,6 @@ using System.Net.Mail;
 using System.Security.Claims;
 using System.Text;
 using Application.Core;
-using Application.DTOs;
 using Domain.Models;
 using File.Package.FileService;
 using Microsoft.EntityFrameworkCore;
@@ -40,6 +39,11 @@ namespace Application.Services.Auth
             {
                 response.Success = false;
                 response.Message = "Wrong password.";
+            }
+            else if (user.VerifiedAt == null)
+            {
+                response.Success = false;
+                response.Message = "Not verified.";
             }
             else
             {
@@ -107,28 +111,40 @@ namespace Application.Services.Auth
             }
         }
 
-        public void VerifyEmail(string emailAddress)
+        public async Task<string> Verify(string token)
         {
-            //string emailAddress = "user@example.com"; // User's entered email address
-            string verificationCode = GenerateVerificationCode(); // Generate a unique verification code
+            var user = await _context.User.FirstOrDefaultAsync(u => u.VerificationToken.Equals(token));
+            if (user == null)
+            {
+                return "Invalid token.";
+            }
 
+            user.VerifiedAt= DateTime.Now;
+            await _context.SaveChangesAsync();
+            return "Verified successfully.";
+        }
+
+        public void sendEmail(string emailAddress, string token)
+        {
+            string verificationCode = GenerateVerificationCode();
             MailMessage message = new MailMessage();
-            message.From = new MailAddress("networked758@gmail.com"); // Your application's email address
+            message.From = new MailAddress("networked758@gmail.com"); 
             message.To.Add(emailAddress);
             message.Subject = "Email Verification";
-            message.Body = $"Your verification code is: {verificationCode}";
+            var url = $"http://localhost:5116/api/Auth/verify?token={token}";
+            //message.Body = $"Your verification code is: {verificationCode}";
+            message.Body = $"Verify your email by clicking in this url: "+url;
 
-            SmtpClient smtpClient = new SmtpClient("smtp.gmail.com", 587); // Gmail SMTP server and port
+            SmtpClient smtpClient = new SmtpClient("smtp.gmail.com", 587); 
             smtpClient.UseDefaultCredentials = false;
-            smtpClient.Credentials = new System.Net.NetworkCredential("networked758@gmail.com", "pllvflwxgwjletje"); // Your application's email credentials
+            smtpClient.Credentials = new System.Net.NetworkCredential("networked758@gmail.com", "pllvflwxgwjletje");
             smtpClient.EnableSsl = true;
 
             smtpClient.Send(message);
         }
 
-        private string GenerateVerificationCode()
+        public string GenerateVerificationCode()
         {
-            // Generate a random verification code
             Random random = new Random();
             const string characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
             const int codeLength = 6;

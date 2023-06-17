@@ -14,12 +14,10 @@ namespace JobService.Controllers
     {
         private readonly IApplication _contract;
         private readonly IFileService _fileService;
-        private readonly IEmail _email;
-        public ApplicationController(IApplication contract, IFileService fileService, IEmail email) 
+        public ApplicationController(IApplication contract, IFileService fileService) 
         {
             _contract = contract;
             _fileService = fileService;
-            _email = email;
         }
 
         [HttpGet]
@@ -69,7 +67,6 @@ namespace JobService.Controllers
             var result = await _contract.Add(dto, file, authorizationHeader);
             if (result)
             {
-                _email.SendEmail();
                 return Ok(result);
             }
             return BadRequest("You have already applied for this position!");

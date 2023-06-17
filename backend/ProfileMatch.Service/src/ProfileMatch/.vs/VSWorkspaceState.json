@@ -1,8 +1,8 @@
 {
   "ExpandedNodes": [
     "",
+    "\\API",
     "\\Application",
-    "\\Application\\RabbitMqConsumer",
     "\\Application\\Services",
     "\\Application\\Services\\ResultsService",
     "\\Domain",
@@ -11,6 +11,6 @@
     "\\Persistance",
     "\\Persistance\\Migrations"
   ],
-  "SelectedNode": "\\API\\Program.cs",
+  "SelectedNode": "\\API\\appsettings.json",
   "PreviewInSolutionExplorer": false
 }

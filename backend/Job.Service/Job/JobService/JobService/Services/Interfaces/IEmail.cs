@@ -2,6 +2,6 @@
 {
     public interface IEmail
     {
-        string SendEmail();
+        string SendEmail(string email, string username, string job);
     }
 }

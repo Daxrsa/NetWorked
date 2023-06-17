@@ -1,0 +1,16 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\Application",
+    "\\Application\\Services",
+    "\\Application\\Services\\PaymentRepo",
+    "\\Application\\Services\\UserRepo",
+    "\\Domain",
+    "\\Domain\\Models",
+    "\\Domain\\Models\\Stripe",
+    "\\Persistence",
+    "\\Persistence\\Migrations"
+  ],
+  "SelectedNode": "\\API\\Controllers\\StripeController.cs",
+  "PreviewInSolutionExplorer": false
+}

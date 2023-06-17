@@ -23,5 +23,7 @@ namespace Domain.Models
         public string? ProfilePictureUrl { get; set; }
         [NotMapped]
         public IFormFile? formFile { get; set; }
+        public string? VerificationToken { get; set; }
+        public DateTime? VerifiedAt { get; set; }
     }
 }

@@ -12,7 +12,7 @@ const SearchContainer = styled.div`
 
 export const SearchInput = styled.input`
   margin-left: 12px;
-
+  
   background: var(--color-white);
   color: var(--color-black);
   font-size: 14px;
@@ -36,6 +36,7 @@ const SearchButton = styled.button`
   outline: none;
   border-radius: 2px;
   margin-left: 5px;
+  margin-top: -4px;
 `;
 
 const SearchComponent = () => {

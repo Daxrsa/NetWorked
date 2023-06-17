@@ -96,8 +96,9 @@ const MainChat = () => {
   };
 
   return (
+    <div><Header/>
     <div className="app">
-      <Header/>
+      
       <h2 className="h2c">NetWorked</h2>
       <hr className="line" />
       {!connection ? (
@@ -112,6 +113,7 @@ const MainChat = () => {
           handleDeleteMessage={handleDeleteMessage}
         />
       )}
+    </div>
     </div>
   );
 };

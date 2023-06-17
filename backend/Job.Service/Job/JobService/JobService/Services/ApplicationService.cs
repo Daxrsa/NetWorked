@@ -20,7 +20,8 @@ namespace JobService.Services
         private readonly IGetJobReq _getJobReq;
         private readonly IMessageProducer _messageProducer;
         private readonly HttpClient _httpClient;
-        public ApplicationService(JobDbContext context, IMapper mapper, IFileService fileService, IGetJobReq getJobReq, IMessageProducer messageProducer, HttpClient httpClient) 
+        private readonly IEmail _email;
+        public ApplicationService(JobDbContext context, IMapper mapper, IFileService fileService, IGetJobReq getJobReq, IMessageProducer messageProducer, HttpClient httpClient, IEmail email) 
         {
             _context= context;
             _mapper= mapper;
@@ -28,6 +29,7 @@ namespace JobService.Services
             _getJobReq= getJobReq;
             _messageProducer= messageProducer;
             _httpClient= httpClient;
+            _email= email;
         }
 
         public async Task<IEnumerable<ApplicationReadDto>> GetAll()
@@ -74,6 +76,7 @@ namespace JobService.Services
             {
                 var token = authorizationHeader.Split(' ')[1];
                 string userSkills = "";
+                string email = "";
                 var a = _mapper.Map<Application>(dto);
 
                 _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
@@ -85,6 +88,7 @@ namespace JobService.Services
                     a.ApplicantId = loggedInUser.Id;
                     a.ApplicantName = loggedInUser.username;
                     userSkills = loggedInUser.skills;
+                    email = loggedInUser.email;
                     
                 }
 
@@ -97,7 +101,6 @@ namespace JobService.Services
                 
                 await _context.Applications.AddAsync(a);
                 a.ResumeUrl = _fileService.SavePdfAsync(file).Result;
-                Console.WriteLine(a.ResumeUrl);
                 await _context.SaveChangesAsync();
 
                 var profileMatchingResult = new DTO
@@ -107,10 +110,11 @@ namespace JobService.Services
                     ApplicationId = a.Id
                 };
 
+                _email.SendEmail(email, a.ApplicantName, a.JobPosition.Title);
                 _messageProducer.SendMessage<DTO>(profileMatchingResult, "profile_match_service");
                 return true;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 return false;
             }

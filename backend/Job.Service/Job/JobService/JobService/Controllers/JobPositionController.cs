@@ -9,7 +9,7 @@ namespace JobService.Controllers
     [Route("api/v1/[controller]")]
     [ApiController]
     [Authorize]
-    [AllowAnonymous]
+    //[AllowAnonymous]
     public class JobPositionController: ControllerBase
     {
         private readonly IJobPosition _contract;
@@ -19,6 +19,7 @@ namespace JobService.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles ="Recruiter")]
         public async Task<ActionResult> GetAllJobs()
         {
             return Ok(await _contract.GetAll());

@@ -182,5 +182,9 @@ namespace Application.Services.UserRepo
             int userCount = await _context.User.CountAsync();
             return userCount;
         }
+        public Task<EditUserDTO> UpdateUser(EditUserDTO requestDto)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

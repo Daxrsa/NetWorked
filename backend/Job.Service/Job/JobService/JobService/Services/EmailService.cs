@@ -6,16 +6,16 @@ namespace JobService.Services
 {
     public class EmailService: IEmail
     {
-        public string SendEmail()
+        public string SendEmail(string email, string username, string job)
         {
             string senderEmail = "networked758@gmail.com";
             string senderPassword = "pllvflwxgwjletje";
 
-            string recipientEmail = "ttahirifitore@gmail.com";
+            string recipientEmail = email;
 
             MailMessage mail = new MailMessage(senderEmail, recipientEmail);
-            mail.Subject = "Hello from .NET";
-            mail.Body = "This is a test email sent from a .NET application.";
+            mail.Subject = $"[{job}]Applied successfully!";
+            mail.Body = $"Dear {username},\nYou have successfully applied to job position \"{job}\". Please do not reply to this email. \nBest of luck,\nTeam Networked";
 
             SmtpClient smtpClient = new SmtpClient("smtp.gmail.com", 587);
             smtpClient.EnableSsl = true;

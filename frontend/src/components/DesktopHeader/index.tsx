@@ -67,13 +67,30 @@ const Header: React.FC = () => {
       const response = await axios.get<ResponseData>(
         "http://localhost:8800/notifications"
       );
+      const token = localStorage.getItem("jwtToken");
+      const responsep = await axios.get(
+        "http://localhost:5116/api/Auth/GetloggedInUser",
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      const udata = responsep.data;
+      const profession = udata.profession.toLowerCase(); // Convert to lowercase
       const { mappedData } = response.data;
 
-      // Map the username and description from notifications array
-      const notificationsData = mappedData.map((notification) => ({
+      // Filter notifications based on profession (case-insensitive)
+      const filteredNotifications = mappedData.filter((notification) =>
+        notification.description.toLowerCase().includes(profession)
+      );
+
+      // Map the username and description from filtered notifications
+      const notificationsData = filteredNotifications.map((notification) => ({
         username: notification.username,
         description: notification.description,
       }));
+
       console.log(notificationsData);
       setNotifications(notificationsData);
     } catch (error) {

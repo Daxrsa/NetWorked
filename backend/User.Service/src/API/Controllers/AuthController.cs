@@ -1,10 +1,7 @@
 using API.RabbitMQConfig;
 using Application.Core;
 using Application.DTOs;
-using Application.Services.Auth;
-using Application.Services.UserRepo;
 using AutoMapper;
-using Azure;
 using Domain.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -36,31 +33,31 @@ namespace API.Controllers
         [HttpPost("Register")]
         public async Task<ActionResult<Result<Guid>>> Register([FromForm] UserRegisterDTO request)
         {
-            var response = await _authRepo.Register(
-                new User
-                {
-                    Username = request.Username,
-                    Fullname = request.Fullname,
-                    Email = request.Email,
-                    Phone = request.Phone,
-                    Address = request.Address,
-                    Profession = request.Profession,
-                    Skills = request.Skills,
-                    Bio = request.Bio,
-                    Role = "Applicant",
-                    formFile = request.formFile
-                },
-                request.Password
-            ); ;
+            var user = new User()
+            {
+                Username = request.Username,
+                Fullname = request.Fullname,
+                Email = request.Email,
+                Phone = request.Phone,
+                Address = request.Address,
+                Profession = request.Profession,
+                Skills = request.Skills,
+                Bio = request.Bio,
+                Role = "Applicant",
+                formFile = request.formFile,
+                VerificationToken = _authRepo.GenerateVerificationCode()
+            };
+            var response = await _authRepo.Register(user, request.Password); 
+
             if (!response.Success)
             {
                 return BadRequest(response);
             }
+            _authRepo.sendEmail(user.Email, user.VerificationToken);
             return Ok(response);
         }
 
          [HttpPost("ChangeUserRole")]
-         //[Authorize(Roles = "Admin")] // Add appropriate authorization for this endpoint
          public async Task<ActionResult<string>> ChangeUserRole(Guid id)
          {
              var result = await _userRepo.GetUserById(id);
@@ -76,14 +73,11 @@ namespace API.Controllers
              }
 
              result.Data.Role = "Recruiter";
-
-            // Update the user role in the repository
             var user = _mapper.Map<User>(result.Data);
             await _userRepo.UpdateUser(user);
 
              return Ok(result);
          }
-
 
         [HttpPost("Login")]
         public async Task<ActionResult<Result<Guid>>> Login(UserLoginDTO request)
@@ -99,11 +93,12 @@ namespace API.Controllers
             return Ok(response);
         }
 
-        [HttpPost]
-        public IActionResult VerifyEmail(string email)
+        //URL: http://localhost:5116/api/Auth/verify?token=token
+        [HttpGet("verify")]
+        public async Task<IActionResult> Verfiy(string token)
         {
-            _authRepo.VerifyEmail(email);
-            return Ok();
+            var result = await _authRepo.Verify(token);
+            return Ok(result);  
         }
     }
 }
