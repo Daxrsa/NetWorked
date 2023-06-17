@@ -15,13 +15,17 @@ const JobCard = (props) => {
     const handleClickBtn = (id: int) => {
         redirect(`/jobDetails/${id}`)
     }
+    const imageSrc = `http://localhost:33364/Resources/${props.companyLogo}`;
 
     return (
         <Box className="box">
             <Grid container>
                 <Grid item xs>
-                    <Typography variant='subtitle1'>{props.title}</Typography>
-                    <Typography className='companyName' variant='subtitle2'>{props.companyName}</Typography>
+                    {/* <Typography variant='subtitle1'>{props.title}</Typography> */}
+                    <div>
+                        <img src={imageSrc} alt="Image" width={80} height={80} />
+                    </div>
+                    <Typography variant='subtitle1'>Position: {props.title}</Typography>
                 </Grid>
                 <Grid item container xs>
                     <b>Required skills:</b>  {props.requirements}
