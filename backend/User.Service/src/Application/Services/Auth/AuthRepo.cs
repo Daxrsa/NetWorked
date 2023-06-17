@@ -1,5 +1,7 @@
 using System.IdentityModel.Tokens.Jwt;
+using System.Net.Mail;
 using System.Security.Claims;
+using System.Text;
 using Application.Core;
 using Application.DTOs;
 using Domain.Models;
@@ -103,6 +105,43 @@ namespace Application.Services.Auth
                 var computedHash = hmac.ComputeHash(System.Text.Encoding.UTF8.GetBytes(password));
                 return computedHash.SequenceEqual(passwordHash);
             }
+        }
+
+        public void VerifyEmail(string emailAddress)
+        {
+            //string emailAddress = "user@example.com"; // User's entered email address
+            string verificationCode = GenerateVerificationCode(); // Generate a unique verification code
+
+            MailMessage message = new MailMessage();
+            message.From = new MailAddress("networked758@gmail.com"); // Your application's email address
+            message.To.Add(emailAddress);
+            message.Subject = "Email Verification";
+            message.Body = $"Your verification code is: {verificationCode}";
+
+            SmtpClient smtpClient = new SmtpClient("smtp.gmail.com", 587); // Gmail SMTP server and port
+            smtpClient.UseDefaultCredentials = false;
+            smtpClient.Credentials = new System.Net.NetworkCredential("networked758@gmail.com", "pllvflwxgwjletje"); // Your application's email credentials
+            smtpClient.EnableSsl = true;
+
+            smtpClient.Send(message);
+        }
+
+        private string GenerateVerificationCode()
+        {
+            // Generate a random verification code
+            Random random = new Random();
+            const string characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+            const int codeLength = 6;
+
+            StringBuilder codeBuilder = new StringBuilder();
+
+            for (int i = 0; i < codeLength; i++)
+            {
+                int index = random.Next(characters.Length);
+                codeBuilder.Append(characters[index]);
+            }
+
+            return codeBuilder.ToString();
         }
 
         private string CreateToken(User user)

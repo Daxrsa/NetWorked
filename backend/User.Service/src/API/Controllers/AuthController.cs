@@ -98,5 +98,12 @@ namespace API.Controllers
 
             return Ok(response);
         }
+
+        [HttpPost]
+        public IActionResult VerifyEmail(string email)
+        {
+            _authRepo.VerifyEmail(email);
+            return Ok();
+        }
     }
 }
