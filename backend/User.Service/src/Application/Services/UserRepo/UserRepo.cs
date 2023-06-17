@@ -10,7 +10,7 @@ using Persistence;
 
 namespace Application.Services.UserRepo
 {
-    public class UserRepo : IUserRepo,IChangeRole
+    public class UserRepo : IUserRepo, IChangeRole
     {
         private readonly DataContext _context;
         private readonly IHttpContextAccessor _httpContextAccessor;

@@ -11,5 +11,6 @@ namespace Application.Services.UserRepo
         Task<Result<UserDTO>> DeleteUser(Guid id);
         UserDTO GetLoggedInUser();
         Task UpdateUser(User user);
+        Task<EditUserDTO> UpdateUser(EditUserDTO requestDto);
     }
 }
