@@ -6,9 +6,9 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace JobService.Controllers
 {
+    [Authorize]
     [Route("api/v1/[controller]")]
     [ApiController]
-    [Authorize]
     [AllowAnonymous]
     public class JobPositionController: ControllerBase
     {
@@ -19,10 +19,16 @@ namespace JobService.Controllers
         }
 
         [HttpGet]
-        [Authorize(Roles ="Recruiter")]
         public async Task<ActionResult> GetAllJobs()
         {
             return Ok(await _contract.GetAll());
+        }
+
+        [HttpGet("dashboard")]
+        //[Authorize(Roles = "Administrator")]
+        public async Task<ActionResult> GetAllDashboard()
+        {
+            return Ok(await _contract.GetAllDashboard());
         }
 
         [HttpGet("{id}")]
@@ -32,14 +38,23 @@ namespace JobService.Controllers
         }
 
         [HttpPost]
+        //[Authorize]
         public async Task<ActionResult> AddJob(JobCreateDto dto)
         {
             string authorizationHeader = Request.Headers["Authorization"].ToString();
             return Ok(await _contract.Add(dto, authorizationHeader));
         }
 
+        [HttpGet("MyJobs")]
+        public async Task<IActionResult> GetByRecruiterId()
+        {
+            string authorizationHeader = Request.Headers["Authorization"].ToString();
+            return Ok(await _contract.GetByRecruiterId(authorizationHeader));
+        }
+
 
         [HttpDelete("{id}")]
+        //[Authorize(Roles = "Recruiter, Administrator")]
         public async Task<ActionResult> DeleteJob(int id)
         {
             var result = await _contract.Delete(id);
