@@ -43,25 +43,19 @@ const Header: React.FC = () => {
   };
   const fetchLoggedInUser = async () => {
     try {
-      const token = localStorage.getItem("jwtToken"); // Retrieve the token from localStorage
+      
       const response = await axios.get(
-        "http://localhost:5116/api/Auth/GetloggedInUser",
-        {
-          headers: {
-            Authorization: `Bearer ${token}`, // Add the token to the request headers
-          },
-        }
+        "https://localhost:44315/user",
+      
       );
       const udata = response.data; // No need to parse the JSON object
-
-      setUsername(udata.username);
+      console.log(udata);
+      setUsername(udata);
     } catch (error) {
       console.error("Error fetching logged-in user:", error);
     }
   };
-  useEffect(() => {
-    fetchLoggedInUser();
-  }, []);
+  
   const fetchNotifs = async () => {
     try {
       const response = await axios.get<ResponseData>(
