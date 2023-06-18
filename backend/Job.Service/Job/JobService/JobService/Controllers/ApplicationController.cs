@@ -26,10 +26,12 @@ namespace JobService.Controllers
             return Ok(await _contract.GetAll());
         }
 
-        [HttpGet("applicantId/{id}")]
-        public async Task<ActionResult> GetByApplicantId(Guid id)
+        [HttpGet("applicant")]
+        [Authorize]
+        public async Task<ActionResult> GetByApplicantId()
         {
-            return Ok(await _contract.GetApplicationsByApplicantId(id));
+            string authorizationHeader = Request.Headers["Authorization"].ToString();
+            return Ok(await _contract.GetApplicationsByApplicantId(authorizationHeader));
         }
 
         [HttpGet("jobId/{id}")]
@@ -39,7 +41,7 @@ namespace JobService.Controllers
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult> GetById(string id)
+        public async Task<ActionResult> GetById(int id)
         {
             return Ok(await _contract.GetById(id));
         }
@@ -78,11 +80,15 @@ namespace JobService.Controllers
             return Ok(await _contract.GetApplicationCount());
         }
 
-        /*[HttpPost]
-        public IActionResult SendEmail()
+        [HttpDelete]
+        public IActionResult Delete(int id)
         {
-            var result = _email.SendEmail();
-            return Ok(result);
-        }*/
+            var result = _contract.Delete(id);
+            if(result.Result is false)
+            {
+                return NotFound("Not found");
+            }
+            return StatusCode(200,"Deleted successfully");
+        }
     }
 }

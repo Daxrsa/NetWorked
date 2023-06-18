@@ -2,15 +2,15 @@
   "ExpandedNodes": [
     "",
     "\\JobService",
+    "\\JobService\\Controllers",
     "\\JobService\\Core",
+    "\\JobService\\Core\\AutoMapperConfig",
     "\\JobService\\Core\\Dtos",
-    "\\JobService\\Core\\Dtos\\JobPosition",
-    "\\JobService\\Core\\Models",
-    "\\JobService\\Data",
-    "\\JobService\\RabbitMqConfig",
-    "\\JobService\\Services",
-    "\\JobService\\Services\\Interfaces"
+    "\\JobService\\Core\\Dtos\\Application",
+    "\\JobService\\Core\\Enums",
+    "\\JobService\\Migrations",
+    "\\JobService\\Services"
   ],
-  "SelectedNode": "\\JobService\\Core\\Dtos\\JobPosition\\JobReadDto.cs",
+  "SelectedNode": "\\JobService\\Controllers\\JobPositionController.cs",
   "PreviewInSolutionExplorer": false
 }

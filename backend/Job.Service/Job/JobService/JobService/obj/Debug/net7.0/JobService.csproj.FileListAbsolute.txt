@@ -341,6 +341,10 @@ C:\Users\Admin\Desktop\Net14\NetWorked\backend\Job.Service\Job\JobService\JobSer
 C:\Users\Admin\Desktop\Net14\NetWorked\backend\Job.Service\Job\JobService\JobService\obj\Debug\net7.0\JobService.pdb
 C:\Users\Admin\Desktop\Net14\NetWorked\backend\Job.Service\Job\JobService\JobService\obj\Debug\net7.0\JobService.genruntimeconfig.cache
 C:\Users\Admin\Desktop\Net14\NetWorked\backend\Job.Service\Job\JobService\JobService\obj\Debug\net7.0\ref\JobService.dll
+C:\Users\Razer\Documents\GitHub\NetWorked\backend\Job.Service\Job\JobService\JobService\bin\Debug\net7.0\BouncyCastle.Cryptography.dll
+C:\Users\Razer\Documents\GitHub\NetWorked\backend\Job.Service\Job\JobService\JobService\bin\Debug\net7.0\MailKit.dll
+C:\Users\Razer\Documents\GitHub\NetWorked\backend\Job.Service\Job\JobService\JobService\bin\Debug\net7.0\MimeKit.dll
+C:\Users\Razer\Documents\GitHub\NetWorked\backend\Job.Service\Job\JobService\JobService\bin\Debug\net7.0\RabbitMQ.Client.dll
 C:\Users\fitor\ProjektiLab2\NetWorked\backend\Job.Service\Job\JobService\JobService\bin\Debug\net7.0\appsettings.Development.json
 C:\Users\fitor\ProjektiLab2\NetWorked\backend\Job.Service\Job\JobService\JobService\bin\Debug\net7.0\appsettings.json
 C:\Users\fitor\ProjektiLab2\NetWorked\backend\Job.Service\Job\JobService\JobService\bin\Debug\net7.0\JobService.exe
@@ -352,7 +356,9 @@ C:\Users\fitor\ProjektiLab2\NetWorked\backend\Job.Service\Job\JobService\JobServ
 C:\Users\fitor\ProjektiLab2\NetWorked\backend\Job.Service\Job\JobService\JobService\bin\Debug\net7.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
 C:\Users\fitor\ProjektiLab2\NetWorked\backend\Job.Service\Job\JobService\JobService\bin\Debug\net7.0\Azure.Core.dll
 C:\Users\fitor\ProjektiLab2\NetWorked\backend\Job.Service\Job\JobService\JobService\bin\Debug\net7.0\Azure.Identity.dll
+C:\Users\fitor\ProjektiLab2\NetWorked\backend\Job.Service\Job\JobService\JobService\bin\Debug\net7.0\BouncyCastle.Cryptography.dll
 C:\Users\fitor\ProjektiLab2\NetWorked\backend\Job.Service\Job\JobService\JobService\bin\Debug\net7.0\Humanizer.dll
+C:\Users\fitor\ProjektiLab2\NetWorked\backend\Job.Service\Job\JobService\JobService\bin\Debug\net7.0\MailKit.dll
 C:\Users\fitor\ProjektiLab2\NetWorked\backend\Job.Service\Job\JobService\JobService\bin\Debug\net7.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
 C:\Users\fitor\ProjektiLab2\NetWorked\backend\Job.Service\Job\JobService\JobService\bin\Debug\net7.0\Microsoft.AspNetCore.OpenApi.dll
 C:\Users\fitor\ProjektiLab2\NetWorked\backend\Job.Service\Job\JobService\JobService\bin\Debug\net7.0\Microsoft.AspNetCore.Server.Kestrel.Https.dll
@@ -376,6 +382,7 @@ C:\Users\fitor\ProjektiLab2\NetWorked\backend\Job.Service\Job\JobService\JobServ
 C:\Users\fitor\ProjektiLab2\NetWorked\backend\Job.Service\Job\JobService\JobService\bin\Debug\net7.0\Microsoft.OpenApi.dll
 C:\Users\fitor\ProjektiLab2\NetWorked\backend\Job.Service\Job\JobService\JobService\bin\Debug\net7.0\Microsoft.SqlServer.Server.dll
 C:\Users\fitor\ProjektiLab2\NetWorked\backend\Job.Service\Job\JobService\JobService\bin\Debug\net7.0\Microsoft.Win32.SystemEvents.dll
+C:\Users\fitor\ProjektiLab2\NetWorked\backend\Job.Service\Job\JobService\JobService\bin\Debug\net7.0\MimeKit.dll
 C:\Users\fitor\ProjektiLab2\NetWorked\backend\Job.Service\Job\JobService\JobService\bin\Debug\net7.0\Mono.TextTemplating.dll
 C:\Users\fitor\ProjektiLab2\NetWorked\backend\Job.Service\Job\JobService\JobService\bin\Debug\net7.0\File.Package.dll
 C:\Users\fitor\ProjektiLab2\NetWorked\backend\Job.Service\Job\JobService\JobService\bin\Debug\net7.0\Newtonsoft.Json.dll
@@ -428,10 +435,3 @@ C:\Users\fitor\ProjektiLab2\NetWorked\backend\Job.Service\Job\JobService\JobServ
 C:\Users\fitor\ProjektiLab2\NetWorked\backend\Job.Service\Job\JobService\JobService\obj\Debug\net7.0\JobService.pdb
 C:\Users\fitor\ProjektiLab2\NetWorked\backend\Job.Service\Job\JobService\JobService\obj\Debug\net7.0\JobService.genruntimeconfig.cache
 C:\Users\fitor\ProjektiLab2\NetWorked\backend\Job.Service\Job\JobService\JobService\obj\Debug\net7.0\ref\JobService.dll
-C:\Users\fitor\ProjektiLab2\NetWorked\backend\Job.Service\Job\JobService\JobService\bin\Debug\net7.0\BouncyCastle.Cryptography.dll
-C:\Users\fitor\ProjektiLab2\NetWorked\backend\Job.Service\Job\JobService\JobService\bin\Debug\net7.0\MailKit.dll
-C:\Users\fitor\ProjektiLab2\NetWorked\backend\Job.Service\Job\JobService\JobService\bin\Debug\net7.0\MimeKit.dll
-C:\Users\Razer\Documents\GitHub\NetWorked\backend\Job.Service\Job\JobService\JobService\bin\Debug\net7.0\BouncyCastle.Cryptography.dll
-C:\Users\Razer\Documents\GitHub\NetWorked\backend\Job.Service\Job\JobService\JobService\bin\Debug\net7.0\MailKit.dll
-C:\Users\Razer\Documents\GitHub\NetWorked\backend\Job.Service\Job\JobService\JobService\bin\Debug\net7.0\MimeKit.dll
-C:\Users\Razer\Documents\GitHub\NetWorked\backend\Job.Service\Job\JobService\JobService\bin\Debug\net7.0\RabbitMQ.Client.dll
