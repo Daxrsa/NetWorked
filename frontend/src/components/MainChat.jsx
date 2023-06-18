@@ -7,27 +7,46 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import Header from '../components/DesktopHeader/index'
 import axios from 'axios'
 
+
 const MainChat = () => {
   const [connection, setConnection] = useState();
   const [messages, setMessages] = useState([]);
   const [users, setUsers] = useState([]);
   const [username, setUsername] = useState("");
+ 
+  
   useEffect(() => {
     const fetchUsername = async () => {
       try {
-        
-        const response = await axios.get("http://localhost:8800/users" );
-        console.log(response);
-        const user = await response.data.users[0];
-        //console.log(user);
-        setUsername(user);
+        const userres = await axios.get("https://localhost:44315/user");
+        const userbac=userres.data;
+        localStorage.setItem('loggedInUser', userbac);
+        const storedUsername = localStorage.getItem('loggedInUser');
+        if (storedUsername) {
+          setUsername(storedUsername);
+        } else {
+          const token = localStorage.getItem('jwtToken');
+          const response = await axios.get("http://localhost:5116/api/Auth/GetloggedInUser", {
+            headers: {
+              Authorization: `Bearer ${token}` // Add the token to the request headers
+            },
+          });
+  
+          const user = await response.data.username;
+     
+          setUsername(user);
+  
+          // Store the username in localStorage with a different key
+       
+        }
       } catch (error) {
         console.log(error);
       }
     };
-
+  
     fetchUsername();
   }, []);
+  
   const joinRoom = async (user, room) => {
     try {
       const connection = new HubConnectionBuilder()
