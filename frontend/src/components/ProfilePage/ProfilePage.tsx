@@ -15,9 +15,9 @@ import EditProfile from "./EditProfile";
 import axios from "axios";
 import UserPosts from "../Posts/UserPosts";
 import { Post } from "../../models/Post";
+import ConfirmationBox from "./ConfirmationBox";
 
 export default function ProfilePage() {
-
   //axios states:-----------------------------------------------------------------------
   const [confirmation, setConfirmation] = useState(false);
 
@@ -49,8 +49,13 @@ export default function ProfilePage() {
     setIsEditMode(false);
   };
 
-  const handleConfirmationOpen = () => {
+
+  const openCofirmation = () => {
     setConfirmation(true);
+  };
+
+  const calcelConfirmation = () => {
+    setConfirmation(false);
   }
 
   //--------------------------------------------------------------------
@@ -202,17 +207,30 @@ export default function ProfilePage() {
             </MDBCard>
           </MDBCol>
         </MDBRow>
-        <MDBBtn color="danger">Delete Account</MDBBtn>
+        {confirmation ? (
+          <ConfirmationBox calcelConfirmation={calcelConfirmation}/>
+        ) : (
+          <MDBBtn color="danger" onClick={openCofirmation}>
+            Delete Account
+          </MDBBtn>
+        )}
         {isEditMode ? (
-          <EditProfile
-            cancel={handleCancelClick}
-            submit={handleSubmitClick}
+          <EditProfile 
+          cancel={handleCancelClick} 
+          submit={handleSubmitClick} 
+          loggedInFullname={loggedInFullname}
+          loggedInEmail={loggedInEmail}
+          loggedInPhone={loggedInPhone}
+          loggedInAddress={loggedInAddress}
+          loggedInProfession={loggedInProfession}
+          loggedInSkills={loggedInSkills}
+          loggedInBio={loggedInBio}
           />
         ) : (
           <MDBBtn onClick={handleEditClick}>Edit</MDBBtn>
         )}
         <hr />
-        <UserPosts posts={posts}/>
+        <UserPosts posts={posts} />
       </MDBContainer>
     </section>
   );
