@@ -12,9 +12,9 @@ using File.Package.FileService;
 using Application.Services.LikesService;
 using Application.Services.CommentService;
 using Microsoft.OpenApi.Models;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using Swashbuckle.AspNetCore.Filters;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -93,7 +93,7 @@ app.UseCors(options =>
 app.UseStaticFiles(new StaticFileOptions
 {
     FileProvider = new PhysicalFileProvider(
-            Path.Combine(builder.Environment.ContentRootPath, "Uploads")),
+            Path.Combine(builder.Environment.ContentRootPath, "Uploads/Images")),
     RequestPath = "/Resources"
 });
 

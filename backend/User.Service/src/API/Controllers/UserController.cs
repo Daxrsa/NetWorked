@@ -7,7 +7,7 @@ using Newtonsoft.Json;
 
 namespace API.Controllers
 {
-    //[Authorize]
+    //[Authorize] add authorize decorator later
     [ApiController]
     [Route("api/[controller]")]
     public class UserController : ControllerBase
@@ -34,7 +34,7 @@ namespace API.Controllers
         }
 
         [HttpDelete]
-        public async Task<ActionResult<UserDTO>> DeleteUser(Guid id)
+        public async Task<ActionResult<UserDTO>> DeleteUser(Guid id) //add authorize decorator later
         {
             try
             {

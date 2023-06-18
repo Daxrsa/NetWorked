@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
-import UserPostsList from "./UserPostsList";
 import { Post } from "../../models/Post";
 import { Grid } from "@mui/material";
+import UserPostsList from "./UserPostsList";
 
 interface Props {
   posts: Post[];

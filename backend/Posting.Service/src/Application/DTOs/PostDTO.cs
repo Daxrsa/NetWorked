@@ -9,5 +9,6 @@ namespace Application.DTOs
         public DateTime DateCreated { get; set; }
         public string? FilePath { get; set; }
         public int Likes { get; set; }
+
     }
 }

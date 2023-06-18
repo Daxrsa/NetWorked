@@ -3,21 +3,24 @@ using Application.DTOs;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
+using Persistence;
 
 namespace API.Controllers
 {
-    //[Authorize(Roles = "Applicant")]
+    [Authorize(Roles = "Applicant")]
     [ApiController]
     [Route("api/[controller]")]
     public class PostController : BaseApiController
     {
         private readonly IPostService _postService;
         private readonly HttpClient httpClient;
+        private readonly DataContext context;
 
-        public PostController(IPostService postService, HttpClient httpClient)
+        public PostController(IPostService postService, HttpClient httpClient, DataContext context)
         {
             _postService = postService;
             this.httpClient = httpClient;
+            this.context = context;
         }
 
         [HttpGet]
@@ -48,7 +51,7 @@ namespace API.Controllers
                     var content = await response.Content.ReadAsStringAsync();
                     var loggedInUser = JsonConvert.DeserializeObject<UserDTO>(content);
                     postDto.Username = loggedInUser.Username;
-                    return HandleResult(await _postService.AddPost(postDto)); 
+                    return Ok(await _postService.AddPost(postDto));
                 }
 
                 return BadRequest("Failed to retrieve the logged-in user.");
@@ -59,6 +62,7 @@ namespace API.Controllers
             }
         }
 
+
         [HttpPut("{id}/edit")]
         public async Task<ActionResult<List<PostDTO>>> UpdatePost(Guid id, PostDTO request)
         {
@@ -68,13 +72,34 @@ namespace API.Controllers
         [HttpDelete("{id}")]
         public async Task<ActionResult<List<PostDTO>>> DeletePost(Guid id)
         {
-            return HandleResult(await _postService.DeletePost(id));
+            try
+            {
+                var token = Request.Headers["Authorization"].ToString().Split(' ')[1];
+
+                httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+
+                var response = await httpClient.GetAsync("http://localhost:5116/api/Auth/GetloggedInUser");
+
+                if (response.IsSuccessStatusCode)
+                {
+                    var content = await response.Content.ReadAsStringAsync();
+                    var loggedInUser = JsonConvert.DeserializeObject<UserDTO>(content);
+                    id = loggedInUser.Id;
+                    return HandleResult(await _postService.DeletePost(id));
+                }
+
+                return BadRequest("Failed to retrieve the logged-in user.");
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
 
         [HttpGet("filter-posts")]
         public async Task<ActionResult<List<PostDTO>>> FilterPosts() //for user's profile posts
         {
-             try
+            try
             {
                 var token = Request.Headers["Authorization"].ToString().Split(' ')[1];
 
@@ -87,7 +112,7 @@ namespace API.Controllers
                     var content = await response.Content.ReadAsStringAsync();
                     var loggedInUser = JsonConvert.DeserializeObject<UserDTO>(content);
                     var username = loggedInUser.Username;
-                    return HandleResult(await _postService.FilterPostsByUser(username)); 
+                    return HandleResult(await _postService.FilterPostsByUser(username));
                 }
 
                 return BadRequest("Failed to retrieve the logged-in user.");
