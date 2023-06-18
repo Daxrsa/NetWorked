@@ -54,23 +54,6 @@ namespace JobService.Migrations
                     b.ToTable("Applications");
                 });
 
-            modelBuilder.Entity("JobService.Core.Models.Category", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Categories");
-                });
-
             modelBuilder.Entity("JobService.Core.Models.Company", b =>
                 {
                     b.Property<Guid>("Id")
@@ -105,9 +88,6 @@ namespace JobService.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("CategoryId")
-                        .HasColumnType("int");
-
                     b.Property<Guid>("CompanyId")
                         .HasColumnType("uniqueidentifier");
 
@@ -120,6 +100,10 @@ namespace JobService.Migrations
 
                     b.Property<DateTime?>("ExpireDate")
                         .HasColumnType("datetime2");
+
+                    b.Property<string>("JobCategory")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("JobLevel")
                         .IsRequired()
@@ -139,8 +123,6 @@ namespace JobService.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("CategoryId");
-
                     b.HasIndex("CompanyId");
 
                     b.ToTable("JobPositions");
@@ -159,12 +141,6 @@ namespace JobService.Migrations
 
             modelBuilder.Entity("JobService.Core.Models.JobPosition", b =>
                 {
-                    b.HasOne("JobService.Core.Models.Category", "JobCategory")
-                        .WithMany("jobPositions")
-                        .HasForeignKey("CategoryId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("JobService.Core.Models.Company", "Company")
                         .WithMany("jobPositions")
                         .HasForeignKey("CompanyId")
@@ -172,13 +148,6 @@ namespace JobService.Migrations
                         .IsRequired();
 
                     b.Navigation("Company");
-
-                    b.Navigation("JobCategory");
-                });
-
-            modelBuilder.Entity("JobService.Core.Models.Category", b =>
-                {
-                    b.Navigation("jobPositions");
                 });
 
             modelBuilder.Entity("JobService.Core.Models.Company", b =>

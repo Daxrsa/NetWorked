@@ -15,14 +15,11 @@ namespace JobService.Core.Models
         public DateTime? ExpireDate { get; set;}
         [Required]
         public string Requirements { get; set; }
-     
+        public JobCategory JobCategory { get; set; }
         public JobLevel JobLevel { get; set; }
 
         public Guid CompanyId { get; set; }
         public Company Company { get; set; }
-
-        public int CategoryId { get; set; }
-        public Category JobCategory { get; set; }
 
         public ICollection<Application> Applications { get; set; }
 

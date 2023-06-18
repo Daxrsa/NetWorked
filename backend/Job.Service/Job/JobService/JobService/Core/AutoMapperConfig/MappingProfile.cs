@@ -1,5 +1,4 @@
 ﻿using AutoMapper;
-using JobService.Core.Dtos;
 using JobService.Core.Dtos.Application;
 using JobService.Core.Dtos.Company;
 using JobService.Core.Dtos.JobPosition;
@@ -18,20 +17,16 @@ namespace JobService.Core.AutoMapperConfig
             //JobPosition mapping
             CreateMap<JobCreateDto, JobPosition>();
             CreateMap<JobPosition, JobReadDto>()
-                .ForMember(dest => dest.CompanyName,
+                .ForMember(dest => dest.CompanyName, 
                 opt => opt.MapFrom(src => src.Company.Name))
-                .ForMember(dest => dest.CompanyLogo,
-                opt => opt.MapFrom(src => src.Company.Logo))
-                .ForMember(dest => dest.JobCategory,
-                opt => opt.MapFrom(src => src.JobCategory.Name));
+                .ForMember(dest => dest.CompanyLogo, 
+                opt => opt.MapFrom(src=>src.Company.Logo));
 
             //Application mapping
             CreateMap<ApplicationCreateDto, Application>();
             CreateMap<Application, ApplicationReadDto>()
                 .ForMember(dest => dest.JobTitle,
                 opt => opt.MapFrom(src => src.JobPosition.Title));
-
-            CreateMap<CategoryDto, Category>().ReverseMap();
         }
     }
 }

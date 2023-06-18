@@ -11,7 +11,5 @@ namespace JobService.Services.Interfaces
         Task<bool> Delete(int id);
         JobPosition Update(int id, JobPosition job);
         Task<int> GetJobPositionCount();
-        Task<IEnumerable<JobReadDto>> GetAllDashboard();
-        Task<IEnumerable<JobReadDto>> GetByRecruiterId(string authorizationHeader);
     }
 }

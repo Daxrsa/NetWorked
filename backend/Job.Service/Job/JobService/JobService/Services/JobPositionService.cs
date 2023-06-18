@@ -8,7 +8,6 @@ using System.Net.Http.Headers;
 using JobService.RabbitMqConfig;
 using JobService.Core.Dtos;
 using Newtonsoft.Json;
-using JobService.Client;
 
 namespace JobService.Services
 {
@@ -17,32 +16,18 @@ namespace JobService.Services
         private readonly JobDbContext _context;
         private readonly IMapper _mapper;
         private readonly IMessageProducer _messageProducer;
-        private readonly IClient _client;
-        public JobPositionService(JobDbContext context, IMapper mapper, IMessageProducer messageProducer, IClient client)
+        private readonly HttpClient _httpClient;
+        public JobPositionService(JobDbContext context, IMapper mapper, IMessageProducer messageProducer, HttpClient httpClient)
         {
             _mapper = mapper;
             _context = context;
+            _httpClient = httpClient;
             _messageProducer = messageProducer;
-            _client = client;
         }
 
         public async Task<IEnumerable<JobReadDto>> GetAll()
         {
-            var jobs = await _context.JobPositions
-                .Where(job => job.ExpireDate >= DateTime.Now)
-                .Include("Company")
-                .Include("JobCategory")
-                .OrderByDescending(x => x.CreatedAt)
-                .ToListAsync();
-            var convertedJobs = _mapper.Map<IEnumerable<JobReadDto>>(jobs);
-
-            return convertedJobs;
-        }
-
-        public async Task<IEnumerable<JobReadDto>> GetAllDashboard()
-        {
-            var jobs = await _context.JobPositions
-                .Include("Company")
+            var jobs = await _context.JobPositions.Include("Company")
                 .OrderByDescending(x => x.CreatedAt)
                 .ToListAsync();
             var convertedJobs = _mapper.Map<IEnumerable<JobReadDto>>(jobs);
@@ -64,37 +49,22 @@ namespace JobService.Services
             }
         }
 
-        public async Task<IEnumerable<JobReadDto>> GetByRecruiterId(string authorizationHeader)
-        {
-            try
-            {
-                var user = _client.GetUserAsync(authorizationHeader);
-                if (user == null) 
-                {
-                    throw new Exception("Not found!"); 
-                }
-                var job = await _context.JobPositions
-                    .Where(job => job.Username.Equals(user.Result.username))
-                    .Include(job => job.Company)
-                    .ToListAsync();
-                var returnedJob = _mapper.Map<IEnumerable<JobReadDto>>(job);
-                return returnedJob;
-            }
-            catch (Exception ex)
-            {
-                return null;
-            }
-        }
-
         public async Task<bool> Add(JobCreateDto dto, string authorizationHeader)
         {
             try
             {
+                var token = authorizationHeader.Split(' ')[1];
                 var job = _mapper.Map<JobPosition>(dto);
-                var user = _client.GetUserAsync(authorizationHeader);
-                if (user == null) { return false; }
 
-                job.Username = user.Result.username;
+                _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+                var userResponse = await _httpClient.GetAsync("http://localhost:5116/api/Auth/GetloggedInUser");
+                if (userResponse != null)
+                {
+                    string content = await userResponse.Content.ReadAsStringAsync();
+                    var loggedInUser = JsonConvert.DeserializeObject<UserDto>(content);
+                    job.Username = loggedInUser.username;
+
+                }
 
                 var newNotification = new NotificationsDTO
                 {
@@ -131,7 +101,7 @@ namespace JobService.Services
             }
         }
 
-        public JobPosition Update(int id, JobPosition job)
+            public JobPosition Update(int id, JobPosition job)
         {
             throw new NotImplementedException();
         }
