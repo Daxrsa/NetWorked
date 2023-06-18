@@ -22,7 +22,10 @@ namespace JobService.Services
             IQueryable<JobPosition> query = _context.JobPositions.Include("JobCategory").Include("Company");
             if(title is not null)
             {
-                query = query.Where(t => t.ExpireDate >= DateTime.Now && (t.Title.Contains(title) || t.Requirements.Contains(title)|| t.Company.Name.Contains(title) || t.Username.Contains(title)));
+                query = query.Where(t => t.ExpireDate >= DateTime.Now && (t.Title.Contains(title) 
+                                                                || t.Requirements.Contains(title)
+                                                                || t.Company.Name.Contains(title) 
+                                                                || t.Username.Contains(title)));
             }
             var jobs = await query.OrderByDescending(x => x.CreatedAt).ToListAsync();
             var convertedJobs = _mapper.Map<List<JobReadDto>>(jobs);

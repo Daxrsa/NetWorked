@@ -2,6 +2,7 @@
   "ExpandedNodes": [
     "",
     "\\ProfileMatch",
+    "\\ProfileMatch\\API",
     "\\ProfileMatch\\Application",
     "\\ProfileMatch\\Application\\Services",
     "\\ProfileMatch\\Application\\Services\\ResultsService",
@@ -11,6 +12,6 @@
     "\\ProfileMatch\\Persistance",
     "\\ProfileMatch\\Persistance\\Migrations"
   ],
-  "SelectedNode": "\\ProfileMatch\\Application\\Services\\ResultsService\\ResultsService.cs",
+  "SelectedNode": "\\ProfileMatch\\API\\appsettings.json",
   "PreviewInSolutionExplorer": false
 }

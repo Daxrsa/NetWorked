@@ -71,5 +71,11 @@ namespace JobService.Controllers
         {
             return Ok(await _contract.GetJobPositionCount());
         }
+
+        [HttpPut("{id}")]
+        public IActionResult UpdateJob(int id, [FromForm] JobReadDto job)
+        {
+            return Ok(_contract.Update(id, job));
+        }
     }
 }

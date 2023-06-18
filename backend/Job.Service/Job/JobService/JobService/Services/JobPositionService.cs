@@ -4,11 +4,11 @@ using JobService.Core.Models;
 using JobService.Data;
 using JobService.Services.Interfaces;
 using Microsoft.EntityFrameworkCore;
-using System.Net.Http.Headers;
 using JobService.RabbitMqConfig;
 using JobService.Core.Dtos;
-using Newtonsoft.Json;
 using JobService.Client;
+using JobService.Core.Dtos.Company;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 
 namespace JobService.Services
 {
@@ -54,7 +54,10 @@ namespace JobService.Services
         {
             try
             {
-                var job = await _context.JobPositions.Include(job => job.Company).Where(job => job.Id == id).FirstOrDefaultAsync();
+                var job = await _context.JobPositions
+                    .Include(job => job.Company)
+                    .Where(job => job.Id == id)
+                    .FirstOrDefaultAsync();
                 var returnedJob = _mapper.Map<JobReadDto>(job);
                 return returnedJob;
             }
@@ -131,9 +134,34 @@ namespace JobService.Services
             }
         }
 
-        public JobPosition Update(int id, JobPosition job)
+        public JobReadDto Update(int id, JobReadDto job)
         {
-            throw new NotImplementedException();
+            try
+            {
+                if (job == null || id != job.Id)
+                {
+                    throw new Exception("No job found");
+                }
+
+                var existingJob = _context.JobPositions.FirstOrDefault(j => j.Id == id);
+                if (existingJob == null)
+                {
+                    throw new Exception("Not found!");
+                }
+
+                existingJob.Title = job.Title;
+                existingJob.Description = job.Description;
+                existingJob.ExpireDate = job.ExpireDate;
+                existingJob.JobLevel = job.JobLevel;
+                _context.SaveChanges();
+
+                var jobResult = _mapper.Map<JobReadDto>(existingJob);
+                return jobResult;
+            }
+            catch (Exception)
+            {
+                return null;
+            }
         }
 
         public string GetJobReqById(int jobId)

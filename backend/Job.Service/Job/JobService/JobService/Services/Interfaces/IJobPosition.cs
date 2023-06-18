@@ -9,7 +9,7 @@ namespace JobService.Services.Interfaces
         Task<JobReadDto> GetById(int id);
         Task<bool> Add(JobCreateDto dto, string authorizationHeader);
         Task<bool> Delete(int id);
-        JobPosition Update(int id, JobPosition job);
+        JobReadDto Update(int id, JobReadDto job);
         Task<int> GetJobPositionCount();
         Task<IEnumerable<JobReadDto>> GetAllDashboard();
         Task<IEnumerable<JobReadDto>> GetByRecruiterId(string authorizationHeader);

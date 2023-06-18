@@ -9,7 +9,7 @@ namespace JobService.Services.Interfaces
         Task<CompanyReadDto> GetById(Guid id);
         bool Add(CompanyCreateDto entity);
         Task<bool> Delete(Guid id);
-        Company Update(Guid id, Company company);
+        CompanyReadDto Update(Guid id, CompanyReadDto company);
         Task<int> GetCompanyCount();
     }
 }
