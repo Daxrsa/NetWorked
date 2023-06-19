@@ -70,7 +70,7 @@ namespace API.Controllers
         [HttpDelete("{id}")]
         public async Task<ActionResult<List<PostDTO>>> DeletePost(Guid id)
         {
-                    return HandleResult(await _postService.DeletePost(id));
+            return HandleResult(await _postService.DeletePost(id));
         }
 
         [HttpGet("filter-posts")]

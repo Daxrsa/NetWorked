@@ -113,8 +113,18 @@ export default function UserPostsList({ posts }) {
               </div>
             </Typography>
           </CardContent>
+          <Button color="error" onClick={() => handleDelete(post.id)}>
+              Delete
+            </Button>
           <CardActions>
-            {isEditMode ? (
+          </CardActions>
+        </Card>
+      ))}
+    </Box>
+  );
+}
+
+/* {isEditMode ? (
               <EditPost
                 handleCancelClick={handleCancelClick}
               />
@@ -125,10 +135,4 @@ export default function UserPostsList({ posts }) {
               Delete
             </Button>
               </>
-            )}
-          </CardActions>
-        </Card>
-      ))}
-    </Box>
-  );
-}
+            )} */

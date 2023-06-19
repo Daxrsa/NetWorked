@@ -19,17 +19,10 @@ function EditPost({ handleCancelClick }) {
       description
     };
 
-    const jwtToken = localStorage.getItem("jwtToken");
     try {
-      const config = {
-        headers: {
-          Authorization: `Bearer ${jwtToken}`,
-        },
-      };
       const response = await axios.put(
         "http://localhost:5263/api/Post",
-        data,
-        config
+        data
       );
 
       console.log("Data sent successfully.", response.data);
