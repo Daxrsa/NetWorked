@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import Panel from '../../Panel';
+import React, { useState } from "react";
+import Panel from "../../Panel";
 import {
   Container,
   WriteIcon,
@@ -7,29 +7,39 @@ import {
   VideoCameraIcon,
   DocumentIcon,
   ArticleIcon,
-} from './styles';
-import { MDBBtn } from 'mdb-react-ui-kit';
-import { Button } from '@mui/material';
-import AddPostForm from './AddPostForm';
+} from "./styles";
+import { MDBBtn } from "mdb-react-ui-kit";
+import { Button } from "@mui/material";
+import AddPostForm from "./AddPostForm";
+import DoDisturbIcon from "@mui/icons-material/DoDisturb";
 
 const FeedShare: React.FC = () => {
   const [idAddMode, setAddMode] = useState(false);
   const openAddForm = () => {
     setAddMode(true);
-  }
+  };
+  const closeForm = () => {
+    setAddMode(false);
+  };
   return (
     <Panel>
       <Container>
         <div className="write">
           <WriteIcon />
           {idAddMode ? (
-          <AddPostForm />
-        ) : (
-          <Button variant="text" color="secondary" onClick={openAddForm}>Add Post</Button>
-        )}
-        <hr />
+            <AddPostForm />
+          ) : (
+            <Button variant="text" color="secondary" onClick={openAddForm}>
+              Add Post
+            </Button>
+          )}
+          <hr />
         </div>
-        <Button>Cancel</Button>
+        {idAddMode ? (
+            <Button onClick={closeForm}>Cancel</Button>
+        ) : (
+          <></>
+        )}
         <div className="attachment">
           <button>
             <CameraIcon />

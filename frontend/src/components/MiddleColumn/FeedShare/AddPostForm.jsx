@@ -37,6 +37,8 @@ function AddPostForm() {
       formData.append("description", description);
       formData.append("imageName", selectedImage.name);
       formData.append("imageFile", selectedImage);
+
+      console.log(selectedImage.name);
   
       const response = await axios.post(
         "http://localhost:5263/api/Post/add",

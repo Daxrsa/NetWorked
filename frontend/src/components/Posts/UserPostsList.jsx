@@ -31,7 +31,7 @@ const useStyles = makeStyles(() => ({
 export default function UserPostsList({ posts }) {
   const [isEditMode, setIsEditMode] = useState(false);
 
-  const handleEditClick = () => {
+  const handleEditClick = (id) => {
     setIsEditMode(true);
   };
 
@@ -119,11 +119,13 @@ export default function UserPostsList({ posts }) {
                 handleCancelClick={handleCancelClick}
               />
             ) : (
+              <>
               <Button onClick={handleEditClick}>Edit</Button>
-            )}
-            <Button color="error" onClick={() => handleDelete(post.id)}>
+              <Button color="error" onClick={() => handleDelete(post.id)}>
               Delete
             </Button>
+              </>
+            )}
           </CardActions>
         </Card>
       ))}
