@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import Panel from '../../Panel';
+import React, { useState, useEffect } from "react";
+import Panel from "../../Panel";
 
 import {
   Container,
@@ -9,17 +9,17 @@ import {
   Avatar,
   Column,
   LikeIcon,
-} from './styles';
+} from "./styles";
 
-import axios from 'axios';
+import axios from "axios";
 
 const FeedPost = () => {
   const [posts, setPosts] = useState([]);
-  
+
   useEffect(() => {
     const token = localStorage.getItem("jwtToken");
     axios
-      .get('http://localhost:5263/api/Post', {
+      .get("http://localhost:5263/api/Post", {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -33,22 +33,34 @@ const FeedPost = () => {
         alert("Error fetching posts.");
       });
   }, []);
-  
+
+  const formatDate = (dateString) => {
+    const options = { year: "numeric", month: "long", day: "numeric" };
+    return new Date(dateString).toLocaleDateString(undefined, options);
+  };
+
   return (
     <>
       {posts.map((post) => (
         <Panel key={post.id}>
           <Container>
             <Row className="heading">
-              <Avatar src={post.avatar_url} alt="Avatar" />
+              <Avatar src="https://source.unsplash.com/random" alt="Avatar" />
               <Column>
                 <h3>{post.username}</h3>
-                <h4>{post.title}</h4>
-                <time>{post.dateCreated}</time>
+                <p>{post.title}</p>
+                <p>{formatDate(post.dateCreated)}</p>
               </Column>
             </Row>
 
-            <PostImage image={`http://localhost:5263/Resources/${post.filePath}`} alt="Post Image" />
+            <PostImage
+              src={`http://localhost:5263/Resources/${post.filePath}`}
+              alt="Post Image"
+            />
+
+            <Row>
+              <Column>{post.description}</Column>
+            </Row>
 
             <Row className="likes">
               <img
@@ -56,20 +68,8 @@ const FeedPost = () => {
                 src="https://static-exp1.licdn.com/sc/h/d310t2g24pvdy4pt1jkedo4yb"
                 alt="Thumb Reaction"
               />
-
-              <img
-                className="circle red"
-                src="https://static-exp1.licdn.com/sc/h/7fx9nkd7mx8avdpqm5hqcbi97"
-                alt="Heart Reaction"
-              />
-
-              <img
-                className="circle green"
-                src="https://static-exp1.licdn.com/sc/h/5thsbmikm6a8uov24ygwd914f"
-                alt="Clap Reaction"
-              />
+              <p>{post.likes}</p>
             </Row>
-
             <Row>
               <Separator />
             </Row>

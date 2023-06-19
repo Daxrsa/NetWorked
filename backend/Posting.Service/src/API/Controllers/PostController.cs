@@ -14,13 +14,11 @@ namespace API.Controllers
     {
         private readonly IPostService _postService;
         private readonly HttpClient httpClient;
-        private readonly DataContext context;
 
-        public PostController(IPostService postService, HttpClient httpClient, DataContext context)
+        public PostController(IPostService postService, HttpClient httpClient)
         {
             _postService = postService;
             this.httpClient = httpClient;
-            this.context = context;
         }
 
         [HttpGet]

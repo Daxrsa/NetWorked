@@ -188,6 +188,5 @@ namespace Application.Services.UserRepo
         {
             throw new NotImplementedException();
         }
-
     }
 }

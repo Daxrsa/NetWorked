@@ -7,7 +7,7 @@ using Newtonsoft.Json;
 
 namespace API.Controllers
 {
-    [Authorize]
+    //[Authorize] add authorize decorator later
     [ApiController]
     [Route("api/[controller]")]
     public class UserController : ControllerBase
