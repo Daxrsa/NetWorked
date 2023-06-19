@@ -4,60 +4,61 @@ import React from 'react'
 import moment from "moment";
 import { IJob } from '../../Interfaces/global.typing'
 import Button from "@mui/material/Button/Button";
-// import './grid.css'
+import httpModule from '../../Helpers/http.module';
 
 const column: GridColDef[] = [
-    { field: "id", headerName: "Id", width: 100 },
-    { field: "title", headerName: "Title", width: 200 },
+    { field: "id", headerName: "Id", width: 85 },
+    { field: "title", headerName: "Title", width: 100 },
     { field: "description", headerName: "Description", width: 150 },
     { field: "requirements", headerName: "Requirements", width: 200 },
-    { field: "jobCategory", headerName: "JobCategory", width: 100 },
+    { field: "jobCategory", headerName: "JobCategory", width: 200 },
     { field: "jobLevel", headerName: "JobLevel", width: 100 },
     { field: "companyName", headerName: "CompanyName", width: 100 },
     {
         field: "createdAt",
         headerName: "Creation Time",
-        width: 150,
+        width: 95,
         renderCell: (params) => moment(params.row.createdAt).fromNow(),
     },
     {
-        field: "edit",
-        headerName: "Edit",
-        width: 100,
-        renderCell: (params) => (
-            <a href="#">
-                <Button variant="contained" color="success">
-                    Edit
-                </Button>
-            </a>
-        )
-    },
-    {
-        field: "delete",
-        headerName: "Delete",
-        width: 100,
-        renderCell: (params) => (
-            <a href="#">
-                <Button variant="outlined" color="error">
-                    Delete
-                </Button>
-            </a>
-        )
-    },
-    {
-        field: "img",
-        headerName: "Logo",
-        width: 100,
-        renderCell: (params) => (
-            <CardMedia
-                component="img"
-                height="200"
-                image
-                sx={{ objectFit: 'contain' }}
-            />
-        )
+        field: "expireDate",
+        headerName: "Expiration",
+        width: 95,
+        renderCell: (params) => {
+            const expireDate = moment(params.row.expireDate);
+            const currentDate = moment();
+            const daysLeft = expireDate.diff(currentDate, 'days');
+            return `${daysLeft} days`;
+        },
     },
 ];
+
+const token = localStorage.getItem("jwtToken");
+const handleDelete = async (itemId) => {
+    try {
+        await httpModule.delete(`/JobPosition/${itemId}`, {
+            headers: {
+                Authorization: `Bearer ${token}`,
+            },
+        });
+        useEffect()
+    } catch (error) {
+        console.error('Error deleting item:', error);
+    }
+};
+
+const handleClick = async (itemId) => {
+    try {
+        await httpModule.get(`/JobPosition/${itemId}`, {
+            headers: {
+                Authorization: `Bearer ${token}`,
+            },
+        });
+    } catch (error) {
+        console.log("error")
+    };
+
+}
 
 interface IJobsGridProps {
     data: IJob[];
@@ -65,8 +66,40 @@ interface IJobsGridProps {
 
 const JobsGrid = ({ data }: IJobsGridProps) => {
     return (
-        <Box sx={{ width: "100%", height: 450 }} >
-            <DataGrid rows={data} columns={column} getRowId={(row) => row.id} rowHeight={50} />
+        <Box sx={{ width: "100%", height: 600 }} >
+            <DataGrid rows={data} columns={[
+                ...column,
+                {
+                    field: 'delete',
+                    headerName: 'Delete',
+                    width: 100,
+                    renderCell: (params) => (
+                        <Button
+                            variant='outlined'
+                            color='error'
+                            onClick={() => handleDelete(params.row.id)}
+                        >
+                            Delete
+                        </Button>
+                    ),
+                },
+                // {
+                //     field: 'applications',
+                //     headerName: 'Applications',
+                //     width: 200,
+                //     renderCell: (params) => (
+                //         <Button
+                //             variant='outlined'
+                //             color='info'
+                //             onClick={() => handleDelete(params.row.id)}
+                //         >
+                //             Check Applications
+                //         </Button>
+                //     ),
+                // },
+            ]}
+                getRowId={(row) => row.id}
+                rowHeight={50} />
         </Box>
     );
 };

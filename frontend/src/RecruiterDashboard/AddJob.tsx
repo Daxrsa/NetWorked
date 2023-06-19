@@ -17,7 +17,7 @@ const AddJob = () => {
         title: "",
         description: "",
         requirements: "",
-        categoryId: 1,
+        categoryId: 0,
         jobLevel: "",
         expireDate: "",
         companyId: ""
@@ -123,7 +123,7 @@ const AddJob = () => {
                             >
                                 {categories.map((item) => (
                                     <MenuItem key={item.id} value={item.id}>
-                                        {item.id}
+                                        {item.name}
                                     </MenuItem>
                                 ))}
                             </Select>

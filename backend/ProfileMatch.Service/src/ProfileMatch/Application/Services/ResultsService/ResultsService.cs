@@ -70,5 +70,16 @@ namespace Application.Services.ResultsService
             var convertedResult = _mapper.Map<ResultReadDto>(result);
             return convertedResult;
         }
+
+        public async Task<ResultReadDto> GetByApplicantId(int id)
+        {
+            var result = await _context.Results.Where(result => result.ApplicationId == id).FirstOrDefaultAsync();
+            if (result is null)
+            {
+                throw new Exception("The given result does not exist");
+            }
+            var convertedResult = _mapper.Map<ResultReadDto>(result);
+            return convertedResult;
+        }
     }
 }

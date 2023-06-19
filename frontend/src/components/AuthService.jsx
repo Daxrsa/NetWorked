@@ -4,6 +4,7 @@ export const logout = () =>
 {
   localStorage.removeItem("jwtToken");
   localStorage.removeItem("loggedInUser");
+  localStorage.removeItem("role");
   window.location.reload();
 };
 

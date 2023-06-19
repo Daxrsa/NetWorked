@@ -150,14 +150,6 @@ const Header: React.FC = () => {
     navigate("/notifications");
   };
 
-  // const handlePostClick = () => {
-  //   navigate("/posts");
-  // const handleApplicationsClick = () => {
-  //   navigate('/jobApplications');
-  //   setMenuOpen(false);
-  //   setActiveButton('jobApplications');
-  // };
-
   const handleCompaniesClick = () => {
     navigate("/companies");
     setMenuOpen(false);
@@ -166,7 +158,7 @@ const Header: React.FC = () => {
   const handleDashboardClick = () => {
     navigate("/jobDashboard");
     setMenuOpen(false);
-    setActiveButton("companies");
+    setActiveButton("jobDashboard");
   };
 
   return (
@@ -258,6 +250,7 @@ const Header: React.FC = () => {
                     )}
                     <button onClick={handleProfilePageClick}>My Profile</button>
                     <button onClick={handleDashboardClick}>My jobs</button>
+                    <button onClick={handleCompaniesClick}>Companies</button>
                     <button onClick={logout}>Logout</button>
                     {/* <button onClick={handleJobsClick}>Jobs</button> */}
                     {/* <button onClick={handleApplicationsClick}>Applications</button> */}

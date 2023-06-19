@@ -3,15 +3,14 @@
     "",
     "\\ProfileMatch",
     "\\ProfileMatch\\API",
+    "\\ProfileMatch\\API\\Controllers",
     "\\ProfileMatch\\Application",
-    "\\ProfileMatch\\Application\\Services",
-    "\\ProfileMatch\\Application\\Services\\ResultsService",
+    "\\ProfileMatch\\Application\\RabbitMqConsumer",
     "\\ProfileMatch\\Domain",
-    "\\ProfileMatch\\Domain\\DTOs",
     "\\ProfileMatch\\Domain\\Models",
     "\\ProfileMatch\\Persistance",
     "\\ProfileMatch\\Persistance\\Migrations"
   ],
-  "SelectedNode": "\\ProfileMatch\\API\\appsettings.json",
+  "SelectedNode": "\\ProfileMatch\\API\\Controllers\\ResultsController.cs",
   "PreviewInSolutionExplorer": false
 }
