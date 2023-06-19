@@ -49,6 +49,7 @@ namespace Application.Services.Auth
             {
                 response.Data = CreateToken(user);
                 response.UserName = user.Username;
+                response.UserRole = user.Role;
 
             }
             return response;

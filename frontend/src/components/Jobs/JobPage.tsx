@@ -8,16 +8,20 @@ import JobsGrid from "./JobsGrid.tsx"
 import { Add } from '@mui/icons-material'
 import Header from "../DesktopHeader";
 import Sidebar from "../sidebar/Sidebar"
-import NavBar from "../../RecruiterDashboard/Navbar"
 
 function JobPage() {
   const [jobs, setJobs] = useState<IJob[]>([]);
   const redirect = useNavigate();
   const [loading, setLoading] = useState<boolean>(false);
 
+  const token = localStorage.getItem("jwtToken");
   useEffect(() => {
     setLoading(true);
-    httpModule.get("/JobPosition")
+    httpModule.get("/JobPosition", {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
       .then(response => {
         setJobs(response.data);
         setLoading(false);
@@ -30,22 +34,24 @@ function JobPage() {
   }, []);
 
   return (
-    <div className='app'>
-      <NavBar />
-      <div className='companies'>
-        <div className="heading">
-          <h2 className="h2c"></h2>
-          <Button variant='outlined' onClick={() => redirect("/jobDashboard/add")}>
-            <Add />
-          </Button>
+    <div>
+      <Header />
+      <div className='app'>
+        <div className='companies'>
+          <div className="heading">
+            <h2 className="h2c"></h2>
+            <Button variant='outlined' onClick={() => redirect("/jobDashboard/add")}>
+              <Add />
+            </Button>
+          </div>
+          {loading ? (
+            <CircularProgress size={100} />
+          ) : jobs.length === 0 ? (
+            <h1>No Job Position</h1>
+          ) : (
+            <JobsGrid className="jobs-grid-container" data={jobs} />
+          )}
         </div>
-        {loading ? (
-          <CircularProgress size={100} />
-        ) : jobs.length === 0 ? (
-          <h1>No Job Position</h1>
-        ) : (
-          <JobsGrid className="jobs-grid-container" data={jobs} />
-        )}
       </div>
     </div>
   );

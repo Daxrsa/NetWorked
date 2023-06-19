@@ -20,9 +20,6 @@ const SearchBar = ({ onSearch }) => {
 
     return (
         <div className="search-bar-container">
-            <div>
-                {/* <FilterDropdown onSelect={handleFilter}/> */}
-            </div>
             <TextField
                 label="Search"
                 value={searchQuery}

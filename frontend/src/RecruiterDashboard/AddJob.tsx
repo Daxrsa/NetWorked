@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { ICreateJobDto, ICompany } from '../Interfaces/global.typing'
+import { ICreateJobDto, ICompany, ICategory } from '../Interfaces/global.typing'
 import { } from '@mui/material'
 import TextField from '@mui/material/TextField/TextField'
 import FormControl from "@mui/material/FormControl/FormControl";
@@ -17,11 +17,12 @@ const AddJob = () => {
         title: "",
         description: "",
         requirements: "",
-        jobCategory: "",
+        categoryId: "",
         jobLevel: "",
         companyId: ""
     });
     const [companies, setCompanies] = useState<ICompany[]>([]);
+    const [categories, setCategories] = useState<ICategory[]>([]);
     const redirect = useNavigate();
 
     useEffect(() => {
@@ -34,13 +35,28 @@ const AddJob = () => {
             });
     }, []);
 
+    useEffect(() => {
+        httpModule.get("/Category")
+            .then(response => {
+                setCategories(response.data)
+            })
+            .catch((error) => {
+                console.log(error)
+            });
+    }, []);
+
+    const token = localStorage.getItem("jwtToken");
     const handleClickSaveBtn = () => {
-        if (job.title === "" || job.description === "" || job.requirements === "" || job.jobCategory === "" || job.jobLevel === "" || job.companyId === "") {
+        if (job.title === "" || job.description === "" || job.requirements === "" || job.categoryId === 0 || job.jobLevel === "" || job.companyId === "") {
             alert("Fill all fields");
             return;
         }
         httpModule
-            .post("/JobPosition", job)
+            .post("/JobPosition", job, {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+            })
             .then((response) => redirect("/jobs"))
             .catch((error) => console.log(error));
     };
@@ -82,19 +98,15 @@ const AddJob = () => {
                     <FormControl fullWidth>
                         <InputLabel>Job Category</InputLabel>
                         <Select
-                            value={job.jobCategory}
-                            label="Job Category"
-                            onChange={(e) => setJob({ ...job, jobCategory: e.target.value })}
+                            value={job.categoryId}
+                            label="Category"
+                            onChange={(e) => setJob({ ...job, categoryId: e.target.value })}
                         >
-                            <MenuItem value="SCIENCE">SCIENCE</MenuItem>
-                            <MenuItem value="ENGINEERING">ENGINEERING</MenuItem>
-                            <MenuItem value="TECHNOLOGY">TECHNOLOGY</MenuItem>
-                            <MenuItem value="BUSINESS">BUSINESS</MenuItem>
-                            <MenuItem value="LAW">LAW</MenuItem>
-                            <MenuItem value="EDUCATION">EDUCATION</MenuItem>
-                            <MenuItem value="CONSTRUCTION">CONSTRUCTION</MenuItem>
-                            <MenuItem value="FARMING">FARMING</MenuItem>
-                            <MenuItem value="ENVIRONMENT">ENVIRONMENT</MenuItem>
+                            {categories.map((item) => (
+                                <MenuItem key={item.id} value={item.id}>
+                                    {item.name}
+                                </MenuItem>
+                            ))}
                         </Select>
                     </FormControl>
 
@@ -102,8 +114,7 @@ const AddJob = () => {
                         <InputLabel>Job Level</InputLabel>
                         <Select
                             value={job.jobLevel}
-                            label="Job Category"
-                            ARCHITECT
+                            label="Job Level"
                             onChange={(e) => setJob({ ...job, jobLevel: e.target.value })}
                         >
                             <MenuItem value="INTERN">INTERN</MenuItem>

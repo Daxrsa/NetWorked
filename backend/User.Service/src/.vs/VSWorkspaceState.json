@@ -2,15 +2,15 @@
   "ExpandedNodes": [
     "",
     "\\API",
+    "\\API\\RabbitMQConfig",
     "\\Application",
+    "\\Application\\Core",
+    "\\Application\\DTOs",
     "\\Application\\Services",
-    "\\Application\\Services\\UserRepo",
-    "\\Domain",
-    "\\Domain\\Models",
-    "\\Domain\\Models\\Stripe",
+    "\\Application\\Services\\Auth",
     "\\Persistence",
     "\\Persistence\\Migrations"
   ],
-  "SelectedNode": "\\API\\appsettings.json",
+  "SelectedNode": "\\Application\\Services\\Auth\\AuthRepo.cs",
   "PreviewInSolutionExplorer": false
 }

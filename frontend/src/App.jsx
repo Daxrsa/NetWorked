@@ -30,25 +30,35 @@ function App()
         <Route path="/" element={<Layout />} />
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/posts" element={<PostDashboard />} />
-        <Route path="job/details/:id" element={<JobPositonDetails />} />
-        <Route path="/jobs" element={<JobDisplay />} />
-        <Route path="/companies">
-          <Route index element={<CompanyPage />} />
-          <Route path="add" element={<AddCompany />} />
-        </Route>
-        <Route path="/jobDashboard">
-          <Route index element={<JobPage />} />
-          <Route path="add" element={<AddJob />} />
-        </Route>
-        <Route path="/jobApplications">
-          <Route index element={<JobApplicationPage />} />
-        </Route>
-        <Route element={<PrivateRoutes />}>
+
+        <Route element={<PrivateRoutes allowedRoles={["Recruiter", "Applicant", "Admin"]} />}>
           <Route path="/mainchat" element={<MainChat />} />
           <Route path="/profilePage" element={<ProfilePage />} />
+          <Route path="/posts" element={<PostDashboard />} />
+          <Route path="job/details/:id" element={<JobPositonDetails />} />
+          <Route path="/jobs" element={<JobDisplay />} />
+        </Route>
+
+        <Route element={<PrivateRoutes allowedRoles={["Applicant"]} />}>
           <Route path="/payment" element={<Payment />} />
+        </Route>
+
+        <Route element={<PrivateRoutes allowedRoles={["Admin", "Recruiter"]} />}>
           <Route path="/admin" element={<AdminDashboard />} />
+          <Route path="/companies">
+            <Route index element={<CompanyPage />} />
+            <Route path="add" element={<AddCompany />} />
+          </Route>
+        </Route>
+
+        <Route element={<PrivateRoutes allowedRoles={["Recruiter"]} />}>
+          <Route path="/jobDashboard">
+            <Route index element={<JobPage />} />
+            <Route path="add" element={<AddJob />} />
+          </Route>
+          <Route path="/jobApplications">
+            <Route index element={<JobApplicationPage />} />
+          </Route>
         </Route>
       </Routes>
     </>

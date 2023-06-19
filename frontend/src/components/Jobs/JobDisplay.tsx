@@ -13,10 +13,15 @@ const JobDisplay = () => {
     const [filteredJobs, setFilteredJobs] = useState<IJob[]>([]);
     const [loading, setLoading] = useState<boolean>(false);
 
+    const token = localStorage.getItem("jwtToken");
     useEffect(() => {
         setLoading(true);
         httpModule
-            .get('/JobPosition')
+            .get('/JobPosition', {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+            })
             .then(response => {
                 setJobs(response.data);
                 setFilteredJobs(response.data)

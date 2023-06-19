@@ -7,9 +7,14 @@ const FilterDropdown = ({ onSelect, onSearch }) => {
     const [categories, setCategories] = useState<ICategory[]>([]);
     const [selectedOption, setSelectedOption] = useState('');
 
+    const token = localStorage.getItem("jwtToken");
     useEffect(() => {
         httpModule
-            .get('/Category')
+            .get('/Category', {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+            })
             .then(response => {
                 setCategories(response.data);
             })
