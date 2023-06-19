@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import {
   Grid,
   TextField,
@@ -6,9 +6,25 @@ import {
   Card,
   CardContent,
   Typography,
+  Box,
 } from "@material-ui/core";
 
 function AddPostForm() {
+  const [selectedImage, setSelectedImage] = useState(null);
+  const [imageUrl, setImageUrl] = useState(null);
+
+  const removeImage = () => {
+    setSelectedImage(false);
+  };
+
+  useEffect(() => {
+    if (selectedImage) {
+      setImageUrl(URL.createObjectURL(selectedImage));
+    }
+  }, [selectedImage]);
+
+  console.log(selectedImage);
+
   return (
     <div className="App">
       <Grid>
@@ -47,13 +63,52 @@ function AddPostForm() {
                   />
                 </Grid>
                 <Grid item xs={12}>
-                  <input accept="image/*" type="file" id="select-image" />
+                  <input
+                    accept="image/*"
+                    type="file"
+                    id="select-image"
+                    style={{ display: "none" }}
+                    onChange={(e) => setSelectedImage(e.target.files[0])}
+                  />
                   <label htmlFor="select-image">
-                    <Button variant="contained" color="primary">
+                    <Button
+                      variant="contained"
+                      color="primary"
+                      component="span"
+                    >
                       Upload Image
                     </Button>
                   </label>
+                  {selectedImage && imageUrl ? (
+                    <Button
+                      variant="contained"
+                      color="secondary"
+                      component="span"
+                      onClick={removeImage}
+                    >
+                      Remove Image
+                    </Button>
+                  ) : (
+                    <Button
+                      variant="contained"
+                      color="secondary"
+                      component="span"
+                      style={{ display: "none" }}
+                    >
+                      Remove Image
+                    </Button>
+                  )}
                 </Grid>
+                {imageUrl && selectedImage && (
+                  <Box mt={2} textAlign="center">
+                    <div>Image Preview:</div>
+                    <img
+                      src={imageUrl}
+                      alt={selectedImage.name}
+                      height="100px"
+                    />
+                  </Box>
+                )}
                 <Grid item xs={12}>
                   <Button
                     type="submit"
