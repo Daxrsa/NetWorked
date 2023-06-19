@@ -50,12 +50,12 @@ function App()
             <Route path="add" element={<AddCompany />} />
           </Route>
         </Route>
-
+        <Route path="/jobDashboard">
+          <Route index element={<JobPage />} />
+          <Route path="add" element={<AddJob />} />
+        </Route>
         <Route element={<PrivateRoutes allowedRoles={["Recruiter"]} />}>
-          <Route path="/jobDashboard">
-            <Route index element={<JobPage />} />
-            <Route path="add" element={<AddJob />} />
-          </Route>
+
           <Route path="/jobApplications">
             <Route index element={<JobApplicationPage />} />
           </Route>

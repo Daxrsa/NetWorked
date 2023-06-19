@@ -29,9 +29,10 @@ export interface ICreateJob {
     title: string
     description: string
     requirements: string
-    categoryId: string
+    categoryId: int
     jobLevel: string
     companyId: string
+    expireDate: string
 }
 
 export interface IApplication {
@@ -49,6 +50,6 @@ export interface ICreateApplicationDto {
 }
 
 export interface ICategory {
-    id: string
+    id: int
     name: string
 }

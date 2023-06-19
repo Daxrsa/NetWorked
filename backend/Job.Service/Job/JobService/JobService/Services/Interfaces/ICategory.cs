@@ -5,8 +5,8 @@ namespace JobService.Services.Interfaces
 {
     public interface ICategory
     {
-        Task<IEnumerable<Category>> GetAll();
-        Task<Category> GetById(int id);
+        Task<IEnumerable<CategoryReadDto>> GetAll();
+        Task<CategoryReadDto> GetById(int id);
         bool Add(CategoryDto entity);
         Task<bool> Delete(int id);
     }

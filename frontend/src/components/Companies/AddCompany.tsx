@@ -1,7 +1,6 @@
-import React, { useState } from 'react'
-import { ICreateCompanyDto } from '../../Interfaces/global.typing'
-import { } from '@mui/material'
-import TextField from '@mui/material/TextField/TextField'
+import React, { useState } from 'react';
+import { ICreateCompanyDto } from '../../Interfaces/global.typing';
+import TextField from '@mui/material/TextField/TextField';
 import FormControl from "@mui/material/FormControl/FormControl";
 import InputLabel from "@mui/material/InputLabel/InputLabel";
 import Select from "@mui/material/Select/Select";
@@ -13,37 +12,44 @@ import NavBar from '../../RecruiterDashboard/Navbar';
 
 const AddCompany = () => {
     const [company, setCompany] = useState<ICreateCompanyDto>({ name: "", size: "", cityLocation: "", file: null });
-    const [image, setImage] = useState<File | null>();
     const redirect = useNavigate();
+    const [statusCode, setStatusCode] = useState("");
 
     const handleClickSaveBtn = () => {
-        if (company.name === "" || company.size === "" || company.cityLocation === "") {
-            alert("Fill all fields");
-            return;
-        }
-        console.log(company.name)
-        console.log(company.file)
-        //console.log(image);
         const newFormData = new FormData();
-        newFormData.append("Name", company.name);
-        newFormData.append("Size", company.size);
-        newFormData.append("CityLocation", company.cityLocation);
+        newFormData.append("name", company.name);
+        newFormData.append("size", company.size);
         newFormData.append("file", company.file);
 
         httpModule
             .post("/Company", newFormData)
-            .then((responst) => redirect("/companies"))
-            .catch((error) => console.log(error));
+            .then((response) => {
+                setStatusCode("Company saved successfully");
+            })
+            .catch((error) => {
+                if (error.response && error.response.status === 400) {
+                    setStatusCode("Already applied!");
+                } else {
+                    console.log(error);
+                }
+            });
     };
 
     const handleClickBackBtn = () => {
         redirect("/companies");
     };
 
+    const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        const files = event.target.files;
+        if (files && files.length > 0) {
+            setCompany({ ...company, file: files[0] });
+        }
+    };
+
     return (
         <div className='app'>
             <NavBar />
-            <div className=' somethingelse'>
+            <div className='somethingelse'>
                 <div className="add-job">
                     <h2 className='h2c'>Create Company</h2>
                     <TextField
@@ -51,7 +57,7 @@ const AddCompany = () => {
                         label='Company Name'
                         variant='outlined'
                         value={company.name}
-                        onChange={e => setCompany({ ...company, name: e.target.value })}
+                        onChange={(e) => setCompany({ ...company, name: e.target.value })}
                     />
                     <FormControl fullWidth>
                         <InputLabel>Company Size</InputLabel>
@@ -79,7 +85,7 @@ const AddCompany = () => {
                         </Select>
                     </FormControl>
 
-                    <input type="file" onChange={(event) => setCompany({ ...company, file: event.target.value })} />
+                    <input type="file" onChange={handleFileChange} />
 
                     <div className="btns">
                         <Button variant="outlined" color="primary" onClick={handleClickSaveBtn}>
@@ -92,7 +98,7 @@ const AddCompany = () => {
                 </div>
             </div>
         </div>
-    )
-}
+    );
+};
 
-export default AddCompany
+export default AddCompany;

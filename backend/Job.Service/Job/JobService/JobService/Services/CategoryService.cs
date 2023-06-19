@@ -51,18 +51,18 @@ namespace JobService.Services
             }
         }
 
-        public async Task<IEnumerable<Category>> GetAll()
+        public async Task<IEnumerable<CategoryReadDto>> GetAll()
         {
             var categories = await _context.Categories.ToListAsync();
-            return categories;
+            return _mapper.Map<IEnumerable<CategoryReadDto>>(categories);
         }
 
-        public async Task<Category> GetById(int id)
+        public async Task<CategoryReadDto> GetById(int id)
         {
             try
             {
                 var category = await _context.Categories.FindAsync(id);
-                return category;
+                return _mapper.Map<CategoryReadDto>(category);
             }
             catch (Exception)
             {

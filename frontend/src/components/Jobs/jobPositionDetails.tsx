@@ -68,7 +68,7 @@ export default function JobPositonDetails() {
         applicantId: "",
         jobId: 0
     });
-    //const [jobs, setJobs] = useState<IJob[]>([]);
+    
     const [pdfFile, setPdfFile] = useState<File | null>();
     const redirect = useNavigate();
 

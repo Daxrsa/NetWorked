@@ -34,9 +34,8 @@ function CompanyPage() {
       <JobApplicationsTable/>
       <div className='companies'>
         <div className="heading">
-          <h2 className="h2c"></h2>
           <Button variant='outlined' onClick={() => redirect("/companies/add")}>
-            <Add />
+            <Add />Create new company
           </Button>
 
         </div>
