@@ -53,7 +53,7 @@ const Header: React.FC = () => {
         }
       );
       const udata = response.data; // No need to parse the JSON object
-
+     
       setUsername(udata.username);
     } catch (error) {
       console.error("Error fetching logged-in user:", error);

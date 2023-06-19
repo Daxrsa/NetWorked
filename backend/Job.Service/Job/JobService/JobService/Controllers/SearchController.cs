@@ -18,5 +18,12 @@ namespace JobService.Controllers
             var searchResult =await _contract.Search(result);
             return Ok(searchResult);
         }
+
+        [HttpGet("Filter")]
+        public async Task<ActionResult> GetFilter(string result)
+        {
+            var filterResult = await _contract.FilterByCategory(result);
+            return Ok(filterResult);
+        }
     }
 }

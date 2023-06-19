@@ -1,5 +1,6 @@
 ﻿using JobService.Core.Dtos;
 using JobService.Core.Dtos.Company;
+using JobService.Core.Models;
 using JobService.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
@@ -68,6 +69,12 @@ namespace JobService.Controllers
         public async Task<ActionResult<int>> CouGetCompanyCountntUsers()
         {
             return Ok(await _contract.GetCompanyCount());
+        }
+
+        [HttpPut("{id}")]
+        public IActionResult UpdateCompany(Guid id, [FromBody] CompanyReadDto company)
+        {
+            return Ok(_contract.Update(id, company));
         }
     }
 }

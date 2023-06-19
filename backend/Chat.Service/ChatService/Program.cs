@@ -1,17 +1,15 @@
+using ChatService;
 using ChatService.Hubs;
+using dotenv.net;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using ChatService;
 using MongoDB.Driver;
+using RabbitMQ.Client;
 using System;
 using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Threading.Tasks;
-using dotenv.net;
-
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -19,10 +17,22 @@ var builder = WebApplication.CreateBuilder(args);
 DotEnv.Load();
 
 builder.Services.AddSignalR();
+builder.Services.AddSingleton<ConnectionFactory>();
+builder.Services.AddSingleton<IMongoCollection<UserMessage>>(sp =>
+{
+    var mongoClient = sp.GetService<IMongoClient>();
+    var mongoDatabase = mongoClient.GetDatabase("NetWorked");
+    return mongoDatabase.GetCollection<UserMessage>("UserMessages");
+});
+builder.Services.AddSingleton<IMongoDatabase>(sp =>
+{
+    var mongoClient = sp.GetService<IMongoClient>();
+    return mongoClient.GetDatabase("NetWorked");
+});
+builder.Services.AddHostedService<MessageConsumerService>();
 builder.Services.AddControllers();
 var mongoConnectionString = Environment.GetEnvironmentVariable("DATABASE");
 builder.Services.AddSingleton<IMongoClient>(new MongoClient(mongoConnectionString));
-builder.Services.AddScoped<IMongoDatabase>(sp => sp.GetService<IMongoClient>().GetDatabase("NetWorked"));
 builder.Services.AddSingleton<IDictionary<string, UserConnection>>(opts => new Dictionary<string, UserConnection>());
 
 builder.Services.AddCors(options =>

@@ -83,9 +83,32 @@ namespace JobService.Services
             }
         }
 
-        public Company Update(Guid id, Company company)
+        public CompanyReadDto Update(Guid id, CompanyReadDto company)
         {
-            throw new NotImplementedException();
+            try
+            {
+                if (company == null || id != company.Id)
+                {
+                    throw new Exception("No company found");
+                }
+
+                var existingComp = _context.Companies.FirstOrDefault(c => c.Id == id);
+                if (existingComp == null)
+                {
+                    throw new Exception("Not found!");
+                }
+
+                existingComp.Name = company.Name;
+                existingComp.CityLocation = company.CityLocation;
+                existingComp.Size = company.Size;
+                _context.SaveChanges();
+
+                var companyResult = _mapper.Map<CompanyReadDto>(existingComp);
+                return companyResult;
+            }catch(Exception ex)
+            {
+                return null;
+            }            
         }
 
         public async Task<int> GetCompanyCount()

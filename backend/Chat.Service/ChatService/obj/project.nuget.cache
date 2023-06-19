@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "7ax9NhKvhhlsRzVqRH3ZUWfSxC2/pFJKSjtNJiiOcJU5WWQSoEDHpOrU6Pznu24lqJuTR/zSYg2XLeoMiaUBXw==",
+  "dgSpecHash": "1joHBo0EadauMGdwDr6gCGhSXWT3fiuPOoN5oF1B/OjapMDoQd841RXwEi9zblNK9fyGUOu3jySWsWIPGI6Evw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Admin\\Desktop\\Net14\\NetWorked\\backend\\Chat.Service\\ChatService\\ChatService.csproj",
+  "projectFilePath": "C:\\Users\\Admin\\Desktop\\networki\\NetWorked\\backend\\Chat.Service\\ChatService\\ChatService.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Admin\\.nuget\\packages\\awssdk.core\\3.7.100.14\\awssdk.core.3.7.100.14.nupkg.sha512",
     "C:\\Users\\Admin\\.nuget\\packages\\awssdk.securitytoken\\3.7.100.14\\awssdk.securitytoken.3.7.100.14.nupkg.sha512",

@@ -1,5 +1,6 @@
 using System.Text.Json.Serialization;
 using File.Package.FileService;
+using JobService.Client;
 using JobService.Core.AutoMapperConfig;
 using JobService.Data;
 using JobService.RabbitMqConfig;
@@ -36,6 +37,8 @@ namespace JobService
             builder.Services.AddScoped<IMessageProducer, RabbitMqMessageSender>();
             builder.Services.AddScoped<IGetJobReq, JobPositionService>();
             builder.Services.AddScoped<IEmail, EmailService>();
+            builder.Services.AddScoped<IClient, ClientService>();
+            builder.Services.AddScoped<ICategory, CategoryService>();
             builder.Services.AddHttpClient();
 
             builder.Services.AddControllers()
