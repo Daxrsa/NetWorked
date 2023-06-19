@@ -43,6 +43,7 @@ namespace JobService.Services
         {
             var jobs = await _context.JobPositions
                 .Include("Company")
+                .Include("JobCategory")
                 .OrderByDescending(x => x.CreatedAt)
                 .ToListAsync();
             var convertedJobs = _mapper.Map<IEnumerable<JobReadDto>>(jobs);
@@ -78,6 +79,7 @@ namespace JobService.Services
                 }
                 var job = await _context.JobPositions
                     .Where(job => job.Username.Equals(user.Result.username))
+                    .Include(job => job.JobCategory)
                     .Include(job => job.Company)
                     .ToListAsync();
                 var returnedJob = _mapper.Map<IEnumerable<JobReadDto>>(job);

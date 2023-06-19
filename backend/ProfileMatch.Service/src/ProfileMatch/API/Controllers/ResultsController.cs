@@ -43,6 +43,21 @@ namespace API.Controllers
             }
         }
 
+        [HttpGet("applications/{id}")]
+        [Authorize(Roles = "Recruiter")]
+        public async Task<IActionResult> GetByApplicationId(int id)
+        {
+            try
+            {
+                var result = await _contract.GetByApplicantId(id);
+                return Ok(result);
+            }
+            catch (Exception)
+            {
+                return BadRequest("No result found with id \"" + id + "\"");
+            }
+        }
+
         [HttpDelete]
         [Authorize(Roles ="Recruiter")]
         public async Task<IActionResult> Delete(Guid id)

@@ -31,7 +31,6 @@ function CompanyPage() {
   return (
     <div className='app'>
       <NavBar />
-      <JobApplicationsTable/>
       <div className='companies'>
         <div className="heading">
           <Button variant='outlined' onClick={() => redirect("/companies/add")}>

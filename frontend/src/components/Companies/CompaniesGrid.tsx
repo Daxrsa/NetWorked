@@ -1,6 +1,6 @@
 import { Box } from '@mui/material'
 import { DataGrid } from '@mui/x-data-grid'
-import {React, useEffect} from 'react'
+import { React, useEffect } from 'react'
 import { ICompany } from '../../Interfaces/global.typing'
 import Button from "@mui/material/Button/Button";
 import httpModule from '../../Helpers/http.module';
@@ -44,20 +44,6 @@ const CompaniesGrid = ({ data }: ICompaniesGridProps) => {
                                 onClick={() => handleDelete(params.row.id)}
                             >
                                 Delete
-                            </Button>
-                        ),
-                    },
-                    {
-                        field: 'edit',
-                        headerName: 'Edit',
-                        width: 100,
-                        renderCell: (params) => (
-                            <Button
-                                variant='outlined'
-                                color='success'
-                                onClick={() => handleDelete(params.row.id)}
-                            >
-                                Edit
                             </Button>
                         ),
                     },
