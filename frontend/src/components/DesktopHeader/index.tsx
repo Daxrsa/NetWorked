@@ -163,6 +163,11 @@ const Header: React.FC = () => {
     setMenuOpen(false);
     setActiveButton("companies");
   };
+  const handleDashboardClick = () => {
+    navigate("/jobDashboard");
+    setMenuOpen(false);
+    setActiveButton("companies");
+  };
 
   return (
     <Container>

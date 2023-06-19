@@ -16,7 +16,6 @@ import AddCompany from "./components/Companies/AddCompany";
 import JobPage from "./components/Jobs/JobPage";
 import AddJob from "./RecruiterDashboard/AddJob";
 import JobApplicationPage from "./components/JobApplications/JobApplicationPage";
-import AddApplication from "./components/JobApplications/AddApplication";
 import Payment from "./components/Payment/Payment"
 import JobDisplay from "./components/Jobs/JobDisplay";
 import JobPositonDetails from "./components/Jobs/jobPositionDetails";
@@ -32,7 +31,7 @@ function App()
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
         <Route path="/posts" element={<PostDashboard />} />
-        <Route path="jobDetails/:id" element={<JobPositonDetails />} />
+        <Route path="job/details/:id" element={<JobPositonDetails />} />
         <Route path="/jobs" element={<JobDisplay />} />
         <Route path="/companies">
           <Route index element={<CompanyPage />} />
@@ -44,7 +43,6 @@ function App()
         </Route>
         <Route path="/jobApplications">
           <Route index element={<JobApplicationPage />} />
-          <Route path="add" element={<AddApplication />} />
         </Route>
         <Route element={<PrivateRoutes />}>
           <Route path="/mainchat" element={<MainChat />} />

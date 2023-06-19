@@ -10,6 +10,7 @@ namespace JobService.Controllers
     [Authorize]
     [Route("api/v1/[controller]")]
     [ApiController]
+    [AllowAnonymous]
     public class ApplicationController:ControllerBase
     {
         private readonly IApplication _contract;

@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { TextField, Button } from '@mui/material';
 import './jobs.css';
 import { SearchOutlined } from '@mui/icons-material';
+import FilterDropdown from './filterJobs';
+import httpModule from '../../Helpers/http.module';
 
 const SearchBar = ({ onSearch }) => {
     const [searchQuery, setSearchQuery] = useState('');
@@ -18,6 +20,9 @@ const SearchBar = ({ onSearch }) => {
 
     return (
         <div className="search-bar-container">
+            <div>
+                {/* <FilterDropdown onSelect={handleFilter}/> */}
+            </div>
             <TextField
                 label="Search"
                 value={searchQuery}

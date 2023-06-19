@@ -47,3 +47,8 @@ export interface ICreateApplicationDto {
     applicantId: string
     jobId: int
 }
+
+export interface ICategory {
+    id: int
+    name: string
+}

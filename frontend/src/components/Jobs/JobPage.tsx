@@ -8,7 +8,7 @@ import JobsGrid from "./JobsGrid.tsx"
 import { Add } from '@mui/icons-material'
 import Header from "../DesktopHeader";
 import Sidebar from "../sidebar/Sidebar"
-import './grid.css'
+import NavBar from "../../RecruiterDashboard/Navbar"
 
 function JobPage() {
   const [jobs, setJobs] = useState<IJob[]>([]);
@@ -29,25 +29,24 @@ function JobPage() {
       });
   }, []);
 
-  //console.log(companies);
-
   return (
-
-    <div className='app companies'>
-      <Header />
-      <div className="heading">
-        <h2 className="h2c">Jobs Positions</h2>
-        <Button variant='outlined' onClick={() => redirect("/jobDashboard/add")}>
-          <Add />
-        </Button>
+    <div className='app'>
+      <NavBar />
+      <div className='companies'>
+        <div className="heading">
+          <h2 className="h2c"></h2>
+          <Button variant='outlined' onClick={() => redirect("/jobDashboard/add")}>
+            <Add />
+          </Button>
+        </div>
+        {loading ? (
+          <CircularProgress size={100} />
+        ) : jobs.length === 0 ? (
+          <h1>No Job Position</h1>
+        ) : (
+          <JobsGrid className="jobs-grid-container" data={jobs} />
+        )}
       </div>
-      {loading ? (
-        <CircularProgress size={100} />
-      ) : jobs.length === 0 ? (
-        <h1>No Job Position</h1>
-      ) : (
-        <JobsGrid className="jobs-grid-container" data={jobs} />
-      )}
     </div>
   );
 };

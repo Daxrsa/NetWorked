@@ -13,7 +13,7 @@ const JobCard = (props) => {
     const redirect = useNavigate();
 
     const handleClickBtn = (id: int) => {
-        redirect(`/jobDetails/${id}`)
+        redirect(`/job/details/${id}`)
     }
     const imageSrc = `http://localhost:33364/Resources/${props.companyLogo}`;
 

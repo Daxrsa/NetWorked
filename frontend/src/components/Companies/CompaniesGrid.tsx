@@ -28,7 +28,7 @@ const column: GridColDef[] = [
         width: 100,
         renderCell: (params) => (
             <a href="#">
-                <Button variant="outlined" color="error">
+                <Button onClick={handleDelete(params)} variant="outlined" color="error">
                     Delete
                 </Button>
             </a>
@@ -39,6 +39,15 @@ const column: GridColDef[] = [
 interface ICompaniesGridProps {
     data: ICompany[];
 }
+
+const handleDelete = async (itemId) => {
+    try {
+      await httpModule.delete(`/api/items/${itemId}`);
+      useEffect()// Refresh the items after deletion
+    } catch (error) {
+      console.error('Error deleting item:', error);
+    }
+  };
 
 const CompaniesGrid = ({ data }: ICompaniesGridProps) => {
     return (

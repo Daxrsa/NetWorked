@@ -6,6 +6,8 @@ import { Button, CircularProgress } from '@mui/material'
 import { useNavigate } from 'react-router-dom'
 import { Add } from '@mui/icons-material'
 import CompaniesGrid from "./CompaniesGrid"
+import NavBar from "../../RecruiterDashboard/Navbar"
+import JobApplicationsTable from "../JobApplications/ApplicationTable"
 
 function CompanyPage() {
   const [companies, setCompanies] = useState<ICompany[]>([]);
@@ -26,24 +28,26 @@ function CompanyPage() {
       });
   }, []);
 
-  //console.log(companies);
-
   return (
-    <div className='app companies'>
-      <div className="heading">
-        <h2 className="h2c">Companies</h2>
-        <Button variant='outlined' onClick={() => redirect("/companies/add")}>
-          <Add />
-        </Button>
+    <div className='app'>
+      <NavBar />
+      <JobApplicationsTable/>
+      <div className='companies'>
+        <div className="heading">
+          <h2 className="h2c"></h2>
+          <Button variant='outlined' onClick={() => redirect("/companies/add")}>
+            <Add />
+          </Button>
 
+        </div>
+        {loading ? (
+          <CircularProgress size={100} />
+        ) : companies.length === 0 ? (
+          <h1>No Company</h1>
+        ) : (
+          <CompaniesGrid data={companies} />
+        )}
       </div>
-      {loading ? (
-        <CircularProgress size={100} />
-      ) : companies.length === 0 ? (
-        <h1>No Company</h1>
-      ) : (
-        <CompaniesGrid data={companies} />
-      )}
     </div>
   );
 };

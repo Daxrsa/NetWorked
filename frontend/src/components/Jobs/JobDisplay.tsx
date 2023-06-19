@@ -6,6 +6,7 @@ import JobCard from './JobCard';
 import httpModule from '../../Helpers/http.module'
 import { IJob } from '../../Interfaces/global.typing'
 import SearchBar from './searchJobs';
+import FilterDropdown from './filterJobs';
 
 const JobDisplay = () => {
     const [jobs, setJobs] = useState<IJob[]>([]);
@@ -37,10 +38,23 @@ const JobDisplay = () => {
             console.error('Search error:', error);
         }
     };
+
+    const handleFilter = async (query: string) => {
+        try {
+            const response = await httpModule.get(`/Search/filter?result=${query}`);
+            const filterData = response.data;
+            setFilteredJobs(filterData);
+            console.log(filterData)
+        } catch (error) {
+            console.log('Filter error: ', error);
+        }
+    }
+
     return (
         <div className="heading jobWrap">
             <Header />
             <SearchBar onSearch={handleSearch} />
+            <FilterDropdown onSelect={handleFilter} />
             {filteredJobs.map(job => <JobCard key={job.id} {...job} />)}
         </div>
     );

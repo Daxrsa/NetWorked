@@ -11,6 +11,6 @@
     "\\JobService\\Migrations",
     "\\JobService\\Services"
   ],
-  "SelectedNode": "\\JobService\\Controllers\\JobPositionController.cs",
+  "SelectedNode": "\\JobService\\Controllers\\ApplicationController.cs",
   "PreviewInSolutionExplorer": false
 }
