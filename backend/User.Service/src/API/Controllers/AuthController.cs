@@ -47,7 +47,7 @@ namespace API.Controllers
                 formFile = request.formFile,
                 VerificationToken = _authRepo.GenerateVerificationCode()
             };
-            var response = await _authRepo.Register(user, request.Password); 
+            var response = await _authRepo.Register(user, request.Password);
 
             if (!response.Success)
             {
@@ -57,27 +57,27 @@ namespace API.Controllers
             return Ok(response);
         }
 
-         [HttpPost("ChangeUserRole")]
-         public async Task<ActionResult<string>> ChangeUserRole(Guid id)
-         {
-             var result = await _userRepo.GetUserById(id);
+        [HttpPost("ChangeUserRole")]
+        public async Task<ActionResult<string>> ChangeUserRole(Guid id)
+        {
+            var result = await _userRepo.GetUserById(id);
 
-             if (result == null || !result.Success || result.Data == null)
-             {
-                 return NotFound();
-             }
+            if (result == null || !result.Success || result.Data == null)
+            {
+                return NotFound();
+            }
 
-             if (result.Data.Role != "Applicant")
-             {
-                 return BadRequest("User role is not 'Applicant'.");
-             }
+            if (result.Data.Role != "Applicant")
+            {
+                return BadRequest("User role is not 'Applicant'.");
+            }
 
-             result.Data.Role = "Recruiter";
+            result.Data.Role = "Recruiter";
             var user = _mapper.Map<User>(result.Data);
             await _userRepo.UpdateUser(user);
 
-             return Ok(result);
-         }
+            return Ok(result);
+        }
 
         [HttpPost("Login")]
         public async Task<ActionResult<Result<Guid>>> Login(UserLoginDTO request)
@@ -98,7 +98,7 @@ namespace API.Controllers
         public async Task<IActionResult> Verfiy(string token)
         {
             var result = await _authRepo.Verify(token);
-            return Ok(result);  
+            return Ok(result);
         }
     }
 }

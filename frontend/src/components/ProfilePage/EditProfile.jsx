@@ -1,9 +1,14 @@
 import React, { useState } from "react";
 import { MDBCol, MDBBtn, MDBInput, MDBTextArea } from "mdb-react-ui-kit";
 import axios from "axios";
-import { logout } from '../AuthService';
+import { logout } from "../AuthService";
 
-export default function EditProfile({ cancel, submit }) {
+export default function EditProfile({ cancel, submit, 
+  loggedInFullname, 
+  loggedInEmail, loggedInPhone, 
+  loggedInAddress, loggedInProfession,
+  loggedInSkills,
+  loggedInBio }) {
   const [fullname, setFullName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
@@ -48,42 +53,77 @@ export default function EditProfile({ cancel, submit }) {
     }
   };
 
+  const handleFullNameChange = (value) => {
+    setFullName(value);
+  };
+
+  const handleEmailChange = (value) => {
+    setEmail(value);
+  };
+
+  const handlePhoneChange = (value) => {
+    setPhone(value);
+  };
+
+  const handleAddressChange = (value) => {
+    setAddress(value);
+  };
+
+  const handleProfessionChange = (value) => {
+    setProfession(value);
+  };
+
+  const handleSkillsChange = (value) => {
+    setSkills(value);
+  };
+
+  const handleBioChange = (value) => {
+    setBio(value);
+  };
+
   return (
     <>
       <MDBCol lg="5">
         <MDBInput
           placeholder="Full Name"
-          onChange={(e) => setFullName(e.target.value)}
+          defaultValue={loggedInFullname}
+          onChange={(e) => handleFullNameChange(e.target.value)}
         ></MDBInput>
         <hr />
         <MDBInput
           placeholder="Email"
-          onChange={(e) => setEmail(e.target.value)}
+          defaultValue={loggedInEmail}
+          onChange={(e) => handleEmailChange(e.target.value)}
         ></MDBInput>
         <hr />
         <MDBInput
           placeholder="Phone"
-          onChange={(e) => setPhone(e.target.value)}
+          defaultValue={loggedInPhone}
+          onChange={(e) => handlePhoneChange(e.target.value)}
         ></MDBInput>
         <hr />
         <MDBInput
           placeholder="Address"
-          onChange={(e) => setAddress(e.target.value)}
+          defaultValue={loggedInAddress}
+          onChange={(e) => handleAddressChange(e.target.value)}
         ></MDBInput>
         <hr />
         <MDBInput
           placeholder="Profession"
-          onChange={(e) => setProfession(e.target.value)}
+          defaultValue={loggedInProfession}
+          onChange={(e) => handleProfessionChange(e.target.value)}
         ></MDBInput>
         <hr />
         <MDBInput
           placeholder="Skills"
-          onChange={(e) => setSkills(e.target.value)}
+          defaultValue={loggedInSkills}
+          onChange={(e) => handleSkillsChange(e.target.value)}
         ></MDBInput>
         <hr />
         <MDBTextArea
           placeholder="Bio"
-          onChange={(e) => setBio(e.target.value)}
+          defaultValue={loggedInBio}
+          onChange={(e) => handleBioChange(e.target.value)}
         ></MDBTextArea>
         <hr />
       </MDBCol>
