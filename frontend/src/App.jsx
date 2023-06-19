@@ -16,7 +16,6 @@ import AddCompany from "./components/Companies/AddCompany";
 import JobPage from "./components/Jobs/JobPage";
 import AddJob from "./RecruiterDashboard/AddJob";
 import JobApplicationPage from "./components/JobApplications/JobApplicationPage";
-import AddApplication from "./components/JobApplications/AddApplication";
 import Payment from "./components/Payment/Payment"
 import JobDisplay from "./components/Jobs/JobDisplay";
 import JobPositonDetails from "./components/Jobs/jobPositionDetails";
@@ -31,26 +30,35 @@ function App()
         <Route path="/" element={<Layout />} />
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/posts" element={<PostDashboard />} />
-        <Route path="jobDetails/:id" element={<JobPositonDetails />} />
-        <Route path="/jobs" element={<JobDisplay />} />
-        <Route path="/companies">
-          <Route index element={<CompanyPage />} />
-          <Route path="add" element={<AddCompany />} />
+
+        <Route element={<PrivateRoutes allowedRoles={["Recruiter", "Applicant", "Admin"]} />}>
+          <Route path="/mainchat" element={<MainChat />} />
+          <Route path="/profilePage" element={<ProfilePage />} />
+          <Route path="/posts" element={<PostDashboard />} />
+          <Route path="job/details/:id" element={<JobPositonDetails />} />
+          <Route path="/jobs" element={<JobDisplay />} />
+        </Route>
+
+        <Route element={<PrivateRoutes allowedRoles={["Applicant"]} />}>
+          <Route path="/payment" element={<Payment />} />
+        </Route>
+
+        <Route element={<PrivateRoutes allowedRoles={["Admin", "Recruiter"]} />}>
+          <Route path="/admin" element={<AdminDashboard />} />
+          <Route path="/companies">
+            <Route index element={<CompanyPage />} />
+            <Route path="add" element={<AddCompany />} />
+          </Route>
         </Route>
         <Route path="/jobDashboard">
           <Route index element={<JobPage />} />
           <Route path="add" element={<AddJob />} />
         </Route>
-        <Route path="/jobApplications">
-          <Route index element={<JobApplicationPage />} />
-          <Route path="add" element={<AddApplication />} />
-        </Route>
-        <Route element={<PrivateRoutes />}>
-          <Route path="/mainchat" element={<MainChat />} />
-          <Route path="/profilePage" element={<ProfilePage />} />
-          <Route path="/payment" element={<Payment />} />
-          <Route path="/admin" element={<AdminDashboard />} />
+        <Route element={<PrivateRoutes allowedRoles={["Recruiter"]} />}>
+
+          <Route path="/jobApplications">
+            <Route index element={<JobApplicationPage />} />
+          </Route>
         </Route>
       </Routes>
     </>

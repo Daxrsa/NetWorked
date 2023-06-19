@@ -57,8 +57,9 @@ export default function SignIn() {
 
       const token = response.data.data;
       console.log(response.data.data);
-      localStorage.removeItem("jwtToken"); 
-      localStorage.setItem("jwtToken", token); 
+      localStorage.removeItem("jwtToken");
+      localStorage.setItem("jwtToken", token);
+      localStorage.setItem("role", response.data.userRole)
 
       const authenticated = isAuthenticated();
 

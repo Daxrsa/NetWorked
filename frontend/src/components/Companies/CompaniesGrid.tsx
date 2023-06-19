@@ -1,8 +1,9 @@
 import { Box } from '@mui/material'
 import { DataGrid } from '@mui/x-data-grid'
-import React from 'react'
+import {React, useEffect} from 'react'
 import { ICompany } from '../../Interfaces/global.typing'
 import Button from "@mui/material/Button/Button";
+import httpModule from '../../Helpers/http.module';
 
 const column: GridColDef[] = [
     { field: "id", headerName: "Id", width: 100 },
@@ -10,40 +11,59 @@ const column: GridColDef[] = [
     { field: "size", headerName: "Size", width: 150 },
     { field: "cityLocation", headerName: "CityLocation", width: 200 },
     { field: "logo", headerName: "Logo", width: 100 },
-    {
-        field: "edit",
-        headerName: "Edit",
-        width: 100,
-        renderCell: (params) => (
-            <a href="#">
-                <Button variant="contained" color="success">
-                    Edit
-                </Button>
-            </a>
-        )
-    },
-    {
-        field: "delete",
-        headerName: "Delete",
-        width: 100,
-        renderCell: (params) => (
-            <a href="#">
-                <Button variant="outlined" color="error">
-                    Delete
-                </Button>
-            </a>
-        )
-    },
 ];
 
 interface ICompaniesGridProps {
     data: ICompany[];
 }
 
+const handleDelete = async (itemId) => {
+    try {
+        await httpModule.delete(`/Company/${itemId}`);
+        useEffect()
+    } catch (error) {
+        console.error('Error deleting item:', error);
+    }
+};
+
 const CompaniesGrid = ({ data }: ICompaniesGridProps) => {
     return (
-        <Box sx={{ width: "100%", height: 450 }} >
-            <DataGrid rows={data} columns={column} getRowId={(row) => row.id} rowHeight={50} />
+        <Box sx={{ width: "90%", height: 500, margin: "4%" }} >
+            <DataGrid
+                rows={data}
+                columns={[
+                    ...column,
+                    {
+                        field: 'delete',
+                        headerName: 'Delete',
+                        width: 100,
+                        renderCell: (params) => (
+                            <Button
+                                variant='outlined'
+                                color='error'
+                                onClick={() => handleDelete(params.row.id)}
+                            >
+                                Delete
+                            </Button>
+                        ),
+                    },
+                    {
+                        field: 'edit',
+                        headerName: 'Edit',
+                        width: 100,
+                        renderCell: (params) => (
+                            <Button
+                                variant='outlined'
+                                color='success'
+                                onClick={() => handleDelete(params.row.id)}
+                            >
+                                Edit
+                            </Button>
+                        ),
+                    },
+                ]}
+                getRowId={(row) => row.id}
+                rowHeight={50} />
         </Box>
     );
 };

@@ -28,6 +28,7 @@ export default function JobPositonDetails() {
     const [errorMessage, setErrorMessage] = useState('');
     const [statusCode, setStatusCode] = useState<string | null>(null);
     const [isLoading, setIsLoading] = useState(false);
+    
 
     const handleFileUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
         const file = event.target.files && event.target.files[0];
@@ -47,7 +48,11 @@ export default function JobPositonDetails() {
 
     useEffect(() => {
         httpModule
-            .get(`/JobPosition/${id}`)
+            .get(`/JobPosition/${id}`, {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+            })
             .then(response => {
                 setJob(response.data);
                 console.log(response.data)
@@ -63,7 +68,7 @@ export default function JobPositonDetails() {
         applicantId: "",
         jobId: 0
     });
-    //const [jobs, setJobs] = useState<IJob[]>([]);
+    
     const [pdfFile, setPdfFile] = useState<File | null>();
     const redirect = useNavigate();
 

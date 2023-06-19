@@ -104,9 +104,10 @@ namespace JobService.Services
                     Description = job.Description,
                     Username = job.Username
                 };
-                _messageProducer.SendMessage<NotificationsDTO>(newNotification, "notifications_service");
+                
                 _context.JobPositions.Add(job);
                 _context.SaveChanges();
+                _messageProducer.SendMessage<NotificationsDTO>(newNotification, "notifications_service");
                 return true;
             }
             catch (Exception ex)

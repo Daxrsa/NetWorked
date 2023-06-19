@@ -9,7 +9,6 @@ namespace JobService.Controllers
     [Authorize]
     [Route("api/v1/[controller]")]
     [ApiController]
-    //[AllowAnonymous]
     public class JobPositionController: ControllerBase
     {
         private readonly IJobPosition _contract;
@@ -38,7 +37,7 @@ namespace JobService.Controllers
         }
 
         [HttpPost]
-        //[Authorize]
+        [Authorize]
         public async Task<ActionResult> AddJob(JobCreateDto dto)
         {
             string authorizationHeader = Request.Headers["Authorization"].ToString();

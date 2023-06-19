@@ -29,7 +29,7 @@ namespace JobService.Controllers
         }
 
         [HttpPost]
-        public IActionResult AddCompany([FromForm] CompanyCreateDto model)
+        public IActionResult AddCompany([FromForm]CompanyCreateDto model)
         {
             var status = new Status();
             if(!ModelState.IsValid)

@@ -32,6 +32,7 @@ namespace JobService.Core.AutoMapperConfig
                 opt => opt.MapFrom(src => src.JobPosition.Title));
 
             CreateMap<CategoryDto, Category>().ReverseMap();
+            CreateMap<CategoryReadDto, Category>().ReverseMap();
         }
     }
 }
