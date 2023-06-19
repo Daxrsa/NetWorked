@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import axios from "axios";
 import {
   Box,
@@ -11,6 +11,7 @@ import {
 } from "@mui/material";
 import { Avatar, makeStyles } from "@material-ui/core";
 import ThumbUpRoundedIcon from "@mui/icons-material/ThumbUpRounded";
+import EditPost from "./EditPost";
 
 const useStyles = makeStyles(() => ({
   container: {
@@ -28,6 +29,16 @@ const useStyles = makeStyles(() => ({
 }));
 
 export default function UserPostsList({ posts }) {
+  const [isEditMode, setIsEditMode] = useState(false);
+
+  const handleEditClick = () => {
+    setIsEditMode(true);
+  };
+
+  const handleCancelClick = () => {
+    setIsEditMode(false);
+  };
+
   const classes = useStyles();
 
   const formatDate = (dateString) => {
@@ -81,7 +92,9 @@ export default function UserPostsList({ posts }) {
             alt="postImage"
             margin="10px"
           />
-          <Typography margin='10px' variant="h9">{formatDate(post.dateCreated)}</Typography>
+          <Typography margin="10px" variant="h9">
+            {formatDate(post.dateCreated)}
+          </Typography>
           <CardContent>
             <Typography gutterBottom variant="h5" component="div">
               {post.title}
@@ -101,11 +114,14 @@ export default function UserPostsList({ posts }) {
             </Typography>
           </CardContent>
           <CardActions>
-            <Button>Edit</Button>
-            <Button
-              color="error"
-              onClick={() => handleDelete(post.id)} // Call the handleDelete function with the post's ID
-            >
+            {isEditMode ? (
+              <EditPost
+                handleCancelClick={handleCancelClick}
+              />
+            ) : (
+              <Button onClick={handleEditClick}>Edit</Button>
+            )}
+            <Button color="error" onClick={() => handleDelete(post.id)}>
               Delete
             </Button>
           </CardActions>
