@@ -7,7 +7,7 @@ using Persistence;
 
 namespace API.Controllers
 {
-    //[Authorize(Roles = "Applicant")]
+    [Authorize(Roles = "Applicant")]
     [ApiController]
     [Route("api/[controller]")]
     public class PostController : BaseApiController

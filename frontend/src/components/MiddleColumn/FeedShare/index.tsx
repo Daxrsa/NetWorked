@@ -1,7 +1,5 @@
-import React from 'react';
-
+import React, { useState } from 'react';
 import Panel from '../../Panel';
-
 import {
   Container,
   WriteIcon,
@@ -10,14 +8,26 @@ import {
   DocumentIcon,
   ArticleIcon,
 } from './styles';
+import { MDBBtn } from 'mdb-react-ui-kit';
+import { Button } from '@mui/material';
+import AddPostForm from './AddPostForm';
 
 const FeedShare: React.FC = () => {
+  const [idAddMode, setAddMode] = useState(false);
+  const openAddForm = () => {
+    setAddMode(true);
+  }
   return (
     <Panel>
       <Container>
         <div className="write">
           <WriteIcon />
-          <span>Start a post</span>
+          {idAddMode ? (
+          <AddPostForm />
+        ) : (
+          <Button variant="text" color="secondary" onClick={openAddForm}>Add Post</Button>
+        )}
+        <hr />
         </div>
         <div className="attachment">
           <button>

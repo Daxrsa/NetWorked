@@ -173,7 +173,8 @@ namespace Application.Services.Auth
                 new Claim(ClaimTypes.StreetAddress, user.Address),
                 new Claim(ClaimTypes.UserData, user.Skills),
                 new Claim(ClaimTypes.HomePhone, user.Profession),
-                new Claim(ClaimTypes.CookiePath, user.Bio)
+                new Claim(ClaimTypes.CookiePath, user.Bio),
+                new Claim(ClaimTypes.OtherPhone, user.ProfilePictureUrl)
             };
 
             var key = new SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes(

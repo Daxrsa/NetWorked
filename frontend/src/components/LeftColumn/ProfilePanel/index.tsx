@@ -8,6 +8,7 @@ import { Container } from "./styles";
 const ProfilePanel: React.FC = () => {
   const [loggedInUserName, setUsername] = useState(null);
   const [loggedInSkills, setSkills] = useState(null);
+  const [loggedInProfilePic, setLoggedInProfilePic] = useState(null);
   const fetchLoggedInUser = async () => {
     try {
       const token = localStorage.getItem("jwtToken"); // Retrieve the token from localStorage
@@ -23,6 +24,7 @@ const ProfilePanel: React.FC = () => {
       console.log(udata);
       setUsername(udata.username);
       setSkills(udata.skills);
+      setLoggedInProfilePic(udata.profilePictureUrl);
     } catch (error) {
       console.error("Error fetching logged-in user:", error);
     }
@@ -35,7 +37,7 @@ const ProfilePanel: React.FC = () => {
       <Container>
         <div className="profile-cover"></div>
         <img
-          src="https://avatars.githubusercontent.com/u/93683494?v=4"
+          src={`http://localhost:5116/Resources/${loggedInProfilePic}`}
           alt="Avatar"
           className="profile-picture"
         />

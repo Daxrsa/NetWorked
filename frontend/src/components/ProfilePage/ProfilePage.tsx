@@ -16,6 +16,7 @@ import axios from "axios";
 import UserPosts from "../Posts/UserPosts";
 import { Post } from "../../models/Post";
 import ConfirmationBox from "./ConfirmationBox";
+import CardMedia from "@mui/material/CardMedia";
 
 export default function ProfilePage() {
   //axios states:-----------------------------------------------------------------------
@@ -32,6 +33,7 @@ export default function ProfilePage() {
   const [loggedInProfession, setLoggedInProfession] = useState(null);
   const [loggedInSkills, setLoggedInSkills] = useState(null);
   const [loggedInBio, setLoggedInBio] = useState(null);
+  const [loggedInPictureUrl, setLoggedInPictureUrl] = useState(null);
 
   //-------------------------------------------------------------------------------------
 
@@ -49,14 +51,13 @@ export default function ProfilePage() {
     setIsEditMode(false);
   };
 
-
   const openCofirmation = () => {
     setConfirmation(true);
   };
 
   const calcelConfirmation = () => {
     setConfirmation(false);
-  }
+  };
 
   //--------------------------------------------------------------------
 
@@ -85,6 +86,7 @@ export default function ProfilePage() {
       setLoggedInProfession(data.profession);
       setLoggedInSkills(data.skills);
       setLoggedInBio(data.bio);
+      setLoggedInPictureUrl(data.profilePictureUrl);
     } catch (error) {
       alert("Error fetching logged-in user.");
     }
@@ -123,7 +125,7 @@ export default function ProfilePage() {
             <MDBCard className="mb-4">
               <MDBCardBody className="text-center">
                 <img
-                  src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp"
+                  src={`http://localhost:5116/Resources/${loggedInPictureUrl}`}
                   alt="avatar"
                   className="rounded-circle"
                   style={{ width: "150px" }}
@@ -208,23 +210,23 @@ export default function ProfilePage() {
           </MDBCol>
         </MDBRow>
         {confirmation ? (
-          <ConfirmationBox calcelConfirmation={calcelConfirmation}/>
+          <ConfirmationBox calcelConfirmation={calcelConfirmation} />
         ) : (
           <MDBBtn color="danger" onClick={openCofirmation}>
             Delete Account
           </MDBBtn>
         )}
         {isEditMode ? (
-          <EditProfile 
-          cancel={handleCancelClick} 
-          submit={handleSubmitClick} 
-          loggedInFullname={loggedInFullname}
-          loggedInEmail={loggedInEmail}
-          loggedInPhone={loggedInPhone}
-          loggedInAddress={loggedInAddress}
-          loggedInProfession={loggedInProfession}
-          loggedInSkills={loggedInSkills}
-          loggedInBio={loggedInBio}
+          <EditProfile
+            cancel={handleCancelClick}
+            submit={handleSubmitClick}
+            loggedInFullname={loggedInFullname}
+            loggedInEmail={loggedInEmail}
+            loggedInPhone={loggedInPhone}
+            loggedInAddress={loggedInAddress}
+            loggedInProfession={loggedInProfession}
+            loggedInSkills={loggedInSkills}
+            loggedInBio={loggedInBio}
           />
         ) : (
           <MDBBtn onClick={handleEditClick}>Edit</MDBBtn>

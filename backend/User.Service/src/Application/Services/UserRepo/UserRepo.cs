@@ -52,7 +52,8 @@ namespace Application.Services.UserRepo
                         Address = claimsPrincipal.FindFirstValue(ClaimTypes.StreetAddress),
                         Skills = claimsPrincipal.FindFirstValue(ClaimTypes.UserData),
                         Profession = claimsPrincipal.FindFirstValue(ClaimTypes.HomePhone),
-                        Bio = claimsPrincipal.FindFirstValue(ClaimTypes.CookiePath)
+                        Bio = claimsPrincipal.FindFirstValue(ClaimTypes.CookiePath),
+                        ProfilePictureUrl = claimsPrincipal.FindFirstValue(ClaimTypes.OtherPhone)
                     };
                 }
             }
