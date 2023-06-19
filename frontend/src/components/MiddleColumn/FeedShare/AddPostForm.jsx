@@ -8,10 +8,13 @@ import {
   Typography,
   Box,
 } from "@material-ui/core";
+import axios from "axios";
 
 function AddPostForm() {
   const [selectedImage, setSelectedImage] = useState(null);
   const [imageUrl, setImageUrl] = useState(null);
+  const [title, setTitle] = useState("");
+  const [description, setDescription] = useState("");
 
   const removeImage = () => {
     setSelectedImage(false);
@@ -23,7 +26,44 @@ function AddPostForm() {
     }
   }, [selectedImage]);
 
-  console.log(selectedImage);
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+  
+    const token = localStorage.getItem("jwtToken");
+  
+    try {
+      const formData = new FormData();
+      formData.append("title", title);
+      formData.append("description", description);
+      formData.append("imageName", selectedImage.name);
+      formData.append("imageFile", selectedImage);
+  
+      const response = await axios.post(
+        "http://localhost:5263/api/Post/add",
+        formData,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
+  
+      console.log(response);
+  
+      if (response) {
+        console.log("Post has been added.");
+        window.location.reload();
+      } else {
+        console.log("Problem adding post.");
+      }
+  
+      console.log(response.data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+  
 
   return (
     <div className="App">
@@ -50,16 +90,17 @@ function AddPostForm() {
                     variant="outlined"
                     fullWidth
                     required
+                    onChange={(e) => setTitle(e.target.value)}
                   />
                 </Grid>
                 <Grid item xs={12}>
                   <TextField
-                    type="email"
                     placeholder="Enter description"
                     label="Description"
                     variant="outlined"
                     fullWidth
                     required
+                    onChange={(e) => setDescription(e.target.value)}
                   />
                 </Grid>
                 <Grid item xs={12}>
@@ -115,6 +156,7 @@ function AddPostForm() {
                     variant="contained"
                     color="primary"
                     fullWidth
+                    onClick={handleSubmit}
                   >
                     Submit
                   </Button>

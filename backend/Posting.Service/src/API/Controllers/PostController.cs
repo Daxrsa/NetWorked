@@ -7,7 +7,7 @@ using Persistence;
 
 namespace API.Controllers
 {
-    [Authorize(Roles = "Applicant")]
+    [Authorize]
     [ApiController]
     [Route("api/[controller]")]
     public class PostController : BaseApiController
@@ -70,28 +70,7 @@ namespace API.Controllers
         [HttpDelete("{id}")]
         public async Task<ActionResult<List<PostDTO>>> DeletePost(Guid id)
         {
-            try
-            {
-                var token = Request.Headers["Authorization"].ToString().Split(' ')[1];
-
-                httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
-
-                var response = await httpClient.GetAsync("http://localhost:5116/api/Auth/GetloggedInUser");
-
-                if (response.IsSuccessStatusCode)
-                {
-                    var content = await response.Content.ReadAsStringAsync();
-                    var loggedInUser = JsonConvert.DeserializeObject<UserDTO>(content);
-                    id = loggedInUser.Id;
                     return HandleResult(await _postService.DeletePost(id));
-                }
-
-                return BadRequest("Failed to retrieve the logged-in user.");
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(ex.Message);
-            }
         }
 
         [HttpGet("filter-posts")]

@@ -29,6 +29,7 @@ const FeedShare: React.FC = () => {
         )}
         <hr />
         </div>
+        <Button>Cancel</Button>
         <div className="attachment">
           <button>
             <CameraIcon />
