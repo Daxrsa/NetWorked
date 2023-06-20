@@ -1,0 +1,4 @@
+MONGO=mongodb+srv://notifacc1:Q4xHkheD9s8J4I8P@networkednotif.kvogtoe.mongodb.net/?retryWrites=true&w=majority
+ALGOLIA_API_KEY=718671371d4fc1a988b3aedae0bbbc00
+ALGOLIA_APP_ID=0QN10FPCXB
+ALGOLIA_INDEX=NETWORKED

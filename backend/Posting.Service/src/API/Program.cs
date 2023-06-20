@@ -15,6 +15,7 @@ using Microsoft.OpenApi.Models;
 using Microsoft.IdentityModel.Tokens;
 using Swashbuckle.AspNetCore.Filters;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Application.Services.BlogService;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -45,6 +46,8 @@ builder.Services.AddScoped<IPostService, PostService>();
 builder.Services.AddTransient<IFileService, FileService>();
 builder.Services.AddScoped<ILikesService, LikesService>();
 builder.Services.AddScoped<ICommentService, CommentService>();
+builder.Services.AddScoped<IBlogService, BlogService>();
+
 builder.Services.AddHttpClient();
 
 builder.Services.AddAutoMapper(typeof(MappingProfiles).Assembly);
