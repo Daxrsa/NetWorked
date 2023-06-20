@@ -1,7 +1,7 @@
 import React from "react"
 import { useEffect, useState } from 'react'
 import httpModule from '../../Helpers/http.module'
-import { IApplication, ICompany } from '../../Interfaces/global.typing'
+import { IApplication, ICompany, IResult } from '../../Interfaces/global.typing'
 import { Button, CircularProgress } from '@mui/material'
 import { useNavigate } from 'react-router-dom'
 import ApplicationsGrid from "./JobApplicationGrid.tsx"
@@ -16,7 +16,22 @@ function JobApplicationPage() {
     useEffect(() => {
         setLoading(true);
         httpModule
-            .get<IApplication[]>("/Application/jobId/3015")
+            .get<IApplication[]>("/Application")
+            .then(response => {
+                setApplications(response.data);
+                setLoading(false);
+            })
+            .catch((error) => {
+                //alert("Error");
+                console.log(error);
+                setLoading(false);
+            });
+    }, []);
+
+    useEffect(() => {
+        setLoading(true);
+        httpModule
+            .get<IResult[]>(`/Results/applications/${applications.id}`)
             .then(response => {
                 setApplications(response.data);
                 setLoading(false);

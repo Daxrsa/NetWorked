@@ -53,3 +53,9 @@ export interface ICategory {
     id: int
     name: string
 }
+
+export interface IResult{
+    id: string
+    result: number
+    applicationId: int
+}

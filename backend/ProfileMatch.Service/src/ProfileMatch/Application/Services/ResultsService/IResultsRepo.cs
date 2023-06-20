@@ -8,5 +8,6 @@ namespace Application.Services.ResultsService
         Task<IEnumerable<ResultReadDto>> GetAll();
         Task<bool> Delete(Guid id);
         Task<ResultReadDto> GetById(Guid id);
+        Task<ResultReadDto> GetByApplicantId(int id);
     }
 }

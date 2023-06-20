@@ -17,7 +17,7 @@ function JobPage() {
   const token = localStorage.getItem("jwtToken");
   useEffect(() => {
     setLoading(true);
-    httpModule.get("/JobPosition", {
+    httpModule.get("/JobPosition/MyJobs", {
       headers: {
         Authorization: `Bearer ${token}`,
       },

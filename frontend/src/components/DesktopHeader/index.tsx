@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import useFetch from "../../hooks/useFetch";
 import Search from "../Search/Search";
 import axios from "axios";
+import styled from 'styled-components';
 import {
   Container,
   Wrapper,
@@ -35,6 +36,7 @@ const Header: React.FC = () => {
   const [notificationOpen, setNotificationOpen] = useState(false); // Track the state of the notification dropdown
   const [loggedInUserName, setUsername] = useState(null);
   const [notifications, setNotifications] = useState<Notification[]>([]);
+  const [searchQuery, setSearchQuery] = useState("");
 
   const handleChatsClick = () => {
     navigate("/mainchat");
@@ -101,12 +103,40 @@ const Header: React.FC = () => {
   useEffect(() => {
     fetchNotifs();
   }, []);
-
+  const handleSearch = async () => {
+    try {
+      const response = await axios.post(
+        "http://localhost:8800/notifications/search",
+        { username: searchQuery }
+      );
+      console.log(response.data);
+      setNotifications(response.data);
+  
+      // Close the notification dropdown after performing the search
+      setNotificationOpen(false);
+    } catch (error) {
+      console.log(error);
+    }
+  };
   const handleNetworkClick = () => {
     navigate("/");
     setActiveButton("home");
   };
+  const SearchInput = styled.input`
+  margin-left: 12px;
+  background: var(--color-white);
+  color: var(--color-black);
+  font-size: 14px;
+  padding: 7.5px 8px;
+  border: none;
+  outline: none;
+  border-radius: 2px;
+  width: 300px;
 
+  &:focus {
+    background: var(--color-white);
+  }
+`;
   const handleHomeClick = () => {
     navigate("/");
     setMenuOpen(false);
@@ -150,14 +180,6 @@ const Header: React.FC = () => {
     navigate("/notifications");
   };
 
-  // const handlePostClick = () => {
-  //   navigate("/posts");
-  // const handleApplicationsClick = () => {
-  //   navigate('/jobApplications');
-  //   setMenuOpen(false);
-  //   setActiveButton('jobApplications');
-  // };
-
   const handleCompaniesClick = () => {
     navigate("/companies");
     setMenuOpen(false);
@@ -166,7 +188,7 @@ const Header: React.FC = () => {
   const handleDashboardClick = () => {
     navigate("/jobDashboard");
     setMenuOpen(false);
-    setActiveButton("companies");
+    setActiveButton("jobDashboard");
   };
 
   return (
@@ -179,7 +201,17 @@ const Header: React.FC = () => {
               alt="My Image"
               style={{ width: "60px", height: "50px", marginTop: "0.1px" }}
             />
-            <Search />
+             
+             <input
+  type="text"
+  placeholder="Search..."
+  value={searchQuery}
+  onChange={(e) => setSearchQuery(e.target.value)}
+  style={{ width: '400px',marginLeft:'10px',height:'40px',marginTop:'10px',fontWeight:'500px'}}
+/>
+
+    
+    
           </div>
         </div>
 
@@ -223,14 +255,21 @@ const Header: React.FC = () => {
               <span>Notifications</span>
               {notificationOpen && (
                 <NotificationsDropdownMenu>
-                  {notifications.map((notification) => (
-                    <div key={notification.username}>
-                      <p>
-                        <span>{notification.username}</span>{" "}
-                        <span>{notification.description}</span>
-                      </p>
-                    </div>
-                  ))}
+                  {notifications
+  .filter(
+    (notification) =>
+      notification.username.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      notification.description.toLowerCase().includes(searchQuery.toLowerCase())
+  )
+  .map((notification) => (
+    <div key={notification.username}>
+      <p>
+        <span>{notification.username}</span>{" "}
+        <span>{notification.description}</span>
+      </p>
+    </div>
+  ))}
+
                 </NotificationsDropdownMenu>
               )}
             </button>
@@ -258,6 +297,7 @@ const Header: React.FC = () => {
                     )}
                     <button onClick={handleProfilePageClick}>My Profile</button>
                     <button onClick={handleDashboardClick}>My jobs</button>
+                    <button onClick={handleCompaniesClick}>Companies</button>
                     <button onClick={logout}>Logout</button>
                     {/* <button onClick={handleJobsClick}>Jobs</button> */}
                     {/* <button onClick={handleApplicationsClick}>Applications</button> */}
