@@ -5,6 +5,7 @@ import moment from "moment";
 import { IJob } from '../../Interfaces/global.typing'
 import Button from "@mui/material/Button/Button";
 import httpModule from '../../Helpers/http.module';
+import { useNavigate } from 'react-router-dom';
 
 const column: GridColDef[] = [
     { field: "id", headerName: "Id", width: 85 },
@@ -41,30 +42,18 @@ const handleDelete = async (itemId) => {
                 Authorization: `Bearer ${token}`,
             },
         });
-        useEffect()
+        //useEffect()
     } catch (error) {
         console.error('Error deleting item:', error);
     }
 };
-
-const handleClick = async (itemId) => {
-    try {
-        await httpModule.get(`/JobPosition/${itemId}`, {
-            headers: {
-                Authorization: `Bearer ${token}`,
-            },
-        });
-    } catch (error) {
-        console.log("error")
-    };
-
-}
 
 interface IJobsGridProps {
     data: IJob[];
 }
 
 const JobsGrid = ({ data }: IJobsGridProps) => {
+    const redirect = useNavigate();
     return (
         <Box sx={{ width: "100%", height: 600 }} >
             <DataGrid rows={data} columns={[
@@ -83,20 +72,20 @@ const JobsGrid = ({ data }: IJobsGridProps) => {
                         </Button>
                     ),
                 },
-                // {
-                //     field: 'applications',
-                //     headerName: 'Applications',
-                //     width: 200,
-                //     renderCell: (params) => (
-                //         <Button
-                //             variant='outlined'
-                //             color='info'
-                //             onClick={() => handleDelete(params.row.id)}
-                //         >
-                //             Check Applications
-                //         </Button>
-                //     ),
-                // },
+                {
+                    field: 'applications',
+                    headerName: 'Applications',
+                    width: 200,
+                    renderCell: (params) => (
+                        <Button
+                            variant='outlined'
+                            color='info'
+                            onClick={() => redirect(`applications/${params.row.id}`)}
+                        >
+                            Check Applications
+                        </Button>
+                    ),
+                },
             ]}
                 getRowId={(row) => row.id}
                 rowHeight={50} />

@@ -37,7 +37,7 @@ namespace JobService.Controllers
         }
 
         [HttpPost]
-        [Authorize]
+        [Authorize(Roles ="Recruiter")]
         public async Task<ActionResult> AddJob(JobCreateDto dto)
         {
             string authorizationHeader = Request.Headers["Authorization"].ToString();

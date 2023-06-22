@@ -3,8 +3,14 @@
     "",
     "\\src",
     "\\src\\ProfileMatch",
-    "\\src\\ProfileMatch\\API"
+    "\\src\\ProfileMatch\\API",
+    "\\src\\ProfileMatch\\API\\Controllers",
+    "\\src\\ProfileMatch\\Domain",
+    "\\src\\ProfileMatch\\Domain\\Models",
+    "\\src\\ProfileMatch\\Domain\\TestDTOs",
+    "\\src\\ProfileMatch\\Persistance",
+    "\\src\\ProfileMatch\\Persistance\\Migrations"
   ],
-  "SelectedNode": "\\src\\ProfileMatch\\API\\Program.cs",
+  "SelectedNode": "\\src\\ProfileMatch\\Persistance\\ProfileMatchDbContext.cs",
   "PreviewInSolutionExplorer": false
 }

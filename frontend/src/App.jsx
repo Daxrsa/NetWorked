@@ -20,6 +20,14 @@ import Payment from "./components/Payment/Payment"
 import JobDisplay from "./components/Jobs/JobDisplay";
 import JobPositonDetails from "./components/Jobs/jobPositionDetails";
 import AdminDashboard from './components/Admin/AdminDashboard';
+import AddArtikulli from "./RecruiterDashboard/AddArtikulli";
+import AddArticle from "./components/CRUD/AddArticle";
+import ArticleList from "./components/CRUD/ArticleList";
+import EditArticle from "./components/CRUD/EditArticle";
+import AddComment from "./components/CRUD/AddComment";
+import CommentList from "./components/CRUD/CommentList";
+import EditComment from "./components/CRUD/EditComment";
+import AddSpec from "./components/CRUD/AddArticle";
 
 function App()
 {
@@ -27,16 +35,28 @@ function App()
     <>
       <GlobalStyles />
       <Routes>
+        <Route path="/specializimi/add" element={<AddSpec />} />
+        <Route path="/specializimi/page" element={<ArticleList />} />
+        <Route path="/specializimi/edit/:id" element={<EditArticle />} />
+
+
+        <Route path="/comment/add" element={<AddComment />} />
+        <Route path="/comment" element={<CommentList />} />
+        <Route path="/comment/edit/:id" element={<EditComment />} />
+
+
+
         <Route path="/" element={<Layout />} />
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
+        <Route path="job/details/:id" element={<JobPositonDetails />} />
+        <Route path="/jobs" element={<JobDisplay />} />
 
         <Route element={<PrivateRoutes allowedRoles={["Recruiter", "Applicant", "Admin"]} />}>
           <Route path="/mainchat" element={<MainChat />} />
           <Route path="/profilePage" element={<ProfilePage />} />
           <Route path="/posts" element={<PostDashboard />} />
-          <Route path="job/details/:id" element={<JobPositonDetails />} />
-          <Route path="/jobs" element={<JobDisplay />} />
+
         </Route>
 
         <Route element={<PrivateRoutes allowedRoles={["Applicant"]} />}>
@@ -50,13 +70,13 @@ function App()
             <Route path="add" element={<AddCompany />} />
           </Route>
         </Route>
-        <Route path="/jobDashboard">
-          <Route index element={<JobPage />} />
-          <Route path="add" element={<AddJob />} />
-        </Route>
-        <Route element={<PrivateRoutes allowedRoles={["Recruiter"]} />}>
 
-          <Route path="/jobApplications">
+        <Route element={<PrivateRoutes allowedRoles={["Recruiter"]} />}>
+          <Route path="/jobDashboard">
+            <Route index element={<JobPage />} />
+            <Route path="add" element={<AddJob />} />
+          </Route>
+          <Route path="/jobDashboard/applications/:id">
             <Route index element={<JobApplicationPage />} />
           </Route>
         </Route>

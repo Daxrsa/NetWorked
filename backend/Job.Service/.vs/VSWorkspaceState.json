@@ -11,6 +11,6 @@
     "\\Job\\JobService\\JobService\\Services",
     "\\Job\\JobService\\JobService\\Services\\Interfaces"
   ],
-  "SelectedNode": "\\Job\\JobService\\JobService\\Program.cs",
+  "SelectedNode": "\\Job\\JobService\\JobService\\Controllers\\JobPositionController.cs",
   "PreviewInSolutionExplorer": false
 }
