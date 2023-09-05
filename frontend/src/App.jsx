@@ -20,6 +20,8 @@ import Payment from "./components/Payment/Payment"
 import JobDisplay from "./components/Jobs/JobDisplay";
 import JobPositonDetails from "./components/Jobs/jobPositionDetails";
 import AdminDashboard from './components/Admin/AdminDashboard';
+import BlogForm from './Blogs/BlogForm';
+import ContentForm from './Blogs/Content/ContentForm';
 
 function App()
 {
@@ -27,6 +29,10 @@ function App()
     <>
       <GlobalStyles />
       <Routes>
+      <Route path="/blogs" element={<BlogForm />} />
+      <Route path="/content" element={<ContentForm />} />
+
+
         <Route path="/" element={<Layout />} />
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />

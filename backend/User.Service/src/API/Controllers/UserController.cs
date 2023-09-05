@@ -3,7 +3,9 @@ using Application.DTOs;
 using Domain.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
+using Persistence;
 
 namespace API.Controllers
 {
@@ -14,11 +16,13 @@ namespace API.Controllers
     {
         private readonly IUserRepo _userRepo;
         private readonly HttpClient _httpClient;
+        private readonly DataContext context;
 
-        public UserController(IUserRepo userRepo, HttpClient httpClient)
+        public UserController(IUserRepo userRepo, HttpClient httpClient, DataContext context)
         {
             _userRepo = userRepo;
             _httpClient = httpClient;
+            this.context = context;
         }
 
         [HttpGet]
@@ -93,5 +97,15 @@ namespace API.Controllers
             }
         }
 
+        [HttpDelete("all-users")]
+        public async Task<ActionResult> DeleteAllUsers()
+        {
+            var allUsers = await context.User.ToListAsync();
+
+            context.User.RemoveRange(allUsers);
+            context.SaveChanges();
+
+            return Ok("All users deleted");
+        }
     }
 }

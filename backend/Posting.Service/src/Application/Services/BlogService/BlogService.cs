@@ -63,5 +63,75 @@ namespace Application.Services.BlogService
 
             return existingBlog;
         }
+
+        public async Task<Blog> AddContentToBlog(Guid blogId, Content newContent)
+        {
+            // Retrieve the blog from the database
+            var blog = await _context.Blogs.FindAsync(blogId);
+
+            if (blog != null)
+            {
+                // Initialize the Contents collection if it's null
+                if (blog.Contents == null)
+                    blog.Contents = new List<Content>();
+
+                // Add the new content to the Contents collection
+                blog.Contents.Add(newContent);
+
+                // Save the changes to the database
+                await _context.SaveChangesAsync();
+            }
+            return blog;
+        }
+
+        public async Task<Content> DeleteContent(Guid contentId)
+        {
+            // Retrieve the content from the database
+            var content = await _context.Contents.FindAsync(contentId);
+
+            if (content != null)
+            {
+                // Remove the content from the database context
+                _context.Contents.Remove(content);
+
+                // Save the changes to the database
+                await _context.SaveChangesAsync();
+            }
+            return content;
+        }
+
+        public async Task<Content> EditContent(Guid contentId, string newBody)
+        {
+
+            // Retrieve the content from the database
+            var content = await _context.Contents.FindAsync(contentId);
+
+            if (content != null)
+            {
+                // Update the content's text with the new value
+                content.Body = newBody;
+
+                // Save the changes to the database
+                await _context.SaveChangesAsync();
+            }
+
+            return content;
+        }
+
+        public async Task<List<Content>> GetAllContent()
+        {
+            // Retrieve all content from the database
+            var allContent = await _context.Contents.ToListAsync();
+
+            return allContent;
+        }
+
+        public async Task<Content> GetContentById(Guid Id)
+        {
+            // Retrieve the content from the database by its ID
+            var content = await _context.Contents.FindAsync(Id);
+
+            return content;
+        }
     }
 }

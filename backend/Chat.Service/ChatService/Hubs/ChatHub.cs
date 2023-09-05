@@ -1,8 +1,7 @@
-﻿using Microsoft.AspNetCore.SignalR;
-using System.Linq;
-using MongoDB.Driver;
+﻿using System.Linq;
 using Microsoft.AspNetCore.Mvc;
-
+using Microsoft.AspNetCore.SignalR;
+using MongoDB.Driver;
 
 namespace ChatService.Hubs
 {
@@ -12,8 +11,6 @@ namespace ChatService.Hubs
         private readonly IDictionary<string, UserConnection> _connections;
         private readonly IMongoDatabase _mongoDatabase;
         private readonly IMongoCollection<ChatMessage> _messagesCollection;
-
-
 
         public ChatHub(IDictionary<string, UserConnection> connections, IMongoDatabase mongoDatabase)
         {
@@ -31,7 +28,6 @@ namespace ChatService.Hubs
                 SendConnectedUsers(userConnection.Room);
 
             }
-
             return base.OnDisconnectedAsync(exception);
         }
 
@@ -52,8 +48,6 @@ namespace ChatService.Hubs
             }
         }
 
-
-       
         public async Task JoinRoom(UserConnection userConnection)
         {
             await Groups.AddToGroupAsync(Context.ConnectionId, userConnection.Room);
@@ -82,7 +76,5 @@ namespace ChatService.Hubs
                 }
             }
         }
-
-
     }
 }

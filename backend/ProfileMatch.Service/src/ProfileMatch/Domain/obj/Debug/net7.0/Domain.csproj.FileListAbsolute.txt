@@ -10,3 +10,15 @@ C:\Users\fitor\ProjektiLab2\NetWorked\backend\ProfileMatch.Service\src\ProfileMa
 C:\Users\fitor\ProjektiLab2\NetWorked\backend\ProfileMatch.Service\src\ProfileMatch\Domain\obj\Debug\net7.0\refint\Domain.dll
 C:\Users\fitor\ProjektiLab2\NetWorked\backend\ProfileMatch.Service\src\ProfileMatch\Domain\obj\Debug\net7.0\Domain.pdb
 C:\Users\fitor\ProjektiLab2\NetWorked\backend\ProfileMatch.Service\src\ProfileMatch\Domain\obj\Debug\net7.0\ref\Domain.dll
+C:\Users\Razer\Documents\GitHub\NetWorked\backend\ProfileMatch.Service\src\ProfileMatch\Domain\bin\Debug\net7.0\Domain.deps.json
+C:\Users\Razer\Documents\GitHub\NetWorked\backend\ProfileMatch.Service\src\ProfileMatch\Domain\bin\Debug\net7.0\Domain.dll
+C:\Users\Razer\Documents\GitHub\NetWorked\backend\ProfileMatch.Service\src\ProfileMatch\Domain\bin\Debug\net7.0\Domain.pdb
+C:\Users\Razer\Documents\GitHub\NetWorked\backend\ProfileMatch.Service\src\ProfileMatch\Domain\obj\Debug\net7.0\Domain.csproj.AssemblyReference.cache
+C:\Users\Razer\Documents\GitHub\NetWorked\backend\ProfileMatch.Service\src\ProfileMatch\Domain\obj\Debug\net7.0\Domain.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Razer\Documents\GitHub\NetWorked\backend\ProfileMatch.Service\src\ProfileMatch\Domain\obj\Debug\net7.0\Domain.AssemblyInfoInputs.cache
+C:\Users\Razer\Documents\GitHub\NetWorked\backend\ProfileMatch.Service\src\ProfileMatch\Domain\obj\Debug\net7.0\Domain.AssemblyInfo.cs
+C:\Users\Razer\Documents\GitHub\NetWorked\backend\ProfileMatch.Service\src\ProfileMatch\Domain\obj\Debug\net7.0\Domain.csproj.CoreCompileInputs.cache
+C:\Users\Razer\Documents\GitHub\NetWorked\backend\ProfileMatch.Service\src\ProfileMatch\Domain\obj\Debug\net7.0\Domain.dll
+C:\Users\Razer\Documents\GitHub\NetWorked\backend\ProfileMatch.Service\src\ProfileMatch\Domain\obj\Debug\net7.0\refint\Domain.dll
+C:\Users\Razer\Documents\GitHub\NetWorked\backend\ProfileMatch.Service\src\ProfileMatch\Domain\obj\Debug\net7.0\Domain.pdb
+C:\Users\Razer\Documents\GitHub\NetWorked\backend\ProfileMatch.Service\src\ProfileMatch\Domain\obj\Debug\net7.0\ref\Domain.dll

@@ -69,6 +69,25 @@ namespace Persistence.Migrations
                     b.ToTable("Comments");
                 });
 
+            modelBuilder.Entity("Domain.Content", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("BlogId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Body")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("BlogId");
+
+                    b.ToTable("Contents");
+                });
+
             modelBuilder.Entity("Domain.Post", b =>
                 {
                     b.Property<Guid>("Id")
@@ -107,6 +126,20 @@ namespace Persistence.Migrations
                         .IsRequired();
 
                     b.Navigation("Post");
+                });
+
+            modelBuilder.Entity("Domain.Content", b =>
+                {
+                    b.HasOne("Domain.Blog", null)
+                        .WithMany("Contents")
+                        .HasForeignKey("BlogId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Domain.Blog", b =>
+                {
+                    b.Navigation("Contents");
                 });
 
             modelBuilder.Entity("Domain.Post", b =>

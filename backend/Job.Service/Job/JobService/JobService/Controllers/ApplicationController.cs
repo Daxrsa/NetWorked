@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace JobService.Controllers
 {
-    [Authorize]
+    //[Authorize]
     [Route("api/v1/[controller]")]
     [ApiController]
     [AllowAnonymous]
