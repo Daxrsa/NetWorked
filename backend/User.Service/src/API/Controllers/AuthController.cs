@@ -31,7 +31,7 @@ namespace API.Controllers
             return Ok(user);
         }
         [HttpPost("Register")]
-        public async Task<ActionResult<Result<Guid>>> Register([FromForm] UserRegisterDTO request)
+        public async Task<ActionResult<Result<Guid>>> Register(UserRegisterDTO request)
         {
             var user = new User()
             {

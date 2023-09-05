@@ -8,6 +8,7 @@ import { PictureAsPdf } from '@mui/icons-material'
 import Button from "@mui/material/Button/Button";
 import httpModule from '../../Helpers/http.module';
 import axios from 'axios';
+import MyComponent from './matchingResult';
 
 const column: GridColDef[] = [
     { field: "id", headerName: "Id", width: 100 },
@@ -53,7 +54,11 @@ const ApplicationsGrid = ({ data }: IApplicationsGridProps) => {
     return (
         <Box sx={{ width: "100%", height: 600 }} >
             <DataGrid rows={data} columns={[
-                ...column,
+                ...column,{
+                    renderCell: (params) =>(
+                        <MyComponent id={params.row.id}/>
+                    )
+                },
                 {
                     field: 'delete',
                     headerName: 'Delete',

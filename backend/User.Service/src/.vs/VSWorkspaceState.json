@@ -2,7 +2,7 @@
   "ExpandedNodes": [
     "",
     "\\API",
-    "\\API\\RabbitMQConfig",
+    "\\API\\Controllers",
     "\\Application",
     "\\Application\\Core",
     "\\Application\\DTOs",

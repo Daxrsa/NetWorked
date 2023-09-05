@@ -17,6 +17,7 @@ import "../App.css";
 import axios from "axios";
 import { TextArea } from "semantic-ui-react";
 import { Card } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 
 function Copyright(props: any) {
   return (
@@ -49,6 +50,7 @@ export default function SignIn() {
   const [skills, setSkills] = useState("");
   const [password, setPassword] = useState("");
   const [bio, setBio] = useState("");
+  const redirect = useNavigate();
 
   const handleSubmit = async (event: any) => {
     event.preventDefault();
@@ -69,9 +71,11 @@ export default function SignIn() {
         }
       );
       console.log("Register success.", response.data);
+      alert("Check your email")
       // Handle successful login or any other logic
     } catch (error) {
       console.error("Register failure", error);
+      redirect("/login")
       // Handle error
     }
   };

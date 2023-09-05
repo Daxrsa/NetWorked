@@ -54,8 +54,19 @@ export interface ICategory {
     name: string
 }
 
-export interface IResult{
+export interface IResult {
     id: string
     result: number
     applicationId: int
+}
+
+export interface IArticle {
+    title: string
+    name: string
+}
+
+export interface IKomenti{
+    id: string
+    title: string
+    articleId: string
 }

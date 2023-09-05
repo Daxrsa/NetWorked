@@ -8,9 +8,10 @@
     "\\ProfileMatch\\Application\\RabbitMqConsumer",
     "\\ProfileMatch\\Domain",
     "\\ProfileMatch\\Domain\\Models",
+    "\\ProfileMatch\\Domain\\TestDTOs",
     "\\ProfileMatch\\Persistance",
     "\\ProfileMatch\\Persistance\\Migrations"
   ],
-  "SelectedNode": "\\ProfileMatch\\API\\Controllers\\ResultsController.cs",
+  "SelectedNode": "\\ProfileMatch\\API\\Controllers\\SemundjaController.cs",
   "PreviewInSolutionExplorer": false
 }

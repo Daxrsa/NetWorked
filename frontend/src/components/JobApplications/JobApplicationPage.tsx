@@ -7,16 +7,18 @@ import { useNavigate } from 'react-router-dom'
 import ApplicationsGrid from "./JobApplicationGrid.tsx"
 import { Add } from '@mui/icons-material'
 import NavBar from "../../RecruiterDashboard/Navbar"
+import { useParams } from "react-router-dom"
 
 function JobApplicationPage() {
     const [applications, setApplications] = useState<IApplication[]>([]);
     const redirect = useNavigate();
     const [loading, setLoading] = useState<boolean>(false);
+    const { id }: { id: int } = useParams()
 
     useEffect(() => {
         setLoading(true);
         httpModule
-            .get<IApplication[]>("/Application")
+            .get<IApplication[]>(`/Application/jobId/${id}`)
             .then(response => {
                 setApplications(response.data);
                 setLoading(false);

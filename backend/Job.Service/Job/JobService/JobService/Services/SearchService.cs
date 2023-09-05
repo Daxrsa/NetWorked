@@ -19,7 +19,7 @@ namespace JobService.Services
         }
         public async Task<List<JobReadDto>> Search(string? title)
         {
-            IQueryable<JobPosition> query = _context.JobPositions.Include("JobCategory").Include("Company");
+            IQueryable<JobPosition> query = _context.JobPositions.Where(job => job.ExpireDate >= DateTime.Now).Include("JobCategory").Include("Company");
             if(title is not null)
             {
                 query = query.Where(t => t.ExpireDate >= DateTime.Now && (t.Title.Contains(title) 
@@ -36,7 +36,7 @@ namespace JobService.Services
         {
             try
             {
-                IQueryable<JobPosition> query = _context.JobPositions.Include("JobCategory").Include("Company");
+                IQueryable<JobPosition> query = _context.JobPositions.Where(job => job.ExpireDate >= DateTime.Now).Include("JobCategory").Include("Company");
                 query = query.Where(j => j.JobCategory.Name.Equals(statement));
                 var jobs = await query.OrderByDescending(x => x.CreatedAt).ToListAsync();
                 var convertedJobs = _mapper.Map<List<JobReadDto>>(jobs);

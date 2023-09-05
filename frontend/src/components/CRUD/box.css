@@ -1,0 +1,6 @@
+.boxi {
+    margin-top: 15%;
+    justify-content: center;
+    display: flex;
+    flex-wrap: wrap;
+}
